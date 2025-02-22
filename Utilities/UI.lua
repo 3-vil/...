@@ -5,12 +5,7 @@ local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
 local PlayerService = game:GetService("Players")
 local CoreGui = game:GetService("CoreGui")
-local TweenService = game:GetService("TweenService")
-local ANIMATION_STYLE = {
-    Duration = 0.3,
-    Style = Enum.EasingStyle.Quint,
-    Direction = Enum.EasingDirection.Out
-}
+
 local GuiInset = GuiService:GetGuiInset()
 local LocalPlayer = PlayerService.LocalPlayer
 local Bracket = {IsLocal = not identifyexecutor}
