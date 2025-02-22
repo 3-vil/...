@@ -163,7 +163,7 @@ end
 
 function Utility.ReJoin()
     if #PlayerService:GetPlayers() <= 1 then
-        LocalPlayer:Kick("\nParvus Hub\nRejoining...")
+        LocalPlayer:Kick("\nAnbu.win\nRejoining...")
         task.wait(0.5)
         TeleportService:Teleport(game.PlaceId)
     else
@@ -187,45 +187,19 @@ function Utility.ServerHop()
         )
     else
         Parvus.Utilities.UI:Push({
-            Title = "Parvus Hub",
+            Title = "Anbu.win",
             Description = "Couldn't find a server",
             Duration = 5
         })
     end
 end
-function Utility.JoinDiscord()
-    Request({
-        ["Url"] = "http://localhost:6463/rpc?v=1",
-        ["Method"] = "POST",
-        ["Headers"] = {
-            ["Content-Type"] = "application/json",
-            ["Origin"] = "https://discord.com"
-        },
-        ["Body"] = HttpService:JSONEncode({
-            ["cmd"] = "INVITE_BROWSER",
-            ["nonce"] = string.lower(HttpService:GenerateGUID(false)),
-            ["args"] = {
-                ["code"] = "sYqDpbPYb7"
-            }
-        })
-    })
-end
+
 
 function Utility.InitAutoLoad(Window)
     Window:AutoLoadConfig("Parvus")
     Window:SetValue("UI/Enabled", Window.Flags["UI/OOL"])
 end
-function Utility.SetupWatermark(Self, Window)
-    local GetFPS = Self:SetupFPS()
 
-    RunService.Heartbeat:Connect(function()
-        if Window.Watermark.Enabled then
-            Window.Watermark.Title = string.format(
-                "Parvus Hub    %s    %i FPS    %i MS",
-                os.date("%X"), GetFPS(), math.round(Ping:GetValue())
-            )
-        end
-    end)
 end
 
 --[[
@@ -298,107 +272,7 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
         end}
     end
 
-    local OptionsTab = Window:Tab({Name = "Options"}) do
-        local MenuSection = OptionsTab:Section({Name = "Menu", Side = "Left"}) do
-            local UIToggle = MenuSection:Toggle({Name = "UI Enabled", Flag = "UI/Enabled", IgnoreFlag = true,
-            Value = Window.Enabled, Callback = function(Bool) Window.Enabled = Bool end})
-            UIToggle:Keybind({Value = UIKeybind, Flag = "UI/Keybind", IgnoreList = true, DoNotClear = true})
-            UIToggle:Colorpicker({Flag = "UI/Color", Value = {1, 0.25, 1, 0, true},
-            Callback = function(HSVAR, Color) Window.Color = Color end})
-
-            MenuSection:Toggle({Name = "Keybinds", IgnoreFlag = true, Flag = "UI/KeybindList",
-            Value = false, Callback = function(Bool) Window.KeybindList.Enabled = Bool end})
-
-            MenuSection:Toggle({Name = "Open On Load", Flag = "UI/OOL", Value = true})
-            MenuSection:Toggle({Name = "Blur Gameplay", Flag = "UI/Blur", Value = false,
-            Callback = function(Bool) Window.Blur = Bool end})
-
-            MenuSection:Toggle({Name = "Custom Mouse", Flag = "Mouse/Enabled", Value = CustomMouse})
-
-            MenuSection:Toggle({Name = "Watermark", Flag = "UI/Watermark/Enabled", Value = true,
-            Callback = function(Bool) Window.Watermark.Enabled = Bool end}):Keybind({Flag = "UI/Watermark/Keybind"})
-
-            MenuSection:Button({Name = "Rejoin", Callback = Self.ReJoin})
-            MenuSection:Button({Name = "Server Hop", Callback = Self.ServerHop})
-            MenuSection:Button({Name = "Copy Lua Invite", Callback = function()
-                setclipboard("game:GetService(\"TeleportService\"):TeleportToPlaceInstance(" .. game.PlaceId .. ", \"" .. game.JobId .. "\")")
-            end})
-            MenuSection:Button({Name = "Copy JS Invite", Callback = function()
-                setclipboard("Roblox.GameLauncher.joinGameInstance(" .. game.PlaceId .. ", \"" .. game.JobId .. "\");")
-            end})
-        end
-        OptionsTab:AddConfigSection("Parvus", "Left")
-        local BackgroundSection = OptionsTab:Section({Name = "Background", Side = "Right"}) do
-            BackgroundSection:Colorpicker({Name = "Color", Flag = "Background/Color", Value = {1, 1, 0, 0, false},
-            Callback = function(HSVAR, Color) Window.Background.ImageColor3 = Color Window.Background.ImageTransparency = HSVAR[4] end})
-            BackgroundSection:Textbox({HideName = true, Flag = "Background/CustomImage", Placeholder = "rbxassetid://ImageId",
-            Callback = function(String, EnterPressed) if EnterPressed then Window.Background.Image = String end end})
-            BackgroundSection:Dropdown({HideName = true, Flag = "Background/Image", List = BackgroundsList})
-
-            local TileSize = nil
-            BackgroundSection:Divider({Text = "Background Tile"})
-            BackgroundSection:Dropdown({HideName = true, Flag = "Background/TileMode", List = {
-                {Name = "Tile Offset", Mode = "Button", Value = true, Callback = function()
-                    if not TileSize then return end
-                    TileSize.Name = "Offset"
-                    TileSize.Min = 74
-                    TileSize.Max = 296
-                    TileSize.Unit = ""
-
-                    TileSize.Value = TileSize.Value
-                end},
-                {Name = "Tile Scale", Mode = "Button", Callback = function()
-                    if not TileSize then return end
-                    TileSize.Name = "Scale"
-                    TileSize.Min = 25
-                    TileSize.Max = 100
-                    TileSize.Unit = "%"
-
-                    TileSize.Value = TileSize.Value
-                end}
-            }})
-
-            TileSize = BackgroundSection:Slider({Name = "Offset", Flag = "Background/TileSize", Min = 74, Max = 296, Value = 74,
-            Callback = function(Number)
-                if TileSize.Name == "Offset" then
-                    Window.Background.TileSize = UDim2.fromOffset(Number, Number)
-                elseif TileSize.Name == "Scale" then
-                    Window.Background.TileSize = UDim2.fromScale(Number / 100, Number / 100)
-                end
-            end})
-
-            TileSize.Value = TileSize.Value
-        end
-        local CrosshairSection = OptionsTab:Section({Name = "Custom Crosshair", Side = "Right"}) do
-            CrosshairSection:Toggle({Name = "Enabled", Flag = "Crosshair/Enabled", Value = false})
-            :Colorpicker({Flag = "Crosshair/Color", Value = {1, 1, 1, 0, false}})
-            CrosshairSection:Slider({Name = "Size", Flag = "Crosshair/Size", Min = 0, Max = 20, Value = 4, Unit = "px"})
-            CrosshairSection:Slider({Name = "Gap", Flag = "Crosshair/Gap", Min = 0, Max = 10, Value = 2, Unit = "px"})
-        end
-        local DiscordSection = OptionsTab:Section({Name = "Discord", Side = "Right"}) do
-            DiscordSection:Label({Text = "Invite Code: sYqDpbPYb7"})
-            DiscordSection:Button({Name = "Copy Invite Link", Callback = function() setclipboard("https://discord.gg/sYqDpbPYb7") end})
-            DiscordSection:Button({Name = "Join Through Discord App", Callback = Self.JoinDiscord})
-        end
-        local CreditsSection = OptionsTab:Section({Name = "Credits", Side = "Right"}) do
-            CreditsSection:Label({Text = "Made by AlexR32 @ discord.com"})
-            CreditsSection:Label({Text = "I dont take friend requests\nfind me on my server: sYqDpbPYb7"})
-            CreditsSection:Divider({Text = "Special thanks to"})
-            CreditsSection:Label({Text = "Jan @ v3rmillion.net\nBackground patterns"})
-            --CreditsSection:Label({Text = "Infinite Yield Team\nServer Hop and Rejoin"})
-            CreditsSection:Label({Text = "CornCatCornDog @ v3rmillion.net\nOffscreen Arrows"})
-            --CreditsSection:Label({Text = "coasts @ v3rmillion.net\nUniversal ESP"})
-            CreditsSection:Label({Text = "mickeyrbx @ v3rmillion.net\nCalculateBox"})
-            CreditsSection:Label({Text = "Kiriot22 @ v3rmillion.net\nAnti plugin crash"})
-            CreditsSection:Label({Text = "el3tric @ v3rmillion.net\nBracket V2"})
-            CreditsSection:Label({Text = "and much more people\nbehind this project"})
-            CreditsSection:Label({Text = "❤️ ❤️ ❤️ ❤️"})
-        end
-    end
-
-    Window:KeybindList({Enabled = false})
-    Window:Watermark({Enabled = true})
-end
+    
 
 function Utility.ESPSection(Self, Window, Name, Flag, BoxEnabled, ChamEnabled, HeadEnabled, TracerEnabled, OoVEnabled, LightingEnabled)
     local VisualsTab = Window:Tab({Name = Name}) do
