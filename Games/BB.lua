@@ -161,7 +161,7 @@ local KnownBodyParts = {
 }
 
 local Window = Parvus.Utilities.UI:Window({
-    Name = ("Parvus Hub %s %s"):format(utf8.char(8212), Parvus.Game.Name),
+    Name = ("Anbu.win %s %s"):format(utf8.char(8212), Parvus.Game.Name),
     Position = UDim2.new(0.5, -248 * 3, 0.5, -248)
 }) do
 
@@ -406,9 +406,9 @@ local Window = Parvus.Utilities.UI:Window({
                     task.wait(0.1)
                     firesignal(LocalPlayer.PlayerGui.MenuGui.ClaimedFrame.CloseButton.MouseButton1Click)
                     firesignal(LocalPlayer.PlayerGui.MenuGui.PurchasedFrame.CloseButton.MouseButton1Click)
-                    Parvus.Utilities.UI:Push({Title = "Parvus Hub", Description = "All available codes are claimed!", Duration = 5})
+                    Parvus.Utilities.UI:Push({Title = "Anbu.win", Description = "All available codes are claimed!", Duration = 5})
                 else
-                    Parvus.Utilities.UI:Push({Title = "Parvus Hub", Description = "Failed to get the codes:\n" .. Error, Duration = 5})
+                    Parvus.Utilities.UI:Push({Title = "Anbu.win", Description = "Failed to get the codes:\n" .. Error, Duration = 5})
                 end
             end})
         end
