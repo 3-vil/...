@@ -247,7 +247,28 @@ Bracket.Assets = {
 		ToolTip.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
 		ToolTip.Parent = Screen
 
-	
+		local Watermark = Instance.new("TextLabel")
+		Watermark.Name = "Watermark"
+		Watermark.Visible = false
+		Watermark.AnchorPoint = Vector2.new(1, 0)
+		Watermark.Size = UDim2.new(0, 61, 0, 20)
+		Watermark.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Watermark.Position = UDim2.new(1, -20, 0, 20)
+		Watermark.BorderSizePixel = 2
+		Watermark.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Watermark.TextStrokeTransparency = 0.75
+		Watermark.TextSize = 14
+		Watermark.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Watermark.Text = "Watermark"
+		Watermark.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Watermark.Parent = Screen
+
+		local Stroke = Instance.new("UIStroke")
+		Stroke.Name = "Stroke"
+		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
+		Stroke.Color = Color3.fromRGB(63, 63, 63)
+		Stroke.Parent = Watermark
 
 		-- Push Notification
 		local PNContainer = Instance.new("Frame")
