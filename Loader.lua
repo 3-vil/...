@@ -1,3 +1,4 @@
+-- Wait until the game is fully loaded
 repeat task.wait() until game.IsLoaded
 repeat task.wait() until game.GameId ~= 0
 
@@ -9,8 +10,6 @@ if Parvus and Parvus.Loaded then
     }) return
 end
 
-
-
 local PlayerService = game:GetService("Players")
 repeat task.wait() until PlayerService.LocalPlayer
 local LocalPlayer = PlayerService.LocalPlayer
@@ -21,7 +20,7 @@ local QueueOnTeleport = queue_on_teleport
 
 local function GetFile(File)
     return IsLocal and readfile("Parvus/" .. File)
-    or game:HttpGet(("%s%s"):format(Parvus.Source, File))
+    or game:HttpGet(("https://raw.githubusercontent.com/3-vil/.../main/%s"):format(File))
 end
 
 local function LoadScript(Script)
@@ -39,7 +38,7 @@ local function GetGameInfo()
 end
 
 getgenv().Parvus = {
-    Source = "https://raw.githubusercontent.com/3-vil/.../" .. Branch .. "/",
+    Source = "https://raw.githubusercontent.com/3-vil/.../main/",
 
     Games = {
         ["Universal" ] = { Name = "Universal",                  Script = "Universal"  },
