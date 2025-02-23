@@ -163,7 +163,7 @@ end
 
 function Utility.ReJoin()
     if #PlayerService:GetPlayers() <= 1 then
-        LocalPlayer:Kick("\nParvus Hub\nRejoining...")
+        LocalPlayer:Kick("\nAnbu.win\nRejoining...")
         task.wait(0.5)
         TeleportService:Teleport(game.PlaceId)
     else
@@ -187,7 +187,7 @@ function Utility.ServerHop()
         )
     else
         Parvus.Utilities.UI:Push({
-            Title = "Parvus Hub",
+            Title = "Anbu.win",
             Description = "Couldn't find a server",
             Duration = 5
         })
@@ -221,7 +221,7 @@ function Utility.SetupWatermark(Self, Window)
     RunService.Heartbeat:Connect(function()
         if Window.Watermark.Enabled then
             Window.Watermark.Title = string.format(
-                "Parvus Hub    %s    %i FPS    %i MS",
+                "Anbu.win    %s    %i FPS    %i MS",
                 os.date("%X"), GetFPS(), math.round(Ping:GetValue())
             )
         end
@@ -241,7 +241,7 @@ end
 
 function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
     local Backgrounds = {
-        {"None", "", false},
+        {"None", "", true},
         {"Legacy", "rbxassetid://2151741365", false},
         {"Hearts", "rbxassetid://6073763717", false},
         {"Abstract", "rbxassetid://6073743871", false},
@@ -251,7 +251,7 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
         {"Checkered", "rbxassetid://4806196507", false},
         {"Lace With Flowers", "rbxassetid://6071575925", false},
         {"Flowers & Leafs", "rbxassetid://10921866694", false},
-        {"Floral", "rbxassetid://6214404863", true},
+        {"Floral", "rbxassetid://6214404863", false},
         {"Leafs", "rbxassetid://10921868665", false},
         {"Mountains", "rbxassetid://10921801398", false},
         {"Halloween", "rbxassetid://11113209821", false},
@@ -302,7 +302,7 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
         local MenuSection = OptionsTab:Section({Name = "Menu", Side = "Left"}) do
            local UIToggle = MenuSection:Toggle({Name = "UI Enabled", Flag = "UI/Enabled", IgnoreFlag = true,
             Value = Window.Enabled, Callback = function(Bool) Window.Enabled = Bool end})
-            UIToggle:Keybind({Value = UIKeyBind, Flag = "UI/Keybind", IgnoreList = true, DoNotClear = true})
+            UIToggle:Keybind({Value = UIKeybind, Flag = "UI/Keybind", IgnoreList = true, DoNotClear = true})
            
 
             MenuSection:Toggle({Name = "Keybinds", IgnoreFlag = true, Flag = "UI/KeybindList",
