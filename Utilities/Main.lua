@@ -239,7 +239,7 @@ end
   - Halloween = 0.0836667, 1, 1, 0, false
 ]]
 
-function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
+Utility.SettingsSection(Self, Window, Enum.KeyCode.Insert, CustomMouse)
     local Backgrounds = {
         {"None", "", false},
         {"Legacy", "rbxassetid://2151741365", false},
@@ -303,20 +303,17 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
             local UIToggle = MenuSection:Toggle({Name = "UI Enabled", Flag = "UI/Enabled", IgnoreFlag = true,
             Value = Window.Enabled, Callback = function(Bool) Window.Enabled = Bool end})
             UIToggle:Keybind({Value = UIKeybind, Flag = "UI/Keybind", IgnoreList = true, DoNotClear = true})
-            UIToggle:Colorpicker({Flag = "UI/Color", Value = {1, 0.25, 1, 0, true},
-            Callback = function(HSVAR, Color) Window.Color = Color end})
+          
 
             MenuSection:Toggle({Name = "Keybinds", IgnoreFlag = true, Flag = "UI/KeybindList",
             Value = false, Callback = function(Bool) Window.KeybindList.Enabled = Bool end})
 
             MenuSection:Toggle({Name = "Open On Load", Flag = "UI/OOL", Value = true})
-            MenuSection:Toggle({Name = "Blur Gameplay", Flag = "UI/Blur", Value = false,
-            Callback = function(Bool) Window.Blur = Bool end})
+           
 
             MenuSection:Toggle({Name = "Custom Mouse", Flag = "Mouse/Enabled", Value = CustomMouse})
 
-            MenuSection:Toggle({Name = "Watermark", Flag = "UI/Watermark/Enabled", Value = true,
-            Callback = function(Bool) Window.Watermark.Enabled = Bool end}):Keybind({Flag = "UI/Watermark/Keybind"})
+           
 
             MenuSection:Button({Name = "Rejoin", Callback = Self.ReJoin})
             MenuSection:Button({Name = "Server Hop", Callback = Self.ServerHop})
