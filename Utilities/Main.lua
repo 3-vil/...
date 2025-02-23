@@ -251,7 +251,7 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
         {"Checkered", "rbxassetid://4806196507", false},
         {"Lace With Flowers", "rbxassetid://6071575925", false},
         {"Flowers & Leafs", "rbxassetid://10921866694", false},
-        {"Floral", "rbxassetid://5553946656", true},
+        {"Floral", "rbxassetid://6214404863", true},
         {"Leafs", "rbxassetid://10921868665", false},
         {"Mountains", "rbxassetid://10921801398", false},
         {"Halloween", "rbxassetid://11113209821", false},
@@ -300,23 +300,17 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
 
     local OptionsTab = Window:Tab({Name = "Options"}) do
         local MenuSection = OptionsTab:Section({Name = "Menu", Side = "Left"}) do
-            local UIToggle = MenuSection:Toggle({Name = "UI Enabled", Flag = "UI/Enabled", IgnoreFlag = true,
-            Value = Window.Enabled, Callback = function(Bool) Window.Enabled = Bool end})
-            UIToggle:Keybind({Value = UIKeybind, Flag = "UI/Keybind", IgnoreList = true, DoNotClear = true})
-            UIToggle:Colorpicker({Flag = "UI/Color", Value = {1, 0.25, 1, 0, true},
-            Callback = function(HSVAR, Color) Window.Color = Color end})
+          
 
             MenuSection:Toggle({Name = "Keybinds", IgnoreFlag = true, Flag = "UI/KeybindList",
             Value = false, Callback = function(Bool) Window.KeybindList.Enabled = Bool end})
 
             MenuSection:Toggle({Name = "Open On Load", Flag = "UI/OOL", Value = true})
-            MenuSection:Toggle({Name = "Blur Gameplay", Flag = "UI/Blur", Value = false,
-            Callback = function(Bool) Window.Blur = Bool end})
+           
 
-            MenuSection:Toggle({Name = "Custom Mouse", Flag = "Mouse/Enabled", Value = CustomMouse})
+           
 
-            MenuSection:Toggle({Name = "Watermark", Flag = "UI/Watermark/Enabled", Value = true,
-            Callback = function(Bool) Window.Watermark.Enabled = Bool end}):Keybind({Flag = "UI/Watermark/Keybind"})
+            
 
             MenuSection:Button({Name = "Rejoin", Callback = Self.ReJoin})
             MenuSection:Button({Name = "Server Hop", Callback = Self.ServerHop})
@@ -327,59 +321,14 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
                 setclipboard("Roblox.GameLauncher.joinGameInstance(" .. game.PlaceId .. ", \"" .. game.JobId .. "\");")
             end})
         end
-        OptionsTab:AddConfigSection("Parvus", "Left")
-        local BackgroundSection = OptionsTab:Section({Name = "Background", Side = "Right"}) do
-            BackgroundSection:Colorpicker({Name = "Color", Flag = "Background/Color", Value = {1, 1, 0, 0, false},
-            Callback = function(HSVAR, Color) Window.Background.ImageColor3 = Color Window.Background.ImageTransparency = HSVAR[4] end})
-            BackgroundSection:Textbox({HideName = true, Flag = "Background/CustomImage", Placeholder = "rbxassetid://ImageId",
-            Callback = function(String, EnterPressed) if EnterPressed then Window.Background.Image = String end end})
-            BackgroundSection:Dropdown({HideName = true, Flag = "Background/Image", List = BackgroundsList})
-
-            local TileSize = nil
-            BackgroundSection:Divider({Text = "Background Tile"})
-            BackgroundSection:Dropdown({HideName = true, Flag = "Background/TileMode", List = {
-                {Name = "Tile Offset", Mode = "Button", Value = true, Callback = function()
-                    if not TileSize then return end
-                    TileSize.Name = "Offset"
-                    TileSize.Min = 74
-                    TileSize.Max = 296
-                    TileSize.Unit = ""
-
-                    TileSize.Value = TileSize.Value
-                end},
-                {Name = "Tile Scale", Mode = "Button", Callback = function()
-                    if not TileSize then return end
-                    TileSize.Name = "Scale"
-                    TileSize.Min = 25
-                    TileSize.Max = 100
-                    TileSize.Unit = "%"
-
-                    TileSize.Value = TileSize.Value
-                end}
-            }})
-
-            TileSize = BackgroundSection:Slider({Name = "Offset", Flag = "Background/TileSize", Min = 74, Max = 296, Value = 74,
-            Callback = function(Number)
-                if TileSize.Name == "Offset" then
-                    Window.Background.TileSize = UDim2.fromOffset(Number, Number)
-                elseif TileSize.Name == "Scale" then
-                    Window.Background.TileSize = UDim2.fromScale(Number / 100, Number / 100)
-                end
-            end})
-
-            TileSize.Value = TileSize.Value
-        end
-        local CrosshairSection = OptionsTab:Section({Name = "Custom Crosshair", Side = "Right"}) do
-            CrosshairSection:Toggle({Name = "Enabled", Flag = "Crosshair/Enabled", Value = false})
-            :Colorpicker({Flag = "Crosshair/Color", Value = {1, 1, 1, 0, false}})
-            CrosshairSection:Slider({Name = "Size", Flag = "Crosshair/Size", Min = 0, Max = 20, Value = 4, Unit = "px"})
-            CrosshairSection:Slider({Name = "Gap", Flag = "Crosshair/Gap", Min = 0, Max = 10, Value = 2, Unit = "px"})
-        end
+      
+       
+       
        
     end
 
     Window:KeybindList({Enabled = false})
-    Window:Watermark({Enabled = true})
+    Window:Watermark({Enabled = false})
 end
 
 function Utility.ESPSection(Self, Window, Name, Flag, BoxEnabled, ChamEnabled, HeadEnabled, TracerEnabled, OoVEnabled, LightingEnabled)
