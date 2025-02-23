@@ -258,7 +258,7 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
         }
     end
 
-    local OptionsTab = Window:Tab({Name = "Options"}) do
+    local OptionsTab = Window:Tab({Name = "UI"}) do
         local MenuSection = OptionsTab:Section({Name = "Menu", Side = "Left"}) do
             local UIToggle = MenuSection:Toggle({
                 Name = "UI Enabled", 
