@@ -161,7 +161,7 @@ local KnownBodyParts = {
 }
 
 local Window = Parvus.Utilities.UI:Window({
-    Name = ("Anbu.win %s %s"):format(utf8.char(8212), Parvus.Game.Name),
+    Name = ("Anbu.win %s %s"),
     Position = UDim2.new(0.5, -248 * 3, 0.5, -248)
 }) do
 
@@ -513,7 +513,7 @@ local Window = Parvus.Utilities.UI:Window({
     end Parvus.Utilities:SettingsSection(Window, "RightShift", false)
 end Parvus.Utilities.InitAutoLoad(Window)
 
-Parvus.Utilities:SetupWatermark(Window)
+
 Parvus.Utilities.Drawing.SetupCursor(Window)
 Parvus.Utilities.Drawing.SetupCrosshair(Window.Flags)
 Parvus.Utilities.Drawing.SetupFOV("Aimbot", Window.Flags)
