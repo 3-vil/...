@@ -76,6 +76,7 @@ function Utility.SetupFPS()
         return os.clock() - StartTime >= 1 and #TimeTable or #TimeTable / (os.clock() - StartTime)
     end
 end
+
 function Utility.MovementToDirection()
     local LookVector, RightVector = GetFlatVector(Camera.CFrame)
     local ZMovement = LookVector * (Movement.Forward - Movement.Backward)
@@ -84,6 +85,7 @@ function Utility.MovementToDirection()
 
     return GetUnit(ZMovement + XMovement + YMovement)
 end
+
 function Utility.MakeBeam(Origin, Position, Color)
     --local BeamFolder = Instance.new("Folder")
 
@@ -134,6 +136,7 @@ function Utility.MakeBeam(Origin, Position, Color)
 
     return Beam
 end
+
 function Utility.NewThreadLoop(Wait, Function)
     task.spawn(function()
         while true do
@@ -148,6 +151,7 @@ function Utility.NewThreadLoop(Wait, Function)
         end
     end)
 end
+
 function Utility.FixUpValue(fn, hook, gvar)
     if gvar then
         old = hookfunction(fn, function(...)
@@ -170,6 +174,7 @@ function Utility.ReJoin()
         TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId)
     end
 end
+
 function Utility.ServerHop()
     local DataDecoded, Servers = HttpService:JSONDecode(game:HttpGet(
         "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/0?sortOrder=2&excludeFullGames=true&limit=100"
@@ -193,6 +198,7 @@ function Utility.ServerHop()
         })
     end
 end
+
 function Utility.JoinDiscord()
     Request({
         ["Url"] = "http://localhost:6463/rpc?v=1",
@@ -213,8 +219,9 @@ end
 
 function Utility.InitAutoLoad(Window)
     Window:AutoLoadConfig("Parvus")
-    Window:SetValue("UI/Enabled", Window.Flags["UI/OOL"])
+    Window:SetValue("UI/Enabled", true) -- Autoload enabled by default
 end
+
 function Utility.SetupWatermark(Self, Window)
     local GetFPS = Self:SetupFPS()
 
@@ -228,107 +235,14 @@ function Utility.SetupWatermark(Self, Window)
     end)
 end
 
---[[
-# UI Color
-  - Default   = 1, 0.25, 1, 0, true
-  - Christmas = 0.4541666507720947, 0.20942406356334686, 0.7490196228027344, 0, false
-  - Halloween = 0.0836667, 1, 1, 0, false
-# Background Color
-  - Default   = 1, 1, 0, 0, false
-  - Christmas = 0.12000000476837158, 0.10204081237316132, 0.9607843160629272, 0.5, false
-  - Halloween = 0.0836667, 1, 1, 0, false
-]]
-
 function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
-    local Backgrounds = {
-        {"None", "", true},
-        {"Legacy", "rbxassetid://2151741365", false},
-        {"Hearts", "rbxassetid://6073763717", false},
-        {"Abstract", "rbxassetid://6073743871", false},
-        {"Hexagon", "rbxassetid://6073628839", false},
-        {"Geometric", "rbxassetid://2062021684", false},
-        {"Circles", "rbxassetid://6071579801", false},
-        {"Checkered", "rbxassetid://4806196507", false},
-        {"Lace With Flowers", "rbxassetid://6071575925", false},
-        {"Flowers & Leafs", "rbxassetid://10921866694", false},
-        {"Floral", "rbxassetid://6214404863", false},
-        {"Leafs", "rbxassetid://10921868665", false},
-        {"Mountains", "rbxassetid://10921801398", false},
-        {"Halloween", "rbxassetid://11113209821", false},
-        {"Christmas", "rbxassetid://11711560928", false},
-        --{"A", "rbxassetid://5843010904", false},
-        {"Polka dots", "rbxassetid://6214418014", false},
-        {"Mountains", "rbxassetid://6214412460", false},
-        {"Zigzag", "rbxassetid://6214416834", false},
-        {"Zigzag 2", "rbxassetid://6214375242", false},
-        {"Tartan", "rbxassetid://6214404863", false},
-        {"Roses", "rbxassetid://6214374619", false},
-        {"Hexagons", "rbxassetid://6214320051", false},
-        {"Leopard print", "rbxassetid://6214318622", false},
-        {"Blue Cubes", "rbxassetid://7188838187", false},
-        {"Blue Waves", "rbxassetid://10952910471", false},
-        {"White Circles", "rbxassetid://5168924660", false},
-        {"Animal Print", "rbxassetid://6299360527", false},
-        {"Fur", "rbxassetid://990886896", false},
-        {"Marble", "rbxassetid://8904067198", false},
-        {"Touhou", "rbxassetid://646426813", false},
-        --{"Anime", "rbxassetid://9730243545", false},
-        --{"Anime2", "rbxassetid://12756726256", false},
-        --{"Anime3", "rbxassetid://7027352997", false},
-        --{"Anime4", "rbxassetid://5931352430", false},
-        --{"Hu Tao Edit", "rbxassetid://11424961420", false},
-        --{"Waves", "rbxassetid://5351821237", false},
-        --{"Nebula", "rbxassetid://159454288", false},
-        --{"VaporWave", "rbxassetid://1417494643", false},
-        --{"Clouds", "rbxassetid://570557727", false},
-        --{"Twilight", "rbxassetid://264907379", false},
-        --{"ZXC Cat", "rbxassetid://10300256322", false},
-        --{"Pavuk Redan", "rbxassetid://12652997937", false},
-        --{"Pink Anime Girl", "rbxassetid://11696859404", false},
-        --{"Dark Anime Girl", "rbxassetid://10341849875", false},
-        --{"TokyoGhoul", "rbxassetid://14007782187", false}
-    }
-
-    local BackgroundsList = {}
-    for Index, Data in pairs(Backgrounds) do
-        BackgroundsList[#BackgroundsList + 1] = {
-            Name = Data[1], Mode = "Button", Value = Data[3], Callback = function()
-            Window.Flags["Background/CustomImage"] = ""
-            Window.Background.Image = Data[2]
-        end}
-    end
-
-    local OptionsTab = Window:Tab({Name = "Options"}) do
-        local MenuSection = OptionsTab:Section({Name = "Menu", Side = "Left"}) do
-           local UIToggle = MenuSection:Toggle({Name = "UI Enabled", Flag = "UI/Enabled", IgnoreFlag = true,
-            Value = Window.Enabled, Callback = function(Bool) Window.Enabled = Bool end})
-            UIToggle:Keybind({Value = UIKeybind, Flag = "UI/Keybind", IgnoreList = true, DoNotClear = true})
-           
-
-           
-
-          
-           
-
-           
-
-            
-
-            MenuSection:Button({Name = "Rejoin", Callback = Self.ReJoin})
-            MenuSection:Button({Name = "Server Hop", Callback = Self.ServerHop})
-            MenuSection:Button({Name = "Copy Lua Invite", Callback = function()
-                setclipboard("game:GetService(\"TeleportService\"):TeleportToPlaceInstance(" .. game.PlaceId .. ", \"" .. game.JobId .. "\")")
-            end})
-            MenuSection:Button({Name = "Copy JS Invite", Callback = function()
-                setclipboard("Roblox.GameLauncher.joinGameInstance(" .. game.PlaceId .. ", \"" .. game.JobId .. "\");")
-            end})
-        end
-      
-       
-       
-       
-    end
-
+    local UIToggleKeybind = Enum.KeyCode.Insert -- Default keybind set to Insert
+    
+    -- Basic UI toggle functionality without Options tab
+    Window:Bind(UIKeybind or UIToggleKeybind, function(Bool)
+        Window.Enabled = Bool
+    end)
+    
     Window:KeybindList({Enabled = false})
     Window:Watermark({Enabled = false})
 end
@@ -439,6 +353,7 @@ function Utility.LightingSection(Self, Tab, Side)
         Callback = function(Value) sethiddenproperty(Terrain, "Decoration", Value) end})
     end
 end
+
 function Utility.SetupLighting(Self, Flags)
     Self.DefaultLighting = {
         Ambient = Lighting.Ambient,
