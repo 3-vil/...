@@ -161,7 +161,7 @@ local KnownBodyParts = {
 }
 
 local Window = Parvus.Utilities.UI:Window({
-    Name = ("Anbu.win %s %s"),
+    Name = ("Anbu.win"),
     Position = UDim2.new(0.5, -248 * 3, 0.5, -248)
 }) do
 
