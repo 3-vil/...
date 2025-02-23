@@ -1,11 +1,13 @@
 local ContextActionService = game:GetService("ContextActionService")
 local UserInputService = game:GetService("UserInputService")
 local TeleportService = game:GetService("TeleportService")
+--local TweenService = game:GetService("TweenService")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 local PlayerService = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 local Lighting = game:GetService("Lighting")
+--local CoreGui = game:GetService("CoreGui")
 local Stats = game:GetService("Stats")
 
 local Utility = { DefaultLighting = {} }
@@ -56,28 +58,35 @@ Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
     Camera = Workspace.CurrentCamera
 end)
 
+--[[function Utility.HideObject(Object)
+    Object.Parent = gethui()
+end]]
+
 function Utility.SetupFPS()
     local StartTime, TimeTable, LastTime = os.clock(), {}, nil
 
     return function()
         LastTime = os.clock()
+
         for Index = #TimeTable, 1, -1 do
             TimeTable[Index + 1] = TimeTable[Index] >= LastTime - 1 and TimeTable[Index] or nil
         end
+
         TimeTable[1] = LastTime
         return os.clock() - StartTime >= 1 and #TimeTable or #TimeTable / (os.clock() - StartTime)
     end
 end
-
 function Utility.MovementToDirection()
     local LookVector, RightVector = GetFlatVector(Camera.CFrame)
     local ZMovement = LookVector * (Movement.Forward - Movement.Backward)
     local XMovement = RightVector * (Movement.Right - Movement.Left)
     local YMovement = YVector * (Movement.Up - Movement.Down)
+
     return GetUnit(ZMovement + XMovement + YMovement)
 end
-
 function Utility.MakeBeam(Origin, Position, Color)
+    --local BeamFolder = Instance.new("Folder")
+
     local OriginAttachment = Instance.new("Attachment")
     OriginAttachment.CFrame = CFrame.new(Origin)
     OriginAttachment.Name = "OriginAttachment"
@@ -89,6 +98,7 @@ function Utility.MakeBeam(Origin, Position, Color)
     PositionAttachment.Parent = Terrain
 
     local Beam = Instance.new("Beam")
+
     Beam.Name = "Beam"
     Beam.Color = ColorSequence.new(Color[6])
     Beam.LightEmission = 1
@@ -96,21 +106,27 @@ function Utility.MakeBeam(Origin, Position, Color)
     Beam.TextureMode = Enum.TextureMode.Static
     Beam.TextureSpeed = 0
     Beam.Transparency = NumberSequence.new(0)
+
     Beam.Attachment0 = OriginAttachment
     Beam.Attachment1 = PositionAttachment
     Beam.FaceCamera = true
     Beam.Segments = 1
     Beam.Width0 = 0.1
     Beam.Width1 = 0.1
+
     Beam.Parent = Terrain
+
+    --BeamFolder = Terrain
 
     task.spawn(function()
         local Time = 1 * 60
+
         for Index = 1, Time do
             RunService.Heartbeat:Wait()
             Beam.Transparency = NumberSequence.new(Index / Time)
             Beam.Color = ColorSequence.new(Color[6])
         end
+
         OriginAttachment:Destroy()
         PositionAttachment:Destroy()
         Beam:Destroy()
@@ -118,7 +134,6 @@ function Utility.MakeBeam(Origin, Position, Color)
 
     return Beam
 end
-
 function Utility.NewThreadLoop(Wait, Function)
     task.spawn(function()
         while true do
@@ -127,12 +142,12 @@ function Utility.NewThreadLoop(Wait, Function)
             if not Success then
                 warn("thread error " .. Error)
             elseif Error == "break" then
+                --print("thread stopped")
                 break
             end
         end
     end)
 end
-
 function Utility.FixUpValue(fn, hook, gvar)
     if gvar then
         old = hookfunction(fn, function(...)
@@ -155,7 +170,6 @@ function Utility.ReJoin()
         TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId)
     end
 end
-
 function Utility.ServerHop()
     local DataDecoded, Servers = HttpService:JSONDecode(game:HttpGet(
         "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/0?sortOrder=2&excludeFullGames=true&limit=100"
@@ -168,7 +182,9 @@ function Utility.ServerHop()
     end
 
     if #Servers > 0 then
-        TeleportService:TeleportToPlaceInstance(game.PlaceId, Servers[math.random(#Servers)])
+        TeleportService:TeleportToPlaceInstance(
+            game.PlaceId, Servers[math.random(#Servers)]
+        )
     else
         Parvus.Utilities.UI:Push({
             Title = "Anbu.win",
@@ -177,7 +193,6 @@ function Utility.ServerHop()
         })
     end
 end
-
 function Utility.JoinDiscord()
     Request({
         ["Url"] = "http://localhost:6463/rpc?v=1",
@@ -198,24 +213,8 @@ end
 
 function Utility.InitAutoLoad(Window)
     Window:AutoLoadConfig("Parvus")
-    -- Set UI Enabled to true by default and ensure it opens on load
-    Window:SetValue("UI/Enabled", true)
-    Window.Flags["UI/Enabled"] = true
-    -- Force Insert keybind
-    Window.Flags["UI/Keybind"] = "Insert"
-    -- Hide the Options tab after initialization
-    for _, Tab in pairs(Window.Tabs) do
-        if Tab.Name == "Options" then
-            Tab.Frame.Visible = false
-            for _, Button in pairs(Window.TabButtonContainer:GetChildren()) do
-                if Button:IsA("TextButton") and Button.Text == "Options" then
-                    Button.Visible = false
-                end
-            end
-        end
-    end
+    Window:SetValue("UI/Enabled", Window.Flags["UI/OOL"])
 end
-
 function Utility.SetupWatermark(Self, Window)
     local GetFPS = Self:SetupFPS()
 
@@ -228,6 +227,17 @@ function Utility.SetupWatermark(Self, Window)
         end
     end)
 end
+
+--[[
+# UI Color
+  - Default   = 1, 0.25, 1, 0, true
+  - Christmas = 0.4541666507720947, 0.20942406356334686, 0.7490196228027344, 0, false
+  - Halloween = 0.0836667, 1, 1, 0, false
+# Background Color
+  - Default   = 1, 1, 0, 0, false
+  - Christmas = 0.12000000476837158, 0.10204081237316132, 0.9607843160629272, 0.5, false
+  - Halloween = 0.0836667, 1, 1, 0, false
+]]
 
 function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
     local Backgrounds = {
@@ -246,6 +256,7 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
         {"Mountains", "rbxassetid://10921801398", false},
         {"Halloween", "rbxassetid://11113209821", false},
         {"Christmas", "rbxassetid://11711560928", false},
+        --{"A", "rbxassetid://5843010904", false},
         {"Polka dots", "rbxassetid://6214418014", false},
         {"Mountains", "rbxassetid://6214412460", false},
         {"Zigzag", "rbxassetid://6214416834", false},
@@ -260,38 +271,48 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
         {"Animal Print", "rbxassetid://6299360527", false},
         {"Fur", "rbxassetid://990886896", false},
         {"Marble", "rbxassetid://8904067198", false},
-        {"Touhou", "rbxassetid://646426813", false}
+        {"Touhou", "rbxassetid://646426813", false},
+        --{"Anime", "rbxassetid://9730243545", false},
+        --{"Anime2", "rbxassetid://12756726256", false},
+        --{"Anime3", "rbxassetid://7027352997", false},
+        --{"Anime4", "rbxassetid://5931352430", false},
+        --{"Hu Tao Edit", "rbxassetid://11424961420", false},
+        --{"Waves", "rbxassetid://5351821237", false},
+        --{"Nebula", "rbxassetid://159454288", false},
+        --{"VaporWave", "rbxassetid://1417494643", false},
+        --{"Clouds", "rbxassetid://570557727", false},
+        --{"Twilight", "rbxassetid://264907379", false},
+        --{"ZXC Cat", "rbxassetid://10300256322", false},
+        --{"Pavuk Redan", "rbxassetid://12652997937", false},
+        --{"Pink Anime Girl", "rbxassetid://11696859404", false},
+        --{"Dark Anime Girl", "rbxassetid://10341849875", false},
+        --{"TokyoGhoul", "rbxassetid://14007782187", false}
     }
 
     local BackgroundsList = {}
     for Index, Data in pairs(Backgrounds) do
         BackgroundsList[#BackgroundsList + 1] = {
             Name = Data[1], Mode = "Button", Value = Data[3], Callback = function()
-                Window.Flags["Background/CustomImage"] = ""
-                Window.Background.Image = Data[2]
-            end
-        }
+            Window.Flags["Background/CustomImage"] = ""
+            Window.Background.Image = Data[2]
+        end}
     end
 
     local OptionsTab = Window:Tab({Name = "Options"}) do
         local MenuSection = OptionsTab:Section({Name = "Menu", Side = "Left"}) do
-            local UIToggle = MenuSection:Toggle({
-                Name = "UI Enabled",
-                Flag = "UI/Enabled",
-                IgnoreFlag = true,
-                Value = true, -- UI Enabled on by default
-                Callback = function(Bool)
-                    Window.Enabled = Bool
-                end
-            })
-            local Keybind = UIToggle:Keybind({
-                Flag = "UI/Keybind",
-                IgnoreList = true,
-                DoNotClear = true
-            })
-            Keybind.Value = "Insert" -- Ensure Insert is displayed
+           local UIToggle = MenuSection:Toggle({Name = "UI Enabled", Flag = "UI/Enabled", IgnoreFlag = true,
+            Value = Window.Enabled, Callback = function(Bool) Window.Enabled = Bool end})
+            UIToggle:Keybind({Value = UIKeybind, Flag = "UI/Keybind", IgnoreList = true, DoNotClear = true})
+           
 
-            MenuSection:Toggle({Name = "Open On Load", Flag = "UI/OOL", Value = true})
+           
+
+          
+           
+  MenuSection:Toggle({Name = "Open On Load", Flag = "UI/OOL", Value = true})
+           
+
+            
 
             MenuSection:Button({Name = "Rejoin", Callback = Self.ReJoin})
             MenuSection:Button({Name = "Server Hop", Callback = Self.ServerHop})
@@ -302,6 +323,10 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
                 setclipboard("Roblox.GameLauncher.joinGameInstance(" .. game.PlaceId .. ", \"" .. game.JobId .. "\");")
             end})
         end
+      
+       
+       
+       
     end
 
     Window:KeybindList({Enabled = false})
@@ -315,6 +340,7 @@ function Utility.ESPSection(Self, Window, Name, Flag, BoxEnabled, ChamEnabled, H
             local BoxSection = VisualsTab:Section({Name = "Boxes", Side = "Left"}) do
                 BoxSection:Toggle({Name = "Box Enabled", Flag = Flag .. "/Box/Enabled", Value = false})
                 BoxSection:Toggle({Name = "Healthbar", Flag = Flag .. "/Box/HealthBar", Value = false})
+
                 BoxSection:Toggle({Name = "Filled", Flag = Flag .. "/Box/Filled", Value = false})
                 BoxSection:Toggle({Name = "Outline", Flag = Flag .. "/Box/Outline", Value = true})
                 BoxSection:Slider({Name = "Thickness", Flag = Flag .. "/Box/Thickness", Min = 1, Max = 19, Value = 1, OnlyOdd = true})
@@ -329,8 +355,17 @@ function Utility.ESPSection(Self, Window, Name, Flag, BoxEnabled, ChamEnabled, H
                 BoxSection:Toggle({Name = "Autoscale", Flag = Flag .. "/Name/Autoscale", Value = true})
                 BoxSection:Slider({Name = "Size", Flag = Flag .. "/Name/Size", Min = 1, Max = 100, Value = 8})
                 BoxSection:Slider({Name = "Transparency", Flag = Flag .. "/Name/Transparency", Min = 0, Max = 1, Precise = 2, Value = 0.25})
+                --BoxSection:Slider({Name = "Test", Flag = Flag .. "/Test", Min = 0, Max = 100, Value = 0})
             end
         end
+        --[[if ChamEnabled then
+            local ChamSection = VisualsTab:Section({Name = "Chams", Side = "Left"}) do
+                ChamSection:Toggle({Name = "Enabled", Flag = Flag .. "/Highlight/Enabled", Value = false})
+                ChamSection:Toggle({Name = "Occluded", Flag = Flag .. "/Highlight/Occluded", Value = false})
+                ChamSection:Slider({Name = "Transparency", Flag = Flag .. "/Highlight/Transparency", Min = 0, Max = 1, Precise = 2, Value = 0})
+                ChamSection:Colorpicker({Name = "Outline Color", Flag = Flag .. "/Highlight/OutlineColor", Value = {1, 1, 0, 0.5, false}})
+            end
+        end]]
         if HeadEnabled then
             local HeadSection = VisualsTab:Section({Name = "Head Dots", Side = "Right"}) do
                 HeadSection:Toggle({Name = "Enabled", Flag = Flag .. "/HeadDot/Enabled", Value = false})
@@ -338,6 +373,7 @@ function Utility.ESPSection(Self, Window, Name, Flag, BoxEnabled, ChamEnabled, H
                 HeadSection:Toggle({Name = "Outline", Flag = Flag .. "/HeadDot/Outline", Value = true})
                 HeadSection:Toggle({Name = "Autoscale", Flag = Flag .. "/HeadDot/Autoscale", Value = true})
                 HeadSection:Slider({Name = "Size", Flag = Flag .. "/HeadDot/Radius", Min = 1, Max = 100, Value = 4})
+                --HeadSection:Slider({Name = "Smoothness", Flag = Flag .. "/HeadDot/Smoothness", Min = 0, Max = 100, Value = 10, Unit = "%"})
                 HeadSection:Slider({Name = "NumSides", Flag = Flag .. "/HeadDot/NumSides", Min = 3, Max = 100, Value = 4})
                 HeadSection:Slider({Name = "Thickness", Flag = Flag .. "/HeadDot/Thickness", Min = 1, Max = 10, Value = 1})
                 HeadSection:Slider({Name = "Transparency", Flag = Flag .. "/HeadDot/Transparency", Min = 0, Max = 1, Precise = 2, Value = 0})
@@ -403,7 +439,6 @@ function Utility.LightingSection(Self, Tab, Side)
         Callback = function(Value) sethiddenproperty(Terrain, "Decoration", Value) end})
     end
 end
-
 function Utility.SetupLighting(Self, Flags)
     Self.DefaultLighting = {
         Ambient = Lighting.Ambient,
@@ -438,10 +473,11 @@ function Utility.SetupLighting(Self, Flags)
                 FormatedValue = tonumber(string.format("%.3f", FormatedValue))
             else
                 FormatedValue = tonumber(string.format("%.2f", FormatedValue))
-            end
+            end --print("format current", Property, FormatedValue)
         end
 
         if CustomValue ~= FormatedValue and Value ~= DefaultValue then
+            --print("default prop", Property, Value)
             Self.DefaultLighting[Property] = Value
         end
     end)
