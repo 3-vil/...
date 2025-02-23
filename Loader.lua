@@ -76,8 +76,3 @@ Parvus.Game = GetGameInfo()
 LoadScript(Parvus.Game.Script)
 Parvus.Loaded = true
 
-Parvus.Utilities.UI:Push({
-    Title = "Anbu.win",
-    Description = Parvus.Game.Name .. " loaded!",
-    Duration = NotificationTime
-})
