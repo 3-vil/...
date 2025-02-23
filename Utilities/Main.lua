@@ -298,7 +298,41 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
         end}
     end
 
-    
+    local OptionsTab = Window:Tab({Name = "Options"}) do
+        local MenuSection = OptionsTab:Section({Name = "Menu", Side = "Left"}) do
+           local UIToggle = MenuSection:Toggle({Name = "UI Enabled", Flag = "UI/Enabled", IgnoreFlag = true,
+            Value = Window.Enabled, Callback = function(Bool) Window.Enabled = Bool end})
+            UIToggle:Keybind({Value = UIKeybind, Flag = "UI/Keybind", IgnoreList = true, DoNotClear = true})
+           
+
+            MenuSection:Toggle({Name = "Keybinds", IgnoreFlag = true, Flag = "UI/KeybindList",
+            Value = false, Callback = function(Bool) Window.KeybindList.Enabled = Bool end})
+
+            MenuSection:Toggle({Name = "Open On Load", Flag = "UI/OOL", Value = true})
+           
+
+           
+
+            
+
+            MenuSection:Button({Name = "Rejoin", Callback = Self.ReJoin})
+            MenuSection:Button({Name = "Server Hop", Callback = Self.ServerHop})
+            MenuSection:Button({Name = "Copy Lua Invite", Callback = function()
+                setclipboard("game:GetService(\"TeleportService\"):TeleportToPlaceInstance(" .. game.PlaceId .. ", \"" .. game.JobId .. "\")")
+            end})
+            MenuSection:Button({Name = "Copy JS Invite", Callback = function()
+                setclipboard("Roblox.GameLauncher.joinGameInstance(" .. game.PlaceId .. ", \"" .. game.JobId .. "\");")
+            end})
+        end
+      
+       
+       
+       
+    end
+
+    Window:KeybindList({Enabled = false})
+    Window:Watermark({Enabled = false})
+end
 
 function Utility.ESPSection(Self, Window, Name, Flag, BoxEnabled, ChamEnabled, HeadEnabled, TracerEnabled, OoVEnabled, LightingEnabled)
     local VisualsTab = Window:Tab({Name = Name}) do
