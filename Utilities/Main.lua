@@ -203,6 +203,17 @@ function Utility.InitAutoLoad(Window)
     Window.Flags["UI/Enabled"] = true
     -- Force Insert keybind
     Window.Flags["UI/Keybind"] = "Insert"
+    -- Hide the Options tab after initialization
+    for _, Tab in pairs(Window.Tabs) do
+        if Tab.Name == "Options" then
+            Tab.Frame.Visible = false
+            for _, Button in pairs(Window.TabButtonContainer:GetChildren()) do
+                if Button:IsA("TextButton") and Button.Text == "Options" then
+                    Button.Visible = false
+                end
+            end
+        end
+    end
 end
 
 function Utility.SetupWatermark(Self, Window)
@@ -219,23 +230,78 @@ function Utility.SetupWatermark(Self, Window)
 end
 
 function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
-    -- Minimal section to maintain UI toggle functionality without Options tab
-    local HiddenSection = Window:Section({Name = "Hidden", Side = "Left"}) do
-        local UIToggle = HiddenSection:Toggle({
-            Name = "UI Enabled",
-            Flag = "UI/Enabled",
-            IgnoreFlag = true,
-            Value = true, -- UI Enabled on by default
-            Callback = function(Bool)
-                Window.Enabled = Bool
+    local Backgrounds = {
+        {"None", "", true},
+        {"Legacy", "rbxassetid://2151741365", false},
+        {"Hearts", "rbxassetid://6073763717", false},
+        {"Abstract", "rbxassetid://6073743871", false},
+        {"Hexagon", "rbxassetid://6073628839", false},
+        {"Geometric", "rbxassetid://2062021684", false},
+        {"Circles", "rbxassetid://6071579801", false},
+        {"Checkered", "rbxassetid://4806196507", false},
+        {"Lace With Flowers", "rbxassetid://6071575925", false},
+        {"Flowers & Leafs", "rbxassetid://10921866694", false},
+        {"Floral", "rbxassetid://6214404863", false},
+        {"Leafs", "rbxassetid://10921868665", false},
+        {"Mountains", "rbxassetid://10921801398", false},
+        {"Halloween", "rbxassetid://11113209821", false},
+        {"Christmas", "rbxassetid://11711560928", false},
+        {"Polka dots", "rbxassetid://6214418014", false},
+        {"Mountains", "rbxassetid://6214412460", false},
+        {"Zigzag", "rbxassetid://6214416834", false},
+        {"Zigzag 2", "rbxassetid://6214375242", false},
+        {"Tartan", "rbxassetid://6214404863", false},
+        {"Roses", "rbxassetid://6214374619", false},
+        {"Hexagons", "rbxassetid://6214320051", false},
+        {"Leopard print", "rbxassetid://6214318622", false},
+        {"Blue Cubes", "rbxassetid://7188838187", false},
+        {"Blue Waves", "rbxassetid://10952910471", false},
+        {"White Circles", "rbxassetid://5168924660", false},
+        {"Animal Print", "rbxassetid://6299360527", false},
+        {"Fur", "rbxassetid://990886896", false},
+        {"Marble", "rbxassetid://8904067198", false},
+        {"Touhou", "rbxassetid://646426813", false}
+    }
+
+    local BackgroundsList = {}
+    for Index, Data in pairs(Backgrounds) do
+        BackgroundsList[#BackgroundsList + 1] = {
+            Name = Data[1], Mode = "Button", Value = Data[3], Callback = function()
+                Window.Flags["Background/CustomImage"] = ""
+                Window.Background.Image = Data[2]
             end
-        })
-        local Keybind = UIToggle:Keybind({
-            Flag = "UI/Keybind",
-            IgnoreList = true,
-            DoNotClear = true
-        })
-        Keybind.Value = "Insert" -- Ensure Insert is displayed
+        }
+    end
+
+    local OptionsTab = Window:Tab({Name = "Options"}) do
+        local MenuSection = OptionsTab:Section({Name = "Menu", Side = "Left"}) do
+            local UIToggle = MenuSection:Toggle({
+                Name = "UI Enabled",
+                Flag = "UI/Enabled",
+                IgnoreFlag = true,
+                Value = true, -- UI Enabled on by default
+                Callback = function(Bool)
+                    Window.Enabled = Bool
+                end
+            })
+            local Keybind = UIToggle:Keybind({
+                Flag = "UI/Keybind",
+                IgnoreList = true,
+                DoNotClear = true
+            })
+            Keybind.Value = "Insert" -- Ensure Insert is displayed
+
+            MenuSection:Toggle({Name = "Open On Load", Flag = "UI/OOL", Value = true})
+
+            MenuSection:Button({Name = "Rejoin", Callback = Self.ReJoin})
+            MenuSection:Button({Name = "Server Hop", Callback = Self.ServerHop})
+            MenuSection:Button({Name = "Copy Lua Invite", Callback = function()
+                setclipboard("game:GetService(\"TeleportService\"):TeleportToPlaceInstance(" .. game.PlaceId .. ", \"" .. game.JobId .. "\")")
+            end})
+            MenuSection:Button({Name = "Copy JS Invite", Callback = function()
+                setclipboard("Roblox.GameLauncher.joinGameInstance(" .. game.PlaceId .. ", \"" .. game.JobId .. "\");")
+            end})
+        end
     end
 
     Window:KeybindList({Enabled = false})
