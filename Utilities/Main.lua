@@ -302,7 +302,7 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
         local MenuSection = OptionsTab:Section({Name = "Menu", Side = "Left"}) do
            local UIToggle = MenuSection:Toggle({Name = "UI Enabled", Flag = "UI/Enabled", IgnoreFlag = true,
             Value = Window.Enabled, Callback = function(Bool) Window.Enabled = Bool end})
-            UIToggle:Keybind({Value = Insert, Flag = "UI/Keybind", IgnoreList = true, DoNotClear = true})
+            UIToggle:Keybind({Value = UIKeyBind, Flag = "UI/Keybind", IgnoreList = true, DoNotClear = true})
            
 
             MenuSection:Toggle({Name = "Keybinds", IgnoreFlag = true, Flag = "UI/KeybindList",
