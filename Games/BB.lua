@@ -192,7 +192,7 @@ local Window = Parvus.Utilities.UI:Window({
         local AFOVSection = LegitTab:Section({Name = "Aimbot FOV Circle", Side = "Left"}) do
             AFOVSection:Toggle({Name = "Enabled", Flag = "Aimbot/FOV/Enabled", Value = true})
             AFOVSection:Toggle({Name = "Filled", Flag = "Aimbot/FOV/Filled", Value = false})
-            AFOVSection:Colorpicker({Name = "Color", Flag = "Aimbot/FOV/Color", Value = {1, 0.66666662693024, 1, 0.25, false}})
+           AFOVSection:Colorpicker({Name = "Color", Flag = "Aimbot/FOV/Color", Value = {0.833, 0.5, 1, 0.25, false}}) -- Light Purple
             AFOVSection:Slider({Name = "NumSides", Flag = "Aimbot/FOV/NumSides", Min = 3, Max = 100, Value = 14})
             AFOVSection:Slider({Name = "Thickness", Flag = "Aimbot/FOV/Thickness", Min = 1, Max = 10, Value = 2})
         end
@@ -217,8 +217,7 @@ local Window = Parvus.Utilities.UI:Window({
         local SAFOVSection = LegitTab:Section({Name = "Silent Aim FOV Circle", Side = "Right"}) do
             SAFOVSection:Toggle({Name = "Enabled", Flag = "SilentAim/FOV/Enabled", Value = true})
             SAFOVSection:Toggle({Name = "Filled", Flag = "SilentAim/FOV/Filled", Value = false})
-            SAFOVSection:Colorpicker({Name = "Color", Flag = "SilentAim/FOV/Color",
-            Value = {0.6666666865348816, 0.6666666269302368, 1, 0.25, false}})
+          SAFOVSection:Colorpicker({Name = "Color", Flag = "SilentAim/FOV/Color", Value = {0.833, 0.75, 0.75, 0.25, false}}) -- Medium Purple
             SAFOVSection:Slider({Name = "NumSides", Flag = "SilentAim/FOV/NumSides", Min = 3, Max = 100, Value = 14})
             SAFOVSection:Slider({Name = "Thickness", Flag = "SilentAim/FOV/Thickness", Min = 1, Max = 10, Value = 2})
         end
@@ -250,7 +249,7 @@ local Window = Parvus.Utilities.UI:Window({
         local TFOVSection = LegitTab:Section({Name = "Trigger FOV Circle", Side = "Left"}) do
             TFOVSection:Toggle({Name = "Enabled", Flag = "Trigger/FOV/Enabled", Value = true})
             TFOVSection:Toggle({Name = "Filled", Flag = "Trigger/FOV/Filled", Value = false})
-            TFOVSection:Colorpicker({Name = "Color", Flag = "Trigger/FOV/Color", Value = {0.0833333358168602, 0.6666666269302368, 1, 0.25, false}})
+            TFOVSection:Colorpicker({Name = "Color", Flag = "Trigger/FOV/Color", Value = {0.833, 1, 0.5, 0.25, false}}) -- Dark Purple
             TFOVSection:Slider({Name = "NumSides", Flag = "Trigger/FOV/NumSides", Min = 3, Max = 100, Value = 14})
             TFOVSection:Slider({Name = "Thickness", Flag = "Trigger/FOV/Thickness", Min = 1, Max = 10, Value = 2})
         end
@@ -354,7 +353,7 @@ local Window = Parvus.Utilities.UI:Window({
     end
     local VisualsSection = Parvus.Utilities:ESPSection(Window, "Visuals", "ESP/Player", true, true, true, true, true, false) do
         VisualsSection:Colorpicker({Name = "Ally Color", Flag = "ESP/Player/Ally", Value = {0.3333333432674408, 0.6666666269302368, 1, 0, false}})
-        VisualsSection:Colorpicker({Name = "Enemy Color", Flag = "ESP/Player/Enemy", Value = {1, 0.6666666269302368, 1, 0, false}})
+        VisualsSection:Colorpicker({Name = "Enemy Color", Flag = "ESP/Player/Enemy", Value = {1, 0.6666666269302368, 1, 0, true}}) -- Changed to Rainbow
         VisualsSection:Toggle({Name = "Team Check", Flag = "ESP/Player/TeamCheck", Value = true})
         VisualsSection:Toggle({Name = "Use Player Color", Flag = "ESP/Player/TeamColor", Value = false})
         VisualsSection:Toggle({Name = "Distance Check", Flag = "ESP/Player/DistanceCheck", Value = false})
