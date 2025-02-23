@@ -411,7 +411,7 @@ Bracket.Assets = {
 		Label.TextSize = 14
 		Label.RichText = true
 		Label.TextColor3 = Color3.fromRGB(191, 191, 191)
-		Label.Text = "Bracket V3.4"
+		Label.Text = ""
 		Label.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
 		Label.TextXAlignment = Enum.TextXAlignment.Right
 		Label.Parent = Window
@@ -3704,7 +3704,7 @@ function Bracket:Window(Window)
 	Window.Blur = Bracket.Utilities:GetType(Window.Blur, false, "boolean")
 	Window.Name = Bracket.Utilities:GetType(Window.Name, "Window", "string")
 	Window.Enabled = Bracket.Utilities:GetType(Window.Enabled, true, "boolean")
-	Window.Color = Bracket.Utilities:GetType(Window.Color, Color3.new(1, 0.5, 0.25), "Color3")
+	 Window.Color = Bracket.Utilities:GetType(Window.Color, Color3.fromRGB(128, 0, 255), "Color3") -- Changed to purple
 	Window.Position = Bracket.Utilities:GetType(Window.Position, UDim2.new(0.5, -248, 0.5, -248), "UDim2")
 	Window.Size = Bracket.Utilities:GetType(Window.Size, UDim2.new(0, 496, 0, 496), "UDim2")
 	local WindowAsset = Bracket.Elements.Window(Window)
