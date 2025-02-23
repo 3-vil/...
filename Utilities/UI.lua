@@ -340,8 +340,7 @@ Bracket.Assets = {
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = Color3.fromRGB(128, 0, 255)
-		Stroke.Thickness = 1.5
+		Stroke.Color = Color3.fromRGB(63, 63, 63)
 		Stroke.Parent = Window
 
 		local Drag = Instance.new("Frame")
@@ -425,13 +424,6 @@ Bracket.Assets = {
         Background.BorderColor3 = Color3.fromRGB(63, 63, 63)
         Background.Position = UDim2.new(0.5, 0, 0, 34)
         Background.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Pure black background
-		-- Add gradient overlay
-local BackgroundGradient = Instance.new("UIGradient")
-BackgroundGradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(25, 25, 25)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(15, 15, 15))
-})
-BackgroundGradient.Rotation = 45
         Background.Parent = Window
 
 		local TabContainer = Instance.new("Frame")
@@ -946,1699 +938,1252 @@ BackgroundGradient.Rotation = 45
 
 		return TabButton
 	end,
-	Here's the improved Section function with matching style for Divider:
-luaCopySection = function()
-    local Section = Instance.new("Frame")
-    Section.Name = "Section"
-    Section.ZIndex = 2
-    Section.Size = UDim2.new(1, 0, 0, 10)
-    Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Section.BorderSizePixel = 2
-    Section.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Darker background
+	Section = function()
+		local Section = Instance.new("Frame")
+		Section.Name = "Section"
+		Section.ZIndex = 2
+		Section.Size = UDim2.new(1, 0, 0, 10)
+		Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Section.BorderSizePixel = 2
+		Section.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 
-    local Stroke = Instance.new("UIStroke")
-    Stroke.Name = "Stroke"
-    Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-    Stroke.Color = Color3.fromRGB(128, 0, 255) -- Purple accent
-    Stroke.Parent = Section
+		local Stroke = Instance.new("UIStroke")
+		Stroke.Name = "Stroke"
+		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
+		Stroke.Color = Color3.fromRGB(63, 63, 63)
+		Stroke.Parent = Section
 
-    local Border = Instance.new("Frame")
-    Border.Name = "Border"
-    Border.Visible = false
-    Border.AnchorPoint = Vector2.new(0.5, 0.5)
-    Border.Size = UDim2.new(1, 2, 1, 2)
-    Border.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Border.Position = UDim2.new(0.5, 0, 0.5, 0)
-    Border.BackgroundColor3 = Color3.fromRGB(128, 0, 255) -- Purple accent
-    Border.Parent = Section
+		local Border = Instance.new("Frame")
+		Border.Name = "Border"
+		Border.Visible = false
+		Border.AnchorPoint = Vector2.new(0.5, 0.5)
+		Border.Size = UDim2.new(1, 2, 1, 2)
+		Border.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Border.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Border.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Border.Parent = Section
 
-    local Title = Instance.new("TextLabel")
-    Title.Name = "Title"
-    Title.ZIndex = 2
-    Title.Size = UDim2.new(0, 44, 0, 2)
-    Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Title.Position = UDim2.new(0, 5, 0, -2)
-    Title.BorderSizePixel = 0
-    Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Darker background
-    Title.TextStrokeTransparency = 0.75
-    Title.TextSize = 14
-    Title.RichText = true
-    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Title.Text = "Section"
-    Title.FontFace = Font.fromEnum(Enum.Font.Gotham) -- Updated font
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.Size = UDim2.new(0, 44, 0, 2)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.Position = UDim2.new(0, 5, 0, -2)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Section"
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.Parent = Section
 
-    Title.Parent = Section
+		local Container = Instance.new("Frame")
+		Container.Name = "Container"
+		Container.ZIndex = 2
+		Container.AnchorPoint = Vector2.new(0.5, 0)
+		Container.Size = UDim2.new(1, 0, 1, -10)
+		Container.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Container.BackgroundTransparency = 1
+		Container.BorderSizePixel = 0
+		Container.Position = UDim2.new(0.5, 0, 0, 10)
+		Container.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Container.Parent = Section
 
-    local Container = Instance.new("Frame")
-    Container.Name = "Container"
-    Container.ZIndex = 2
-    Container.AnchorPoint = Vector2.new(0.5, 0)
-    Container.Size = UDim2.new(1, 0, 1, -10)
-    Container.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Container.BackgroundTransparency = 1
-    Container.BorderSizePixel = 0
-    Container.Position = UDim2.new(0.5, 0, 0, 10)
-    Container.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Darker background
-    Container.Parent = Section
+		local Padding = Instance.new("UIPadding")
+		Padding.Name = "Padding"
+		Padding.PaddingLeft = UDim.new(0, 5)
+		Padding.PaddingRight = UDim.new(0, 5)
+		Padding.Parent = Container
 
-    local Padding = Instance.new("UIPadding")
-    Padding.Name = "Padding"
-    Padding.PaddingLeft = UDim.new(0, 5)
-    Padding.PaddingRight = UDim.new(0, 5)
-    Padding.Parent = Container
+		local ListLayout = Instance.new("UIListLayout")
+		ListLayout.Name = "ListLayout"
+		ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		ListLayout.Padding = UDim.new(0, 5)
+		ListLayout.Parent = Container
 
-    local ListLayout = Instance.new("UIListLayout")
-    ListLayout.Name = "ListLayout"
-    ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-    ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    ListLayout.Padding = UDim.new(0, 5)
-    ListLayout.Parent = Container
+		return Section
+	end,
+	Divider = function()
+		local Divider = Instance.new("Frame")
+		Divider.Name = "Divider"
+		Divider.ZIndex = 2
+		Divider.AnchorPoint = Vector2.new(0.5, 0)
+		Divider.Size = UDim2.new(1, 0, 0, 14)
+		Divider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Divider.BackgroundTransparency = 1
+		Divider.BorderSizePixel = 0
+		Divider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 
-    -- Add rounded corners
-    local Corner = Instance.new("UICorner")
-    Corner.CornerRadius = UDim.new(0, 4)
-    Corner.Parent = Section
+		local Left = Instance.new("Frame")
+		Left.Name = "Left"
+		Left.ZIndex = 2
+		Left.AnchorPoint = Vector2.new(0, 0.5)
+		Left.Size = UDim2.new(0.5, -24, 0, 2)
+		Left.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Left.Position = UDim2.new(0, 0, 0.5, 0)
+		Left.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Left.Parent = Divider
 
-    -- Add gradient
-    local Gradient = Instance.new("UIGradient")
-    Gradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(25, 25, 25)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(20, 20, 20))
-    })
-    Gradient.Rotation = 90
-    Gradient.Parent = Section
+		local Right = Instance.new("Frame")
+		Right.Name = "Right"
+		Right.ZIndex = 2
+		Right.AnchorPoint = Vector2.new(1, 0.5)
+		Right.Size = UDim2.new(0.5, -24, 0, 2)
+		Right.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Right.Position = UDim2.new(1, 0, 0.5, 0)
+		Right.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Right.Parent = Divider
 
-    return Section
-end,
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.AnchorPoint = Vector2.new(0.5, 0.5)
+		Title.Size = UDim2.new(1, 0, 1, 0)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Divider"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.Parent = Divider
 
-Divider = function()
-    local Divider = Instance.new("Frame")
-    Divider.Name = "Divider"
-    Divider.ZIndex = 2
-    Divider.AnchorPoint = Vector2.new(0.5, 0)
-    Divider.Size = UDim2.new(1, 0, 0, 14)
-    Divider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Divider.BackgroundTransparency = 1
-    Divider.BorderSizePixel = 0
-    Divider.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Darker background
-
-    local Left = Instance.new("Frame")
-    Left.Name = "Left"
-    Left.ZIndex = 2
-    Left.AnchorPoint = Vector2.new(0, 0.5)
-    Left.Size = UDim2.new(0.5, -24, 0, 2)
-    Left.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Left.Position = UDim2.new(0, 0, 0.5, 0)
-    Left.BackgroundColor3 = Color3.fromRGB(128, 0, 255) -- Purple accent
-    Left.Parent = Divider
-
-    local Right = Instance.new("Frame")
-    Right.Name = "Right"
-    Right.ZIndex = 2
-    Right.AnchorPoint = Vector2.new(1, 0.5)
-    Right.Size = UDim2.new(0.5, -24, 0, 2)
-    Right.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Right.Position = UDim2.new(1, 0, 0.5, 0)
-    Right.BackgroundColor3 = Color3.fromRGB(128, 0, 255) -- Purple accent
-    Right.Parent = Divider
-
-    local Title = Instance.new("TextLabel")
-    Title.Name = "Title"
-    Title.ZIndex = 2
-    Title.AnchorPoint = Vector2.new(0.5, 0.5)
-    Title.Size = UDim2.new(1, 0, 1, 0)
-    Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Title.BackgroundTransparency = 1
-    Title.Position = UDim2.new(0.5, 0, 0.5, 0)
-    Title.BorderSizePixel = 0
-    Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Darker background
-    Title.TextStrokeTransparency = 0.75
-    Title.TextSize = 14
-    Title.RichText = true
-    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Title.Text = "Divider"
-    Title.TextWrapped = true
-    Title.FontFace = Font.fromEnum(Enum.Font.Gotham) -- Updated font
-    Title.Parent = Divider
-
-    -- Add gradient to divider lines
-    local LeftGradient = Instance.new("UIGradient")
-    LeftGradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(128, 0, 255)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 85, 255))
-    })
-    LeftGradient.Parent = Left
-
-    local RightGradient = Instance.new("UIGradient")
-    RightGradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 85, 255)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(128, 0, 255))
-    })
-    RightGradient.Parent = Right
-
-    return Divider
-end,
+		return Divider
+	end,
 	Label = function()
-    local Label = Instance.new("TextLabel")
-    Label.Name = "Label"
-    Label.ZIndex = 2
-    Label.Size = UDim2.new(1, 0, 0, 14)
-    Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Label.BackgroundTransparency = 1
-    Label.BorderSizePixel = 0
-    Label.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-    Label.TextStrokeTransparency = 0.75
-    Label.TextSize = 14
-    Label.RichText = true
-    Label.TextColor3 = Color3.fromRGB(230, 230, 230)
-    Label.Text = "Text Label"
-    Label.TextWrapped = true
-    Label.FontFace = Font.fromEnum(Enum.Font.Gotham)
+		local Label = Instance.new("TextLabel")
+		Label.Name = "Label"
+		Label.ZIndex = 2
+		Label.Size = UDim2.new(1, 0, 0, 14)
+		Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Label.BackgroundTransparency = 1
+		Label.BorderSizePixel = 0
+		Label.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Label.TextStrokeTransparency = 0.75
+		Label.TextSize = 14
+		Label.RichText = true
+		Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Label.Text = "Text Label"
+		Label.TextWrapped = true
+		Label.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-    return Label
-end,
+		return Label
+	end,
+	Button = function()
+		local Button = Instance.new("TextButton")
+		Button.Name = "Button"
+		Button.ZIndex = 2
+		Button.Size = UDim2.new(1, 0, 0, 16)
+		Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Button.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Button.AutoButtonColor = false
+		Button.TextStrokeTransparency = 0.75
+		Button.TextSize = 14
+		Button.RichText = true
+		Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Button.Text = ""
+		Button.TextWrapped = true
+		Button.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-Button = function()
-    local Button = Instance.new("TextButton")
-    Button.Name = "Button"
-    Button.ZIndex = 2
-    Button.Size = UDim2.new(1, 0, 0, 32)
-    Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    Button.AutoButtonColor = false
-    Button.TextStrokeTransparency = 0.75
-    Button.TextSize = 14
-    Button.RichText = true
-    Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Button.Text = ""
-    Button.TextWrapped = true
-    Button.FontFace = Font.fromEnum(Enum.Font.Gotham)
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.AnchorPoint = Vector2.new(0.5, 0.5)
+		Title.Size = UDim2.new(1, -12, 1, 0)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Button"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.Parent = Button
 
-    local Corner = Instance.new("UICorner")
-    Corner.CornerRadius = UDim.new(0, 4)
-    Corner.Parent = Button
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Button
 
-    local Title = Instance.new("TextLabel")
-    Title.Name = "Title"
-    Title.ZIndex = 2
-    Title.AnchorPoint = Vector2.new(0.5, 0.5)
-    Title.Size = UDim2.new(1, -12, 1, 0)
-    Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Title.BackgroundTransparency = 1
-    Title.Position = UDim2.new(0.5, 0, 0.5, 0)
-    Title.BorderSizePixel = 0
-    Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-    Title.TextStrokeTransparency = 0.75
-    Title.TextSize = 14
-    Title.RichText = true
-    Title.TextColor3 = Color3.fromRGB(230, 230, 230)
-    Title.Text = "Button"
-    Title.TextWrapped = true
-    Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-    Title.Parent = Button
+		return Button
+	end,
+	Toggle = function()
+		local Toggle = Instance.new("TextButton")
+		Toggle.Name = "Toggle"
+		Toggle.ZIndex = 2
+		Toggle.Size = UDim2.new(1, 0, 0, 14)
+		Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Toggle.BackgroundTransparency = 1
+		Toggle.BorderSizePixel = 0
+		Toggle.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Toggle.AutoButtonColor = false
+		Toggle.TextStrokeTransparency = 0.75
+		Toggle.TextSize = 14
+		Toggle.RichText = true
+		Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Toggle.Text = ""
+		Toggle.TextWrapped = true
+		Toggle.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-    local Gradient = Instance.new("UIGradient")
-    Gradient.Name = "Gradient"
-    Gradient.Rotation = 90
-    Gradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(35, 35, 35)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 25, 25))
-    })
-    Gradient.Parent = Button
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.AnchorPoint = Vector2.new(0, 0.5)
+		Title.Size = UDim2.new(1, -14, 1, 0)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.Position = UDim2.new(0, 14, 0.5, 0)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Toggle"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.TextXAlignment = Enum.TextXAlignment.Left
+		Title.Parent = Toggle
 
-    -- Add purple accent on hover
-    local Accent = Instance.new("Frame")
-    Accent.Name = "Accent"
-    Accent.ZIndex = 1
-    Accent.Size = UDim2.new(1, 0, 1, 0)
-    Accent.BorderSizePixel = 0
-    Accent.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-    Accent.BackgroundTransparency = 1
-    Accent.Parent = Button
+		local Tick = Instance.new("Frame")
+		Tick.Name = "Tick"
+		Tick.ZIndex = 2
+		Tick.AnchorPoint = Vector2.new(0, 0.5)
+		Tick.Size = UDim2.new(0, 10, 0, 10)
+		Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Tick.Position = UDim2.new(0, 0, 0.5, 0)
+		Tick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Tick.Parent = Toggle
 
-    local AccentCorner = Instance.new("UICorner")
-    AccentCorner.CornerRadius = UDim.new(0, 4)
-    AccentCorner.Parent = Accent
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Tick
 
-    Button.MouseEnter:Connect(function()
-        game:GetService("TweenService"):Create(Accent, TweenInfo.new(0.2), {
-            BackgroundTransparency = 0.9
-        }):Play()
-    end)
+		local Layout = Instance.new("Frame")
+		Layout.Name = "Layout"
+		Layout.ZIndex = 2
+		Layout.AnchorPoint = Vector2.new(1, 0.5)
+		Layout.Size = UDim2.new(1, -56, 1, 0)
+		Layout.ClipsDescendants = true
+		Layout.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Layout.BackgroundTransparency = 1
+		Layout.Position = UDim2.new(1, 1, 0.5, 0)
+		Layout.BorderSizePixel = 0
+		Layout.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Layout.Parent = Toggle
 
-    Button.MouseLeave:Connect(function()
-        game:GetService("TweenService"):Create(Accent, TweenInfo.new(0.2), {
-            BackgroundTransparency = 1
-        }):Play()
-    end)
+		local Padding = Instance.new("UIPadding")
+		Padding.Name = "Padding"
+		Padding.PaddingRight = UDim.new(0, 1)
+		Padding.Parent = Layout
 
-    return Button
-end,
+		local ListLayout = Instance.new("UIListLayout")
+		ListLayout.Name = "ListLayout"
+		ListLayout.FillDirection = Enum.FillDirection.Horizontal
+		ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+		ListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+		ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		ListLayout.Padding = UDim.new(0, 4)
+		ListLayout.Parent = Layout
 
-Toggle = function()
-    local Toggle = Instance.new("TextButton")
-    Toggle.Name = "Toggle"
-    Toggle.ZIndex = 2
-    Toggle.Size = UDim2.new(1, 0, 0, 32)
-    Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Toggle.BackgroundTransparency = 1
-    Toggle.BorderSizePixel = 0
-    Toggle.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-    Toggle.AutoButtonColor = false
-    Toggle.TextStrokeTransparency = 0.75
-    Toggle.TextSize = 14
-    Toggle.RichText = true
-    Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Toggle.Text = ""
-    Toggle.TextWrapped = true
-    Toggle.FontFace = Font.fromEnum(Enum.Font.Gotham)
-
-    local Title = Instance.new("TextLabel")
-    Title.Name = "Title"
-    Title.ZIndex = 2
-    Title.AnchorPoint = Vector2.new(0, 0.5)
-    Title.Size = UDim2.new(1, -54, 1, 0)
-    Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Title.BackgroundTransparency = 1
-    Title.Position = UDim2.new(0, 6, 0.5, 0)
-    Title.BorderSizePixel = 0
-    Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-    Title.TextStrokeTransparency = 0.75
-    Title.TextSize = 14
-    Title.RichText = true
-    Title.TextColor3 = Color3.fromRGB(230, 230, 230)
-    Title.Text = "Toggle"
-    Title.TextWrapped = true
-    Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-    Title.TextXAlignment = Enum.TextXAlignment.Left
-    Title.Parent = Toggle
-
-    -- Modern toggle switch
-    local Switch = Instance.new("Frame")
-    Switch.Name = "Switch"
-    Switch.ZIndex = 2
-    Switch.AnchorPoint = Vector2.new(1, 0.5)
-    Switch.Size = UDim2.new(0, 44, 0, 22)
-    Switch.Position = UDim2.new(1, -6, 0.5, 0)
-    Switch.BorderSizePixel = 0
-    Switch.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-    Switch.Parent = Toggle
-
-    local SwitchCorner = Instance.new("UICorner")
-    SwitchCorner.CornerRadius = UDim.new(1, 0)
-    SwitchCorner.Parent = Switch
-
-    local Knob = Instance.new("Frame")
-    Knob.Name = "Knob"
-    Knob.ZIndex = 3
-    Knob.Size = UDim2.new(0, 18, 0, 18)
-    Knob.Position = UDim2.new(0, 2, 0.5, -9)
-    Knob.BorderSizePixel = 0
-    Knob.BackgroundColor3 = Color3.fromRGB(230, 230, 230)
-    Knob.Parent = Switch
-
-    local KnobCorner = Instance.new("UICorner")
-    KnobCorner.CornerRadius = UDim.new(1, 0)
-    KnobCorner.Parent = Knob
-
-    -- Add drop shadow
-    local Shadow = Instance.new("ImageLabel")
-    Shadow.Name = "Shadow"
-    Shadow.AnchorPoint = Vector2.new(0.5, 0.5)
-    Shadow.BackgroundTransparency = 1
-    Shadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-    Shadow.Size = UDim2.new(1, 12, 1, 12)
-    Shadow.ZIndex = 1
-    Shadow.Image = "rbxassetid://6014261993"
-    Shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-    Shadow.ImageTransparency = 0.5
-    Shadow.Parent = Switch
-
-    local Layout = Instance.new("Frame")
-    Layout.Name = "Layout"
-    Layout.ZIndex = 2
-    Layout.AnchorPoint = Vector2.new(1, 0.5)
-    Layout.Size = UDim2.new(1, -56, 1, 0)
-    Layout.ClipsDescendants = true
-    Layout.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Layout.BackgroundTransparency = 1
-    Layout.Position = UDim2.new(1, 1, 0.5, 0)
-    Layout.BorderSizePixel = 0
-    Layout.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-    Layout.Parent = Toggle
-
-    local Padding = Instance.new("UIPadding")
-    Padding.Name = "Padding"
-    Padding.PaddingRight = UDim.new(0, 1)
-    Padding.Parent = Layout
-
-    local ListLayout = Instance.new("UIListLayout")
-    ListLayout.Name = "ListLayout"
-    ListLayout.FillDirection = Enum.FillDirection.Horizontal
-    ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
-    ListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
-    ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    ListLayout.Padding = UDim.new(0, 4)
-    ListLayout.Parent = Layout
-
-    return Toggle
-end,
+		return Toggle
+	end,
 	Slider = function()
-   local Slider = Instance.new("TextButton")
-   Slider.Name = "Slider"
-   Slider.ZIndex = 2
-   Slider.Size = UDim2.new(1, 0, 0, 32)
-   Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Slider.BackgroundTransparency = 1
-   Slider.BorderSizePixel = 0
-   Slider.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Slider.AutoButtonColor = false
-   Slider.TextStrokeTransparency = 0.75
-   Slider.TextSize = 14
-   Slider.RichText = true
-   Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
-   Slider.Text = ""
-   Slider.TextWrapped = true
-   Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
+		local Slider = Instance.new("TextButton")
+		Slider.Name = "Slider"
+		Slider.ZIndex = 2
+		Slider.Size = UDim2.new(1, 0, 0, 16)
+		Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Slider.BackgroundTransparency = 1
+		Slider.BorderSizePixel = 0
+		Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Slider.AutoButtonColor = false
+		Slider.TextStrokeTransparency = 0.75
+		Slider.TextSize = 14
+		Slider.RichText = true
+		Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Slider.Text = ""
+		Slider.TextWrapped = true
+		Slider.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-   local Title = Instance.new("TextLabel")
-   Title.Name = "Title"
-   Title.ZIndex = 2
-   Title.Size = UDim2.new(1, -24, 0, 16)
-   Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Title.BackgroundTransparency = 1
-   Title.Position = UDim2.new(0, 6, 0, 0)
-   Title.BorderSizePixel = 0
-   Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Title.TextStrokeTransparency = 0.75
-   Title.TextSize = 14
-   Title.RichText = true
-   Title.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Title.Text = "Slider"
-   Title.TextWrapped = true
-   Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Title.TextXAlignment = Enum.TextXAlignment.Left
-   Title.Parent = Slider
+		local Background = Instance.new("Frame")
+		Background.Name = "Background"
+		Background.ZIndex = 2
+		Background.AnchorPoint = Vector2.new(0.5, 0.5)
+		Background.Size = UDim2.new(1, 0, 1, 0)
+		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Background.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Background.Parent = Slider
 
-   local Background = Instance.new("Frame")
-   Background.Name = "Background"
-   Background.ZIndex = 2
-   Background.AnchorPoint = Vector2.new(0.5, 1)
-   Background.Size = UDim2.new(1, -12, 0, 4)
-   Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Background.Position = UDim2.new(0.5, 0, 1, -6)
-   Background.BorderSizePixel = 0
-   Background.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-   Background.Parent = Slider
+		local BackGradient = Instance.new("UIGradient")
+		BackGradient.Name = "Gradient"
+		BackGradient.Rotation = 90
+		BackGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		BackGradient.Parent = Background
 
-   local Corner = Instance.new("UICorner")
-   Corner.CornerRadius = UDim.new(1, 0)
-   Corner.Parent = Background
+		local Bar = Instance.new("Frame")
+		Bar.Name = "Bar"
+		Bar.ZIndex = 2
+		Bar.AnchorPoint = Vector2.new(0, 0.5)
+		Bar.Size = UDim2.new(0.5, 0, 1, 0)
+		Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Bar.Position = UDim2.new(0, 0, 0.5, 0)
+		Bar.BorderSizePixel = 0
+		Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Bar.Parent = Background
 
-   local Bar = Instance.new("Frame")
-   Bar.Name = "Bar"
-   Bar.ZIndex = 2
-   Bar.Size = UDim2.new(0.5, 0, 1, 0)
-   Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Bar.BorderSizePixel = 0
-   Bar.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-   Bar.Parent = Background
+		local BarGradient = Instance.new("UIGradient")
+		BarGradient.Name = "Gradient"
+		BarGradient.Rotation = 90
+		BarGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		BarGradient.Parent = Bar
 
-   local BarCorner = Instance.new("UICorner") 
-   BarCorner.CornerRadius = UDim.new(1, 0)
-   BarCorner.Parent = Bar
+		local Value = Instance.new("TextBox")
+		Value.Name = "Value"
+		Value.ZIndex = 2
+		Value.AnchorPoint = Vector2.new(1, 0)
+		Value.Size = UDim2.new(0, 12, 1, 0)
+		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Value.BackgroundTransparency = 1
+		Value.Position = UDim2.new(1, -6, 0, 0)
+		Value.BorderSizePixel = 0
+		Value.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Value.TextStrokeTransparency = 0.75
+		Value.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
+		Value.TextSize = 14
+		Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Value.PlaceholderText = "50"
+		Value.Text = ""
+		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Value.TextXAlignment = Enum.TextXAlignment.Right
+		Value.Parent = Slider
 
-   local BarGradient = Instance.new("UIGradient")
-   BarGradient.Name = "Gradient"
-   BarGradient.Rotation = 90
-   BarGradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(128, 0, 255)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 85, 255))
-   })
-   BarGradient.Parent = Bar
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.Size = UDim2.new(1, -24, 1, 0)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.Position = UDim2.new(0, 6, 0, 0)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Slider"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.TextXAlignment = Enum.TextXAlignment.Left
+		Title.Parent = Slider
 
-   -- Add slider knob
-   local Knob = Instance.new("Frame")
-   Knob.Name = "Knob"
-   Knob.ZIndex = 3
-   Knob.Size = UDim2.new(0, 12, 0, 12)
-   Knob.Position = UDim2.new(0.5, -6, 0.5, -6) 
-   Knob.BackgroundColor3 = Color3.fromRGB(230, 230, 230)
-   Knob.BorderSizePixel = 0
-   Knob.Parent = Bar
+		return Slider
+	end,
+	SlimSlider = function()
+		local Slider = Instance.new("TextButton")
+		Slider.Name = "Slider"
+		Slider.ZIndex = 2
+		Slider.Size = UDim2.new(1, 0, 0, 22)
+		Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Slider.BackgroundTransparency = 1
+		Slider.BorderSizePixel = 0
+		Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Slider.AutoButtonColor = false
+		Slider.TextStrokeTransparency = 0.75
+		Slider.TextSize = 14
+		Slider.RichText = true
+		Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Slider.Text = ""
+		Slider.TextWrapped = true
+		Slider.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-   local KnobCorner = Instance.new("UICorner")
-   KnobCorner.CornerRadius = UDim.new(1, 0)
-   KnobCorner.Parent = Knob
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.Size = UDim2.new(1, -12, 0, 16)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Slider"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.TextXAlignment = Enum.TextXAlignment.Left
+		Title.Parent = Slider
 
-   -- Add knob shadow
-   local Shadow = Instance.new("ImageLabel")
-   Shadow.Name = "Shadow"
-   Shadow.AnchorPoint = Vector2.new(0.5, 0.5)
-   Shadow.BackgroundTransparency = 1
-   Shadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-   Shadow.Size = UDim2.new(1, 8, 1, 8)
-   Shadow.ZIndex = 2
-   Shadow.Image = "rbxassetid://6014261993"
-   Shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-   Shadow.ImageTransparency = 0.5
-   Shadow.Parent = Knob
+		local Background = Instance.new("Frame")
+		Background.Name = "Background"
+		Background.ZIndex = 2
+		Background.AnchorPoint = Vector2.new(0.5, 1)
+		Background.Size = UDim2.new(1, 0, 0, 6)
+		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Background.Position = UDim2.new(0.5, 0, 1, 0)
+		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Background.Parent = Slider
 
-   local Value = Instance.new("TextBox")
-   Value.Name = "Value"
-   Value.ZIndex = 2
-   Value.AnchorPoint = Vector2.new(1, 0)
-   Value.Size = UDim2.new(0, 50, 0, 16)
-   Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Value.BackgroundTransparency = 1
-   Value.Position = UDim2.new(1, -6, 0, 0)
-   Value.BorderSizePixel = 0
-   Value.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Value.TextStrokeTransparency = 0.75
-   Value.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
-   Value.TextSize = 14
-   Value.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Value.PlaceholderText = "50"
-   Value.Text = ""
-   Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Value.TextXAlignment = Enum.TextXAlignment.Right
-   Value.Parent = Slider
+		local BackGradient = Instance.new("UIGradient")
+		BackGradient.Name = "Gradient"
+		BackGradient.Rotation = 90
+		BackGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		BackGradient.Parent = Background
 
-   return Slider
-end,
+		local Bar = Instance.new("Frame")
+		Bar.Name = "Bar"
+		Bar.ZIndex = 2
+		Bar.AnchorPoint = Vector2.new(0, 0.5)
+		Bar.Size = UDim2.new(0.5, 0, 1, 0)
+		Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Bar.Position = UDim2.new(0, 0, 0.5, 0)
+		Bar.BorderSizePixel = 0
+		Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Bar.Parent = Background
 
-SlimSlider = function()
-   local Slider = Instance.new("TextButton")
-   Slider.Name = "Slider"
-   Slider.ZIndex = 2
-   Slider.Size = UDim2.new(1, 0, 0, 22)
-   Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Slider.BackgroundTransparency = 1
-   Slider.BorderSizePixel = 0 
-   Slider.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Slider.AutoButtonColor = false
-   Slider.TextStrokeTransparency = 0.75
-   Slider.TextSize = 14
-   Slider.RichText = true
-   Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
-   Slider.Text = ""
-   Slider.TextWrapped = true
-   Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
+		local BarGradient = Instance.new("UIGradient")
+		BarGradient.Name = "Gradient"
+		BarGradient.Rotation = 90
+		BarGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		BarGradient.Parent = Bar
 
-   local Title = Instance.new("TextLabel")
-   Title.Name = "Title"
-   Title.ZIndex = 2
-   Title.Size = UDim2.new(1, -60, 0, 16)
-   Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Title.BackgroundTransparency = 1
-   Title.BorderSizePixel = 0
-   Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Title.TextStrokeTransparency = 0.75
-   Title.TextSize = 14
-   Title.RichText = true
-   Title.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Title.Text = "Slider"
-   Title.TextWrapped = true
-   Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Title.TextXAlignment = Enum.TextXAlignment.Left
-   Title.Parent = Slider
+		local Value = Instance.new("TextBox")
+		Value.Name = "Value"
+		Value.ZIndex = 2
+		Value.AnchorPoint = Vector2.new(1, 0)
+		Value.Size = UDim2.new(0, 12, 0, 16)
+		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Value.BackgroundTransparency = 1
+		Value.Position = UDim2.new(1, 0, 0, 0)
+		Value.BorderSizePixel = 0
+		Value.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Value.TextStrokeTransparency = 0.75
+		Value.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
+		Value.TextSize = 14
+		Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Value.PlaceholderText = "50"
+		Value.Text = ""
+		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Value.TextXAlignment = Enum.TextXAlignment.Right
+		Value.Parent = Slider
 
-   local Background = Instance.new("Frame")
-   Background.Name = "Background"
-   Background.ZIndex = 2
-   Background.AnchorPoint = Vector2.new(0.5, 1)
-   Background.Size = UDim2.new(1, -12, 0, 3)
-   Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Background.Position = UDim2.new(0.5, 0, 1, -4)
-   Background.BorderSizePixel = 0
-   Background.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-   Background.Parent = Slider
-
-   local Corner = Instance.new("UICorner")
-   Corner.CornerRadius = UDim.new(1, 0)
-   Corner.Parent = Background
-
-   local Bar = Instance.new("Frame")
-   Bar.Name = "Bar"
-   Bar.ZIndex = 2
-   Bar.Size = UDim2.new(0.5, 0, 1, 0)
-   Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Bar.BorderSizePixel = 0
-   Bar.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-   Bar.Parent = Background
-
-   local BarCorner = Instance.new("UICorner")
-   BarCorner.CornerRadius = UDim.new(1, 0)
-   BarCorner.Parent = Bar
-
-   local BarGradient = Instance.new("UIGradient")
-   BarGradient.Name = "Gradient"
-   BarGradient.Rotation = 90
-   BarGradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(128, 0, 255)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 85, 255))
-   })
-   BarGradient.Parent = Bar
-
-   local Value = Instance.new("TextBox")
-   Value.Name = "Value"
-   Value.ZIndex = 2
-   Value.AnchorPoint = Vector2.new(1, 0)
-   Value.Size = UDim2.new(0, 50, 0, 16)
-   Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Value.BackgroundTransparency = 1
-   Value.Position = UDim2.new(1, -6, 0, 0)
-   Value.BorderSizePixel = 0
-   Value.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Value.TextStrokeTransparency = 0.75
-   Value.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
-   Value.TextSize = 14
-   Value.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Value.PlaceholderText = "50"
-   Value.Text = ""
-   Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Value.TextXAlignment = Enum.TextXAlignment.Right
-   Value.Parent = Slider
-
-   return Slider
-end,
+		return Slider
+	end,
 	Textbox = function()
-   local Textbox = Instance.new("TextButton")
-   Textbox.Name = "Textbox"
-   Textbox.ZIndex = 2
-   Textbox.Size = UDim2.new(1, 0, 0, 32)
-   Textbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Textbox.BackgroundTransparency = 1
-   Textbox.BorderSizePixel = 0
-   Textbox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Textbox.AutoButtonColor = false
-   Textbox.TextStrokeTransparency = 0.75
-   Textbox.TextSize = 14
-   Textbox.RichText = true
-   Textbox.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Textbox.Text = ""
-   Textbox.TextWrapped = true
-   Textbox.FontFace = Font.fromEnum(Enum.Font.Gotham)
+		local Textbox = Instance.new("TextButton")
+		Textbox.Name = "Textbox"
+		Textbox.ZIndex = 2
+		Textbox.Size = UDim2.new(1, 0, 0, 32)
+		Textbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Textbox.BackgroundTransparency = 1
+		Textbox.BorderSizePixel = 0
+		Textbox.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Textbox.AutoButtonColor = false
+		Textbox.TextStrokeTransparency = 0.75
+		Textbox.TextSize = 14
+		Textbox.RichText = true
+		Textbox.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Textbox.Text = ""
+		Textbox.TextWrapped = true
+		Textbox.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-   local Title = Instance.new("TextLabel")
-   Title.Name = "Title"
-   Title.ZIndex = 2
-   Title.AnchorPoint = Vector2.new(0.5, 0)
-   Title.Size = UDim2.new(1, 0, 0, 16)
-   Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Title.BackgroundTransparency = 1
-   Title.Position = UDim2.new(0.5, 0, 0, 0)
-   Title.BorderSizePixel = 0
-   Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Title.TextStrokeTransparency = 0.75
-   Title.TextSize = 14
-   Title.RichText = true
-   Title.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Title.Text = "Textbox"
-   Title.TextWrapped = true
-   Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Title.TextXAlignment = Enum.TextXAlignment.Left
-   Title.Parent = Textbox
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.AnchorPoint = Vector2.new(0.5, 0)
+		Title.Size = UDim2.new(1, 0, 0, 16)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.Position = UDim2.new(0.5, 0, 0, 0)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Textbox"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.TextXAlignment = Enum.TextXAlignment.Left
+		Title.Parent = Textbox
 
-   local Background = Instance.new("Frame")
-   Background.Name = "Background"
-   Background.ZIndex = 2
-   Background.AnchorPoint = Vector2.new(0.5, 0)
-   Background.Size = UDim2.new(1, 0, 0, 24)
-   Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Background.Position = UDim2.new(0.5, 0, 0, 16)
-   Background.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-   Background.Parent = Textbox
+		local Background = Instance.new("Frame")
+		Background.Name = "Background"
+		Background.ZIndex = 2
+		Background.AnchorPoint = Vector2.new(0.5, 0)
+		Background.Size = UDim2.new(1, 0, 0, 16)
+		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Background.Position = UDim2.new(0.5, 0, 0, 16)
+		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Background.Parent = Textbox
 
-   local Corner = Instance.new("UICorner")
-   Corner.CornerRadius = UDim.new(0, 4)
-   Corner.Parent = Background
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Background
 
-   local Gradient = Instance.new("UIGradient")
-   Gradient.Name = "Gradient"
-   Gradient.Rotation = 90
-   Gradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(35, 35, 35)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 25, 25))
-   })
-   Gradient.Parent = Background
+		local Input = Instance.new("TextBox")
+		Input.Name = "Input"
+		Input.ZIndex = 2
+		Input.AnchorPoint = Vector2.new(0.5, 0.5)
+		Input.Size = UDim2.new(1, -10, 1, 0)
+		Input.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Input.BackgroundTransparency = 1
+		Input.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Input.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Input.TextStrokeTransparency = 0.75
+		Input.TextWrapped = true
+		Input.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
+		Input.TextSize = 14
+		Input.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Input.PlaceholderText = "Input here"
+		Input.Text = ""
+		Input.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Input.ClearTextOnFocus = false
+		Input.Parent = Background
 
-   local Input = Instance.new("TextBox")
-   Input.Name = "Input"
-   Input.ZIndex = 2
-   Input.AnchorPoint = Vector2.new(0.5, 0.5)
-   Input.Size = UDim2.new(1, -16, 1, -8)
-   Input.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Input.BackgroundTransparency = 1
-   Input.Position = UDim2.new(0.5, 0, 0.5, 0)
-   Input.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-   Input.TextStrokeTransparency = 0.75
-   Input.TextWrapped = true
-   Input.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
-   Input.TextSize = 14
-   Input.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Input.PlaceholderText = "Enter text..."
-   Input.Text = ""
-   Input.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Input.ClearTextOnFocus = false
-   Input.Parent = Background
+		return Textbox
+	end,
+	Keybind = function()
+		local Keybind = Instance.new("TextButton")
+		Keybind.Name = "Keybind"
+		Keybind.ZIndex = 2
+		Keybind.Size = UDim2.new(1, 0, 0, 14)
+		Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Keybind.BackgroundTransparency = 1
+		Keybind.BorderSizePixel = 0
+		Keybind.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Keybind.AutoButtonColor = false
+		Keybind.TextStrokeTransparency = 0.75
+		Keybind.TextSize = 14
+		Keybind.RichText = true
+		Keybind.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Keybind.Text = ""
+		Keybind.TextWrapped = true
+		Keybind.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-   return Textbox
-end,
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.AnchorPoint = Vector2.new(0, 0.5)
+		Title.Size = UDim2.new(1, -42, 1, 0)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.Position = UDim2.new(0, 0, 0.5, 0)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Keybind"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.TextXAlignment = Enum.TextXAlignment.Left
+		Title.Parent = Keybind
 
-Keybind = function()
-   local Keybind = Instance.new("TextButton")
-   Keybind.Name = "Keybind"
-   Keybind.ZIndex = 2
-   Keybind.Size = UDim2.new(1, 0, 0, 32)
-   Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Keybind.BackgroundTransparency = 1
-   Keybind.BorderSizePixel = 0
-   Keybind.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Keybind.AutoButtonColor = false
-   Keybind.TextStrokeTransparency = 0.75
-   Keybind.TextSize = 14
-   Keybind.RichText = true
-   Keybind.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Keybind.Text = ""
-   Keybind.TextWrapped = true
-   Keybind.FontFace = Font.fromEnum(Enum.Font.Gotham)
+		local Value = Instance.new("TextLabel")
+		Value.Name = "Value"
+		Value.ZIndex = 2
+		Value.AnchorPoint = Vector2.new(1, 0.5)
+		Value.Size = UDim2.new(0, 42, 1, 0)
+		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Value.BackgroundTransparency = 1
+		Value.Position = UDim2.new(1, 0, 0.5, 0)
+		Value.BorderSizePixel = 0
+		Value.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Value.TextStrokeTransparency = 0.75
+		Value.TextSize = 14
+		Value.RichText = true
+		Value.TextColor3 = Color3.fromRGB(189, 189, 189)
+		Value.Text = "[ NONE ]"
+		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Value.TextXAlignment = Enum.TextXAlignment.Right
+		Value.Parent = Keybind
 
-   local Title = Instance.new("TextLabel")
-   Title.Name = "Title"
-   Title.ZIndex = 2
-   Title.AnchorPoint = Vector2.new(0, 0.5)
-   Title.Size = UDim2.new(1, -100, 1, 0)
-   Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Title.BackgroundTransparency = 1
-   Title.Position = UDim2.new(0, 6, 0.5, 0)
-   Title.BorderSizePixel = 0
-   Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Title.TextStrokeTransparency = 0.75
-   Title.TextSize = 14
-   Title.RichText = true
-   Title.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Title.Text = "Keybind"
-   Title.TextWrapped = true
-   Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Title.TextXAlignment = Enum.TextXAlignment.Left
-   Title.Parent = Keybind
-
-   local Value = Instance.new("TextLabel")
-   Value.Name = "Value"
-   Value.ZIndex = 2
-   Value.AnchorPoint = Vector2.new(1, 0.5)
-   Value.Size = UDim2.new(0, 90, 0, 24)
-   Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Value.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-   Value.Position = UDim2.new(1, -6, 0.5, 0)
-   Value.BorderSizePixel = 0
-   Value.TextStrokeTransparency = 0.75
-   Value.TextSize = 14
-   Value.RichText = true
-   Value.TextColor3 = Color3.fromRGB(150, 150, 150)
-   Value.Text = "[ NONE ]"
-   Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Value.TextXAlignment = Enum.TextXAlignment.Center
-   Value.Parent = Keybind
-
-   local Corner = Instance.new("UICorner")
-   Corner.CornerRadius = UDim.new(0, 4)
-   Corner.Parent = Value
-
-   local Gradient = Instance.new("UIGradient")
-   Gradient.Rotation = 90
-   Gradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(35, 35, 35)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 25, 25))
-   })
-   Gradient.Parent = Value
-
-   -- Add hover effect
-   local Hover = Instance.new("Frame")
-   Hover.Name = "Hover"
-   Hover.ZIndex = 1
-   Hover.Size = UDim2.new(1, 0, 1, 0)
-   Hover.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-   Hover.BackgroundTransparency = 1
-   Hover.Parent = Value
-
-   local HoverCorner = Instance.new("UICorner")
-   HoverCorner.CornerRadius = UDim.new(0, 4)
-   HoverCorner.Parent = Hover
-
-   Value.MouseEnter:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 0.9
-       }):Play()
-   end)
-
-   Value.MouseLeave:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 1
-       }):Play()
-   end)
-
-   return Keybind
-end,
+		return Keybind
+	end,
 	ToggleKeybind = function()
-   local Keybind = Instance.new("TextButton")
-   Keybind.Name = "Keybind"
-   Keybind.ZIndex = 2
-   Keybind.Size = UDim2.new(0, 90, 0, 24)
-   Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Keybind.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-   Keybind.BorderSizePixel = 0
-   Keybind.AutoButtonColor = false
-   Keybind.TextStrokeTransparency = 0.75
-   Keybind.TextSize = 14
-   Keybind.RichText = true
-   Keybind.TextColor3 = Color3.fromRGB(150, 150, 150)
-   Keybind.Text = "[ NONE ]"
-   Keybind.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Keybind.TextXAlignment = Enum.TextXAlignment.Center
+		local Keybind = Instance.new("TextButton")
+		Keybind.Name = "Keybind"
+		Keybind.ZIndex = 2
+		Keybind.Size = UDim2.new(0, 42, 1, 0)
+		Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Keybind.BackgroundTransparency = 1
+		Keybind.BorderSizePixel = 0
+		Keybind.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Keybind.AutoButtonColor = false
+		Keybind.TextStrokeTransparency = 0.75
+		Keybind.TextSize = 14
+		Keybind.RichText = true
+		Keybind.TextColor3 = Color3.fromRGB(189, 189, 189)
+		Keybind.Text = "[ NONE ]"
+		Keybind.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Keybind.TextXAlignment = Enum.TextXAlignment.Right
 
-   local Corner = Instance.new("UICorner")
-   Corner.CornerRadius = UDim.new(0, 4)
-   Corner.Parent = Keybind
+		return Keybind
+	end,
+	Dropdown = function()
+		local Dropdown = Instance.new("TextButton")
+		Dropdown.Name = "Dropdown"
+		Dropdown.ZIndex = 2
+		Dropdown.Size = UDim2.new(1, 0, 0, 32)
+		Dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Dropdown.BackgroundTransparency = 1
+		Dropdown.BorderSizePixel = 0
+		Dropdown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Dropdown.AutoButtonColor = false
+		Dropdown.TextStrokeTransparency = 0.75
+		Dropdown.TextSize = 14
+		Dropdown.RichText = true
+		Dropdown.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Dropdown.Text = ""
+		Dropdown.TextWrapped = true
+		Dropdown.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-   local Gradient = Instance.new("UIGradient")
-   Gradient.Rotation = 90
-   Gradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(35, 35, 35)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 25, 25))
-   })
-   Gradient.Parent = Keybind
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.AnchorPoint = Vector2.new(0.5, 0)
+		Title.Size = UDim2.new(1, 0, 0, 16)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.Position = UDim2.new(0.5, 0, 0, 0)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Dropdown"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.TextXAlignment = Enum.TextXAlignment.Left
+		Title.Parent = Dropdown
 
-   -- Add hover effect
-   local Hover = Instance.new("Frame")
-   Hover.Name = "Hover"
-   Hover.ZIndex = 1
-   Hover.Size = UDim2.new(1, 0, 1, 0)
-   Hover.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-   Hover.BackgroundTransparency = 1
-   Hover.Parent = Keybind
+		local Background = Instance.new("Frame")
+		Background.Name = "Background"
+		Background.ZIndex = 2
+		Background.AnchorPoint = Vector2.new(0.5, 0)
+		Background.Size = UDim2.new(1, 0, 0, 16)
+		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Background.Position = UDim2.new(0.5, 0, 0, 16)
+		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Background.Parent = Dropdown
 
-   local HoverCorner = Instance.new("UICorner")
-   HoverCorner.CornerRadius = UDim.new(0, 4)
-   HoverCorner.Parent = Hover
+		local Value = Instance.new("TextLabel")
+		Value.Name = "Value"
+		Value.ZIndex = 2
+		Value.AnchorPoint = Vector2.new(0.5, 0.5)
+		Value.Size = UDim2.new(1, -10, 1, 0)
+		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Value.BackgroundTransparency = 1
+		Value.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Value.BorderSizePixel = 0
+		Value.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Value.TextStrokeTransparency = 0.75
+		Value.TextTruncate = Enum.TextTruncate.AtEnd
+		Value.TextSize = 14
+		Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Value.Text = "..."
+		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Value.TextXAlignment = Enum.TextXAlignment.Left
+		Value.Parent = Background
 
-   Keybind.MouseEnter:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 0.9
-       }):Play()
-   end)
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Background
 
-   Keybind.MouseLeave:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 1
-       }):Play()
-   end)
+		return Dropdown
+	end,
+	DropdownContainer = function()
+		local OptionContainer = Instance.new("ScrollingFrame")
+		OptionContainer.Name = "OptionContainer"
+		OptionContainer.ZIndex = 3
+		OptionContainer.Visible = false
+		OptionContainer.Size = UDim2.new(0, 100, 0, 100)
+		OptionContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		OptionContainer.Active = true
+		OptionContainer.BorderSizePixel = 0
+		OptionContainer.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		OptionContainer.ScrollingDirection = Enum.ScrollingDirection.Y
+		OptionContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+		OptionContainer.ScrollBarImageColor3 = Color3.fromRGB(31, 31, 31)
+		OptionContainer.MidImage = "rbxassetid://6432766838"
+		OptionContainer.ScrollBarThickness = 2
+		OptionContainer.TopImage = "rbxassetid://6432766838"
+		OptionContainer.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
+		OptionContainer.BottomImage = "rbxassetid://6432766838"
 
-   return Keybind
-end,
+		local Stroke = Instance.new("UIStroke")
+		Stroke.Name = "Stroke"
+		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
+		Stroke.Parent = OptionContainer
 
-Dropdown = function()
-   local Dropdown = Instance.new("TextButton")
-   Dropdown.Name = "Dropdown"
-   Dropdown.ZIndex = 2
-   Dropdown.Size = UDim2.new(1, 0, 0, 32)
-   Dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Dropdown.BackgroundTransparency = 1
-   Dropdown.BorderSizePixel = 0
-   Dropdown.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Dropdown.AutoButtonColor = false
-   Dropdown.TextStrokeTransparency = 0.75
-   Dropdown.TextSize = 14
-   Dropdown.RichText = true
-   Dropdown.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Dropdown.Text = ""
-   Dropdown.TextWrapped = true
-   Dropdown.FontFace = Font.fromEnum(Enum.Font.Gotham)
+		local Padding = Instance.new("UIPadding")
+		Padding.Name = "Padding"
+		Padding.PaddingTop = UDim.new(0, 2)
+		Padding.PaddingBottom = UDim.new(0, 2)
+		Padding.PaddingLeft = UDim.new(0, 2)
+		Padding.PaddingRight = UDim.new(0, 2)
+		Padding.Parent = OptionContainer
 
-   local Title = Instance.new("TextLabel")
-   Title.Name = "Title"
-   Title.ZIndex = 2
-   Title.AnchorPoint = Vector2.new(0.5, 0)
-   Title.Size = UDim2.new(1, 0, 0, 16)
-   Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Title.BackgroundTransparency = 1
-   Title.Position = UDim2.new(0.5, 0, 0, 0)
-   Title.BorderSizePixel = 0
-   Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Title.TextStrokeTransparency = 0.75
-   Title.TextSize = 14
-   Title.RichText = true
-   Title.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Title.Text = "Dropdown"
-   Title.TextWrapped = true
-   Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Title.TextXAlignment = Enum.TextXAlignment.Left
-   Title.Parent = Dropdown
+		local ListLayout = Instance.new("UIListLayout")
+		ListLayout.Name = "ListLayout"
+		ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		ListLayout.Padding = UDim.new(0, 2)
+		ListLayout.Parent = OptionContainer
 
-   local Background = Instance.new("Frame")
-   Background.Name = "Background"
-   Background.ZIndex = 2
-   Background.AnchorPoint = Vector2.new(0.5, 0)
-   Background.Size = UDim2.new(1, 0, 0, 24)
-   Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Background.Position = UDim2.new(0.5, 0, 0, 16)
-   Background.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-   Background.Parent = Dropdown
-
-   local Corner = Instance.new("UICorner")
-   Corner.CornerRadius = UDim.new(0, 4)
-   Corner.Parent = Background
-
-   local Gradient = Instance.new("UIGradient")
-   Gradient.Rotation = 90
-   Gradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(35, 35, 35)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 25, 25))
-   })
-   Gradient.Parent = Background
-
-   local Value = Instance.new("TextLabel")
-   Value.Name = "Value"
-   Value.ZIndex = 2
-   Value.AnchorPoint = Vector2.new(0.5, 0.5)
-   Value.Size = UDim2.new(1, -16, 1, -8)
-   Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Value.BackgroundTransparency = 1
-   Value.Position = UDim2.new(0.5, 0, 0.5, 0)
-   Value.BorderSizePixel = 0
-   Value.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-   Value.TextStrokeTransparency = 0.75
-   Value.TextTruncate = Enum.TextTruncate.AtEnd
-   Value.TextSize = 14
-   Value.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Value.Text = "Select..."
-   Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Value.TextXAlignment = Enum.TextXAlignment.Left
-   Value.Parent = Background
-
-   -- Add dropdown arrow
-   local Arrow = Instance.new("ImageLabel")
-   Arrow.Name = "Arrow"
-   Arrow.ZIndex = 2
-   Arrow.AnchorPoint = Vector2.new(1, 0.5)
-   Arrow.Size = UDim2.new(0, 16, 0, 16)
-   Arrow.Position = UDim2.new(1, -8, 0.5, 0)
-   Arrow.BackgroundTransparency = 1
-   Arrow.Image = "rbxassetid://6034818375"
-   Arrow.ImageColor3 = Color3.fromRGB(128, 0, 255)
-   Arrow.Parent = Background
-
-   -- Add hover effect
-   local Hover = Instance.new("Frame")
-   Hover.Name = "Hover"
-   Hover.ZIndex = 1
-   Hover.Size = UDim2.new(1, 0, 1, 0)
-   Hover.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-   Hover.BackgroundTransparency = 1
-   Hover.Parent = Background
-
-   local HoverCorner = Instance.new("UICorner")
-   HoverCorner.CornerRadius = UDim.new(0, 4)
-   HoverCorner.Parent = Hover
-
-   Background.MouseEnter:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 0.9
-       }):Play()
-       game:GetService("TweenService"):Create(Arrow, TweenInfo.new(0.2), {
-           ImageColor3 = Color3.fromRGB(170, 85, 255)
-       }):Play()
-   end)
-
-   Background.MouseLeave:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 1
-       }):Play()
-       game:GetService("TweenService"):Create(Arrow, TweenInfo.new(0.2), {
-           ImageColor3 = Color3.fromRGB(128, 0, 255)
-       }):Play()
-   end)
-
-   return Dropdown
-end,
-
-DropdownContainer = function()
-   local OptionContainer = Instance.new("ScrollingFrame")
-   OptionContainer.Name = "OptionContainer"
-   OptionContainer.ZIndex = 3
-   OptionContainer.Visible = false
-   OptionContainer.Size = UDim2.new(0, 100, 0, 100)
-   OptionContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   OptionContainer.Active = true
-   OptionContainer.BorderSizePixel = 0
-   OptionContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-   OptionContainer.ScrollingDirection = Enum.ScrollingDirection.Y
-   OptionContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
-   OptionContainer.ScrollBarImageColor3 = Color3.fromRGB(128, 0, 255)
-   OptionContainer.MidImage = "rbxassetid://6432766838"
-   OptionContainer.ScrollBarThickness = 3
-   OptionContainer.TopImage = "rbxassetid://6432766838"
-   OptionContainer.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
-   OptionContainer.BottomImage = "rbxassetid://6432766838"
-
-   local Corner = Instance.new("UICorner")
-   Corner.CornerRadius = UDim.new(0, 4)
-   Corner.Parent = OptionContainer
-
-   local Stroke = Instance.new("UIStroke")
-   Stroke.Name = "Stroke"
-   Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-   Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-   Stroke.Color = Color3.fromRGB(128, 0, 255)
-   Stroke.Parent = OptionContainer
-
-   local Gradient = Instance.new("UIGradient")
-   Gradient.Rotation = 90
-   Gradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(35, 35, 35)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 25, 25))
-   })
-   Gradient.Parent = OptionContainer
-
-   local Padding = Instance.new("UIPadding")
-   Padding.Name = "Padding"
-   Padding.PaddingTop = UDim.new(0, 4)
-   Padding.PaddingBottom = UDim.new(0, 4)
-   Padding.PaddingLeft = UDim.new(0, 4)
-   Padding.PaddingRight = UDim.new(0, 4)
-   Padding.Parent = OptionContainer
-
-   local ListLayout = Instance.new("UIListLayout")
-   ListLayout.Name = "ListLayout"
-   ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-   ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-   ListLayout.Padding = UDim.new(0, 4)
-   ListLayout.Parent = OptionContainer
-
-   return OptionContainer
-end,
+		return OptionContainer
+	end,
 	DropdownOption = function()
-   local Option = Instance.new("TextButton")
-   Option.Name = "Option"
-   Option.ZIndex = 3
-   Option.Size = UDim2.new(1, 0, 0, 32)
-   Option.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Option.BorderSizePixel = 0
-   Option.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-   Option.AutoButtonColor = false
-   Option.TextStrokeTransparency = 0.75
-   Option.TextSize = 14
-   Option.RichText = true
-   Option.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Option.Text = ""
-   Option.TextWrapped = true
-   Option.FontFace = Font.fromEnum(Enum.Font.Gotham)
+		local Option = Instance.new("TextButton")
+		Option.Name = "Option"
+		Option.ZIndex = 3
+		Option.Size = UDim2.new(1, 0, 0, 16)
+		Option.BorderColor3 = Color3.fromRGB(63, 63, 63)
+		Option.BorderSizePixel = 0
+		Option.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Option.AutoButtonColor = false
+		Option.TextStrokeTransparency = 0.75
+		Option.TextSize = 14
+		Option.RichText = true
+		Option.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Option.Text = ""
+		Option.TextWrapped = true
+		Option.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-   local Corner = Instance.new("UICorner")
-   Corner.CornerRadius = UDim.new(0, 4)
-   Corner.Parent = Option
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Option
 
-   local Gradient = Instance.new("UIGradient") 
-   Gradient.Rotation = 90
-   Gradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(35, 35, 35)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 25, 25))
-   })
-   Gradient.Parent = Option
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 3
+		Title.AnchorPoint = Vector2.new(0, 0.5)
+		Title.Size = UDim2.new(1, -18, 1, 0)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.Position = UDim2.new(0, 18, 0.5, 0)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextTruncate = Enum.TextTruncate.AtEnd
+		Title.TextSize = 14
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Toggle"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.TextXAlignment = Enum.TextXAlignment.Left
+		Title.Parent = Option
 
-   local Title = Instance.new("TextLabel")
-   Title.Name = "Title"
-   Title.ZIndex = 3
-   Title.AnchorPoint = Vector2.new(0, 0.5)
-   Title.Size = UDim2.new(1, -18, 1, 0)
-   Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Title.BackgroundTransparency = 1
-   Title.Position = UDim2.new(0, 28, 0.5, 0)
-   Title.BorderSizePixel = 0
-   Title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-   Title.TextStrokeTransparency = 0.75
-   Title.TextTruncate = Enum.TextTruncate.AtEnd
-   Title.TextSize = 14
-   Title.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Title.Text = "Option"
-   Title.TextWrapped = true
-   Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Title.TextXAlignment = Enum.TextXAlignment.Left
-   Title.Parent = Option
+		local Tick = Instance.new("Frame")
+		Tick.Name = "Tick"
+		Tick.ZIndex = 3
+		Tick.AnchorPoint = Vector2.new(0, 0.5)
+		Tick.Size = UDim2.new(0, 12, 0, 12)
+		Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Tick.Position = UDim2.new(0, 2, 0.5, 0)
+		Tick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Tick.Parent = Option
 
-   local Tick = Instance.new("Frame")
-   Tick.Name = "Tick"
-   Tick.ZIndex = 3
-   Tick.AnchorPoint = Vector2.new(0, 0.5)
-   Tick.Size = UDim2.new(0, 16, 0, 16)
-   Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Tick.Position = UDim2.new(0, 6, 0.5, 0)
-   Tick.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-   Tick.Parent = Option
+		local TickGradient = Instance.new("UIGradient")
+		TickGradient.Name = "Gradient"
+		TickGradient.Rotation = 90
+		TickGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		TickGradient.Parent = Tick
 
-   local TickCorner = Instance.new("UICorner")
-   TickCorner.CornerRadius = UDim.new(0, 4)
-   TickCorner.Parent = Tick
+		local Layout = Instance.new("Frame")
+		Layout.Name = "Layout"
+		Layout.ZIndex = 3
+		Layout.AnchorPoint = Vector2.new(1, 0.5)
+		Layout.Size = UDim2.new(1, -54, 1, 0)
+		Layout.ClipsDescendants = true
+		Layout.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Layout.BackgroundTransparency = 1
+		Layout.Position = UDim2.new(1, -1, 0.5, 0)
+		Layout.BorderSizePixel = 0
+		Layout.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Layout.Parent = Option
 
-   local TickGradient = Instance.new("UIGradient")
-   TickGradient.Rotation = 90
-   TickGradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(35, 35, 35)), 
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 25, 25))
-   })
-   TickGradient.Parent = Tick
+		local Padding = Instance.new("UIPadding")
+		Padding.Name = "Padding"
+		Padding.PaddingRight = UDim.new(0, 1)
+		Padding.Parent = Layout
 
-   -- Add selection indicator
-   local SelectionIndicator = Instance.new("Frame")
-   SelectionIndicator.Name = "SelectionIndicator"
-   SelectionIndicator.ZIndex = 3
-   SelectionIndicator.Size = UDim2.new(0.7, 0, 0.7, 0)
-   SelectionIndicator.AnchorPoint = Vector2.new(0.5, 0.5)
-   SelectionIndicator.Position = UDim2.new(0.5, 0, 0.5, 0)
-   SelectionIndicator.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-   SelectionIndicator.BackgroundTransparency = 1
-   SelectionIndicator.Parent = Tick
+		local ListLayout = Instance.new("UIListLayout")
+		ListLayout.Name = "ListLayout"
+		ListLayout.FillDirection = Enum.FillDirection.Horizontal
+		ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+		ListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+		ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		ListLayout.Padding = UDim.new(0, 4)
+		ListLayout.Parent = Layout
 
-   local IndicatorCorner = Instance.new("UICorner") 
-   IndicatorCorner.CornerRadius = UDim.new(0, 2)
-   IndicatorCorner.Parent = SelectionIndicator
+		return Option
+	end,
+	Colorpicker = function()
+		local Colorpicker = Instance.new("TextButton")
+		Colorpicker.Name = "Colorpicker"
+		Colorpicker.ZIndex = 2
+		Colorpicker.Size = UDim2.new(1, 0, 0, 14)
+		Colorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Colorpicker.BackgroundTransparency = 1
+		Colorpicker.BorderSizePixel = 0
+		Colorpicker.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Colorpicker.AutoButtonColor = false
+		Colorpicker.TextStrokeTransparency = 0.75
+		Colorpicker.TextSize = 14
+		Colorpicker.RichText = true
+		Colorpicker.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Colorpicker.Text = ""
+		Colorpicker.TextWrapped = true
+		Colorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-   -- Add hover effect
-   local Hover = Instance.new("Frame")
-   Hover.Name = "Hover"
-   Hover.ZIndex = 1
-   Hover.Size = UDim2.new(1, 0, 1, 0)
-   Hover.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-   Hover.BackgroundTransparency = 1
-   Hover.Parent = Option
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.AnchorPoint = Vector2.new(0.5, 0.5)
+		Title.Size = UDim2.new(1, 0, 1, 0)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Colorpicker"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.TextXAlignment = Enum.TextXAlignment.Left
+		Title.Parent = Colorpicker
 
-   local HoverCorner = Instance.new("UICorner")
-   HoverCorner.CornerRadius = UDim.new(0, 4)
-   HoverCorner.Parent = Hover
+		local Color = Instance.new("Frame")
+		Color.Name = "Color"
+		Color.ZIndex = 2
+		Color.AnchorPoint = Vector2.new(1, 0.5)
+		Color.Size = UDim2.new(0, 20, 0, 10)
+		Color.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Color.Position = UDim2.new(1, 0, 0.5, 0)
+		Color.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+		Color.Parent = Colorpicker
 
-   Option.MouseEnter:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 0.9
-       }):Play()
-   end)
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Color
 
-   Option.MouseLeave:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 1
-       }):Play()
-   end)
-
-   return Option
-end,
-
-Colorpicker = function()
-   local Colorpicker = Instance.new("TextButton")
-   Colorpicker.Name = "Colorpicker"
-   Colorpicker.ZIndex = 2
-   Colorpicker.Size = UDim2.new(1, 0, 0, 32)
-   Colorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Colorpicker.BackgroundTransparency = 1
-   Colorpicker.BorderSizePixel = 0
-   Colorpicker.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Colorpicker.AutoButtonColor = false
-   Colorpicker.TextStrokeTransparency = 0.75
-   Colorpicker.TextSize = 14
-   Colorpicker.RichText = true
-   Colorpicker.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Colorpicker.Text = ""
-   Colorpicker.TextWrapped = true
-   Colorpicker.FontFace = Font.fromEnum(Enum.Font.Gotham)
-
-   local Title = Instance.new("TextLabel")
-   Title.Name = "Title"
-   Title.ZIndex = 2
-   Title.Size = UDim2.new(1, -80, 1, 0)
-   Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Title.BackgroundTransparency = 1
-   Title.Position = UDim2.new(0, 6, 0, 0)
-   Title.BorderSizePixel = 0
-   Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-   Title.TextStrokeTransparency = 0.75
-   Title.TextSize = 14
-   Title.RichText = true
-   Title.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Title.Text = "Colorpicker"
-   Title.TextWrapped = true
-   Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Title.TextXAlignment = Enum.TextXAlignment.Left
-   Title.Parent = Colorpicker
-
-   local Color = Instance.new("Frame")
-   Color.Name = "Color"
-   Color.ZIndex = 2
-   Color.AnchorPoint = Vector2.new(1, 0.5)
-   Color.Size = UDim2.new(0, 60, 0, 24)
-   Color.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Color.Position = UDim2.new(1, -6, 0.5, 0)
-   Color.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-   Color.Parent = Colorpicker
-
-   local ColorCorner = Instance.new("UICorner")
-   ColorCorner.CornerRadius = UDim.new(0, 4)
-   ColorCorner.Parent = Color
-
-   local Gradient = Instance.new("UIGradient")
-   Gradient.Rotation = 90
-   Gradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(200, 200, 200))
-   })
-   Gradient.Parent = Color
-
-   -- Add hover effect
-   local Hover = Instance.new("Frame")
-   Hover.Name = "Hover"
-   Hover.ZIndex = 1
-   Hover.Size = UDim2.new(1, 0, 1, 0)
-   Hover.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-   Hover.BackgroundTransparency = 1
-   Hover.Parent = Color
-
-   local HoverCorner = Instance.new("UICorner")
-   HoverCorner.CornerRadius = UDim.new(0, 4)
-   HoverCorner.Parent = Hover
-
-   Color.MouseEnter:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 0.9
-       }):Play()
-   end)
-
-   Color.MouseLeave:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 1
-       }):Play()
-   end)
-
-   return Colorpicker
-end,
+		return Colorpicker
+	end,
 	ToggleColorpicker = function()
-   local TColorpicker = Instance.new("TextButton")
-   TColorpicker.Name = "TColorpicker"
-   TColorpicker.ZIndex = 2
-   TColorpicker.AnchorPoint = Vector2.new(1, 0.5)
-   TColorpicker.Size = UDim2.new(0, 42, 0, 24)
-   TColorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   TColorpicker.Position = UDim2.new(1, -6, 0.5, 0)
-   TColorpicker.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-   TColorpicker.AutoButtonColor = false
-   TColorpicker.TextStrokeTransparency = 0.75
-   TColorpicker.TextSize = 14
-   TColorpicker.RichText = true
-   TColorpicker.TextColor3 = Color3.fromRGB(230, 230, 230)
-   TColorpicker.Text = ""
-   TColorpicker.TextWrapped = true
-   TColorpicker.FontFace = Font.fromEnum(Enum.Font.Gotham)
+		local TColorpicker = Instance.new("TextButton")
+		TColorpicker.Name = "TColorpicker"
+		TColorpicker.ZIndex = 2
+		TColorpicker.AnchorPoint = Vector2.new(1, 0.5)
+		TColorpicker.Size = UDim2.new(0, 24, 0, 12)
+		TColorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		TColorpicker.Position = UDim2.new(1, 0, 0.5, 0)
+		TColorpicker.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+		TColorpicker.AutoButtonColor = false
+		TColorpicker.TextStrokeTransparency = 0.75
+		TColorpicker.TextSize = 14
+		TColorpicker.RichText = true
+		TColorpicker.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TColorpicker.Text = ""
+		TColorpicker.TextWrapped = true
+		TColorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-   local Corner = Instance.new("UICorner")
-   Corner.CornerRadius = UDim.new(0, 4)
-   Corner.Parent = TColorpicker
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = TColorpicker
 
-   local Gradient = Instance.new("UIGradient")
-   Gradient.Rotation = 90
-   Gradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(200, 200, 200))
-   })
-   Gradient.Parent = TColorpicker
-
-   -- Add hover effect
-   local Hover = Instance.new("Frame")
-   Hover.Name = "Hover"
-   Hover.ZIndex = 1
-   Hover.Size = UDim2.new(1, 0, 1, 0)
-   Hover.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-   Hover.BackgroundTransparency = 1
-   Hover.Parent = TColorpicker
-
-   local HoverCorner = Instance.new("UICorner")
-   HoverCorner.CornerRadius = UDim.new(0, 4)
-   HoverCorner.Parent = Hover
-
-   TColorpicker.MouseEnter:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 0.9
-       }):Play()
-   end)
-
-   TColorpicker.MouseLeave:Connect(function()
-       game:GetService("TweenService"):Create(Hover, TweenInfo.new(0.2), {
-           BackgroundTransparency = 1
-       }):Play()
-   end)
-
-   return TColorpicker
-end,
-
+		return TColorpicker
+	end,
 	ColorpickerPalette = function()
-   local Palette = Instance.new("Frame")
-   Palette.Name = "Palette"
-   Palette.ZIndex = 3
-   Palette.Visible = false
-   Palette.Size = UDim2.new(0, 150, 0, 290)
-   Palette.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Palette.Position = UDim2.new(0, 20, 0, 20)
-   Palette.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		local Palette = Instance.new("Frame")
+		Palette.Name = "Palette"
+		Palette.ZIndex = 3
+		Palette.Visible = false
+		Palette.Size = UDim2.new(0, 150, 0, 290)
+		Palette.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Palette.Position = UDim2.new(0, 20, 0, 20)
+		Palette.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 
-   local Corner = Instance.new("UICorner")
-   Corner.CornerRadius = UDim.new(0, 6)
-   Corner.Parent = Palette
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Palette
 
-   local Stroke = Instance.new("UIStroke")
-   Stroke.Color = Color3.fromRGB(128, 0, 255)
-   Stroke.Thickness = 1.5
-   Stroke.Parent = Palette
+		local SVPicker = Instance.new("TextButton")
+		SVPicker.Name = "SVPicker"
+		SVPicker.ZIndex = 3
+		SVPicker.AnchorPoint = Vector2.new(0.5, 0)
+		SVPicker.Size = UDim2.new(1, -10, 0, 180)
+		SVPicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		SVPicker.Position = UDim2.new(0.5, 0, 0, 5)
+		SVPicker.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+		SVPicker.AutoButtonColor = false
+		SVPicker.TextStrokeTransparency = 0.75
+		SVPicker.TextSize = 14
+		SVPicker.RichText = true
+		SVPicker.TextColor3 = Color3.fromRGB(255, 255, 255)
+		SVPicker.Text = ""
+		SVPicker.TextWrapped = true
+		SVPicker.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		SVPicker.Parent = Palette
 
-   local Gradient = Instance.new("UIGradient") 
-   Gradient.Rotation = 90
-   Gradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(35, 35, 35)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 25, 25))
-   })
-   Gradient.Parent = Palette
+		local Saturation = Instance.new("Frame")
+		Saturation.Name = "Saturation"
+		Saturation.ZIndex = 3
+		Saturation.AnchorPoint = Vector2.new(0.5, 0.5)
+		Saturation.Size = UDim2.new(1, 0, 1, 0)
+		Saturation.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Saturation.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Saturation.BorderSizePixel = 0
+		Saturation.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+		Saturation.Parent = SVPicker
 
-   local SVPicker = Instance.new("TextButton")
-   SVPicker.Name = "SVPicker"
-   SVPicker.ZIndex = 3
-   SVPicker.AnchorPoint = Vector2.new(0.5, 0)
-   SVPicker.Size = UDim2.new(1, -20, 0, 180)
-   SVPicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   SVPicker.Position = UDim2.new(0.5, 0, 0, 10)
-   SVPicker.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-   SVPicker.AutoButtonColor = false
-   SVPicker.Text = ""
-   SVPicker.Parent = Palette
+		local SaturationGradient = Instance.new("UIGradient")
+		SaturationGradient.Name = "Gradient"
+		SaturationGradient.Transparency = NumberSequence.new(1, 0)
+		SaturationGradient.Rotation = 90
+		SaturationGradient.Color = ColorSequence.new(Color3.fromRGB(0, 0, 0))
+		SaturationGradient.Parent = Saturation
 
-   local SVCorner = Instance.new("UICorner")
-   SVCorner.CornerRadius = UDim.new(0, 6)
-   SVCorner.Parent = SVPicker
+		local Brightness = Instance.new("Frame")
+		Brightness.Name = "Brightness"
+		Brightness.ZIndex = 3
+		Brightness.AnchorPoint = Vector2.new(0.5, 0.5)
+		Brightness.Size = UDim2.new(1, 0, 1, 0)
+		Brightness.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Brightness.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Brightness.BorderSizePixel = 0
+		Brightness.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Brightness.Parent = SVPicker
 
-   local Saturation = Instance.new("Frame")
-   Saturation.Name = "Saturation"
-   Saturation.ZIndex = 3
-   Saturation.Size = UDim2.new(1, 0, 1, 0)
-   Saturation.BorderSizePixel = 0
-   Saturation.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-   Saturation.Parent = SVPicker
+		local BrightnessGradient = Instance.new("UIGradient")
+		BrightnessGradient.Name = "Gradient"
+		BrightnessGradient.Transparency = NumberSequence.new(0, 1)
+		BrightnessGradient.Parent = Brightness
 
-   local SaturationCorner = Instance.new("UICorner")
-   SaturationCorner.CornerRadius = UDim.new(0, 6)
-   SaturationCorner.Parent = Saturation
+		local SVPin = Instance.new("Frame")
+		SVPin.Name = "Pin"
+		SVPin.ZIndex = 3
+		SVPin.AnchorPoint = Vector2.new(0.5, 0.5)
+		SVPin.Size = UDim2.new(0, 3, 0, 3)
+		SVPin.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		SVPin.Rotation = 45
+		SVPin.BackgroundTransparency = 1
+		SVPin.Position = UDim2.new(0.5, 0, 0.5, 0)
+		SVPin.BorderSizePixel = 0
+		SVPin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		SVPin.Parent = SVPicker
 
-   local SaturationGradient = Instance.new("UIGradient")
-   SaturationGradient.Transparency = NumberSequence.new(1, 0)
-   SaturationGradient.Rotation = 90
-   SaturationGradient.Color = ColorSequence.new(Color3.fromRGB(0, 0, 0))
-   SaturationGradient.Parent = Saturation
+		local SVPinStroke = Instance.new("UIStroke")
+		SVPinStroke.Name = "Stroke"
+		SVPinStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		SVPinStroke.LineJoinMode = Enum.LineJoinMode.Miter
+		SVPinStroke.Thickness = 1.5
+		SVPinStroke.Parent = SVPin
 
-   local Brightness = Instance.new("Frame")
-   Brightness.Name = "Brightness"
-   Brightness.ZIndex = 3
-   Brightness.Size = UDim2.new(1, 0, 1, 0)
-   Brightness.BorderSizePixel = 0
-   Brightness.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-   Brightness.Parent = SVPicker
+		local Hue = Instance.new("TextButton")
+		Hue.Name = "Hue"
+		Hue.ZIndex = 3
+		Hue.AnchorPoint = Vector2.new(0.5, 0)
+		Hue.Size = UDim2.new(1, -10, 0, 10)
+		Hue.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Hue.Position = UDim2.new(0.5, 0, 0, 191)
+		Hue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Hue.AutoButtonColor = false
+		Hue.TextStrokeTransparency = 0.75
+		Hue.TextSize = 14
+		Hue.RichText = true
+		Hue.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Hue.Text = ""
+		Hue.TextWrapped = true
+		Hue.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Hue.Parent = Palette
 
-   local BrightnessCorner = Instance.new("UICorner")
-   BrightnessCorner.CornerRadius = UDim.new(0, 6)
-   BrightnessCorner.Parent = Brightness
+		local HuePin = Instance.new("Frame")
+		HuePin.Name = "Pin"
+		HuePin.ZIndex = 3
+		HuePin.AnchorPoint = Vector2.new(0.5, 0.5)
+		HuePin.Size = UDim2.new(0, 1, 1, 0)
+		HuePin.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		HuePin.Position = UDim2.new(0, 0, 0.5, 0)
+		HuePin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		HuePin.Parent = Hue
 
-   local BrightnessGradient = Instance.new("UIGradient")
-   BrightnessGradient.Transparency = NumberSequence.new(0, 1)
-   BrightnessGradient.Parent = Brightness
+		local HueGradient = Instance.new("UIGradient")
+		HueGradient.Name = "Gradient"
+		HueGradient.Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+			ColorSequenceKeypoint.new(1 / 6, Color3.fromRGB(255, 0, 255)),
+			ColorSequenceKeypoint.new(1 / 3, Color3.fromRGB(0, 0, 255)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 255)),
+			ColorSequenceKeypoint.new(1 / 1.5, Color3.fromRGB(0, 255, 0)),
+			ColorSequenceKeypoint.new(1 / 1.2, Color3.fromRGB(255, 255, 0)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))
+		})
+		HueGradient.Parent = Hue
 
-   local SVPin = Instance.new("Frame")
-   SVPin.Name = "Pin"
-   SVPin.ZIndex = 5
-   SVPin.Size = UDim2.new(0, 18, 0, 18)
-   SVPin.AnchorPoint = Vector2.new(0.5, 0.5)
-   SVPin.Position = UDim2.new(0.5, 0, 0.5, 0)
-   SVPin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-   SVPin.Parent = SVPicker
+		local Alpha = Instance.new("TextButton")
+		Alpha.Name = "Alpha"
+		Alpha.ZIndex = 3
+		Alpha.AnchorPoint = Vector2.new(0.5, 0)
+		Alpha.Size = UDim2.new(1, -10, 0, 10)
+		Alpha.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Alpha.Position = UDim2.new(0.5, 0, 0, 207)
+		Alpha.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+		Alpha.AutoButtonColor = false
+		Alpha.TextStrokeTransparency = 0.75
+		Alpha.TextSize = 14
+		Alpha.RichText = true
+		Alpha.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Alpha.Text = ""
+		Alpha.TextWrapped = true
+		Alpha.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Alpha.Parent = Palette
 
-   local SVPinCorner = Instance.new("UICorner")
-   SVPinCorner.CornerRadius = UDim.new(1, 0)
-   SVPinCorner.Parent = SVPin
+		local Stroke = Instance.new("UIStroke")
+		Stroke.Name = "Stroke"
+		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
+		Stroke.Parent = Alpha
 
-   local SVPinStroke = Instance.new("UIStroke")
-   SVPinStroke.Color = Color3.fromRGB(0, 0, 0)
-   SVPinStroke.Thickness = 2
-   SVPinStroke.Parent = SVPin
+		local AlphaGradient = Instance.new("UIGradient")
+		AlphaGradient.Name = "Gradient"
+		AlphaGradient.Transparency = NumberSequence.new(0, 1)
+		AlphaGradient.Parent = Alpha
 
-   local Hue = Instance.new("TextButton")
-   Hue.Name = "Hue"
-   Hue.ZIndex = 3
-   Hue.AnchorPoint = Vector2.new(0.5, 0)
-   Hue.Size = UDim2.new(1, -20, 0, 12)
-   Hue.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Hue.Position = UDim2.new(0.5, 0, 0, 200)
-   Hue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-   Hue.AutoButtonColor = false
-   Hue.Text = ""
-   Hue.Parent = Palette
+		local AlphaPin = Instance.new("Frame")
+		AlphaPin.Name = "Pin"
+		AlphaPin.ZIndex = 3
+		AlphaPin.AnchorPoint = Vector2.new(0.5, 0.5)
+		AlphaPin.Size = UDim2.new(0, 1, 1, 0)
+		AlphaPin.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		AlphaPin.Position = UDim2.new(0, 0, 0.5, 0)
+		AlphaPin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		AlphaPin.Parent = Alpha
 
-   local HueCorner = Instance.new("UICorner")
-   HueCorner.CornerRadius = UDim.new(1, 0)
-   HueCorner.Parent = Hue
+		local Value = Instance.new("TextLabel")
+		Value.Name = "Value"
+		Value.ZIndex = 3
+		Value.AnchorPoint = Vector2.new(0.5, 0.5)
+		Value.Size = UDim2.new(1, -8, 1, 0)
+		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Value.BackgroundTransparency = 1
+		Value.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Value.BorderSizePixel = 0
+		Value.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		Value.TextStrokeTransparency = 0.75
+		Value.TextSize = 12
+		Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Value.TextYAlignment = Enum.TextYAlignment.Bottom
+		Value.Text = "1"
+		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Value.TextXAlignment = Enum.TextXAlignment.Right
+		Value.Parent = Alpha
 
-   local HueGradient = Instance.new("UIGradient")
-   HueGradient.Color = ColorSequence.new({
-       ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
-       ColorSequenceKeypoint.new(0.167, Color3.fromRGB(255, 0, 255)),
-       ColorSequenceKeypoint.new(0.333, Color3.fromRGB(0, 0, 255)),
-       ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 255)),
-       ColorSequenceKeypoint.new(0.667, Color3.fromRGB(0, 255, 0)),
-       ColorSequenceKeypoint.new(0.833, Color3.fromRGB(255, 255, 0)),
-       ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))
-   })
-   HueGradient.Parent = Hue
+		local RGB = Instance.new("Frame")
+		RGB.Name = "RGB"
+		RGB.ZIndex = 3
+		RGB.AnchorPoint = Vector2.new(0.5, 0)
+		RGB.Size = UDim2.new(1, -10, 0, 20)
+		RGB.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		RGB.Position = UDim2.new(0.5, 0, 0, 223)
+		RGB.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		RGB.Parent = Palette
 
-   local HuePin = Instance.new("Frame")
-   HuePin.Name = "Pin"
-   HuePin.ZIndex = 5
-   HuePin.Size = UDim2.new(0, 12, 0, 12)
-   HuePin.Position = UDim2.new(0.5, 0, 0.5, 0)
-   HuePin.AnchorPoint = Vector2.new(0.5, 0.5) 
-   HuePin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-   HuePin.Parent = Hue
+		local RGBBox = Instance.new("TextBox")
+		RGBBox.Name = "RGBBox"
+		RGBBox.ZIndex = 3
+		RGBBox.AnchorPoint = Vector2.new(0, 0.5)
+		RGBBox.Size = UDim2.new(1, -36, 1, 0)
+		RGBBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		RGBBox.BackgroundTransparency = 1
+		RGBBox.Position = UDim2.new(0, 31, 0.5, 0)
+		RGBBox.BorderSizePixel = 0
+		RGBBox.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		RGBBox.TextStrokeTransparency = 0.75
+		RGBBox.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
+		RGBBox.TextSize = 14
+		RGBBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+		RGBBox.PlaceholderText = "255, 0, 0"
+		RGBBox.Text = ""
+		RGBBox.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		RGBBox.TextXAlignment = Enum.TextXAlignment.Left
+		RGBBox.Parent = RGB
 
-   local HuePinCorner = Instance.new("UICorner")
-   HuePinCorner.CornerRadius = UDim.new(1, 0)
-   HuePinCorner.Parent = HuePin
+		local RGBText = Instance.new("TextLabel")
+		RGBText.Name = "RGBText"
+		RGBText.ZIndex = 3
+		RGBText.Size = UDim2.new(0, 26, 0, 20)
+		RGBText.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		RGBText.BackgroundTransparency = 1
+		RGBText.Position = UDim2.new(0, 5, 0, 0)
+		RGBText.BorderSizePixel = 0
+		RGBText.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		RGBText.TextStrokeTransparency = 0.75
+		RGBText.TextSize = 14
+		RGBText.RichText = true
+		RGBText.TextColor3 = Color3.fromRGB(255, 255, 255)
+		RGBText.Text = "RGB: "
+		RGBText.TextWrapped = true
+		RGBText.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		RGBText.TextXAlignment = Enum.TextXAlignment.Left
+		RGBText.Parent = RGB
 
-   local HuePinStroke = Instance.new("UIStroke")
-   HuePinStroke.Color = Color3.fromRGB(0, 0, 0)
-   HuePinStroke.Thickness = 1.5
-   HuePinStroke.Parent = HuePin
+		local RGBGradient = Instance.new("UIGradient")
+		RGBGradient.Name = "Gradient"
+		RGBGradient.Rotation = 90
+		RGBGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		RGBGradient.Parent = RGB
 
-   local Alpha = Instance.new("TextButton")
-   Alpha.Name = "Alpha"
-   Alpha.ZIndex = 3
-   Alpha.AnchorPoint = Vector2.new(0.5, 0)
-   Alpha.Size = UDim2.new(1, -20, 0, 12)
-   Alpha.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   Alpha.Position = UDim2.new(0.5, 0, 0, 220)
-   Alpha.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-   Alpha.AutoButtonColor = false
-   Alpha.Text = ""
-   Alpha.Parent = Palette
+		local HEX = Instance.new("Frame")
+		HEX.Name = "HEX"
+		HEX.ZIndex = 3
+		HEX.AnchorPoint = Vector2.new(0.5, 0)
+		HEX.Size = UDim2.new(1, -10, 0, 20)
+		HEX.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		HEX.Position = UDim2.new(0.5, 0, 0, 249)
+		HEX.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		HEX.Parent = Palette
 
-   local AlphaCorner = Instance.new("UICorner")
-   AlphaCorner.CornerRadius = UDim.new(1, 0)
-   AlphaCorner.Parent = Alpha
+		local HEXBox = Instance.new("TextBox")
+		HEXBox.Name = "HEXBox"
+		HEXBox.ZIndex = 3
+		HEXBox.AnchorPoint = Vector2.new(0, 0.5)
+		HEXBox.Size = UDim2.new(1, -36, 1, 0)
+		HEXBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		HEXBox.BackgroundTransparency = 1
+		HEXBox.Position = UDim2.new(0, 36, 0.5, 0)
+		HEXBox.BorderSizePixel = 0
+		HEXBox.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		HEXBox.TextStrokeTransparency = 0.75
+		HEXBox.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
+		HEXBox.TextSize = 14
+		HEXBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+		HEXBox.PlaceholderText = "ff0000"
+		HEXBox.Text = ""
+		HEXBox.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		HEXBox.TextXAlignment = Enum.TextXAlignment.Left
+		HEXBox.Parent = HEX
 
-   local AlphaStroke = Instance.new("UIStroke")
-   AlphaStroke.Color = Color3.fromRGB(40, 40, 40)
-   AlphaStroke.Thickness = 1
-   AlphaStroke.Parent = Alpha
+		local HEXText = Instance.new("TextLabel")
+		HEXText.Name = "HEXText"
+		HEXText.ZIndex = 3
+		HEXText.Size = UDim2.new(0, 31, 0, 20)
+		HEXText.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		HEXText.BackgroundTransparency = 1
+		HEXText.Position = UDim2.new(0, 5, 0, 0)
+		HEXText.BorderSizePixel = 0
+		HEXText.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		HEXText.TextStrokeTransparency = 0.75
+		HEXText.TextSize = 14
+		HEXText.RichText = true
+		HEXText.TextColor3 = Color3.fromRGB(255, 255, 255)
+		HEXText.Text = "HEX: #"
+		HEXText.TextWrapped = true
+		HEXText.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		HEXText.TextXAlignment = Enum.TextXAlignment.Left
+		HEXText.Parent = HEX
 
-   local AlphaGradient = Instance.new("UIGradient")
-   AlphaGradient.Transparency = NumberSequence.new(0, 1)
-   AlphaGradient.Parent = Alpha
+		local HEXGradient = Instance.new("UIGradient")
+		HEXGradient.Name = "Gradient"
+		HEXGradient.Rotation = 90
+		HEXGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		HEXGradient.Parent = HEX
 
-   local AlphaPin = Instance.new("Frame")
-   AlphaPin.Name = "Pin" 
-   AlphaPin.ZIndex = 5
-   AlphaPin.Size = UDim2.new(0, 12, 0, 12)
-   AlphaPin.Position = UDim2.new(0.5, 0, 0.5, 0)
-   AlphaPin.AnchorPoint = Vector2.new(0.5, 0.5)
-   AlphaPin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-   AlphaPin.Parent = Alpha
+		local Rainbow = Instance.new("TextButton")
+		Rainbow.Name = "Rainbow"
+		Rainbow.ZIndex = 3
+		Rainbow.AnchorPoint = Vector2.new(0.5, 0)
+		Rainbow.Size = UDim2.new(1, -10, 0, 20)
+		Rainbow.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Rainbow.BackgroundTransparency = 1
+		Rainbow.Position = UDim2.new(0.5, 0, 0, 270)
+		Rainbow.BorderSizePixel = 0
+		Rainbow.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Rainbow.AutoButtonColor = false
+		Rainbow.TextStrokeTransparency = 0.75
+		Rainbow.TextSize = 14
+		Rainbow.RichText = true
+		Rainbow.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Rainbow.Text = ""
+		Rainbow.TextWrapped = true
+		Rainbow.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Rainbow.Parent = Palette
 
-   local AlphaPinCorner = Instance.new("UICorner")
-   AlphaPinCorner.CornerRadius = UDim.new(1, 0)
-   AlphaPinCorner.Parent = AlphaPin
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 3
+		Title.AnchorPoint = Vector2.new(0, 0.5)
+		Title.Size = UDim2.new(1, -15, 1, 0)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.Position = UDim2.new(0, 15, 0.5, 0)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Rainbow"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.TextXAlignment = Enum.TextXAlignment.Left
+		Title.Parent = Rainbow
 
-   local AlphaPinStroke = Instance.new("UIStroke") 
-   AlphaPinStroke.Color = Color3.fromRGB(0, 0, 0)
-   AlphaPinStroke.Thickness = 1.5
-   AlphaPinStroke.Parent = AlphaPin
--- Add after AlphaPinStroke
-local AlphaValue = Instance.new("TextLabel")
-AlphaValue.Name = "Value"
-AlphaValue.ZIndex = 3
-AlphaValue.Size = UDim2.new(0, 24, 0, 12)
-AlphaValue.Position = UDim2.new(1, 4, 0.5, 0)
-AlphaValue.AnchorPoint = Vector2.new(0, 0.5)
-AlphaValue.BackgroundTransparency = 1
-AlphaValue.TextSize = 12
-AlphaValue.TextColor3 = Color3.fromRGB(230, 230, 230)
-AlphaValue.Text = "100%"
-AlphaValue.FontFace = Font.fromEnum(Enum.Font.Gotham)
-AlphaValue.Parent = Alpha
-   local Value = Instance.new("TextLabel")
-   Value.Name = "Value"
-   Value.ZIndex = 3
-   Value.AnchorPoint = Vector2.new(0.5, 0.5)
-   Value.Size = UDim2.new(1, -12, 1, 0)
-   Value.BackgroundTransparency = 1
-   Value.Position = UDim2.new(0.5, 0, 0.5, 0)
-   Value.TextSize = 12
-   Value.TextColor3 = Color3.fromRGB(230, 230, 230)
-   Value.TextYAlignment = Enum.TextYAlignment.Bottom
-   Value.Text = "1"  
-   Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   Value.TextXAlignment = Enum.TextXAlignment.Right
-   Value.Parent = Alpha
+		local RainbowTick = Instance.new("Frame")
+		RainbowTick.Name = "Tick"
+		RainbowTick.ZIndex = 3
+		RainbowTick.AnchorPoint = Vector2.new(0, 0.5)
+		RainbowTick.Size = UDim2.new(0, 10, 0, 10)
+		RainbowTick.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		RainbowTick.Position = UDim2.new(0, 0, 0.5, 0)
+		RainbowTick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		RainbowTick.Parent = Rainbow
 
-   local RGB = Instance.new("Frame")
-   RGB.Name = "RGB"
-   RGB.ZIndex = 3
-   RGB.AnchorPoint = Vector2.new(0.5, 0)
-   RGB.Size = UDim2.new(1, -20, 0, 24)
-   RGB.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   RGB.Position = UDim2.new(0.5, 0, 0, 240)
-   RGB.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-   RGB.Parent = Palette
+		local RainbowTickGradient = Instance.new("UIGradient")
+		RainbowTickGradient.Name = "Gradient"
+		RainbowTickGradient.Rotation = 90
+		RainbowTickGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		RainbowTickGradient.Parent = RainbowTick
 
-   local RGBCorner = Instance.new("UICorner")
-   RGBCorner.CornerRadius = UDim.new(0, 4)
-   RGBCorner.Parent = RGB
-
-   local RGBBox = Instance.new("TextBox")
-   RGBBox.Name = "RGBBox"
-   RGBBox.ZIndex = 3
-   RGBBox.AnchorPoint = Vector2.new(0, 0.5)
-   RGBBox.Size = UDim2.new(1, -45, 1, -8)
-   RGBBox.Position = UDim2.new(0, 40, 0.5, 0)
-   RGBBox.BackgroundTransparency = 1
-   RGBBox.TextSize = 14
-   RGBBox.TextColor3 = Color3.fromRGB(230, 230, 230)
-   RGBBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
-   RGBBox.PlaceholderText = "255, 0, 0"
-   RGBBox.Text = ""
-   RGBBox.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   RGBBox.TextXAlignment = Enum.TextXAlignment.Left
-   RGBBox.Parent = RGB
-
-   local RGBText = Instance.new("TextLabel")
-   RGBText.Name = "RGBText"
-   RGBText.ZIndex = 3
-   RGBText.Size = UDim2.new(0, 35, 1, 0)
-   RGBText.BackgroundTransparency = 1
-   RGBText.Position = UDim2.new(0, 5, 0, 0)
-   RGBText.TextSize = 14
-   RGBText.TextColor3 = Color3.fromRGB(230, 230, 230)
-   RGBText.Text = "RGB:"
-   RGBText.FontFace = Font.fromEnum(Enum.Font.Gotham)
-   RGBText.TextXAlignment = Enum.TextXAlignment.Left
-   RGBText.Parent = RGB
-
-   local HEX = Instance.new("Frame")
-   HEX.Name = "HEX"
-   HEX.ZIndex = 3
-   HEX.AnchorPoint = Vector2.new(0.5, 0)
-   HEX.Size = UDim2.new(1, -20, 0, 24)
-   HEX.BorderColor3 = Color3.fromRGB(0, 0, 0)
-   HEX.Position = UDim2.new(0.5, 0, 0, 270)
-   HEX.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-   HEX.Parent = Palette
-
-   local HEXCorner = Instance.new("UICorner")
-   HEXCorner.CornerRadius = UDim.new(0, 4)
-   HEXCorner.Parent = HEX
-local HEXBox = Instance.new("TextBox")
-HEXBox.Name = "HEXBox"
-HEXBox.ZIndex = 3
-HEXBox.AnchorPoint = Vector2.new(0, 0.5)
-HEXBox.Size = UDim2.new(1, -45, 1, -8)
-HEXBox.Position = UDim2.new(0, 40, 0.5, 0)
-HEXBox.BackgroundTransparency = 1
-HEXBox.TextSize = 14
-HEXBox.TextColor3 = Color3.fromRGB(230, 230, 230)
-HEXBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
-HEXBox.PlaceholderText = "ff0000"
-HEXBox.Text = ""
-HEXBox.FontFace = Font.fromEnum(Enum.Font.Gotham)
-HEXBox.TextXAlignment = Enum.TextXAlignment.Left
-HEXBox.Parent = HEX
-local HEXBoxStroke = Instance.new("UIStroke")
-HEXBoxStroke.Color = Color3.fromRGB(40, 40, 40)
-HEXBoxStroke.Thickness = 1
-HEXBoxStroke.Parent = HEX
-local HEXText = Instance.new("TextLabel")
-HEXText.Name = "HEXText"
-HEXText.ZIndex = 3
-HEXText.Size = UDim2.new(0, 35, 1, 0)
-HEXText.BackgroundTransparency = 1
-HEXText.Position = UDim2.new(0, 5, 0, 0)
-HEXText.TextSize = 14
-HEXText.TextColor3 = Color3.fromRGB(230, 230, 230)
-HEXText.Text = "HEX:"
-HEXText.FontFace = Font.fromEnum(Enum.Font.Gotham)
-HEXText.TextXAlignment = Enum.TextXAlignment.Left
-HEXText.Parent = HEX
-
-local Rainbow = Instance.new("TextButton")
-Rainbow.Name = "Rainbow"
-Rainbow.ZIndex = 3
-Rainbow.AnchorPoint = Vector2.new(0.5, 1)
-Rainbow.Size = UDim2.new(1, -20, 0, 24)
-Rainbow.Position = UDim2.new(0.5, 0, 1, -10)
-Rainbow.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Rainbow.AutoButtonColor = false
-Rainbow.Text = ""
-Rainbow.Parent = Palette
-
-local RainbowCorner = Instance.new("UICorner")
-RainbowCorner.CornerRadius = UDim.new(0, 4)
-RainbowCorner.Parent = Rainbow
-
-local Title = Instance.new("TextLabel")
-Title.Name = "Title"
-Title.ZIndex = 3
-Title.AnchorPoint = Vector2.new(0, 0.5)
-Title.Size = UDim2.new(1, -30, 1, 0)
-Title.Position = UDim2.new(0, 24, 0.5, 0)
-Title.BackgroundTransparency = 1
-Title.TextSize = 14
-Title.TextColor3 = Color3.fromRGB(230, 230, 230)
-Title.Text = "Rainbow"
-Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-Title.TextXAlignment = Enum.TextXAlignment.Left
-Title.Parent = Rainbow
-
-local RainbowTick = Instance.new("Frame")
-RainbowTick.Name = "Tick"
-RainbowTick.ZIndex = 3
-RainbowTick.Size = UDim2.new(0, 16, 0, 16)
-RainbowTick.Position = UDim2.new(0, 4, 0.5, 0)
-RainbowTick.AnchorPoint = Vector2.new(0, 0.5)
-RainbowTick.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-RainbowTick.Parent = Rainbow
-
-local RainbowTickCorner = Instance.new("UICorner")
-RainbowTickCorner.CornerRadius = UDim.new(0, 4)
-RainbowTickCorner.Parent = RainbowTick
--- Add after RainbowTickCorner
-local RainbowIndicator = Instance.new("Frame")
-RainbowIndicator.Name = "Indicator"
-RainbowIndicator.ZIndex = 4
-RainbowIndicator.Size = UDim2.new(0.7, 0, 0.7, 0)
-RainbowIndicator.Position = UDim2.new(0.5, 0, 0.5, 0)
-RainbowIndicator.AnchorPoint = Vector2.new(0.5, 0.5)
-RainbowIndicator.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-RainbowIndicator.BackgroundTransparency = 1
-RainbowIndicator.Parent = RainbowTick
-
-local RainbowIndicatorCorner = Instance.new("UICorner")
-RainbowIndicatorCorner.CornerRadius = UDim.new(0, 2)
-RainbowIndicatorCorner.Parent = RainbowIndicator
--- Add hover effects
-local RainbowHover = Instance.new("Frame")
-RainbowHover.Name = "Hover"
-RainbowHover.ZIndex = 2
-RainbowHover.Size = UDim2.new(1, 0, 1, 0)
-RainbowHover.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-RainbowHover.BackgroundTransparency = 1
-RainbowHover.Parent = Rainbow
-
-local RainbowHoverCorner = Instance.new("UICorner")
-RainbowHoverCorner.CornerRadius = UDim.new(0, 4)
-RainbowHoverCorner.Parent = RainbowHover
-
-Rainbow.MouseEnter:Connect(function()
-   game:GetService("TweenService"):Create(RainbowHover, TweenInfo.new(0.2), {
-       BackgroundTransparency = 0.9
-   }):Play()
-end)
-
-Rainbow.MouseLeave:Connect(function()
-   game:GetService("TweenService"):Create(RainbowHover, TweenInfo.new(0.2), {
-       BackgroundTransparency = 1
-   }):Play()
-end)
-
--- Add shadow effect
-local Shadow = Instance.new("ImageLabel")
-Shadow.Name = "Shadow"
-Shadow.AnchorPoint = Vector2.new(0.5, 0.5)
-Shadow.BackgroundTransparency = 1
-Shadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-Shadow.Size = UDim2.new(1, 24, 1, 24)
-Shadow.ZIndex = 2
-Shadow.Image = "rbxassetid://6014261993"
-Shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-Shadow.ImageTransparency = 0.5
-Shadow.Parent = Palette
--- Add hover frames for input boxes
-local RGBHover = Instance.new("Frame")
-RGBHover.Name = "Hover"
-RGBHover.ZIndex = 2
-RGBHover.Size = UDim2.new(1, 0, 1, 0)
-RGBHover.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-RGBHover.BackgroundTransparency = 1
-RGBHover.Parent = RGB
-
-local RGBHoverCorner = Instance.new("UICorner")
-RGBHoverCorner.CornerRadius = UDim.new(0, 4)
-RGBHoverCorner.Parent = RGBHover
-
-local HEXHover = Instance.new("Frame")
-HEXHover.Name = "Hover"
-HEXHover.ZIndex = 2
-HEXHover.Size = UDim2.new(1, 0, 1, 0)
-HEXHover.BackgroundColor3 = Color3.fromRGB(128, 0, 255)
-HEXHover.BackgroundTransparency = 1
-HEXHover.Parent = HEX
-
-local HEXHoverCorner = Instance.new("UICorner")
-HEXHoverCorner.CornerRadius = UDim.new(0, 4)
-HEXHoverCorner.Parent = HEXHover
-
--- Add hover animations
-RGB.MouseEnter:Connect(function()
-    game:GetService("TweenService"):Create(RGBHover, TweenInfo.new(0.2), {
-        BackgroundTransparency = 0.9
-    }):Play()
-end)
-
-RGB.MouseLeave:Connect(function()
-    game:GetService("TweenService"):Create(RGBHover, TweenInfo.new(0.2), {
-        BackgroundTransparency = 1
-    }):Play()
-end)
-
-HEX.MouseEnter:Connect(function()
-    game:GetService("TweenService"):Create(HEXHover, TweenInfo.new(0.2), {
-        BackgroundTransparency = 0.9
-    }):Play()
-end)
-
-HEX.MouseLeave:Connect(function()
-    game:GetService("TweenService"):Create(HEXHover, TweenInfo.new(0.2), {
-        BackgroundTransparency = 1
-    }):Play()
-end)
-return Palette
-   
+		return Palette
+	end
 }
 Bracket.Elements = {
 	Screen = function()
