@@ -5,7 +5,12 @@ local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
 local PlayerService = game:GetService("Players")
 local CoreGui = game:GetService("CoreGui")
-
+local TweenService = game:GetService("TweenService")
+local ANIMATION_STYLE = {
+    Duration = 0.3,
+    Style = Enum.EasingStyle.Quint,
+    Direction = Enum.EasingDirection.Out
+}
 local GuiInset = GuiService:GetGuiInset()
 local LocalPlayer = PlayerService.LocalPlayer
 local Bracket = {IsLocal = not identifyexecutor}
@@ -328,146 +333,251 @@ Bracket.Assets = {
 		return Screen
 	end,
 	Window = function()
-		local Window = Instance.new("Frame")
-		Window.Name = "Window"
-		Window.Size = UDim2.new(0, 496, 0, 496)
-		Window.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Window.Position = UDim2.new(0.5, -248, 0.5, -248)
-		Window.BorderSizePixel = 2
-		Window.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+    local Window = Instance.new("Frame")
+    Window.Name = "Window"
+    Window.Size = UDim2.new(0, 496, 0, 496)
+    Window.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Window.Position = UDim2.new(0.5, -248, 0.5, -248)
+    Window.BorderSizePixel = 2
+    Window.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 
-		local Stroke = Instance.new("UIStroke")
-		Stroke.Name = "Stroke"
-		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = Color3.fromRGB(63, 63, 63)
-		Stroke.Parent = Window
+    -- Enhanced corners
+    local Corner = Instance.new("UICorner")
+    Corner.CornerRadius = UDim.new(0, 8)
+    Corner.Parent = Window
 
-		local Drag = Instance.new("Frame")
-		Drag.Name = "Drag"
-		Drag.AnchorPoint = Vector2.new(0.5, 0)
-		Drag.Size = UDim2.new(1, 0, 0, 16)
-		Drag.BorderColor3 = Color3.fromRGB(63, 63, 63)
-		Drag.Position = UDim2.new(0.5, 0, 0, 0)
-		Drag.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Drag.Parent = Window
+    -- Add drop shadow
+    local Shadow = Instance.new("ImageLabel")
+    Shadow.Name = "Shadow"
+    Shadow.BackgroundTransparency = 1
+    Shadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Shadow.Size = UDim2.new(1, 50, 1, 50)
+    Shadow.ZIndex = 0  -- Place behind main window
+    Shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+    Shadow.Image = "rbxassetid://5028857084"
+    Shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+    Shadow.ImageTransparency = 0.8
+    Shadow.Parent = Window
 
-		local Resize = Instance.new("ImageButton")
-		Resize.Name = "Resize"
-		Resize.ZIndex = 3
-		Resize.AnchorPoint = Vector2.new(1, 1)
-		Resize.Size = UDim2.new(0, 10, 0, 10)
-		Resize.BorderColor3 = Color3.fromRGB(63, 63, 63)
-		Resize.BackgroundTransparency = 1
-		Resize.Position = UDim2.new(1, 0, 1, 0)
-		Resize.BorderSizePixel = 0
-		Resize.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-		Resize.ImageColor3 = Color3.fromRGB(63, 63, 63)
-		Resize.ScaleType = Enum.ScaleType.Fit
-		Resize.ResampleMode = Enum.ResamplerMode.Pixelated
-		Resize.Image = "rbxassetid://7368471234"
-		Resize.Parent = Window
+    local Stroke = Instance.new("UIStroke")
+    Stroke.Name = "Stroke"
+    Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    Stroke.LineJoinMode = Enum.LineJoinMode.Miter
+    Stroke.Color = Color3.fromRGB(63, 63, 63)
+    Stroke.Parent = Window
 
-		local Snowflake = Instance.new("ImageLabel")
-		Snowflake.Name = "Snowflake"
-		Snowflake.Visible = false
-		Snowflake.AnchorPoint = Vector2.new(0.5, 0)
-		Snowflake.Size = UDim2.new(0, 10, 0, 10)
-		Snowflake.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Snowflake.BackgroundTransparency = 1
-		Snowflake.BorderSizePixel = 0
-		Snowflake.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-		Snowflake.Image = "rbxassetid://242109931"
-		Snowflake.Parent = Window
+    -- Enhanced gradient background
+    local BackgroundGradient = Instance.new("UIGradient")
+    BackgroundGradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(35, 35, 40)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 25, 30))
+    })
+    BackgroundGradient.Rotation = 45
+    BackgroundGradient.Parent = Window
 
-		local Title = Instance.new("TextLabel")
-		Title.Name = "Title"
-		Title.AnchorPoint = Vector2.new(0.5, 0)
-		Title.Size = UDim2.new(1, -10, 0, 16)
-		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Title.BackgroundTransparency = 1
-		Title.Position = UDim2.new(0.5, 0, 0, 0)
-		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Title.TextStrokeTransparency = 0.75
-		Title.TextSize = 14
-		Title.RichText = true
-		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Title.Text = "Window"
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
-		Title.TextXAlignment = Enum.TextXAlignment.Left
-		Title.Parent = Window
+    local Drag = Instance.new("Frame")
+    Drag.Name = "Drag"
+    Drag.AnchorPoint = Vector2.new(0.5, 0)
+    Drag.Size = UDim2.new(1, 0, 0, 16)
+    Drag.BorderColor3 = Color3.fromRGB(63, 63, 63)
+    Drag.Position = UDim2.new(0.5, 0, 0, 0)
+    Drag.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+    Drag.Parent = Window
 
-		local Label = Instance.new("TextLabel")
-		Label.Name = "Version"
-		Label.AnchorPoint = Vector2.new(0.5, 0)
-		Label.Size = UDim2.new(1, -10, 0, 16)
-		Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Label.BackgroundTransparency = 1
-		Label.Position = UDim2.new(0.5, 0, 0, 0)
-		Label.BorderSizePixel = 0
-		Label.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Label.TextStrokeTransparency = 0.75
-		Label.TextSize = 14
-		Label.RichText = true
-		Label.TextColor3 = Color3.fromRGB(191, 191, 191)
-		Label.Text = "Bracket V3.4"
-		Label.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
-		Label.TextXAlignment = Enum.TextXAlignment.Right
-		Label.Parent = Window
+    -- Add top bar gradient
+    local TopBarGradient = Instance.new("UIGradient")
+    TopBarGradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 45)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(35, 35, 40))
+    })
+    TopBarGradient.Rotation = 90
+    TopBarGradient.Parent = Drag
 
-		local Background = Instance.new("ImageLabel")
-		Background.Name = "Background"
-		Background.AnchorPoint = Vector2.new(0.5, 0)
-		Background.Size = UDim2.new(1, 0, 1, -34)
-		Background.ClipsDescendants = true
-		Background.BorderColor3 = Color3.fromRGB(63, 63, 63)
-		Background.Position = UDim2.new(0.5, 0, 0, 34)
-		Background.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Background.ScaleType = Enum.ScaleType.Tile
-		Background.ImageColor3 = Color3.fromRGB(0, 0, 0)
-		Background.TileSize = UDim2.new(0, 74, 0, 74)
-		Background.Image = "rbxassetid://5553946656"
-		Background.Parent = Window
+    local Resize = Instance.new("ImageButton")
+    Resize.Name = "Resize"
+    Resize.ZIndex = 3
+    Resize.AnchorPoint = Vector2.new(1, 1)
+    Resize.Size = UDim2.new(0, 10, 0, 10)
+    Resize.BorderColor3 = Color3.fromRGB(63, 63, 63)
+    Resize.BackgroundTransparency = 1
+    Resize.Position = UDim2.new(1, 0, 1, 0)
+    Resize.BorderSizePixel = 0
+    Resize.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+    Resize.ImageColor3 = Color3.fromRGB(63, 63, 63)
+    Resize.ScaleType = Enum.ScaleType.Fit
+    Resize.ResampleMode = Enum.ResamplerMode.Pixelated
+    Resize.Image = "rbxassetid://7368471234"
+    Resize.Parent = Window
 
-		local TabContainer = Instance.new("Frame")
-		TabContainer.Name = "TabContainer"
-		TabContainer.AnchorPoint = Vector2.new(0.5, 0)
-		TabContainer.Size = UDim2.new(1, 0, 1, -34)
-		TabContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		TabContainer.BackgroundTransparency = 1
-		TabContainer.Position = UDim2.new(0.5, 0, 0, 34)
-		TabContainer.BorderSizePixel = 0
-		TabContainer.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		TabContainer.Parent = Window
+    local Snowflake = Instance.new("ImageLabel")
+    Snowflake.Name = "Snowflake"
+    Snowflake.Visible = false
+    Snowflake.AnchorPoint = Vector2.new(0.5, 0)
+    Snowflake.Size = UDim2.new(0, 10, 0, 10)
+    Snowflake.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Snowflake.BackgroundTransparency = 1
+    Snowflake.BorderSizePixel = 0
+    Snowflake.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    Snowflake.Image = "rbxassetid://242109931"
+    Snowflake.Parent = Window
 
-		local TabButtonContainer = Instance.new("ScrollingFrame")
-		TabButtonContainer.Name = "TabButtonContainer"
-		TabButtonContainer.AnchorPoint = Vector2.new(0.5, 0)
-		TabButtonContainer.Size = UDim2.new(1, 0, 0, 17)
-		TabButtonContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		TabButtonContainer.BackgroundTransparency = 1
-		TabButtonContainer.Position = UDim2.new(0.5, 0, 0, 17)
-		TabButtonContainer.Active = true
-		TabButtonContainer.BorderSizePixel = 0
-		TabButtonContainer.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		TabButtonContainer.ScrollingDirection = Enum.ScrollingDirection.X
-		TabButtonContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
-		TabButtonContainer.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
-		TabButtonContainer.MidImage = "rbxassetid://6432766838"
-		TabButtonContainer.ScrollBarThickness = 0
-		TabButtonContainer.TopImage = "rbxassetid://6432766838"
-		TabButtonContainer.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
-		TabButtonContainer.BottomImage = "rbxassetid://6432766838"
-		TabButtonContainer.Parent = Window
+    local Title = Instance.new("TextLabel")
+    Title.Name = "Title"
+    Title.AnchorPoint = Vector2.new(0.5, 0)
+    Title.Size = UDim2.new(1, -10, 0, 16)
+    Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Title.BackgroundTransparency = 1
+    Title.Position = UDim2.new(0.5, 0, 0, 0)
+    Title.BorderSizePixel = 0
+    Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+    Title.TextStrokeTransparency = 0.75
+    Title.TextSize = 14
+    Title.RichText = true
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.Text = "Window"
+    Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+    Title.TextXAlignment = Enum.TextXAlignment.Left
+    Title.Parent = Window
 
-		local ListLayout = Instance.new("UIListLayout")
-		ListLayout.Name = "ListLayout"
-		ListLayout.FillDirection = Enum.FillDirection.Horizontal
-		ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		ListLayout.Parent = TabButtonContainer
+    -- Add text shadow
+    local TextShadow = Instance.new("TextLabel")
+    TextShadow.Name = "TextShadow"
+    TextShadow.AnchorPoint = Title.AnchorPoint
+    TextShadow.Size = Title.Size
+    TextShadow.Position = UDim2.new(Title.Position.X.Scale, Title.Position.X.Offset + 1, Title.Position.Y.Scale, Title.Position.Y.Offset + 1)
+    TextShadow.Font = Title.Font
+    TextShadow.TextSize = Title.TextSize
+    TextShadow.Text = Title.Text
+    TextShadow.TextColor3 = Color3.fromRGB(0, 0, 0)
+    TextShadow.TextTransparency = 0.8
+    TextShadow.TextXAlignment = Title.TextXAlignment
+    TextShadow.BackgroundTransparency = 1
+    TextShadow.ZIndex = Title.ZIndex - 1
+    TextShadow.Parent = Window
 
-		return Window
+    local Label = Instance.new("TextLabel")
+    Label.Name = "Version"
+    Label.AnchorPoint = Vector2.new(0.5, 0)
+    Label.Size = UDim2.new(1, -10, 0, 16)
+    Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Label.BackgroundTransparency = 1
+    Label.Position = UDim2.new(0.5, 0, 0, 0)
+    Label.BorderSizePixel = 0
+    Label.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+    Label.TextStrokeTransparency = 0.75
+    Label.TextSize = 14
+    Label.RichText = true
+    Label.TextColor3 = Color3.fromRGB(191, 191, 191)
+    Label.Text = ""
+    Label.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+    Label.TextXAlignment = Enum.TextXAlignment.Right
+    Label.Parent = Window
+
+    local Background = Instance.new("ImageLabel")
+    Background.Name = "Background"
+    Background.AnchorPoint = Vector2.new(0.5, 0)
+    Background.Size = UDim2.new(1, 0, 1, -34)
+    Background.ClipsDescendants = true
+    Background.BorderColor3 = Color3.fromRGB(63, 63, 63)
+    Background.Position = UDim2.new(0.5, 0, 0, 34)
+    Background.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+    Background.ScaleType = Enum.ScaleType.Tile
+    Background.ImageColor3 = Color3.fromRGB(0, 0, 0)
+    Background.TileSize = UDim2.new(0, 74, 0, 74)
+    Background.Image = "rbxassetid://5553946656"
+    Background.Parent = Window
+
+    -- Add background effects
+    local Blur = Instance.new("Frame")
+    Blur.Name = "Blur"
+    Blur.BackgroundTransparency = 0.9
+    Blur.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+    Blur.Size = UDim2.new(1, 0, 1, 0)
+    Blur.BorderSizePixel = 0
+    Blur.ZIndex = Background.ZIndex + 1
+    Blur.Parent = Background
+
+    local TabContainer = Instance.new("Frame")
+    TabContainer.Name = "TabContainer"
+    TabContainer.AnchorPoint = Vector2.new(0.5, 0)
+    TabContainer.Size = UDim2.new(1, 0, 1, -34)
+    TabContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    TabContainer.BackgroundTransparency = 1
+    TabContainer.Position = UDim2.new(0.5, 0, 0, 34)
+    TabContainer.BorderSizePixel = 0
+    TabContainer.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+    TabContainer.Parent = Window
+
+    local TabButtonContainer = Instance.new("ScrollingFrame")
+    TabButtonContainer.Name = "TabButtonContainer"
+    TabButtonContainer.AnchorPoint = Vector2.new(0.5, 0)
+    TabButtonContainer.Size = UDim2.new(1, 0, 0, 17)
+    TabButtonContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    TabButtonContainer.BackgroundTransparency = 1
+    TabButtonContainer.Position = UDim2.new(0.5, 0, 0, 17)
+    TabButtonContainer.Active = true
+    TabButtonContainer.BorderSizePixel = 0
+    TabButtonContainer.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+    TabButtonContainer.ScrollingDirection = Enum.ScrollingDirection.X
+    TabButtonContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+    TabButtonContainer.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+    TabButtonContainer.MidImage = "rbxassetid://6432766838"
+    TabButtonContainer.ScrollBarThickness = 0
+    TabButtonContainer.TopImage = "rbxassetid://6432766838"
+    TabButtonContainer.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
+    TabButtonContainer.BottomImage = "rbxassetid://6432766838"
+    TabButtonContainer.Parent = Window
+
+    local ListLayout = Instance.new("UIListLayout")
+    ListLayout.Name = "ListLayout"
+    ListLayout.FillDirection = Enum.FillDirection.Horizontal
+    ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    ListLayout.Parent = TabButtonContainer
+
+    -- Add show/hide animations
+    Window.ShowAnimation = function()
+        Window.Position = UDim2.new(0.5, -248, 0.5, -600)
+        Window.BackgroundTransparency = 1
+        Shadow.ImageTransparency = 1
+        
+        game:GetService("TweenService"):Create(Window,
+            TweenInfo.new(0.3, Enum.EasingStyle.Quint),
+            {Position = UDim2.new(0.5, -248, 0.5, -248), BackgroundTransparency = 0}
+        ):Play()
+        
+        game:GetService("TweenService"):Create(Shadow,
+            TweenInfo.new(0.4, Enum.EasingStyle.Quint),
+            {ImageTransparency = 0.8}
+        ):Play()
+    end
+
+    -- Add hover effects for interactive elements
+    local function AddHoverEffect(button)
+        local originalColor = button.BackgroundColor3
+        
+        button.MouseEnter:Connect(function()
+            game:GetService("TweenService"):Create(button,
+                TweenInfo.new(0.2, Enum.EasingStyle.Quad),
+                {BackgroundColor3 = Color3.fromRGB(originalColor.R + 20, originalColor.G + 20, originalColor.B + 20)}
+            ):Play()
+        end)
+        
+        button.MouseLeave:Connect(function()
+            game:GetService("TweenService"):Create(button,
+                TweenInfo.new(0.2, Enum.EasingStyle.Quad),
+                {BackgroundColor3 = originalColor}
+            ):Play()
+        end)
+    end
+
+    for _, button in ipairs(Window:GetDescendants()) do
+        if button:IsA("TextButton") then
+            AddHoverEffect(button)
+        end
+    end
+
+    return Window
+end
 	end,
 	PushNotification = function()
 		local Notification = Instance.new("Frame")
@@ -1083,47 +1193,148 @@ Bracket.Assets = {
 		return Label
 	end,
 	Button = function()
-		local Button = Instance.new("TextButton")
-		Button.Name = "Button"
-		Button.ZIndex = 2
-		Button.Size = UDim2.new(1, 0, 0, 16)
-		Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Button.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-		Button.AutoButtonColor = false
-		Button.TextStrokeTransparency = 0.75
-		Button.TextSize = 14
-		Button.RichText = true
-		Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Button.Text = ""
-		Button.TextWrapped = true
-		Button.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+    local Button = Instance.new("TextButton")
+    Button.Name = "Button"
+    Button.ZIndex = 2
+    Button.Size = UDim2.new(1, 0, 0, 32)  -- Increased height for better presence
+    Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Button.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+    Button.AutoButtonColor = false
+    Button.TextTransparency = 1  -- Hide default text
+    Button.Text = ""
+    Button.ClipsDescendants = true  -- For ripple effect
 
-		local Title = Instance.new("TextLabel")
-		Title.Name = "Title"
-		Title.ZIndex = 2
-		Title.AnchorPoint = Vector2.new(0.5, 0.5)
-		Title.Size = UDim2.new(1, -12, 1, 0)
-		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Title.BackgroundTransparency = 1
-		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Title.TextStrokeTransparency = 0.75
-		Title.TextSize = 14
-		Title.RichText = true
-		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Title.Text = "Button"
-		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Title.Parent = Button
+    -- Add gradient
+    local Gradient = Instance.new("UIGradient")
+    Gradient.Rotation = 90
+    Gradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(200, 200, 200))
+    })
+    Gradient.Parent = Button
+    
+    -- Add glow effect
+    local Glow = Instance.new("ImageLabel")
+    Glow.Name = "Glow"
+    Glow.BackgroundTransparency = 1
+    Glow.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Glow.AnchorPoint = Vector2.new(0.5, 0.5)
+    Glow.Size = UDim2.new(1, 30, 1, 30)
+    Glow.ZIndex = 1
+    Glow.Image = "rbxassetid://5028857084"
+    Glow.ImageColor3 = Color3.fromRGB(100, 90, 255)
+    Glow.ImageTransparency = 0.9
+    Glow.Parent = Button
 
-		local Gradient = Instance.new("UIGradient")
-		Gradient.Name = "Gradient"
-		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		Gradient.Parent = Button
+    -- Add rounded corners
+    local Corner = Instance.new("UICorner")
+    Corner.CornerRadius = UDim.new(0, 6)
+    Corner.Parent = Button
 
-		return Button
+    -- Add stroke/border
+    local Stroke = Instance.new("UIStroke")
+    Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    Stroke.Color = Color3.fromRGB(80, 80, 85)
+    Stroke.Thickness = 1
+    Stroke.Parent = Button
+
+    -- Add premium text label
+    local Title = Instance.new("TextLabel")
+    Title.Name = "Title"
+    Title.ZIndex = 3
+    Title.AnchorPoint = Vector2.new(0.5, 0.5)
+    Title.Size = UDim2.new(1, -12, 1, 0)
+    Title.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Title.BackgroundTransparency = 1
+    Title.TextSize = 14
+    Title.RichText = true
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.Text = "Button"
+    Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    Title.Parent = Button
+
+    -- Add text shadow
+    local Shadow = Title:Clone()
+    Shadow.Name = "Shadow"
+    Shadow.ZIndex = 2
+    Shadow.Position = UDim2.new(0.5, 1, 0.5, 1)
+    Shadow.TextColor3 = Color3.fromRGB(0, 0, 0)
+    Shadow.TextTransparency = 0.8
+    Shadow.Parent = Button
+
+    -- Add ripple effect
+    local function CreateRipple(X, Y)
+        local Ripple = Instance.new("Frame")
+        Ripple.Name = "Ripple"
+        Ripple.Parent = Button
+        Ripple.ZIndex = 5
+        Ripple.AnchorPoint = Vector2.new(0.5, 0.5)
+        Ripple.Position = UDim2.fromOffset(X, Y)
+        Ripple.Size = UDim2.fromOffset(0, 0)
+        Ripple.BorderSizePixel = 0
+        Ripple.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Ripple.BackgroundTransparency = 0.7
+
+        local RippleCorner = Instance.new("UICorner")
+        RippleCorner.CornerRadius = UDim.new(1, 0)
+        RippleCorner.Parent = Ripple
+
+        local Size = math.max(Button.AbsoluteSize.X, Button.AbsoluteSize.Y) * 1.5
+
+        game:GetService("TweenService"):Create(Ripple, 
+            TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+            {Size = UDim2.fromOffset(Size, Size), BackgroundTransparency = 1}
+        ):Play()
+
+        game:GetService("Debris"):AddItem(Ripple, 1)
+    end
+
+    -- Add hover animation
+    Button.MouseEnter:Connect(function()
+        game:GetService("TweenService"):Create(Button,
+            TweenInfo.new(0.25, Enum.EasingStyle.Quad),
+            {BackgroundColor3 = Color3.fromRGB(50, 50, 55)}
+        ):Play()
+        
+        game:GetService("TweenService"):Create(Glow,
+            TweenInfo.new(0.25, Enum.EasingStyle.Quad),
+            {ImageTransparency = 0.8}
+        ):Play()
+    end)
+
+    Button.MouseLeave:Connect(function()
+        game:GetService("TweenService"):Create(Button,
+            TweenInfo.new(0.25, Enum.EasingStyle.Quad),
+            {BackgroundColor3 = Color3.fromRGB(40, 40, 45)}
+        ):Play()
+        
+        game:GetService("TweenService"):Create(Glow,
+            TweenInfo.new(0.25, Enum.EasingStyle.Quad),
+            {ImageTransparency = 0.9}
+        ):Play()
+    end)
+
+    -- Add click effects
+    Button.MouseButton1Down:Connect(function()
+        local X = game:GetService("UserInputService"):GetMouseLocation().X - Button.AbsolutePosition.X
+        local Y = game:GetService("UserInputService"):GetMouseLocation().Y - Button.AbsolutePosition.Y
+        CreateRipple(X, Y)
+        
+        game:GetService("TweenService"):Create(Button,
+            TweenInfo.new(0.1, Enum.EasingStyle.Quad),
+            {BackgroundColor3 = Color3.fromRGB(30, 30, 35)}
+        ):Play()
+    end)
+
+    Button.MouseButton1Up:Connect(function()
+        game:GetService("TweenService"):Create(Button,
+            TweenInfo.new(0.1, Enum.EasingStyle.Quad),
+            {BackgroundColor3 = Color3.fromRGB(50, 50, 55)}
+        ):Play()
+    end)
+
+    return Button
+end
 	end,
 	Toggle = function()
 		local Toggle = Instance.new("TextButton")
