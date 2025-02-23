@@ -305,10 +305,9 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
             UIToggle:Keybind({Value = UIKeybind, Flag = "UI/Keybind", IgnoreList = true, DoNotClear = true})
            
 
-            MenuSection:Toggle({Name = "Keybinds", IgnoreFlag = true, Flag = "UI/KeybindList",
-            Value = false, Callback = function(Bool) Window.KeybindList.Enabled = Bool end})
+           
 
-            MenuSection:Toggle({Name = "Open On Load", Flag = "UI/OOL", Value = true})
+          
            
 
            
@@ -324,7 +323,36 @@ function Utility.SettingsSection(Self, Window, UIKeybind, CustomMouse)
                 setclipboard("Roblox.GameLauncher.joinGameInstance(" .. game.PlaceId .. ", \"" .. game.JobId .. "\");")
             end})
         end
-      
+       OptionsTab:AddConfigSection("Parvus", "Right")
+        local BackgroundSection = OptionsTab:Section({Name = "Background", Side = "Right"}) do
+            BackgroundSection:Colorpicker({Name = "Color", Flag = "Background/Color", Value = {1, 1, 0, 0, false},
+            Callback = function(HSVAR, Color) Window.Background.ImageColor3 = Color Window.Background.ImageTransparency = HSVAR[4] end})
+            BackgroundSection:Textbox({HideName = true, Flag = "Background/CustomImage", Placeholder = "rbxassetid://ImageId",
+            Callback = function(String, EnterPressed) if EnterPressed then Window.Background.Image = String end end})
+            BackgroundSection:Dropdown({HideName = true, Flag = "Background/Image", List = BackgroundsList})
+
+            local TileSize = nil
+            BackgroundSection:Divider({Text = "Background Tile"})
+            BackgroundSection:Dropdown({HideName = true, Flag = "Background/TileMode", List = {
+                {Name = "Tile Offset", Mode = "Button", Value = true, Callback = function()
+                    if not TileSize then return end
+                    TileSize.Name = "Offset"
+                    TileSize.Min = 74
+                    TileSize.Max = 296
+                    TileSize.Unit = ""
+
+                    TileSize.Value = TileSize.Value
+                end},
+                {Name = "Tile Scale", Mode = "Button", Callback = function()
+                    if not TileSize then return end
+                    TileSize.Name = "Scale"
+                    TileSize.Min = 25
+                    TileSize.Max = 100
+                    TileSize.Unit = "%"
+
+                    TileSize.Value = TileSize.Value
+                end}
+            }})
        
        
        
