@@ -10,22 +10,6 @@ local GuiInset = GuiService:GetGuiInset()
 local LocalPlayer = PlayerService.LocalPlayer
 local Bracket = {IsLocal = not identifyexecutor}
 
--- Premium UI Colors
-local COLORS = {
-    BLACK = Color3.fromRGB(15, 15, 15),       -- Main background
-    DARK_GRAY = Color3.fromRGB(25, 25, 25),   -- Secondary background
-    GRAY = Color3.fromRGB(40, 40, 40),        -- Borders and accents
-    LIGHT_GRAY = Color3.fromRGB(60, 60, 60),  -- Lighter accents
-    WHITE = Color3.fromRGB(240, 240, 240),    -- Primary text color
-    PURPLE = Color3.fromRGB(130, 90, 255),    -- Primary accent color
-    PURPLE_DARK = Color3.fromRGB(110, 70, 235), -- Darker accent for hover states
-    PURPLE_LIGHT = Color3.fromRGB(160, 120, 255), -- Lighter accent for highlights
-    TEXT_MUTED = Color3.fromRGB(170, 170, 170)  -- Subdued text
-}
-
--- macOS-style corner radius
-local CORNER_RADIUS = UDim.new(0, 6)
-
 Bracket.Utilities = {
 	TableToColor = function(Table)
 		if type(Table) ~= "table" then return Table end
@@ -350,22 +334,22 @@ Bracket.Assets = {
 		Window.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Window.Position = UDim2.new(0.5, -248, 0.5, -248)
 		Window.BorderSizePixel = 2
-		Window.BackgroundColor3 = COLORS.BLACK
+		Window.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 
 		local Stroke = Instance.new("UIStroke")
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = COLORS.GRAY
+		Stroke.Color = Color3.fromRGB(63, 63, 63)
 		Stroke.Parent = Window
 
 		local Drag = Instance.new("Frame")
 		Drag.Name = "Drag"
 		Drag.AnchorPoint = Vector2.new(0.5, 0)
 		Drag.Size = UDim2.new(1, 0, 0, 16)
-		Drag.BorderColor3 = COLORS.GRAY
+		Drag.BorderColor3 = Color3.fromRGB(63, 63, 63)
 		Drag.Position = UDim2.new(0.5, 0, 0, 0)
-		Drag.BackgroundColor3 = COLORS.BLACK
+		Drag.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Drag.Parent = Window
 
 		local Resize = Instance.new("ImageButton")
@@ -373,12 +357,12 @@ Bracket.Assets = {
 		Resize.ZIndex = 3
 		Resize.AnchorPoint = Vector2.new(1, 1)
 		Resize.Size = UDim2.new(0, 10, 0, 10)
-		Resize.BorderColor3 = COLORS.GRAY
+		Resize.BorderColor3 = Color3.fromRGB(63, 63, 63)
 		Resize.BackgroundTransparency = 1
 		Resize.Position = UDim2.new(1, 0, 1, 0)
 		Resize.BorderSizePixel = 0
-		Resize.BackgroundColor3 = COLORS.GRAY
-		Resize.ImageColor3 = COLORS.GRAY
+		Resize.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Resize.ImageColor3 = Color3.fromRGB(63, 63, 63)
 		Resize.ScaleType = Enum.ScaleType.Fit
 		Resize.ResampleMode = Enum.ResamplerMode.Pixelated
 		Resize.Image = "rbxassetid://7368471234"
@@ -404,11 +388,11 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Window"
 		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
@@ -422,25 +406,25 @@ Bracket.Assets = {
 		Label.BackgroundTransparency = 1
 		Label.Position = UDim2.new(0.5, 0, 0, 0)
 		Label.BorderSizePixel = 0
-		Label.BackgroundColor3 = COLORS.BLACK
+		Label.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Label.TextStrokeTransparency = 0.75
 		Label.TextSize = 14
 		Label.RichText = true
-		Label.TextColor3 = COLORS.TEXT_MUTED
-		Label.Text = "Bracket V3.4"
+		Label.TextColor3 = Color3.fromRGB(191, 191, 191)
+		Label.Text = ""
 		Label.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
 		Label.TextXAlignment = Enum.TextXAlignment.Right
 		Label.Parent = Window
 
-		local Background = Instance.new("Frame")
-		Background.Name = "Background"
-		Background.AnchorPoint = Vector2.new(0.5, 0)
-		Background.Size = UDim2.new(1, 0, 1, -34)
-		Background.ClipsDescendants = true
-		Background.BorderColor3 = COLORS.GRAY
-		Background.Position = UDim2.new(0.5, 0, 0, 34)
-		Background.BackgroundColor3 = COLORS.BLACK
-		Background.Parent = Window
+		  local Background = Instance.new("Frame") -- Changed from ImageLabel to Frame
+        Background.Name = "Background"
+        Background.AnchorPoint = Vector2.new(0.5, 0)
+        Background.Size = UDim2.new(1, 0, 1, -34)
+        Background.ClipsDescendants = true
+        Background.BorderColor3 = Color3.fromRGB(63, 63, 63)
+        Background.Position = UDim2.new(0.5, 0, 0, 34)
+        Background.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Pure black background
+        Background.Parent = Window
 
 		local TabContainer = Instance.new("Frame")
 		TabContainer.Name = "TabContainer"
@@ -450,7 +434,7 @@ Bracket.Assets = {
 		TabContainer.BackgroundTransparency = 1
 		TabContainer.Position = UDim2.new(0.5, 0, 0, 34)
 		TabContainer.BorderSizePixel = 0
-		TabContainer.BackgroundColor3 = COLORS.BLACK
+		TabContainer.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		TabContainer.Parent = Window
 
 		local TabButtonContainer = Instance.new("ScrollingFrame")
@@ -462,7 +446,7 @@ Bracket.Assets = {
 		TabButtonContainer.Position = UDim2.new(0.5, 0, 0, 17)
 		TabButtonContainer.Active = true
 		TabButtonContainer.BorderSizePixel = 0
-		TabButtonContainer.BackgroundColor3 = COLORS.BLACK
+		TabButtonContainer.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		TabButtonContainer.ScrollingDirection = Enum.ScrollingDirection.X
 		TabButtonContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
 		TabButtonContainer.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
@@ -487,13 +471,13 @@ Bracket.Assets = {
 		Notification.Size = UDim2.new(0, 200, 0, 48)
 		Notification.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Notification.BorderSizePixel = 2
-		Notification.BackgroundColor3 = COLORS.DARK_GRAY
+		Notification.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 
 		local Stroke = Instance.new("UIStroke")
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = COLORS.GRAY
+		Stroke.Color = Color3.fromRGB(63, 63, 63)
 		Stroke.Parent = Notification
 
 		local Padding = Instance.new("UIPadding")
@@ -516,11 +500,11 @@ Bracket.Assets = {
 		Title.Size = UDim2.new(1, 0, 0, 14)
 		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.DARK_GRAY
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Title"
 		Title.TextWrapped = true
 		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
@@ -533,11 +517,11 @@ Bracket.Assets = {
 		Description.Size = UDim2.new(1, 0, 0, 14)
 		Description.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Description.BorderSizePixel = 0
-		Description.BackgroundColor3 = COLORS.DARK_GRAY
+		Description.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Description.TextStrokeTransparency = 0.75
 		Description.TextSize = 14
 		Description.RichText = true
-		Description.TextColor3 = COLORS.WHITE
+		Description.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Description.Text = "Description"
 		Description.TextWrapped = true
 		Description.FontFace = Font.fromEnum(Enum.Font.SourceSans)
@@ -549,7 +533,7 @@ Bracket.Assets = {
 		Divider.LayoutOrder = 1
 		Divider.Size = UDim2.new(1, -2, 0, 2)
 		Divider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Divider.BackgroundColor3 = COLORS.GRAY
+		Divider.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 		Divider.Parent = Notification
 
 		local Close = Instance.new("TextButton")
@@ -559,11 +543,11 @@ Bracket.Assets = {
 		Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Close.Position = UDim2.new(1, 0, 0.5, 0)
 		Close.BorderSizePixel = 0
-		Close.BackgroundColor3 = COLORS.DARK_GRAY
+		Close.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Close.AutoButtonColor = false
 		Close.TextStrokeTransparency = 0.75
 		Close.TextSize = 14
-		Close.TextColor3 = COLORS.WHITE
+		Close.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Close.Text = "X"
 		Close.FontFace = Font.fromEnum(Enum.Font.Nunito)
 		Close.Parent = Title
@@ -573,61 +557,67 @@ Bracket.Assets = {
 	ToastNotification = function()
 		local Notification = Instance.new("Frame")
 		Notification.Name = "Notification"
-		Notification.Size = UDim2.new(0, 280, 0, 36)
+		Notification.Size = UDim2.new(0, 259, 0, 24)
 		Notification.ClipsDescendants = true
 		Notification.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Notification.BackgroundTransparency = 0
-		Notification.BorderSizePixel = 0
-		Notification.BackgroundColor3 = COLORS.DARK_GRAY
+		Notification.BackgroundTransparency = 1
+		Notification.BorderSizePixel = 2
+		Notification.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+
+		local Main = Instance.new("Frame")
+		Main.Name = "Main"
+		Main.Size = UDim2.new(0, 255, 0, 20)
+		Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Main.Position = UDim2.new(0, 2, 0, 2)
+		Main.BorderSizePixel = 2
+		Main.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Main.Parent = Notification
 
 		local Stroke = Instance.new("UIStroke")
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Thickness = 1
-		Stroke.Color = COLORS.GRAY
-		Stroke.Parent = Notification
+		Stroke.Color = Color3.fromRGB(63, 63, 63)
+		Stroke.Parent = Main
 
-		local AccentLine = Instance.new("Frame")
-		AccentLine.Name = "AccentLine"
-		AccentLine.Size = UDim2.new(0, 3, 1, 0)
-		AccentLine.BorderColor3 = Color3.fromRGB(0, 0, 0) 
-		AccentLine.Position = UDim2.new(0, 0, 0, 0)
-		AccentLine.BorderSizePixel = 0
-		AccentLine.BackgroundColor3 = COLORS.PURPLE
-		AccentLine.Parent = Notification
+		local GradientLine = Instance.new("Frame")
+		GradientLine.Name = "GradientLine"
+		GradientLine.AnchorPoint = Vector2.new(1, 0.5)
+		GradientLine.Size = UDim2.new(0, 2, 1, 4)
+		GradientLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		GradientLine.Position = UDim2.new(0, 0, 0.5, 0)
+		GradientLine.BorderSizePixel = 0
+		GradientLine.BackgroundColor3 = Color3.fromRGB(255, 140, 0)
+		GradientLine.Parent = Main
 
-		local Icon = Instance.new("ImageLabel")
-		Icon.Name = "Icon"
-		Icon.AnchorPoint = Vector2.new(0, 0.5)
-		Icon.Size = UDim2.new(0, 16, 0, 16)
-		Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Icon.BackgroundTransparency = 1
-		Icon.Position = UDim2.new(0, 10, 0.5, 0)
-		Icon.BorderSizePixel = 0
-		Icon.BackgroundColor3 = COLORS.DARK_GRAY
-		Icon.ImageColor3 = COLORS.PURPLE_LIGHT
-		Icon.Image = "rbxassetid://10734983192" -- Notification icon
-		Icon.Parent = Notification
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Transparency = NumberSequence.new({
+			NumberSequenceKeypoint.new(0, 1),
+			NumberSequenceKeypoint.new(0.25, 0),
+			NumberSequenceKeypoint.new(0.75, 0),
+			NumberSequenceKeypoint.new(1, 1)
+		})
+		Gradient.Rotation = 90
+		Gradient.Parent = GradientLine
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
-		Title.AnchorPoint = Vector2.new(0, 0.5)
-		Title.Size = UDim2.new(1, -40, 1, 0)
+		Title.AnchorPoint = Vector2.new(0.5, 0.5)
+		Title.Size = UDim2.new(1, -10, 1, 0)
 		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Title.BackgroundTransparency = 1
-		Title.Position = UDim2.new(0, 34, 0.5, 0)
+		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.DARK_GRAY
-		Title.TextStrokeTransparency = 1
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
-		Title.Text = "Achievement Unlocked"
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Hit OnlyTwentyCharacters in the Head with AK47"
 		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
-		Title.TextTruncate = Enum.TextTruncate.AtEnd
-		Title.Parent = Notification
+		Title.Parent = Main
 
 		return Notification
 	end,
@@ -640,13 +630,13 @@ Bracket.Assets = {
 		KeybindList.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		KeybindList.Position = UDim2.new(0, 10, 0.5, -123)
 		KeybindList.BorderSizePixel = 2
-		KeybindList.BackgroundColor3 = COLORS.BLACK
+		KeybindList.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 
 		local Stroke = Instance.new("UIStroke")
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = COLORS.GRAY
+		Stroke.Color = Color3.fromRGB(63, 63, 63)
 		Stroke.Parent = KeybindList
 
 		local Drag = Instance.new("Frame")
@@ -654,9 +644,9 @@ Bracket.Assets = {
 		Drag.ZIndex = 4
 		Drag.AnchorPoint = Vector2.new(0.5, 0)
 		Drag.Size = UDim2.new(1, 0, 0, 16)
-		Drag.BorderColor3 = COLORS.GRAY
+		Drag.BorderColor3 = Color3.fromRGB(63, 63, 63)
 		Drag.Position = UDim2.new(0.5, 0, 0, 0)
-		Drag.BackgroundColor3 = COLORS.BLACK
+		Drag.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Drag.Parent = KeybindList
 
 		local Resize = Instance.new("ImageButton")
@@ -664,12 +654,12 @@ Bracket.Assets = {
 		Resize.ZIndex = 5
 		Resize.AnchorPoint = Vector2.new(1, 1)
 		Resize.Size = UDim2.new(0, 10, 0, 10)
-		Resize.BorderColor3 = COLORS.GRAY
+		Resize.BorderColor3 = Color3.fromRGB(63, 63, 63)
 		Resize.BackgroundTransparency = 1
 		Resize.Position = UDim2.new(1, 0, 1, 0)
 		Resize.BorderSizePixel = 0
-		Resize.BackgroundColor3 = COLORS.GRAY
-		Resize.ImageColor3 = COLORS.GRAY
+		Resize.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Resize.ImageColor3 = Color3.fromRGB(63, 63, 63)
 		Resize.ScaleType = Enum.ScaleType.Fit
 		Resize.ResampleMode = Enum.ResamplerMode.Pixelated
 		Resize.Image = "rbxassetid://7368471234"
@@ -684,25 +674,29 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Keybinds"
 		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = KeybindList
 
-		local Background = Instance.new("Frame")
+		local Background = Instance.new("ImageLabel")
 		Background.Name = "Background"
 		Background.ZIndex = 4
 		Background.AnchorPoint = Vector2.new(0.5, 0)
 		Background.Size = UDim2.new(1, 0, 1, -17)
 		Background.ClipsDescendants = true
-		Background.BorderColor3 = COLORS.GRAY
+		Background.BorderColor3 = Color3.fromRGB(63, 63, 63)
 		Background.Position = UDim2.new(0.5, 0, 0, 17)
-		Background.BackgroundColor3 = COLORS.BLACK
+		Background.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Background.ScaleType = Enum.ScaleType.Tile
+		Background.ImageColor3 = Color3.fromRGB(0, 0, 0)
+		Background.TileSize = UDim2.new(0, 74, 0, 74)
+		Background.Image = "rbxassetid://5553946656"
 		Background.Parent = KeybindList
 
 		local List = Instance.new("ScrollingFrame")
@@ -715,7 +709,7 @@ Bracket.Assets = {
 		List.Position = UDim2.new(0.5, 0, 0, 17)
 		List.Active = true
 		List.BorderSizePixel = 0
-		List.BackgroundColor3 = COLORS.BLACK
+		List.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		List.ScrollingDirection = Enum.ScrollingDirection.Y
 		List.CanvasSize = UDim2.new(0, 0, 0, 0)
 		List.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
@@ -743,57 +737,54 @@ Bracket.Assets = {
 		return KeybindList
 	end,
 	KeybindMimic = function()
-		local KeybindMimic = Instance.new("TextButton")
+		local KeybindMimic = Instance.new("Frame")
 		KeybindMimic.Name = "KeybindMimic"
-		KeybindMimic.ZIndex = 2
+		KeybindMimic.ZIndex = 4
 		KeybindMimic.Size = UDim2.new(1, 0, 0, 14)
 		KeybindMimic.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		KeybindMimic.BackgroundTransparency = 1
 		KeybindMimic.BorderSizePixel = 0
-		KeybindMimic.BackgroundColor3 = COLORS.BLACK
-		KeybindMimic.AutoButtonColor = false
-		KeybindMimic.TextStrokeTransparency = 1
-		KeybindMimic.TextSize = 14
-		KeybindMimic.RichText = true
-		KeybindMimic.TextColor3 = COLORS.WHITE
-		KeybindMimic.Text = ""
-		KeybindMimic.TextWrapped = true
-		KeybindMimic.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		KeybindMimic.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
-		Title.ZIndex = 2
+		Title.ZIndex = 5
 		Title.AnchorPoint = Vector2.new(0, 0.5)
 		Title.Size = UDim2.new(1, -14, 1, 0)
 		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0, 14, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
-		Title.TextStrokeTransparency = 1
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Toggle"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = KeybindMimic
 
 		local Tick = Instance.new("Frame")
 		Tick.Name = "Tick"
-		Tick.ZIndex = 2
+		Tick.ZIndex = 5
 		Tick.AnchorPoint = Vector2.new(0, 0.5)
 		Tick.Size = UDim2.new(0, 10, 0, 10)
 		Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Tick.Position = UDim2.new(0, 0, 0.5, 0)
-		Tick.BorderSizePixel = 0
-		Tick.BackgroundColor3 = COLORS.PURPLE
+		Tick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 		Tick.Parent = KeybindMimic
+
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Tick
 
 		local Layout = Instance.new("Frame")
 		Layout.Name = "Layout"
-		Layout.ZIndex = 2
+		Layout.ZIndex = 5
 		Layout.AnchorPoint = Vector2.new(1, 0.5)
 		Layout.Size = UDim2.new(1, -56, 1, 0)
 		Layout.ClipsDescendants = true
@@ -801,7 +792,7 @@ Bracket.Assets = {
 		Layout.BackgroundTransparency = 1
 		Layout.Position = UDim2.new(1, 1, 0.5, 0)
 		Layout.BorderSizePixel = 0
-		Layout.BackgroundColor3 = COLORS.BLACK
+		Layout.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Layout.Parent = KeybindMimic
 
 		local Padding = Instance.new("UIPadding")
@@ -820,18 +811,19 @@ Bracket.Assets = {
 
 		local Keybind = Instance.new("TextLabel")
 		Keybind.Name = "Keybind"
-		Keybind.ZIndex = 2
+		Keybind.ZIndex = 5
 		Keybind.Size = UDim2.new(0, 42, 1, 0)
 		Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Keybind.BackgroundTransparency = 1
 		Keybind.BorderSizePixel = 0
-		Keybind.BackgroundColor3 = COLORS.BLACK
-		Keybind.TextStrokeTransparency = 1
+		Keybind.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		--Keybind.AutoButtonColor = false
+		Keybind.TextStrokeTransparency = 0.75
 		Keybind.TextSize = 14
 		Keybind.RichText = true
-		Keybind.TextColor3 = COLORS.TEXT_MUTED
+		Keybind.TextColor3 = Color3.fromRGB(189, 189, 189)
 		Keybind.Text = "[ NONE ]"
-		Keybind.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Keybind.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Keybind.TextXAlignment = Enum.TextXAlignment.Right
 		Keybind.Parent = Layout
 
@@ -847,7 +839,7 @@ Bracket.Assets = {
 		Tab.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Tab.Active = true
 		Tab.BorderSizePixel = 0
-		Tab.BackgroundColor3 = COLORS.BLACK
+		Tab.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Tab.ScrollingDirection = Enum.ScrollingDirection.Y
 		Tab.CanvasSize = UDim2.new(0, 0, 0, 0)
 		Tab.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
@@ -863,7 +855,7 @@ Bracket.Assets = {
 		LeftSide.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		LeftSide.BackgroundTransparency = 1
 		LeftSide.BorderSizePixel = 0
-		LeftSide.BackgroundColor3 = COLORS.BLACK
+		LeftSide.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		LeftSide.Parent = Tab
 
 		local LeftPadding = Instance.new("UIPadding")
@@ -888,7 +880,7 @@ Bracket.Assets = {
 		RightSide.BackgroundTransparency = 1
 		RightSide.Position = UDim2.new(1, 0, 0, 0)
 		RightSide.BorderSizePixel = 0
-		RightSide.BackgroundColor3 = COLORS.BLACK
+		RightSide.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		RightSide.Parent = Tab
 
 		local RightPadding = Instance.new("UIPadding")
@@ -914,14 +906,14 @@ Bracket.Assets = {
 		TabButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TabButton.BackgroundTransparency = 1
 		TabButton.BorderSizePixel = 0
-		TabButton.BackgroundColor3 = COLORS.BLACK
+		TabButton.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		TabButton.AutoButtonColor = false
-		TabButton.TextStrokeTransparency = 1
+		TabButton.TextStrokeTransparency = 0.75
 		TabButton.TextSize = 14
 		TabButton.RichText = true
-		TabButton.TextColor3 = COLORS.WHITE
+		TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabButton.Text = "TabButton"
-		TabButton.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		TabButton.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
 		local Highlight = Instance.new("Frame")
 		Highlight.Name = "Highlight"
@@ -931,7 +923,7 @@ Bracket.Assets = {
 		Highlight.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Highlight.Position = UDim2.new(0.5, 0, 1, 1)
 		Highlight.BorderSizePixel = 0
-		Highlight.BackgroundColor3 = COLORS.PURPLE
+		Highlight.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Highlight.Parent = TabButton
 
 		local Gradient = Instance.new("UIGradient")
@@ -953,13 +945,13 @@ Bracket.Assets = {
 		Section.Size = UDim2.new(1, 0, 0, 10)
 		Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Section.BorderSizePixel = 2
-		Section.BackgroundColor3 = COLORS.BLACK
+		Section.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 
 		local Stroke = Instance.new("UIStroke")
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = COLORS.GRAY
+		Stroke.Color = Color3.fromRGB(63, 63, 63)
 		Stroke.Parent = Section
 
 		local Border = Instance.new("Frame")
@@ -969,7 +961,7 @@ Bracket.Assets = {
 		Border.Size = UDim2.new(1, 2, 1, 2)
 		Border.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Border.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Border.BackgroundColor3 = COLORS.GRAY
+		Border.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 		Border.Parent = Section
 
 		local Title = Instance.new("TextLabel")
@@ -979,13 +971,13 @@ Bracket.Assets = {
 		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Title.Position = UDim2.new(0, 5, 0, -2)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
-		Title.TextStrokeTransparency = 1
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Section"
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Title.Parent = Section
 
 		local Container = Instance.new("Frame")
@@ -997,7 +989,7 @@ Bracket.Assets = {
 		Container.BackgroundTransparency = 1
 		Container.BorderSizePixel = 0
 		Container.Position = UDim2.new(0.5, 0, 0, 10)
-		Container.BackgroundColor3 = COLORS.BLACK
+		Container.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Container.Parent = Section
 
 		local Padding = Instance.new("UIPadding")
@@ -1024,7 +1016,7 @@ Bracket.Assets = {
 		Divider.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Divider.BackgroundTransparency = 1
 		Divider.BorderSizePixel = 0
-		Divider.BackgroundColor3 = COLORS.BLACK
+		Divider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 
 		local Left = Instance.new("Frame")
 		Left.Name = "Left"
@@ -1033,7 +1025,7 @@ Bracket.Assets = {
 		Left.Size = UDim2.new(0.5, -24, 0, 2)
 		Left.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Left.Position = UDim2.new(0, 0, 0.5, 0)
-		Left.BackgroundColor3 = COLORS.GRAY
+		Left.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 		Left.Parent = Divider
 
 		local Right = Instance.new("Frame")
@@ -1043,7 +1035,7 @@ Bracket.Assets = {
 		Right.Size = UDim2.new(0.5, -24, 0, 2)
 		Right.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Right.Position = UDim2.new(1, 0, 0.5, 0)
-		Right.BackgroundColor3 = COLORS.GRAY
+		Right.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 		Right.Parent = Divider
 
 		local Title = Instance.new("TextLabel")
@@ -1055,14 +1047,14 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
-		Title.TextStrokeTransparency = 1
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Divider"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Title.Parent = Divider
 
 		return Divider
@@ -1075,14 +1067,14 @@ Bracket.Assets = {
 		Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Label.BackgroundTransparency = 1
 		Label.BorderSizePixel = 0
-		Label.BackgroundColor3 = COLORS.BLACK
-		Label.TextStrokeTransparency = 1
+		Label.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Label.TextStrokeTransparency = 0.75
 		Label.TextSize = 14
 		Label.RichText = true
-		Label.TextColor3 = COLORS.WHITE
+		Label.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Label.Text = "Text Label"
 		Label.TextWrapped = true
-		Label.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Label.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
 		return Label
 	end,
@@ -1092,15 +1084,15 @@ Bracket.Assets = {
 		Button.ZIndex = 2
 		Button.Size = UDim2.new(1, 0, 0, 16)
 		Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Button.BackgroundColor3 = COLORS.GRAY
+		Button.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 		Button.AutoButtonColor = false
-		Button.TextStrokeTransparency = 1
+		Button.TextStrokeTransparency = 0.75
 		Button.TextSize = 14
 		Button.RichText = true
-		Button.TextColor3 = COLORS.WHITE
+		Button.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Button.Text = ""
 		Button.TextWrapped = true
-		Button.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Button.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -1111,20 +1103,20 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
-		Title.TextStrokeTransparency = 1
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Button"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Title.Parent = Button
 
 		local Gradient = Instance.new("UIGradient")
 		Gradient.Name = "Gradient"
 		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(COLORS.WHITE, COLORS.GRAY_LIGHT)
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
 		Gradient.Parent = Button
 
 		return Button
@@ -1137,15 +1129,15 @@ Bracket.Assets = {
 		Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Toggle.BackgroundTransparency = 1
 		Toggle.BorderSizePixel = 0
-		Toggle.BackgroundColor3 = COLORS.BLACK
+		Toggle.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Toggle.AutoButtonColor = false
-		Toggle.TextStrokeTransparency = 1
+		Toggle.TextStrokeTransparency = 0.75
 		Toggle.TextSize = 14
 		Toggle.RichText = true
-		Toggle.TextColor3 = COLORS.WHITE
+		Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Toggle.Text = ""
 		Toggle.TextWrapped = true
-		Toggle.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Toggle.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -1156,14 +1148,14 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0, 14, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
-		Title.TextStrokeTransparency = 1
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Toggle"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Toggle
 
@@ -1174,9 +1166,14 @@ Bracket.Assets = {
 		Tick.Size = UDim2.new(0, 10, 0, 10)
 		Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Tick.Position = UDim2.new(0, 0, 0.5, 0)
-		Tick.BorderSizePixel = 0
-		Tick.BackgroundColor3 = COLORS.PURPLE
+		Tick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 		Tick.Parent = Toggle
+
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Tick
 
 		local Layout = Instance.new("Frame")
 		Layout.Name = "Layout"
@@ -1188,7 +1185,7 @@ Bracket.Assets = {
 		Layout.BackgroundTransparency = 1
 		Layout.Position = UDim2.new(1, 1, 0.5, 0)
 		Layout.BorderSizePixel = 0
-		Layout.BackgroundColor3 = COLORS.BLACK
+		Layout.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Layout.Parent = Toggle
 
 		local Padding = Instance.new("UIPadding")
@@ -1211,46 +1208,157 @@ Bracket.Assets = {
 		local Slider = Instance.new("TextButton")
 		Slider.Name = "Slider"
 		Slider.ZIndex = 2
-		Slider.Size = UDim2.new(1, 0, 0, 26)
+		Slider.Size = UDim2.new(1, 0, 0, 16)
 		Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Slider.BackgroundTransparency = 1
 		Slider.BorderSizePixel = 0
-		Slider.BackgroundColor3 = COLORS.BLACK
+		Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Slider.AutoButtonColor = false
-		Slider.TextStrokeTransparency = 1
+		Slider.TextStrokeTransparency = 0.75
 		Slider.TextSize = 14
 		Slider.RichText = true
-		Slider.TextColor3 = COLORS.WHITE
+		Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Slider.Text = ""
 		Slider.TextWrapped = true
-		Slider.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Slider.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
 		local Background = Instance.new("Frame")
 		Background.Name = "Background"
 		Background.ZIndex = 2
 		Background.AnchorPoint = Vector2.new(0.5, 0.5)
-		Background.Size = UDim2.new(1, 0, 0, 6)
+		Background.Size = UDim2.new(1, 0, 1, 0)
 		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Background.Position = UDim2.new(0.5, 0, 0.5, 8)
-		Background.BackgroundColor3 = COLORS.GRAY
-		Background.BorderSizePixel = 0
+		Background.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 		Background.Parent = Slider
+
+		local BackGradient = Instance.new("UIGradient")
+		BackGradient.Name = "Gradient"
+		BackGradient.Rotation = 90
+		BackGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		BackGradient.Parent = Background
 
 		local Bar = Instance.new("Frame")
 		Bar.Name = "Bar"
-		Bar.ZIndex = 3
+		Bar.ZIndex = 2
 		Bar.AnchorPoint = Vector2.new(0, 0.5)
 		Bar.Size = UDim2.new(0.5, 0, 1, 0)
 		Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Bar.Position = UDim2.new(0, 0, 0.5, 0)
 		Bar.BorderSizePixel = 0
-		Bar.BackgroundColor3 = COLORS.PURPLE
+		Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Bar.Parent = Background
 
-		local Knob = Instance.new("Frame")
-		Knob.Name = "Knob"
-		Knob.ZIndex = 4
-		Knob.AnchorPoint = Vector2.new(0.5, 0.5)
+		local BarGradient = Instance.new("UIGradient")
+		BarGradient.Name = "Gradient"
+		BarGradient.Rotation = 90
+		BarGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		BarGradient.Parent = Bar
+
+		local Value = Instance.new("TextBox")
+		Value.Name = "Value"
+		Value.ZIndex = 2
+		Value.AnchorPoint = Vector2.new(1, 0)
+		Value.Size = UDim2.new(0, 12, 1, 0)
+		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Value.BackgroundTransparency = 1
+		Value.Position = UDim2.new(1, -6, 0, 0)
+		Value.BorderSizePixel = 0
+		Value.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Value.TextStrokeTransparency = 0.75
+		Value.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
+		Value.TextSize = 14
+		Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Value.PlaceholderText = "50"
+		Value.Text = ""
+		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Value.TextXAlignment = Enum.TextXAlignment.Right
+		Value.Parent = Slider
+
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.Size = UDim2.new(1, -24, 1, 0)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.Position = UDim2.new(0, 6, 0, 0)
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Slider"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.TextXAlignment = Enum.TextXAlignment.Left
+		Title.Parent = Slider
+
+		return Slider
+	end,
+	SlimSlider = function()
+		local Slider = Instance.new("TextButton")
+		Slider.Name = "Slider"
+		Slider.ZIndex = 2
+		Slider.Size = UDim2.new(1, 0, 0, 22)
+		Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Slider.BackgroundTransparency = 1
+		Slider.BorderSizePixel = 0
+		Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Slider.AutoButtonColor = false
+		Slider.TextStrokeTransparency = 0.75
+		Slider.TextSize = 14
+		Slider.RichText = true
+		Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Slider.Text = ""
+		Slider.TextWrapped = true
+		Slider.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+
+		local Title = Instance.new("TextLabel")
+		Title.Name = "Title"
+		Title.ZIndex = 2
+		Title.Size = UDim2.new(1, -12, 0, 16)
+		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Title.BackgroundTransparency = 1
+		Title.BorderSizePixel = 0
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
+		Title.TextSize = 14
+		Title.RichText = true
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.Text = "Slider"
+		Title.TextWrapped = true
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.TextXAlignment = Enum.TextXAlignment.Left
+		Title.Parent = Slider
+
+		local Background = Instance.new("Frame")
+		Background.Name = "Background"
+		Background.ZIndex = 2
+		Background.AnchorPoint = Vector2.new(0.5, 1)
+		Background.Size = UDim2.new(1, 0, 0, 6)
+		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Background.Position = UDim2.new(0.5, 0, 1, 0)
+		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Background.Parent = Slider
+
+		local BackGradient = Instance.new("UIGradient")
+		BackGradient.Name = "Gradient"
+		BackGradient.Rotation = 90
+		BackGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		BackGradient.Parent = Background
+
+		local Bar = Instance.new("Frame")
+		Bar.Name = "Bar"
+		Bar.ZIndex = 2
+		Bar.AnchorPoint = Vector2.new(0, 0.5)
+		Bar.Size = UDim2.new(0.5, 0, 1, 0)
+		Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Bar.Position = UDim2.new(0, 0, 0.5, 0)
+		Bar.BorderSizePixel = 0
+		Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Bar.Parent = Background
+
 		local BarGradient = Instance.new("UIGradient")
 		BarGradient.Name = "Gradient"
 		BarGradient.Rotation = 90
@@ -1287,15 +1395,15 @@ Bracket.Assets = {
 		Textbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Textbox.BackgroundTransparency = 1
 		Textbox.BorderSizePixel = 0
-		Textbox.BackgroundColor3 = COLORS.BLACK
+		Textbox.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Textbox.AutoButtonColor = false
-		Textbox.TextStrokeTransparency = 1
+		Textbox.TextStrokeTransparency = 0.75
 		Textbox.TextSize = 14
 		Textbox.RichText = true
-		Textbox.TextColor3 = COLORS.WHITE
+		Textbox.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Textbox.Text = ""
 		Textbox.TextWrapped = true
-		Textbox.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Textbox.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -1306,14 +1414,14 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
-		Title.TextStrokeTransparency = 1
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Textbox"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Textbox
 
@@ -1324,17 +1432,14 @@ Bracket.Assets = {
 		Background.Size = UDim2.new(1, 0, 0, 16)
 		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Background.Position = UDim2.new(0.5, 0, 0, 16)
-		Background.BackgroundColor3 = COLORS.GRAY
-		Background.BorderSizePixel = 0
+		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 		Background.Parent = Textbox
 
-		local BackgroundStroke = Instance.new("UIStroke")
-		BackgroundStroke.Name = "BackgroundStroke"
-		BackgroundStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		BackgroundStroke.LineJoinMode = Enum.LineJoinMode.Round
-		BackgroundStroke.Thickness = 1
-		BackgroundStroke.Color = COLORS.PURPLE
-		BackgroundStroke.Parent = Background
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Background
 
 		local Input = Instance.new("TextBox")
 		Input.Name = "Input"
@@ -1344,16 +1449,15 @@ Bracket.Assets = {
 		Input.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Input.BackgroundTransparency = 1
 		Input.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Input.BorderSizePixel = 0
-		Input.BackgroundColor3 = COLORS.GRAY
-		Input.TextStrokeTransparency = 1
+		Input.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Input.TextStrokeTransparency = 0.75
 		Input.TextWrapped = true
-		Input.PlaceholderColor3 = COLORS.TEXT_MUTED
+		Input.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
 		Input.TextSize = 14
-		Input.TextColor3 = COLORS.WHITE
+		Input.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Input.PlaceholderText = "Input here"
 		Input.Text = ""
-		Input.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Input.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Input.ClearTextOnFocus = false
 		Input.Parent = Background
 
@@ -1363,58 +1467,58 @@ Bracket.Assets = {
 		local Keybind = Instance.new("TextButton")
 		Keybind.Name = "Keybind"
 		Keybind.ZIndex = 2
-		Keybind.Size = UDim2.new(1, 0, 0, 16)
+		Keybind.Size = UDim2.new(1, 0, 0, 14)
 		Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Keybind.BackgroundTransparency = 1
 		Keybind.BorderSizePixel = 0
-		Keybind.BackgroundColor3 = COLORS.BLACK
+		Keybind.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Keybind.AutoButtonColor = false
-		Keybind.TextStrokeTransparency = 1
+		Keybind.TextStrokeTransparency = 0.75
 		Keybind.TextSize = 14
 		Keybind.RichText = true
-		Keybind.TextColor3 = COLORS.WHITE
+		Keybind.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Keybind.Text = ""
 		Keybind.TextWrapped = true
-		Keybind.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Keybind.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
 		Title.ZIndex = 2
 		Title.AnchorPoint = Vector2.new(0, 0.5)
-		Title.Size = UDim2.new(1, -48, 1, 0)
+		Title.Size = UDim2.new(1, -42, 1, 0)
 		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0, 0, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
-		Title.TextStrokeTransparency = 1
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Keybind"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Keybind
 
 		local Value = Instance.new("TextLabel")
-			Value.Name = "Value"
-			Value.ZIndex = 2
-			Value.AnchorPoint = Vector2.new(1, 0.5)
-			Value.Size = UDim2.new(0, 48, 1, 0)
-			Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Value.BackgroundTransparency = 1
-			Value.Position = UDim2.new(1, 0, 0.5, 0)
-			Value.BorderSizePixel = 0
-			Value.BackgroundColor3 = COLORS.BLACK
-			Value.TextStrokeTransparency = 1
-			Value.TextSize = 14
-			Value.RichText = true
-			Value.TextColor3 = COLORS.TEXT_MUTED
-			Value.Text = "[ NONE ]"
-			Value.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
-			Value.TextXAlignment = Enum.TextXAlignment.Right
-			Value.Parent = Keybind
+		Value.Name = "Value"
+		Value.ZIndex = 2
+		Value.AnchorPoint = Vector2.new(1, 0.5)
+		Value.Size = UDim2.new(0, 42, 1, 0)
+		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Value.BackgroundTransparency = 1
+		Value.Position = UDim2.new(1, 0, 0.5, 0)
+		Value.BorderSizePixel = 0
+		Value.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Value.TextStrokeTransparency = 0.75
+		Value.TextSize = 14
+		Value.RichText = true
+		Value.TextColor3 = Color3.fromRGB(189, 189, 189)
+		Value.Text = "[ NONE ]"
+		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Value.TextXAlignment = Enum.TextXAlignment.Right
+		Value.Parent = Keybind
 
 		return Keybind
 	end,
@@ -1422,19 +1526,18 @@ Bracket.Assets = {
 		local Keybind = Instance.new("TextButton")
 		Keybind.Name = "Keybind"
 		Keybind.ZIndex = 2
-		Keybind.Size = UDim2.new(0, 48, 1, 0)
+		Keybind.Size = UDim2.new(0, 42, 1, 0)
 		Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Keybind.BackgroundTransparency = 1
 		Keybind.BorderSizePixel = 0
-		Keybind.BackgroundColor3 = COLORS.BLACK
+		Keybind.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Keybind.AutoButtonColor = false
-		Keybind.TextStrokeTransparency = 1
+		Keybind.TextStrokeTransparency = 0.75
 		Keybind.TextSize = 14
 		Keybind.RichText = true
-		Keybind.TextColor3 = COLORS.TEXT_MUTED
+		Keybind.TextColor3 = Color3.fromRGB(189, 189, 189)
 		Keybind.Text = "[ NONE ]"
-		Keybind.TextWrapped = true
-		Keybind.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Keybind.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Keybind.TextXAlignment = Enum.TextXAlignment.Right
 
 		return Keybind
@@ -1447,15 +1550,15 @@ Bracket.Assets = {
 		Dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Dropdown.BackgroundTransparency = 1
 		Dropdown.BorderSizePixel = 0
-		Dropdown.BackgroundColor3 = COLORS.BLACK
+		Dropdown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Dropdown.AutoButtonColor = false
-		Dropdown.TextStrokeTransparency = 1
+		Dropdown.TextStrokeTransparency = 0.75
 		Dropdown.TextSize = 14
 		Dropdown.RichText = true
-		Dropdown.TextColor3 = COLORS.WHITE
+		Dropdown.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Dropdown.Text = ""
 		Dropdown.TextWrapped = true
-		Dropdown.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Dropdown.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -1466,54 +1569,51 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
-		Title.TextStrokeTransparency = 1
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Dropdown"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Dropdown
 
 		local Background = Instance.new("Frame")
-			Background.Name = "Background"
-			Background.ZIndex = 2
-			Background.AnchorPoint = Vector2.new(0.5, 0)
-			Background.Size = UDim2.new(1, 0, 0, 16)
-			Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Background.Position = UDim2.new(0.5, 0, 0, 16)
-			Background.BackgroundColor3 = COLORS.GRAY
-			Background.BorderSizePixel = 0
-			Background.Parent = Dropdown
-
-		local BackgroundStroke = Instance.new("UIStroke")
-			BackgroundStroke.Name = "BackgroundStroke"
-			BackgroundStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-			BackgroundStroke.LineJoinMode = Enum.LineJoinMode.Round
-			BackgroundStroke.Thickness = 1
-			BackgroundStroke.Color = COLORS.PURPLE
-			BackgroundStroke.Parent = Background
+		Background.Name = "Background"
+		Background.ZIndex = 2
+		Background.AnchorPoint = Vector2.new(0.5, 0)
+		Background.Size = UDim2.new(1, 0, 0, 16)
+		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Background.Position = UDim2.new(0.5, 0, 0, 16)
+		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Background.Parent = Dropdown
 
 		local Value = Instance.new("TextLabel")
-			Value.Name = "Value"
-			Value.ZIndex = 2
-			Value.AnchorPoint = Vector2.new(0.5, 0.5)
-			Value.Size = UDim2.new(1, -10, 1, 0)
-			Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Value.BackgroundTransparency = 1
-			Value.Position = UDim2.new(0.5, 0, 0.5, 0)
-			Value.BorderSizePixel = 0
-			Value.BackgroundColor3 = COLORS.GRAY
-			Value.TextStrokeTransparency = 1
-			Value.TextTruncate = Enum.TextTruncate.AtEnd
-			Value.TextSize = 14
-			Value.TextColor3 = COLORS.WHITE
-			Value.Text = "..."
-			Value.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
-			Value.TextXAlignment = Enum.TextXAlignment.Left
-			Value.Parent = Background
+		Value.Name = "Value"
+		Value.ZIndex = 2
+		Value.AnchorPoint = Vector2.new(0.5, 0.5)
+		Value.Size = UDim2.new(1, -10, 1, 0)
+		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Value.BackgroundTransparency = 1
+		Value.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Value.BorderSizePixel = 0
+		Value.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Value.TextStrokeTransparency = 0.75
+		Value.TextTruncate = Enum.TextTruncate.AtEnd
+		Value.TextSize = 14
+		Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Value.Text = "..."
+		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Value.TextXAlignment = Enum.TextXAlignment.Left
+		Value.Parent = Background
+
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Background
 
 		return Dropdown
 	end,
@@ -1526,7 +1626,7 @@ Bracket.Assets = {
 		OptionContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		OptionContainer.Active = true
 		OptionContainer.BorderSizePixel = 0
-		OptionContainer.BackgroundColor3 = COLORS.GRAY
+		OptionContainer.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 		OptionContainer.ScrollingDirection = Enum.ScrollingDirection.Y
 		OptionContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
 		OptionContainer.ScrollBarImageColor3 = Color3.fromRGB(31, 31, 31)
@@ -1564,17 +1664,23 @@ Bracket.Assets = {
 		Option.Name = "Option"
 		Option.ZIndex = 3
 		Option.Size = UDim2.new(1, 0, 0, 16)
-		Option.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Option.BorderColor3 = Color3.fromRGB(63, 63, 63)
 		Option.BorderSizePixel = 0
-		Option.BackgroundColor3 = COLORS.BLACK
+		Option.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Option.AutoButtonColor = false
-		Option.TextStrokeTransparency = 1
+		Option.TextStrokeTransparency = 0.75
 		Option.TextSize = 14
 		Option.RichText = true
-		Option.TextColor3 = COLORS.WHITE
+		Option.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Option.Text = ""
 		Option.TextWrapped = true
-		Option.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Option.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Option
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -1585,14 +1691,14 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0, 18, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
-		Title.TextStrokeTransparency = 1
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
 		Title.TextTruncate = Enum.TextTruncate.AtEnd
 		Title.TextSize = 14
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Toggle"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Option
 
@@ -1603,9 +1709,14 @@ Bracket.Assets = {
 		Tick.Size = UDim2.new(0, 12, 0, 12)
 		Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Tick.Position = UDim2.new(0, 2, 0.5, 0)
-		Tick.BorderSizePixel = 0
-		Tick.BackgroundColor3 = COLORS.PURPLE
+		Tick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 		Tick.Parent = Option
+
+		local TickGradient = Instance.new("UIGradient")
+		TickGradient.Name = "Gradient"
+		TickGradient.Rotation = 90
+		TickGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		TickGradient.Parent = Tick
 
 		local Layout = Instance.new("Frame")
 		Layout.Name = "Layout"
@@ -1617,7 +1728,7 @@ Bracket.Assets = {
 		Layout.BackgroundTransparency = 1
 		Layout.Position = UDim2.new(1, -1, 0.5, 0)
 		Layout.BorderSizePixel = 0
-		Layout.BackgroundColor3 = COLORS.BLACK
+		Layout.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Layout.Parent = Option
 
 		local Padding = Instance.new("UIPadding")
@@ -1644,15 +1755,15 @@ Bracket.Assets = {
 		Colorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Colorpicker.BackgroundTransparency = 1
 		Colorpicker.BorderSizePixel = 0
-		Colorpicker.BackgroundColor3 = COLORS.BLACK
+		Colorpicker.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 		Colorpicker.AutoButtonColor = false
-		Colorpicker.TextStrokeTransparency = 1
+		Colorpicker.TextStrokeTransparency = 0.75
 		Colorpicker.TextSize = 14
 		Colorpicker.RichText = true
-		Colorpicker.TextColor3 = COLORS.WHITE
+		Colorpicker.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Colorpicker.Text = ""
 		Colorpicker.TextWrapped = true
-		Colorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Colorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -1663,14 +1774,14 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
-		Title.TextStrokeTransparency = 1
+		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = COLORS.WHITE
+		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Colorpicker"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Colorpicker
 
@@ -1684,13 +1795,11 @@ Bracket.Assets = {
 		Color.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 		Color.Parent = Colorpicker
 
-		local Stroke = Instance.new("UIStroke")
-		Stroke.Name = "Stroke"
-		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		Stroke.LineJoinMode = Enum.LineJoinMode.Round
-		Stroke.Thickness = 1
-		Stroke.Color = COLORS.PURPLE
-		Stroke.Parent = Color
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = Color
 
 		return Colorpicker
 	end,
@@ -1704,21 +1813,19 @@ Bracket.Assets = {
 		TColorpicker.Position = UDim2.new(1, 0, 0.5, 0)
 		TColorpicker.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 		TColorpicker.AutoButtonColor = false
-		TColorpicker.TextStrokeTransparency = 1
+		TColorpicker.TextStrokeTransparency = 0.75
 		TColorpicker.TextSize = 14
 		TColorpicker.RichText = true
-		TColorpicker.TextColor3 = COLORS.WHITE
+		TColorpicker.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TColorpicker.Text = ""
 		TColorpicker.TextWrapped = true
-		TColorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		TColorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSans)
 
-		local Stroke = Instance.new("UIStroke")
-		Stroke.Name = "Stroke"
-		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		Stroke.LineJoinMode = Enum.LineJoinMode.Round
-		Stroke.Thickness = 1
-		Stroke.Color = COLORS.PURPLE
-		Stroke.Parent = TColorpicker
+		local Gradient = Instance.new("UIGradient")
+		Gradient.Name = "Gradient"
+		Gradient.Rotation = 90
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Parent = TColorpicker
 
 		return TColorpicker
 	end,
@@ -2076,116 +2183,6 @@ Bracket.Assets = {
 		RainbowTickGradient.Parent = RainbowTick
 
 		return Palette
-	end,
-	SlimSlider = function()
-		local Slider = Instance.new("TextButton")
-		Slider.Name = "Slider"
-		Slider.ZIndex = 2
-		Slider.Size = UDim2.new(1, 0, 0, 20)
-		Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Slider.BackgroundTransparency = 1
-		Slider.BorderSizePixel = 0
-		Slider.BackgroundColor3 = COLORS.BLACK
-		Slider.AutoButtonColor = false
-		Slider.TextStrokeTransparency = 1
-		Slider.TextSize = 14
-		Slider.RichText = true
-		Slider.TextColor3 = COLORS.WHITE
-		Slider.Text = ""
-		Slider.TextWrapped = true
-		Slider.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
-
-		local Title = Instance.new("Frame")
-		Title.Name = "Title"
-		Title.ZIndex = 2
-		Title.Size = UDim2.new(1, -40, 1, 0)
-		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Title.BackgroundTransparency = 1
-		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = COLORS.BLACK
-		Title.Parent = Slider
-
-		local Title_2 = Instance.new("TextLabel")
-		Title_2.Name = "Title"
-		Title_2.ZIndex = 2
-		Title_2.Size = UDim2.new(1, 0, 1, 0)
-		Title_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Title_2.BackgroundTransparency = 1
-		Title_2.Position = UDim2.new(0, 6, 0, 0)
-		Title_2.BorderSizePixel = 0
-		Title_2.BackgroundColor3 = COLORS.BLACK
-		Title_2.TextStrokeTransparency = 1
-		Title_2.TextSize = 14
-		Title_2.RichText = true
-		Title_2.TextColor3 = COLORS.WHITE
-		Title_2.Text = "Slider"
-		Title_2.TextWrapped = true
-		Title_2.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
-		Title_2.TextXAlignment = Enum.TextXAlignment.Left
-		Title_2.Parent = Title
-
-		local Background = Instance.new("Frame")
-		Background.Name = "Background"
-		Background.ZIndex = 2
-		Background.AnchorPoint = Vector2.new(0.5, 0.5)
-		Background.Size = UDim2.new(1, 0, 0, 6)
-		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Background.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Background.BackgroundColor3 = COLORS.GRAY
-		Background.BorderSizePixel = 0
-		Background.Parent = Slider
-
-		local Bar = Instance.new("Frame")
-		Bar.Name = "Bar"
-		Bar.ZIndex = 3
-		Bar.AnchorPoint = Vector2.new(0, 0.5)
-		Bar.Size = UDim2.new(0.5, 0, 1, 0)
-		Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Bar.Position = UDim2.new(0, 0, 0.5, 0)
-		Bar.BorderSizePixel = 0
-		Bar.BackgroundColor3 = COLORS.PURPLE
-		Bar.Parent = Background
-
-		local Knob = Instance.new("Frame")
-		Knob.Name = "Knob"
-		Knob.ZIndex = 4
-		Knob.AnchorPoint = Vector2.new(0.5, 0.5)
-		Knob.Size = UDim2.new(0, 10, 0, 10)
-		Knob.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Knob.Position = UDim2.new(1, 0, 0.5, 0)
-		Knob.BorderSizePixel = 0
-		Knob.BackgroundColor3 = COLORS.WHITE
-		Knob.Parent = Bar
-
-		local KnobStroke = Instance.new("UIStroke")
-		KnobStroke.Name = "KnobStroke"
-		KnobStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		KnobStroke.LineJoinMode = Enum.LineJoinMode.Round
-		KnobStroke.Thickness = 1
-		KnobStroke.Color = COLORS.PURPLE_DARK
-		KnobStroke.Parent = Knob
-
-		local Value = Instance.new("TextBox")
-		Value.Name = "Value"
-		Value.ZIndex = 2
-		Value.AnchorPoint = Vector2.new(1, 0.5)
-		Value.Size = UDim2.new(0, 40, 0, 16)
-		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Value.BackgroundTransparency = 1
-		Value.Position = UDim2.new(1, 0, 0.5, 0)
-		Value.BorderSizePixel = 0
-		Value.BackgroundColor3 = COLORS.BLACK
-		Value.TextStrokeTransparency = 1
-		Value.PlaceholderColor3 = COLORS.TEXT_MUTED
-		Value.TextSize = 14
-		Value.TextColor3 = COLORS.WHITE
-		Value.PlaceholderText = "50"
-		Value.Text = ""
-		Value.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
-		Value.TextXAlignment = Enum.TextXAlignment.Right
-		Value.Parent = Slider
-
-		return Slider
 	end
 }
 Bracket.Elements = {
@@ -2204,28 +2201,6 @@ Bracket.Elements = {
 
 		Window.Asset = WindowAsset
 		Window.Background = Window.Asset.Background
-        
-        -- Handle premium style if specified
-        if Window.Style == "Premium" then
-            -- Apply premium color palette
-            Window.Color = COLORS.PURPLE
-            
-            -- Apply premium flat design to window
-            if WindowAsset:FindFirstChild("Border") then
-                WindowAsset.Border.BackgroundColor3 = COLORS.GRAY
-            end
-            
-            if WindowAsset:FindFirstChild("Drag") then
-                WindowAsset.Drag.BackgroundColor3 = COLORS.BLACK
-            end
-            
-            -- Apply flat design to window components
-            for _, Child in pairs(WindowAsset:GetDescendants()) do
-                if Child:IsA("UIGradient") then
-                    Child:Destroy() -- Remove gradients for flat design
-                end
-            end
-        end
 
 		WindowAsset.Parent = Bracket.Screen
 		WindowAsset.Visible = Window.Enabled
@@ -3729,7 +3704,7 @@ function Bracket:Window(Window)
 	Window.Blur = Bracket.Utilities:GetType(Window.Blur, false, "boolean")
 	Window.Name = Bracket.Utilities:GetType(Window.Name, "Window", "string")
 	Window.Enabled = Bracket.Utilities:GetType(Window.Enabled, true, "boolean")
-	Window.Color = Bracket.Utilities:GetType(Window.Color, Color3.new(1, 0.5, 0.25), "Color3")
+	 Window.Color = Bracket.Utilities:GetType(Window.Color, Color3.fromRGB(128, 0, 255), "Color3") -- Changed to purple
 	Window.Position = Bracket.Utilities:GetType(Window.Position, UDim2.new(0.5, -248, 0.5, -248), "UDim2")
 	Window.Size = Bracket.Utilities:GetType(Window.Size, UDim2.new(0, 496, 0, 496), "UDim2")
 	local WindowAsset = Bracket.Elements.Window(Window)
@@ -4178,4 +4153,3 @@ function Bracket:Toast(Notification)
 end
 
 return Bracket
-
