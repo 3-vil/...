@@ -1644,15 +1644,15 @@ Bracket.Assets = {
 		Colorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Colorpicker.BackgroundTransparency = 1
 		Colorpicker.BorderSizePixel = 0
-		Colorpicker.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Colorpicker.BackgroundColor3 = COLORS.BLACK
 		Colorpicker.AutoButtonColor = false
-		Colorpicker.TextStrokeTransparency = 0.75
+		Colorpicker.TextStrokeTransparency = 1
 		Colorpicker.TextSize = 14
 		Colorpicker.RichText = true
-		Colorpicker.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Colorpicker.TextColor3 = COLORS.WHITE
 		Colorpicker.Text = ""
 		Colorpicker.TextWrapped = true
-		Colorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Colorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -1663,14 +1663,14 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Title.TextStrokeTransparency = 0.75
+		Title.BackgroundColor3 = COLORS.BLACK
+		Title.TextStrokeTransparency = 1
 		Title.TextSize = 14
 		Title.RichText = true
-		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.TextColor3 = COLORS.WHITE
 		Title.Text = "Colorpicker"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Colorpicker
 
@@ -1684,11 +1684,13 @@ Bracket.Assets = {
 		Color.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 		Color.Parent = Colorpicker
 
-		local Gradient = Instance.new("UIGradient")
-		Gradient.Name = "Gradient"
-		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		Gradient.Parent = Color
+		local Stroke = Instance.new("UIStroke")
+		Stroke.Name = "Stroke"
+		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		Stroke.LineJoinMode = Enum.LineJoinMode.Round
+		Stroke.Thickness = 1
+		Stroke.Color = COLORS.PURPLE
+		Stroke.Parent = Color
 
 		return Colorpicker
 	end,
@@ -1702,19 +1704,21 @@ Bracket.Assets = {
 		TColorpicker.Position = UDim2.new(1, 0, 0.5, 0)
 		TColorpicker.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 		TColorpicker.AutoButtonColor = false
-		TColorpicker.TextStrokeTransparency = 0.75
+		TColorpicker.TextStrokeTransparency = 1
 		TColorpicker.TextSize = 14
 		TColorpicker.RichText = true
-		TColorpicker.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TColorpicker.TextColor3 = COLORS.WHITE
 		TColorpicker.Text = ""
 		TColorpicker.TextWrapped = true
-		TColorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		TColorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
 
-		local Gradient = Instance.new("UIGradient")
-		Gradient.Name = "Gradient"
-		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		Gradient.Parent = TColorpicker
+		local Stroke = Instance.new("UIStroke")
+		Stroke.Name = "Stroke"
+		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		Stroke.LineJoinMode = Enum.LineJoinMode.Round
+		Stroke.Thickness = 1
+		Stroke.Color = COLORS.PURPLE
+		Stroke.Parent = TColorpicker
 
 		return TColorpicker
 	end,
@@ -2200,6 +2204,28 @@ Bracket.Elements = {
 
 		Window.Asset = WindowAsset
 		Window.Background = Window.Asset.Background
+        
+        -- Handle premium style if specified
+        if Window.Style == "Premium" then
+            -- Apply premium color palette
+            Window.Color = COLORS.PURPLE
+            
+            -- Apply premium flat design to window
+            if WindowAsset:FindFirstChild("Border") then
+                WindowAsset.Border.BackgroundColor3 = COLORS.GRAY
+            end
+            
+            if WindowAsset:FindFirstChild("Drag") then
+                WindowAsset.Drag.BackgroundColor3 = COLORS.BLACK
+            end
+            
+            -- Apply flat design to window components
+            for _, Child in pairs(WindowAsset:GetDescendants()) do
+                if Child:IsA("UIGradient") then
+                    Child:Destroy() -- Remove gradients for flat design
+                end
+            end
+        end
 
 		WindowAsset.Parent = Bracket.Screen
 		WindowAsset.Visible = Window.Enabled
