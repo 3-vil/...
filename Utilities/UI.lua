@@ -4413,25 +4413,22 @@ function Bracket.ApplyAnbuStyle(Window)
     DragCorner.CornerRadius = UDim.new(0, 6)
     DragCorner.Parent = Drag
     
+    -- Remove default title
+    Window.Asset.Title.Visible = false
+    
     -- Add Anbu.win branding in the title bar
-    local BrandLogo = Instance.new("TextLabel")
-    BrandLogo.Name = "BrandLogo"
-    BrandLogo.Size = UDim2.new(0, 20, 0, 20)
-    BrandLogo.Position = UDim2.new(0, 8, 0, 3)
-    BrandLogo.BackgroundTransparency = 1
-    BrandLogo.TextColor3 = THEME.ACCENT
-    BrandLogo.TextSize = 18
-    BrandLogo.FontFace = Font.fromEnum(Enum.Font.GothamBold)
-    BrandLogo.Text = ""
-    BrandLogo.TextXAlignment = Enum.TextXAlignment.Center
-    BrandLogo.ZIndex = 5
-    BrandLogo.Parent = Drag
+    local BrandContainer = Instance.new("Frame")
+    BrandContainer.Name = "BrandContainer"
+    BrandContainer.Size = UDim2.new(0, 200, 1, 0)
+    BrandContainer.Position = UDim2.new(0, 10, 0, 0)
+    BrandContainer.BackgroundTransparency = 1
+    BrandContainer.Parent = Drag
     
     -- Main brand text
     local BrandText = Instance.new("TextLabel")
     BrandText.Name = "BrandText"
-    BrandText.Size = UDim2.new(0, 160, 0, 20)
-    BrandText.Position = UDim2.new(0, 28, 0, 3) 
+    BrandText.Size = UDim2.new(0, 120, 0, 25)
+    BrandText.Position = UDim2.new(0, 0, 0, 0)
     BrandText.BackgroundTransparency = 1
     BrandText.TextColor3 = THEME.TEXT_PRIMARY
     BrandText.TextSize = 15
@@ -4439,13 +4436,13 @@ function Bracket.ApplyAnbuStyle(Window)
     BrandText.Text = "Anbu.win Universal"
     BrandText.TextXAlignment = Enum.TextXAlignment.Left
     BrandText.ZIndex = 5
-    BrandText.Parent = Drag
+    BrandText.Parent = BrandContainer
     
-    -- Add the "+" button on the right side
+    -- Add the "+" button right next to "Universal"
     local PlusButton = Instance.new("TextButton")
     PlusButton.Name = "PlusButton"
-    PlusButton.Size = UDim2.new(0, 20, 0, 20)
-    PlusButton.Position = UDim2.new(1, -85, 0, 3) -- Position it to the left of the window controls
+    PlusButton.Size = UDim2.new(0, 20, 0, 25)
+    PlusButton.Position = UDim2.new(0, 140, 0, 0)
     PlusButton.BackgroundTransparency = 1
     PlusButton.TextColor3 = THEME.TEXT_PRIMARY
     PlusButton.TextSize = 18
@@ -4453,14 +4450,13 @@ function Bracket.ApplyAnbuStyle(Window)
     PlusButton.Text = "+"
     PlusButton.TextXAlignment = Enum.TextXAlignment.Center
     PlusButton.ZIndex = 5
-    PlusButton.Parent = Drag
+    PlusButton.Parent = BrandContainer
     
-    -- Add "UNDETECTED v2.0" label
+    -- Add "UNDETECTED v2.0" label directly under the brand text
     local Version = Instance.new("TextLabel")
     Version.Name = "Version"
-    Version.AnchorPoint = Vector2.new(0, 0)
     Version.Size = UDim2.new(0, 120, 0, 15)
-    Version.Position = UDim2.new(0, 10, 1, -17)
+    Version.Position = UDim2.new(0, 0, 1, 0)
     Version.BackgroundTransparency = 1
     Version.TextColor3 = Color3.fromRGB(120, 90, 255)
     Version.TextSize = 11
@@ -4468,7 +4464,7 @@ function Bracket.ApplyAnbuStyle(Window)
     Version.Text = "UNDETECTED v2.0"
     Version.TextXAlignment = Enum.TextXAlignment.Left
     Version.ZIndex = 5
-    Version.Parent = Window.Asset
+    Version.Parent = BrandContainer
     
     -- Update the title
     local Title = Window.Asset.Title
