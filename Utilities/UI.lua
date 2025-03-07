@@ -1807,7 +1807,7 @@ end,
     DropdownContainer = function()
         local OptionContainer = Instance.new("ScrollingFrame")
         OptionContainer.Name = "OptionContainer"
-        OptionContainer.ZIndex = 3
+        OptionContainer.ZIndex = 10 -- Increased from 3 to 10 to ensure it appears in front of other UI elements
         OptionContainer.Visible = false
         OptionContainer.Size = UDim2.new(0, 100, 0, 100)
         OptionContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1851,7 +1851,7 @@ end,
     DropdownOption = function()
         local Option = Instance.new("TextButton")
         Option.Name = "Option"
-        Option.ZIndex = 3
+        Option.ZIndex = 11 -- Increased from 3 to 11 to ensure it appears in front of other UI elements
         Option.Size = UDim2.new(1, 0, 0, 20) -- Made taller
         Option.BorderColor3 = Color3.fromRGB(0, 0, 0)
         Option.BorderSizePixel = 0
@@ -1874,7 +1874,7 @@ end,
 
         local Title = Instance.new("TextLabel")
         Title.Name = "Title"
-        Title.ZIndex = 3
+        Title.ZIndex = 11 -- Increased from 3 to 11 to match parent
         Title.AnchorPoint = Vector2.new(0, 0.5)
         Title.Size = UDim2.new(1, -18, 1, 0)
         Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1894,7 +1894,7 @@ end,
 
         local Tick = Instance.new("Frame")
         Tick.Name = "Tick"
-        Tick.ZIndex = 3
+        Tick.ZIndex = 11 -- Increased from 3 to 11 to match parent
         Tick.AnchorPoint = Vector2.new(0, 0.5)
         Tick.Size = UDim2.new(0, 12, 0, 12)
         Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1912,7 +1912,7 @@ end,
 
         local Layout = Instance.new("Frame")
         Layout.Name = "Layout"
-        Layout.ZIndex = 3
+        Layout.ZIndex = 11 -- Increased from 3 to 11 to match parent
         Layout.AnchorPoint = Vector2.new(1, 0.5)
         Layout.Size = UDim2.new(1, -54, 1, 0)
         Layout.ClipsDescendants = true
