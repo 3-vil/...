@@ -1349,11 +1349,11 @@ end,
 
         return Toggle
     end,
- Slider = function()
+Slider = function()
     local Slider = Instance.new("TextButton")
     Slider.Name = "Slider"
     Slider.ZIndex = 2
-    Slider.Size = UDim2.new(1, 0, 0, 20) -- Keep original size
+    Slider.Size = UDim2.new(1, 0, 0, 20)
     Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Slider.BackgroundTransparency = 1
     Slider.BorderSizePixel = 0
@@ -1367,27 +1367,36 @@ end,
     Slider.TextWrapped = true
     Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-    -- Keep original naming structure
+    -- Text background for better readability
+    local TextBackground = Instance.new("Frame")
+    TextBackground.Name = "TextBackground"
+    TextBackground.ZIndex = 1
+    TextBackground.AnchorPoint = Vector2.new(0, 0)
+    TextBackground.Size = UDim2.new(1, 0, 1, 0)
+    TextBackground.Position = UDim2.new(0, 0, 0, 0)
+    TextBackground.BorderSizePixel = 0
+    TextBackground.BackgroundColor3 = THEME.DARK_CONTRAST
+    TextBackground.BackgroundTransparency = 0.7
+    TextBackground.Parent = Slider
+
     local Background = Instance.new("Frame")
     Background.Name = "Background"
     Background.ZIndex = 2
-    Background.AnchorPoint = Vector2.new(0.5, 0.5)
-    Background.Size = UDim2.new(1, 0, 0, 4) -- Thinner track
+    Background.AnchorPoint = Vector2.new(0, 0.5)
+    Background.Size = UDim2.new(1, 0, 0, 6)
     Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Background.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Background.Position = UDim2.new(0, 0, 0.5, 0)
     Background.BorderSizePixel = 0
     Background.BackgroundColor3 = THEME.INACTIVE
     Background.Parent = Slider
 
-    -- Very slight rounding of corners
     local BackgroundCorner = Instance.new("UICorner")
     BackgroundCorner.CornerRadius = UDim.new(0, 2)
     BackgroundCorner.Parent = Background
 
-    -- Keep original Bar naming
     local Bar = Instance.new("Frame")
     Bar.Name = "Bar"
-    Bar.ZIndex = 2
+    Bar.ZIndex = 3
     Bar.AnchorPoint = Vector2.new(0, 0.5)
     Bar.Size = UDim2.new(0.5, 0, 1, 0)
     Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1396,49 +1405,46 @@ end,
     Bar.BackgroundColor3 = THEME.ACCENT
     Bar.Parent = Background
 
-    -- Matching corner radius
     local BarCorner = Instance.new("UICorner")
     BarCorner.CornerRadius = UDim.new(0, 2)
     BarCorner.Parent = Bar
-    
-    -- Value display - keep exactly as original
+
     local Value = Instance.new("TextBox")
     Value.Name = "Value"
-    Value.ZIndex = 2
+    Value.ZIndex = 4 -- Higher Z-index for better visibility
     Value.AnchorPoint = Vector2.new(1, 0)
-    Value.Size = UDim2.new(0, 12, 1, 0)
+    Value.Size = UDim2.new(0, 30, 1, 0) -- Wider for better visibility
     Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Value.BackgroundTransparency = 1
-    Value.Position = UDim2.new(1, -6, 0, 0)
+    Value.BackgroundTransparency = 0.6 -- Slight background for readability
+    Value.Position = UDim2.new(1, -2, 0, 0)
     Value.BorderSizePixel = 0
-    Value.BackgroundColor3 = THEME.LIGHT_CONTRAST
-    Value.TextStrokeTransparency = 0.75
+    Value.BackgroundColor3 = THEME.ELEMENT_BG
+    Value.TextStrokeTransparency = 0.5 -- Text stroke for better readability
     Value.PlaceholderColor3 = THEME.TEXT_SECONDARY
     Value.TextSize = 14
     Value.TextColor3 = THEME.TEXT_PRIMARY
     Value.PlaceholderText = "50"
     Value.Text = ""
-    Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    Value.FontFace = Font.fromEnum(Enum.Font.GothamBold) -- Bold for better visibility
     Value.TextXAlignment = Enum.TextXAlignment.Right
     Value.Parent = Slider
 
-    -- Title display - keep exactly as original
     local Title = Instance.new("TextLabel")
     Title.Name = "Title"
-    Title.ZIndex = 2
-    Title.Size = UDim2.new(1, -24, 1, 0)
+    Title.ZIndex = 4 -- Higher Z-index for better visibility
+    Title.Size = UDim2.new(1, -36, 1, 0) -- Avoid overlapping with value box
     Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Title.BackgroundTransparency = 1
-    Title.Position = UDim2.new(0, 6, 0, 0)
+    Title.BackgroundTransparency = 0.6 -- Slight background for readability
+    Title.Position = UDim2.new(0, 2, 0, 0)
     Title.BorderSizePixel = 0
-    Title.BackgroundColor3 = THEME.LIGHT_CONTRAST
-    Title.TextStrokeTransparency = 0.75
+    Title.BackgroundColor3 = THEME.ELEMENT_BG
+    Title.TextStrokeTransparency = 0.5 -- Text stroke for better readability
     Title.TextSize = 14
     Title.RichText = true
     Title.TextColor3 = THEME.TEXT_PRIMARY
     Title.Text = "Slider"
     Title.TextWrapped = true
-    Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    Title.FontFace = Font.fromEnum(Enum.Font.GothamBold) -- Bold for better visibility
     Title.TextXAlignment = Enum.TextXAlignment.Left
     Title.Parent = Slider
 
@@ -1449,7 +1455,7 @@ SlimSlider = function()
     local Slider = Instance.new("TextButton")
     Slider.Name = "Slider"
     Slider.ZIndex = 2
-    Slider.Size = UDim2.new(1, 0, 0, 28) -- Keep original size
+    Slider.Size = UDim2.new(1, 0, 0, 28)
     Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Slider.BackgroundTransparency = 1
     Slider.BorderSizePixel = 0
@@ -1463,46 +1469,54 @@ SlimSlider = function()
     Slider.TextWrapped = true
     Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-    -- Keep original Title structure and position
+    -- Text background for better readability
+    local TextBackground = Instance.new("Frame")
+    TextBackground.Name = "TextBackground"
+    TextBackground.ZIndex = 1
+    TextBackground.AnchorPoint = Vector2.new(0, 0)
+    TextBackground.Size = UDim2.new(1, 0, 0, 18) -- Cover only text area
+    TextBackground.Position = UDim2.new(0, 0, 0, 0)
+    TextBackground.BorderSizePixel = 0
+    TextBackground.BackgroundColor3 = THEME.DARK_CONTRAST
+    TextBackground.BackgroundTransparency = 0.7
+    TextBackground.Parent = Slider
+
     local Title = Instance.new("TextLabel")
     Title.Name = "Title"
-    Title.ZIndex = 2
-    Title.Size = UDim2.new(1, -12, 0, 16)
+    Title.ZIndex = 4 -- Higher Z-index for better visibility
+    Title.Size = UDim2.new(1, -36, 0, 16)
     Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Title.BackgroundTransparency = 1
+    Title.BackgroundTransparency = 0.6 -- Slight background for readability
     Title.BorderSizePixel = 0
-    Title.BackgroundColor3 = THEME.LIGHT_CONTRAST
-    Title.TextStrokeTransparency = 0.75
+    Title.BackgroundColor3 = THEME.ELEMENT_BG
+    Title.TextStrokeTransparency = 0.5 -- Text stroke for better readability
     Title.TextSize = 14
     Title.RichText = true
     Title.TextColor3 = THEME.TEXT_PRIMARY
     Title.Text = "Slider"
     Title.TextWrapped = true
-    Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    Title.FontFace = Font.fromEnum(Enum.Font.GothamBold) -- Bold for better visibility
     Title.TextXAlignment = Enum.TextXAlignment.Left
     Title.Parent = Slider
 
-    -- Keep original Background structure
     local Background = Instance.new("Frame")
     Background.Name = "Background"
     Background.ZIndex = 2
     Background.AnchorPoint = Vector2.new(0.5, 1)
-    Background.Size = UDim2.new(1, 0, 0, 4) -- Thinner track
+    Background.Size = UDim2.new(1, 0, 0, 6)
     Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Background.Position = UDim2.new(0.5, 0, 1, 0)
     Background.BorderSizePixel = 0
     Background.BackgroundColor3 = THEME.INACTIVE
     Background.Parent = Slider
 
-    -- Minor corner radius
     local BackgroundCorner = Instance.new("UICorner")
     BackgroundCorner.CornerRadius = UDim.new(0, 2)
     BackgroundCorner.Parent = Background
 
-    -- Keep original Bar structure
     local Bar = Instance.new("Frame")
     Bar.Name = "Bar"
-    Bar.ZIndex = 2
+    Bar.ZIndex = 3
     Bar.AnchorPoint = Vector2.new(0, 0.5)
     Bar.Size = UDim2.new(0.5, 0, 1, 0)
     Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1511,29 +1525,27 @@ SlimSlider = function()
     Bar.BackgroundColor3 = THEME.ACCENT
     Bar.Parent = Background
 
-    -- Matching corner radius
     local BarCorner = Instance.new("UICorner")
     BarCorner.CornerRadius = UDim.new(0, 2)
     BarCorner.Parent = Bar
 
-    -- Keep original Value structure and position
     local Value = Instance.new("TextBox")
     Value.Name = "Value"
-    Value.ZIndex = 2
+    Value.ZIndex = 4 -- Higher Z-index for better visibility
     Value.AnchorPoint = Vector2.new(1, 0)
-    Value.Size = UDim2.new(0, 12, 0, 16)
+    Value.Size = UDim2.new(0, 30, 0, 16)
     Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Value.BackgroundTransparency = 1
+    Value.BackgroundTransparency = 0.6 -- Slight background for readability
     Value.Position = UDim2.new(1, 0, 0, 0)
     Value.BorderSizePixel = 0
-    Value.BackgroundColor3 = THEME.LIGHT_CONTRAST
-    Value.TextStrokeTransparency = 0.75
+    Value.BackgroundColor3 = THEME.ELEMENT_BG
+    Value.TextStrokeTransparency = 0.5 -- Text stroke for better readability
     Value.PlaceholderColor3 = THEME.TEXT_SECONDARY
     Value.TextSize = 14
     Value.TextColor3 = THEME.TEXT_PRIMARY
     Value.PlaceholderText = "50"
     Value.Text = ""
-    Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    Value.FontFace = Font.fromEnum(Enum.Font.GothamBold) -- Bold for better visibility
     Value.TextXAlignment = Enum.TextXAlignment.Right
     Value.Parent = Slider
 
