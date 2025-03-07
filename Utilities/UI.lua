@@ -1807,7 +1807,7 @@ end,
     DropdownContainer = function()
         local OptionContainer = Instance.new("ScrollingFrame")
         OptionContainer.Name = "OptionContainer"
-        OptionContainer.ZIndex = 10 -- Increased from 3 to 10 to ensure it's on top of other UI elements
+        OptionContainer.ZIndex = 3
         OptionContainer.Visible = false
         OptionContainer.Size = UDim2.new(0, 100, 0, 100)
         OptionContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1851,7 +1851,7 @@ end,
     DropdownOption = function()
         local Option = Instance.new("TextButton")
         Option.Name = "Option"
-        Option.ZIndex = 10 -- Increased from 3 to 10 to match the container's Z-index
+        Option.ZIndex = 3
         Option.Size = UDim2.new(1, 0, 0, 20) -- Made taller
         Option.BorderColor3 = Color3.fromRGB(0, 0, 0)
         Option.BorderSizePixel = 0
@@ -1874,7 +1874,7 @@ end,
 
         local Title = Instance.new("TextLabel")
         Title.Name = "Title"
-        Title.ZIndex = 10 -- Increased from 3 to 10 to match the container's Z-index
+        Title.ZIndex = 3
         Title.AnchorPoint = Vector2.new(0, 0.5)
         Title.Size = UDim2.new(1, -18, 1, 0)
         Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1894,7 +1894,7 @@ end,
 
         local Tick = Instance.new("Frame")
         Tick.Name = "Tick"
-        Tick.ZIndex = 10 -- Increased from 3 to 10 to match the container's Z-index
+        Tick.ZIndex = 3
         Tick.AnchorPoint = Vector2.new(0, 0.5)
         Tick.Size = UDim2.new(0, 12, 0, 12)
         Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1912,7 +1912,7 @@ end,
 
         local Layout = Instance.new("Frame")
         Layout.Name = "Layout"
-        Layout.ZIndex = 10 -- Increased from 3 to 10 to match the container's Z-index
+        Layout.ZIndex = 3
         Layout.AnchorPoint = Vector2.new(1, 0.5)
         Layout.Size = UDim2.new(1, -54, 1, 0)
         Layout.ClipsDescendants = true
@@ -1942,7 +1942,7 @@ end,
    Colorpicker = function()
     local Colorpicker = Instance.new("TextButton")
     Colorpicker.Name = "Colorpicker"
-    Colorpicker.ZIndex = 10 -- Increased from 2 to 10 to be consistent with dropdown elements
+    Colorpicker.ZIndex = 2
     Colorpicker.Size = UDim2.new(1, 0, 0, 14)
     Colorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Colorpicker.BackgroundTransparency = 1
@@ -2040,7 +2040,7 @@ end,
     ColorpickerPalette = function()
         local Palette = Instance.new("Frame")
         Palette.Name = "Palette"
-        Palette.ZIndex = 10 -- Increased from 3 to 10 to be consistent with dropdown elements
+        Palette.ZIndex = 3
         Palette.Visible = false
         Palette.Size = UDim2.new(0, 150, 0, 290)
         Palette.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2056,9 +2056,9 @@ end,
         Stroke.Thickness = 1
         Stroke.Parent = Palette
 
-        local SVPicker = Instance.new("ImageLabel")
+        local SVPicker = Instance.new("TextButton")
         SVPicker.Name = "SVPicker"
-        SVPicker.ZIndex = 10 -- Increased from 3 to 10
+        SVPicker.ZIndex = 3
         SVPicker.AnchorPoint = Vector2.new(0.5, 0)
         SVPicker.Size = UDim2.new(1, -10, 0, 180)
         SVPicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2084,7 +2084,7 @@ end,
 
         local Saturation = Instance.new("Frame")
         Saturation.Name = "Saturation"
-        Saturation.ZIndex = 10 -- Increased from 3 to 10
+        Saturation.ZIndex = 3
         Saturation.AnchorPoint = Vector2.new(0.5, 0.5)
         Saturation.Size = UDim2.new(1, 0, 1, 0)
         Saturation.BorderColor3 = Color3.fromRGB(0, 0, 0)
