@@ -1067,83 +1067,95 @@ end)
 
     return TabButton
 end,
-    Section = function()
-        local Section = Instance.new("Frame")
-        Section.Name = "Section"
-        Section.ZIndex = 2
-        Section.Size = UDim2.new(1, 0, 0, 10)
-        Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Section.BorderSizePixel = 0
-        Section.BackgroundColor3 = THEME.ELEMENT_BG
+   Section = function()
+    local Section = Instance.new("Frame")
+    Section.Name = "Section"
+    Section.ZIndex = 2
+    Section.Size = UDim2.new(1, 0, 0, 10)
+    Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Section.BorderSizePixel = 0
+    Section.BackgroundColor3 = THEME.ELEMENT_BG
 
-        local Stroke = Instance.new("UIStroke")
-        Stroke.Name = "Stroke"
-        Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-        Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-        Stroke.Color = THEME.BORDER
-        Stroke.Thickness = 1
-        Stroke.Parent = Section
+    -- Add a more visible section border
+    local Stroke = Instance.new("UIStroke")
+    Stroke.Name = "Stroke"
+    Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    Stroke.LineJoinMode = Enum.LineJoinMode.Miter
+    Stroke.Color = THEME.ACCENT
+    Stroke.Thickness = 1
+    Stroke.Transparency = 0.7
+    Stroke.Parent = Section
 
-        local Border = Instance.new("Frame")
-        Border.Name = "Border"
-        Border.Visible = false
-        Border.AnchorPoint = Vector2.new(0.5, 0.5)
-        Border.Size = UDim2.new(1, 2, 1, 2)
-        Border.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Border.Position = UDim2.new(0.5, 0, 0.5, 0)
-        Border.BackgroundColor3 = THEME.BORDER
-        Border.ZIndex = 1
-        Border.Parent = Section
+    -- Add a stronger highlight to the title
+    local TitleBackground = Instance.new("Frame")
+    TitleBackground.Name = "TitleBackground"
+    TitleBackground.ZIndex = 1
+    TitleBackground.AnchorPoint = Vector2.new(0, 0)
+    TitleBackground.Size = UDim2.new(0, 0, 0, 0) -- Will be sized based on title
+    TitleBackground.Position = UDim2.new(0, 6, 0, -9)
+    TitleBackground.BorderSizePixel = 0
+    TitleBackground.BackgroundColor3 = THEME.DARK_CONTRAST
+    TitleBackground.BackgroundTransparency = 0.3
+    TitleBackground.Parent = Section
 
-        local Title = Instance.new("TextLabel")
-        Title.Name = "Title"
-        Title.ZIndex = 2
-        Title.Size = UDim2.new(0, 44, 0, 2)
-        Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Title.Position = UDim2.new(0, 9, 0, -7)
-        Title.BorderSizePixel = 0
-        Title.BackgroundColor3 = THEME.ELEMENT_BG
-        Title.BackgroundTransparency = 0
-        Title.TextStrokeTransparency = 0.75
-        Title.TextSize = 13
-        Title.RichText = true
-        Title.TextColor3 = THEME.TEXT_PRIMARY
-        Title.Text = "Section"
-        Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-        Title.Parent = Section
+    local TitleBackgroundCorner = Instance.new("UICorner")
+    TitleBackgroundCorner.CornerRadius = UDim.new(0, 4)
+    TitleBackgroundCorner.Parent = TitleBackground
 
-        local TitlePadding = Instance.new("UIPadding")
-        TitlePadding.PaddingLeft = UDim.new(0, 4)
-        TitlePadding.PaddingRight = UDim.new(0, 4)
-        TitlePadding.Parent = Title
+    local Title = Instance.new("TextLabel")
+    Title.Name = "Title"
+    Title.ZIndex = 2
+    Title.Size = UDim2.new(0, 44, 0, 2)
+    Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Title.Position = UDim2.new(0, 9, 0, -7)
+    Title.BorderSizePixel = 0
+    Title.BackgroundColor3 = THEME.ELEMENT_BG
+    Title.BackgroundTransparency = 0
+    Title.TextStrokeTransparency = 0.5 -- Text stroke for better readability
+    Title.TextSize = 13
+    Title.RichText = true
+    Title.TextColor3 = THEME.TEXT_PRIMARY
+    Title.Text = "Section"
+    Title.FontFace = Font.fromEnum(Enum.Font.GothamBold) -- Bold for better visibility
+    Title.Parent = Section
 
-        local Container = Instance.new("Frame")
-        Container.Name = "Container"
-        Container.ZIndex = 2
-        Container.AnchorPoint = Vector2.new(0.5, 0)
-        Container.Size = UDim2.new(1, 0, 1, -10)
-        Container.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Container.BackgroundTransparency = 1
-        Container.BorderSizePixel = 0
-        Container.Position = UDim2.new(0.5, 0, 0, 10)
-        Container.BackgroundColor3 = THEME.LIGHT_CONTRAST
-        Container.Parent = Section
+    -- Connect to update title background
+    Title:GetPropertyChangedSignal("TextBounds"):Connect(function()
+        TitleBackground.Size = UDim2.new(0, Title.TextBounds.X + 10, 0, 18)
+    end)
 
-        local Padding = Instance.new("UIPadding")
-        Padding.Name = "Padding"
-        Padding.PaddingLeft = UDim.new(0, 5)
-        Padding.PaddingRight = UDim.new(0, 5)
-        Padding.Parent = Container
+    local TitlePadding = Instance.new("UIPadding")
+    TitlePadding.PaddingLeft = UDim.new(0, 4)
+    TitlePadding.PaddingRight = UDim.new(0, 4)
+    TitlePadding.Parent = Title
 
-        local ListLayout = Instance.new("UIListLayout")
-        ListLayout.Name = "ListLayout"
-        ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-        ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-        ListLayout.Padding = UDim.new(0, 5)
-        ListLayout.Parent = Container
+    local Container = Instance.new("Frame")
+    Container.Name = "Container"
+    Container.ZIndex = 2
+    Container.AnchorPoint = Vector2.new(0.5, 0)
+    Container.Size = UDim2.new(1, 0, 1, -10)
+    Container.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Container.BackgroundTransparency = 1
+    Container.BorderSizePixel = 0
+    Container.Position = UDim2.new(0.5, 0, 0, 10)
+    Container.BackgroundColor3 = THEME.LIGHT_CONTRAST
+    Container.Parent = Section
 
-        return Section
-    end,
+    local Padding = Instance.new("UIPadding")
+    Padding.Name = "Padding"
+    Padding.PaddingLeft = UDim.new(0, 5)
+    Padding.PaddingRight = UDim.new(0, 5)
+    Padding.Parent = Container
+
+    local ListLayout = Instance.new("UIListLayout")
+    ListLayout.Name = "ListLayout"
+    ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    ListLayout.Padding = UDim.new(0, 5)
+    ListLayout.Parent = Container
+
+    return Section
+end,
     Divider = function()
         local Divider = Instance.new("Frame")
         Divider.Name = "Divider"
