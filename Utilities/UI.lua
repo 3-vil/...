@@ -12,24 +12,24 @@ local Bracket = {IsLocal = not identifyexecutor}
 
 -- Primary color palette
 local THEME = {
-    BACKGROUND = Color3.fromRGB(15, 15, 20),       -- Main dark background
+    -- Main colors
+    BACKGROUND = Color3.fromRGB(15, 15, 20),       -- Main background
     DARK_CONTRAST = Color3.fromRGB(18, 18, 23),    -- Darker elements (title bar)
-    SECTION_BG = Color3.fromRGB(22, 22, 28),       -- Section backgrounds
-    ELEMENT_BG = Color3.fromRGB(28, 28, 36),       -- Element backgrounds
-    DROPDOWN_BG = Color3.fromRGB(32, 32, 40),      -- Dropdown elements
-    BORDER = Color3.fromRGB(35, 35, 45),           -- Border color
+    LIGHT_CONTRAST = Color3.fromRGB(25, 25, 30),   -- Lighter elements
+    BORDER = Color3.fromRGB(30, 30, 35),           -- Border color
     
-    TEXT_PRIMARY = Color3.fromRGB(255, 255, 255),  -- Primary text (white)
-    TEXT_SECONDARY = Color3.fromRGB(175, 175, 190), -- Secondary text (light gray)
+    -- Text colors
+    TEXT_PRIMARY = Color3.fromRGB(255, 255, 255),  -- Primary text
+    TEXT_SECONDARY = Color3.fromRGB(175, 175, 175), -- Secondary text
     
-    ACCENT = Color3.fromRGB(130, 70, 255),         -- Primary purple accent
-    ACCENT_LIGHT = Color3.fromRGB(150, 90, 255),   -- Lighter purple for hover
+    -- Accent color (purple)
+    ACCENT = Color3.fromRGB(130, 70, 255),         -- Purple accent
     
-    TOGGLE_ON = Color3.fromRGB(130, 70, 255),      -- Toggle on purple
-    TOGGLE_OFF = Color3.fromRGB(60, 60, 70),       -- Toggle off gray
     
-    SLIDER_BG = Color3.fromRGB(40, 40, 50),        -- Slider background
-    SLIDER_FILL = Color3.fromRGB(130, 70, 255),    -- Slider fill
+    -- Functional colors
+    ELEMENT_BG = Color3.fromRGB(22, 22, 27),       -- Element backgrounds
+    HOVER_BG = Color3.fromRGB(35, 35, 40),         -- Hover state
+    INACTIVE = Color3.fromRGB(40, 40, 45),         -- Inactive elements
 }
 
 Bracket.Utilities = {
@@ -4392,548 +4392,413 @@ function Bracket:Toast(Notification)
     end)
 end
 
--- Complete overhaul of the UI styling to match Anbu.win
--- This replaces the existing styling with a proper implementation
-
--- First update the THEME
-local THEME = {
-    BACKGROUND = Color3.fromRGB(15, 15, 20),       -- Main dark background
-    DARK_CONTRAST = Color3.fromRGB(18, 18, 23),    -- Darker elements (title bar)
-    SECTION_BG = Color3.fromRGB(22, 22, 28),       -- Section backgrounds
-    ELEMENT_BG = Color3.fromRGB(28, 28, 36),       -- Element backgrounds
-    DROPDOWN_BG = Color3.fromRGB(32, 32, 40),      -- Dropdown elements
-    BORDER = Color3.fromRGB(35, 35, 45),           -- Border color
-    
-    TEXT_PRIMARY = Color3.fromRGB(255, 255, 255),  -- Primary text (white)
-    TEXT_SECONDARY = Color3.fromRGB(175, 175, 190), -- Secondary text (light gray)
-    
-    ACCENT = Color3.fromRGB(130, 70, 255),         -- Primary purple accent
-    ACCENT_LIGHT = Color3.fromRGB(150, 90, 255),   -- Lighter purple for hover
-    
-    TOGGLE_ON = Color3.fromRGB(130, 70, 255),      -- Toggle on purple
-    TOGGLE_OFF = Color3.fromRGB(60, 60, 70),       -- Toggle off gray
-    
-    SLIDER_BG = Color3.fromRGB(40, 40, 50),        -- Slider background
-    SLIDER_FILL = Color3.fromRGB(130, 70, 255),    -- Slider fill
-}
-
-function Bracket.CreateAnbuStyle()
-    -- This creates the base styles to be applied to all UI elements
-    return {
-        -- Window styling
-        Window = {
-            BackgroundColor3 = THEME.BACKGROUND,
-            BorderSizePixel = 0,
-            Size = UDim2.new(0, 800, 0, 500), -- Default size
-        },
-        
-        -- Title bar styling
-        TitleBar = {
-            BackgroundColor3 = THEME.DARK_CONTRAST,
-            BorderSizePixel = 0,
-            Size = UDim2.new(1, 0, 0, 26),
-        },
-        
-        -- Tab container styling
-        TabContainer = {
-            BackgroundColor3 = THEME.BACKGROUND,
-            BorderSizePixel = 0,
-            Padding = UDim.new(0, 15),
-        },
-        
-        -- Tab button styling
-        TabButton = {
-            BackgroundTransparency = 1,
-            TextColor3 = THEME.TEXT_SECONDARY,
-            SelectedTextColor3 = THEME.TEXT_PRIMARY,
-            SelectedBackgroundColor3 = THEME.ACCENT,
-            SelectedBackgroundTransparency = 0.85,
-            FontFace = Font.fromEnum(Enum.Font.GothamMedium),
-            TextSize = 13,
-            Padding = UDim.new(0, 10),
-        },
-        
-        -- Section styling
-        Section = {
-            BackgroundColor3 = THEME.SECTION_BG,
-            BorderColor3 = THEME.BORDER,
-            BorderSizePixel = 1,
-            Padding = {
-                External = UDim.new(0, 20), -- Space between sections
-                Internal = UDim.new(0, 10), -- Space inside sections between elements
-            },
-        },
-        
-        -- UI Elements
-        Element = {
-            Height = 30, -- Standard element height
-            Padding = UDim.new(0, 8), -- Padding between elements
-            
-            -- Label styling
-            Label = {
-                TextColor3 = THEME.TEXT_PRIMARY,
-                FontFace = Font.fromEnum(Enum.Font.GothamMedium),
-                TextSize = 14,
-            },
-            
-            -- Toggle styling
-            Toggle = {
-                BackgroundColor3 = THEME.TOGGLE_OFF,
-                ToggleOnColor3 = THEME.TOGGLE_ON,
-                TextColor3 = THEME.TEXT_PRIMARY,
-                TextSize = 14,
-                FontFace = Font.fromEnum(Enum.Font.GothamMedium),
-            },
-            
-            -- Slider styling
-            Slider = {
-                BackgroundColor3 = THEME.SLIDER_BG,
-                FillColor3 = THEME.SLIDER_FILL,
-                TextColor3 = THEME.TEXT_PRIMARY,
-                ValueTextColor3 = THEME.ACCENT,
-                Height = 8, -- Slider bar height
-                TextSize = 14,
-                FontFace = Font.fromEnum(Enum.Font.GothamMedium),
-            },
-            
-            -- Dropdown styling
-            Dropdown = {
-                BackgroundColor3 = THEME.ELEMENT_BG,
-                OptionBackgroundColor3 = THEME.DROPDOWN_BG,
-                TextColor3 = THEME.TEXT_PRIMARY,
-                BorderColor3 = THEME.BORDER,
-                TextSize = 14,
-                FontFace = Font.fromEnum(Enum.Font.GothamMedium),
-            },
-        },
-    }
-end
-
 function Bracket.ApplyAnbuStyle(Window)
+    -- Apply the Anbu.win styling to match the screenshot
+    
     -- Window styling
     Window.Asset.BackgroundColor3 = THEME.BACKGROUND
-    Window.Asset.BorderSizePixel = 0
     
-    -- Apply title bar styling with the Anbu branding
+    -- No rounded corners on the main window
+    
+    -- Title bar modifications
     local Drag = Window.Asset.Drag
-    Drag.BackgroundColor3 = THEME.DARK_CONTRAST
-    Drag.BorderSizePixel = 0
     Drag.Size = UDim2.new(1, 0, 0, 26)
+    Drag.BackgroundColor3 = THEME.DARK_CONTRAST
     
-    -- Hide default title
+    -- No rounded corners on the title bar either
+    
+    -- Remove default title
     if Window.Asset:FindFirstChild("Title") then
         Window.Asset.Title.Visible = false
     end
     
-    -- Set up Anbu branding
-    -- Create "+" button above Anbu.win text
-    local PlusButton = Instance.new("TextButton")
-    PlusButton.Name = "PlusButton"
-    PlusButton.Size = UDim2.new(0, 15, 0, 15)
-    PlusButton.Position = UDim2.new(0, 12, 0, -8) -- Position it above the "A"
-    PlusButton.BackgroundTransparency = 1
-    PlusButton.TextColor3 = THEME.TEXT_PRIMARY
-    PlusButton.TextSize = 16
-    PlusButton.FontFace = Font.fromEnum(Enum.Font.GothamBold)
-    PlusButton.Text = "+"
-    PlusButton.TextXAlignment = Enum.TextXAlignment.Center
-    PlusButton.ZIndex = 100
-    PlusButton.Parent = Drag
+    -- Create title container
+    local TitleContainer = Instance.new("Frame")
+    TitleContainer.Name = "TitleContainer"
+    TitleContainer.Size = UDim2.new(0, 200, 0, 40)
+    TitleContainer.Position = UDim2.new(0, 10, 0, 0)
+    TitleContainer.BackgroundTransparency = 1
+    TitleContainer.ZIndex = 10
+    TitleContainer.Parent = Drag
     
-    -- Add Anbu.win branding
+    -- Add "Anbu.win Universal" text
     local BrandText = Instance.new("TextLabel")
     BrandText.Name = "BrandText"
-    BrandText.Size = UDim2.new(0, 140, 0, 26)
-    BrandText.Position = UDim2.new(0, 10, 0, 0)
+    BrandText.Size = UDim2.new(0, 140, 0, 20)
+    BrandText.Position = UDim2.new(0, 0, 0, 3)
     BrandText.BackgroundTransparency = 1
     BrandText.TextColor3 = THEME.TEXT_PRIMARY
     BrandText.TextSize = 15
     BrandText.FontFace = Font.fromEnum(Enum.Font.GothamBold)
     BrandText.Text = "Anbu.win Universal"
     BrandText.TextXAlignment = Enum.TextXAlignment.Left
-    BrandText.TextYAlignment = Enum.TextYAlignment.Center
-    BrandText.ZIndex = 99
-    BrandText.Parent = Drag
+    BrandText.ZIndex = 11
+    BrandText.Parent = TitleContainer
     
-    -- Add UNDETECTED v2.0 with green dot
+    -- Add "UNDETECTED v2.0" directly under the title with green dot
+    local UndetectedContainer = Instance.new("Frame")
+    UndetectedContainer.Name = "UndetectedContainer"
+    UndetectedContainer.Size = UDim2.new(0, 140, 0, 15)
+    UndetectedContainer.Position = UDim2.new(0, 0, 0, 22)
+    UndetectedContainer.BackgroundTransparency = 1
+    UndetectedContainer.ZIndex = 11
+    UndetectedContainer.Parent = TitleContainer
+    
     local UndetectedText = Instance.new("TextLabel")
     UndetectedText.Name = "UndetectedText"
-    UndetectedText.Size = UDim2.new(0, 110, 0, 15)
-    UndetectedText.Position = UDim2.new(0, 10, 0, 22) -- Position under the brand text
+    UndetectedText.Size = UDim2.new(0, 120, 0, 15)
+    UndetectedText.Position = UDim2.new(0, 0, 0, 0)
     UndetectedText.BackgroundTransparency = 1
     UndetectedText.TextColor3 = Color3.fromRGB(120, 90, 255)
     UndetectedText.TextSize = 11
     UndetectedText.FontFace = Font.fromEnum(Enum.Font.GothamBold)
     UndetectedText.Text = "UNDETECTED v2.0"
     UndetectedText.TextXAlignment = Enum.TextXAlignment.Left
-    UndetectedText.ZIndex = 99
-    UndetectedText.Parent = Drag
+    UndetectedText.ZIndex = 12
+    UndetectedText.Parent = UndetectedContainer
     
-    -- Add pulsing green dot next to UNDETECTED
+    -- Add pulsing green dot
     local GreenDot = Instance.new("Frame")
     GreenDot.Name = "GreenDot"
     GreenDot.Size = UDim2.new(0, 8, 0, 8)
-    GreenDot.Position = UDim2.new(0, 112, 0, 26) -- Position right next to the text
+    GreenDot.Position = UDim2.new(0, 122, 0, 4)
     GreenDot.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-    GreenDot.ZIndex = 99
-    GreenDot.Parent = Drag
+    GreenDot.ZIndex = 12
+    GreenDot.Parent = UndetectedContainer
     
     -- Make the dot round
     local DotCorner = Instance.new("UICorner")
     DotCorner.CornerRadius = UDim.new(1, 0)
     DotCorner.Parent = GreenDot
     
-    -- Create pulsing animation for green dot
-    local TweenService = game:GetService("TweenService")
-    local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true)
-    local fadeOut = TweenService:Create(GreenDot, tweenInfo, {BackgroundTransparency = 0.5})
-    fadeOut:Play()
+    -- Add the "+" button at the top right corner
+    local PlusButton = Instance.new("TextButton")
+    PlusButton.Name = "PlusButton"
+    PlusButton.Size = UDim2.new(0, 20, 0, 20)
+    PlusButton.Position = UDim2.new(1, -75, 0, 3)
+    PlusButton.BackgroundTransparency = 1
+    PlusButton.TextColor3 = THEME.TEXT_PRIMARY
+    PlusButton.TextSize = 18
+    PlusButton.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+    PlusButton.Text = "+"
+    PlusButton.TextXAlignment = Enum.TextXAlignment.Center
+    PlusButton.ZIndex = 11
+    PlusButton.Parent = Drag
     
-    -- Style the tab container with proper spacing
-    if Window.Asset.TabContainer then
-        Window.Asset.TabContainer.BackgroundColor3 = THEME.BACKGROUND
+    -- Create the pulsing animation for the green dot
+    local TweenService = game:GetService("TweenService")
+    
+    local function createPulsingAnimation()
+        local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true)
+        
+        local fadeOut = TweenService:Create(GreenDot, tweenInfo, {BackgroundTransparency = 0.5})
+        fadeOut:Play()
     end
     
-    -- Style tab buttons
-    if Window.Asset.TabButtonContainer then
-        Window.Asset.TabButtonContainer.BackgroundColor3 = THEME.DARK_CONTRAST
-        
-        -- Create padding for tab buttons
-        local TabButtonPadding = Instance.new("UIPadding")
-        TabButtonPadding.Name = "TabButtonPadding"
-        TabButtonPadding.PaddingLeft = UDim.new(0, 10)
-        TabButtonPadding.PaddingRight = UDim.new(0, 10)
-        TabButtonPadding.Parent = Window.Asset.TabButtonContainer
-        
-        -- Style each tab button
-        for _, button in pairs(Window.Asset.TabButtonContainer:GetChildren()) do
-            if button:IsA("TextButton") then
-                button.BackgroundTransparency = 1
-                button.TextColor3 = THEME.TEXT_SECONDARY
-                button.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
-                button.TextSize = 13
+    createPulsingAnimation()
+    
+    -- Update control buttons colors
+    local ControlButtons = Window.Asset.Drag.ControlButtons
+    if ControlButtons then
+        ControlButtons.CloseButton.BackgroundColor3 = Color3.fromRGB(255, 69, 58)
+        ControlButtons.MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 189, 46)
+        ControlButtons.MaximizeButton.BackgroundColor3 = Color3.fromRGB(39, 201, 63)
+    end
+    
+    -- Update the title
+    local Title = Window.Asset.Title
+    Title.Size = UDim2.new(1, -120, 1, 0)
+    Title.Position = UDim2.new(0, 10, 0, 0)
+    Title.TextSize = 15
+    Title.TextColor3 = THEME.TEXT_PRIMARY
+    Title.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+    
+    -- Adjust Tab Container
+    local TabContainer = Window.Asset.TabContainer
+    TabContainer.BackgroundColor3 = THEME.BACKGROUND
+    
+    -- Update tab button container style
+    local TabButtonContainer = Window.Asset.TabButtonContainer
+    TabButtonContainer.BackgroundColor3 = THEME.ELEMENT_BG
+    TabButtonContainer.Size = UDim2.new(1, 0, 0, 30)
+    
+    -- Add UICorner to tab button container
+    local TabButtonContainerCorner = Instance.new("UICorner")
+    TabButtonContainerCorner.CornerRadius = UDim.new(0, 0)
+    TabButtonContainerCorner.Parent = TabButtonContainer
+    
+    -- Update tab buttons style
+    for _, button in pairs(TabButtonContainer:GetChildren()) do
+        if button:IsA("TextButton") then
+            button.TextColor3 = THEME.TEXT_SECONDARY
+            button.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
+            button.TextSize = 13
+            
+            if button.Highlight then
+                button.Highlight.BackgroundColor3 = THEME.ACCENT
+                button.Highlight.BackgroundTransparency = 0.8
                 
-                -- Style highlight if it exists
-                if button:FindFirstChild("Highlight") then
-                    button.Highlight.BackgroundColor3 = THEME.ACCENT
-                    button.Highlight.BackgroundTransparency = 0.85
+                -- Create a UICorner for the highlight
+                local HighlightCorner = Instance.new("UICorner")
+                HighlightCorner.CornerRadius = UDim.new(0, 4)
+                HighlightCorner.Parent = button.Highlight
+            end
+        end
+    end
+    
+    -- Update control buttons colors
+    local ControlButtons = Window.Asset.Drag.ControlButtons
+    if ControlButtons then
+        ControlButtons.CloseButton.BackgroundColor3 = Color3.fromRGB(255, 69, 58)
+        ControlButtons.MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 189, 46)
+        ControlButtons.MaximizeButton.BackgroundColor3 = Color3.fromRGB(39, 201, 63)
+    end
+    
+    -- Update Background image/pattern
+    local Background = Window.Asset.Background
+    Background.BackgroundColor3 = THEME.BACKGROUND
+    Background.ImageTransparency = 0.98  -- More subtle pattern
+    
+    -- Custom Anbu.win styling for toggle elements
+    for _, element in pairs(Window.Elements) do
+        if element.Type == "Toggle" then
+            local toggleAsset = element.Instance
+            if toggleAsset and toggleAsset:FindFirstChild("Tick") then
+                -- Make toggle "Tick" circular
+                local tickCorner = Instance.new("UICorner")
+                tickCorner.CornerRadius = UDim.new(0, 6)
+                tickCorner.Parent = toggleAsset.Tick
+                
+                -- Update tick appearance
+                toggleAsset.Tick.Size = UDim2.new(0, 18, 0, 18)
+                if element.Value then
+                    toggleAsset.Tick.BackgroundColor3 = THEME.ACCENT
+                else
+                    toggleAsset.Tick.BackgroundColor3 = THEME.INACTIVE
                 end
             end
         end
-        
-        -- Adjust tab button padding
-        if Window.Asset.TabButtonContainer:FindFirstChild("ListLayout") then
-            Window.Asset.TabButtonContainer.ListLayout.Padding = UDim.new(0, 15)
+    end
+    
+    -- Style the Slider elements to match Anbu
+    for _, element in pairs(Window.Elements) do
+        if element.Type == "Slider" then
+            local sliderAsset = element.Instance
+            if sliderAsset and sliderAsset:FindFirstChild("Background") then
+                -- Round the corners
+                local backgroundCorner = Instance.new("UICorner")
+                backgroundCorner.CornerRadius = UDim.new(0, 6)
+                backgroundCorner.Parent = sliderAsset.Background
+                
+                -- Round the bar
+                local barCorner = Instance.new("UICorner")
+                barCorner.CornerRadius = UDim.new(0, 6)
+                barCorner.Parent = sliderAsset.Background.Bar
+                
+                -- Update colors
+                sliderAsset.Background.BackgroundColor3 = THEME.INACTIVE
+                sliderAsset.Background.Bar.BackgroundColor3 = THEME.ACCENT
+            end
         end
     end
     
-    -- Fix section spacing and styling
+    -- Override sections styling
     for _, tabAsset in pairs(Window.Asset.TabContainer:GetChildren()) do
         if tabAsset:IsA("ScrollingFrame") then
-            -- Add global padding to the tab scrolling frame
-            local TabPadding = Instance.new("UIPadding")
-            TabPadding.Name = "TabPadding"
-            TabPadding.PaddingTop = UDim.new(0, 15)
-            TabPadding.PaddingLeft = UDim.new(0, 10)
-            TabPadding.PaddingRight = UDim.new(0, 10)
-            TabPadding.PaddingBottom = UDim.new(0, 15)
-            TabPadding.Parent = tabAsset
-            
-            -- Fix both sides
             for _, side in pairs({tabAsset.LeftSide, tabAsset.RightSide}) do
-                -- Add padding to each side
-                if side:FindFirstChild("Padding") then
-                    side.Padding.PaddingTop = UDim.new(0, 5)
-                    side.Padding.PaddingBottom = UDim.new(0, 5)
-                    side.Padding.PaddingLeft = UDim.new(0, 5)
-                    side.Padding.PaddingRight = UDim.new(0, 5)
-                end
-                
-                -- Increase spacing between sections
-                if side:FindFirstChild("ListLayout") then
-                    side.ListLayout.Padding = UDim.new(0, 20) -- More space between sections
-                end
-                
-                -- Improve each section
-                for _, section in pairs(side:GetChildren()) do
-                    if section:IsA("Frame") and section.Name == "Section" then
-                        -- Set proper section style
-                        section.BackgroundColor3 = THEME.SECTION_BG
-                        section.BorderColor3 = THEME.BORDER
-                        section.BorderSizePixel = 1
+                for _, element in pairs(side:GetChildren()) do
+                    if element:IsA("Frame") and element.Name == "Section" then
+                        -- Update section styling
+                        element.BackgroundColor3 = THEME.ELEMENT_BG
                         
-                        -- Add more space between elements in sections
-                        if section:FindFirstChild("Container") and section.Container:FindFirstChild("ListLayout") then
-                            section.Container.ListLayout.Padding = UDim.new(0, 10)
-                        end
+                        -- Add rounded corners
+                        local sectionCorner = Instance.new("UICorner")
+                        sectionCorner.CornerRadius = UDim.new(0, 6)
+                        sectionCorner.Parent = element
                         
-                        -- Add internal section padding
-                        if section:FindFirstChild("Container") and section.Container:FindFirstChild("Padding") then
-                            section.Container.Padding.PaddingTop = UDim.new(0, 8)
-                            section.Container.Padding.PaddingBottom = UDim.new(0, 8)
-                            section.Container.Padding.PaddingLeft = UDim.new(0, 8)
-                            section.Container.Padding.PaddingRight = UDim.new(0, 8)
+                        -- Update section stroke
+                        if element:FindFirstChild("Stroke") then
+                            element.Stroke.Color = THEME.ACCENT
+                            element.Stroke.Transparency = 0.8
                         end
                     end
                 end
             end
         end
     end
-    
-    -- Fix control buttons colors if they exist
-    local ControlButtons = Window.Asset.Drag.ControlButtons
-    if ControlButtons then
-        if ControlButtons:FindFirstChild("CloseButton") then
-            ControlButtons.CloseButton.BackgroundColor3 = Color3.fromRGB(255, 69, 58)
-        end
-        if ControlButtons:FindFirstChild("MinimizeButton") then
-            ControlButtons.MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 189, 46)
-        end
-        if ControlButtons:FindFirstChild("MaximizeButton") then
-            ControlButtons.MaximizeButton.BackgroundColor3 = Color3.fromRGB(39, 201, 63)
-        end
-    end
-
-    -- Override Section creation to ensure proper styling
-    local originalSection = Window.Tab and Window.Tab.Section
-    if originalSection then
-        Window.Tab.Section = function(Self, Section)
-            local SectionContainer = originalSection(Self, Section)
-            
-            -- Apply proper spacing and style to the new section
-            if SectionContainer and SectionContainer.Parent and SectionContainer.Parent:FindFirstChild("ListLayout") then
-                SectionContainer.Parent.ListLayout.Padding = UDim.new(0, 15)
-            end
-            
-            if SectionContainer:FindFirstChild("ListLayout") then
-                SectionContainer.ListLayout.Padding = UDim.new(0, 10)
-            end
-            
-            return SectionContainer
-        end
-    end
-    
-    -- Fix toggle appearance
-    for _, element in pairs(Window.Elements or {}) do
-        if element.Type == "Toggle" then
-            if element.Instance and element.Instance:FindFirstChild("Tick") then
-                element.Instance.Tick.Size = UDim2.new(0, 16, 0, 16)
-                element.Instance.Tick.BorderSizePixel = 0
-                
-                -- Make toggles rounded
-                local TickCorner = Instance.new("UICorner")
-                TickCorner.CornerRadius = UDim.new(0, 4)
-                TickCorner.Parent = element.Instance.Tick
-                
-                -- Adjust colors
-                if element.Value then
-                    element.Instance.Tick.BackgroundColor3 = THEME.TOGGLE_ON
-                else
-                    element.Instance.Tick.BackgroundColor3 = THEME.TOGGLE_OFF
-                end
-            end
-        end
-        
-        -- Fix slider appearance
-        if element.Type == "Slider" then
-            if element.Instance and element.Instance:FindFirstChild("Background") then
-                -- Style slider background
-                element.Instance.Background.BackgroundColor3 = THEME.SLIDER_BG
-                element.Instance.Background.BorderSizePixel = 0
-                
-                -- Add rounded corners
-                local BackgroundCorner = Instance.new("UICorner")
-                BackgroundCorner.CornerRadius = UDim.new(0, 4)
-                BackgroundCorner.Parent = element.Instance.Background
-                
-                -- Style slider fill
-                if element.Instance.Background:FindFirstChild("Bar") then
-                    element.Instance.Background.Bar.BackgroundColor3 = THEME.SLIDER_FILL
-                    element.Instance.Background.Bar.BorderSizePixel = 0
-                    
-                    -- Add rounded corners to fill
-                    local BarCorner = Instance.new("UICorner")
-                    BarCorner.CornerRadius = UDim.new(0, 4)
-                    BarCorner.Parent = element.Instance.Background.Bar
-                end
-            end
-        end
-    end
-
-    return Window
 end
 
--- These additional functions help create Anbu-style UI elements
-
--- Create an Anbu-style toggle (rounded with animation)
-function Bracket.CreateAnbuToggle(Parent, Text, Default, Callback)
-    local Container = Instance.new("Frame")
-    Container.Name = "AnbuToggle_" .. Text
-    Container.Size = UDim2.new(1, 0, 0, 30)
-    Container.BackgroundTransparency = 1
-    Container.Parent = Parent
+-- Function to create an Anbu-style toggle button (similar to the screenshot)
+function Bracket.CreateAnbuToggle(Parent, Label, DefaultValue, Callback)
+    local ToggleContainer = Instance.new("Frame")
+    ToggleContainer.Name = "Toggle_" .. Label
+    ToggleContainer.Size = UDim2.new(1, 0, 0, 40)
+    ToggleContainer.BackgroundTransparency = 1
+    ToggleContainer.Parent = Parent
     
-    local Label = Instance.new("TextLabel")
-    Label.Name = "Label"
-    Label.Size = UDim2.new(1, -50, 1, 0)
-    Label.Position = UDim2.new(0, 5, 0, 0)
-    Label.BackgroundTransparency = 1
-    Label.TextColor3 = THEME.TEXT_PRIMARY
-    Label.TextSize = 14
-    Label.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
-    Label.Text = Text
-    Label.TextXAlignment = Enum.TextXAlignment.Left
-    Label.Parent = Container
+    local ToggleLabel = Instance.new("TextLabel")
+    ToggleLabel.Name = "Label"
+    ToggleLabel.Size = UDim2.new(1, -60, 1, 0)
+    ToggleLabel.Position = UDim2.new(0, 10, 0, 0)
+    ToggleLabel.BackgroundTransparency = 1
+    ToggleLabel.TextColor3 = THEME.TEXT_PRIMARY
+    ToggleLabel.TextSize = 14
+    ToggleLabel.Text = Label
+    ToggleLabel.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
+    ToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
+    ToggleLabel.Parent = ToggleContainer
     
-    local ToggleBackground = Instance.new("Frame")
-    ToggleBackground.Name = "ToggleBackground"
-    ToggleBackground.Size = UDim2.new(0, 40, 0, 20)
-    ToggleBackground.Position = UDim2.new(1, -45, 0.5, -10)
-    ToggleBackground.BackgroundColor3 = Default and THEME.TOGGLE_ON or THEME.TOGGLE_OFF
-    ToggleBackground.BorderSizePixel = 0
-    ToggleBackground.Parent = Container
+    local ToggleButton = Instance.new("Frame")
+    ToggleButton.Name = "Toggle"
+    ToggleButton.AnchorPoint = Vector2.new(1, 0.5)
+    ToggleButton.Position = UDim2.new(1, -10, 0.5, 0)
+    ToggleButton.Size = UDim2.new(0, 40, 0, 20)
+    ToggleButton.BackgroundColor3 = DefaultValue and THEME.ACCENT or THEME.INACTIVE
+    ToggleButton.Parent = ToggleContainer
     
-    local BackgroundCorner = Instance.new("UICorner")
-    BackgroundCorner.CornerRadius = UDim.new(1, 0)
-    BackgroundCorner.Parent = ToggleBackground
+    local ToggleCorner = Instance.new("UICorner")
+    ToggleCorner.CornerRadius = UDim.new(1, 0)
+    ToggleCorner.Parent = ToggleButton
     
-    local Circle = Instance.new("Frame")
-    Circle.Name = "Circle"
-    Circle.Size = UDim2.new(0, 16, 0, 16)
-    Circle.Position = Default and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 2, 0.5, -8)
-    Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Circle.BorderSizePixel = 0
-    Circle.Parent = ToggleBackground
+    local ToggleCircle = Instance.new("Frame")
+    ToggleCircle.Name = "Circle"
+    ToggleCircle.Size = UDim2.new(0, 16, 0, 16)
+    ToggleCircle.Position = DefaultValue and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 2, 0.5, -8)
+    ToggleCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ToggleCircle.Parent = ToggleButton
     
     local CircleCorner = Instance.new("UICorner")
     CircleCorner.CornerRadius = UDim.new(1, 0)
-    CircleCorner.Parent = Circle
+    CircleCorner.Parent = ToggleCircle
     
-    local Button = Instance.new("TextButton")
-    Button.Name = "Button"
-    Button.Size = UDim2.new(1, 0, 1, 0)
-    Button.BackgroundTransparency = 1
-    Button.Text = ""
-    Button.Parent = Container
+    local ClickDetector = Instance.new("TextButton")
+    ClickDetector.Text = ""
+    ClickDetector.BackgroundTransparency = 1
+    ClickDetector.Size = UDim2.new(1, 0, 1, 0)
+    ClickDetector.Parent = ToggleContainer
     
-    local State = Default or false
-    Button.MouseButton1Click:Connect(function()
-        State = not State
-        ToggleBackground.BackgroundColor3 = State and THEME.TOGGLE_ON or THEME.TOGGLE_OFF
-        
-        local TweenService = game:GetService("TweenService")
-        local targetPosition = State and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 2, 0.5, -8)
-        local tween = TweenService:Create(Circle, TweenInfo.new(0.2), {Position = targetPosition})
-        tween:Play()
-        
-        if Callback then Callback(State) end
+    local Value = DefaultValue
+    
+    ClickDetector.MouseButton1Click:Connect(function()
+        Value = not Value
+        ToggleButton.BackgroundColor3 = Value and THEME.ACCENT or THEME.INACTIVE
+        ToggleCircle:TweenPosition(
+            Value and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 2, 0.5, -8), 
+            Enum.EasingDirection.InOut,
+            Enum.EasingStyle.Quad,
+            0.2,
+            true
+        )
+        if Callback then
+            Callback(Value)
+        end
     end)
     
     return {
-        Instance = Container,
-        SetValue = function(Value)
-            State = Value
-            ToggleBackground.BackgroundColor3 = State and THEME.TOGGLE_ON or THEME.TOGGLE_OFF
-            Circle.Position = State and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 2, 0.5, -8)
-            if Callback then Callback(State) end
+        Container = ToggleContainer,
+        SetValue = function(NewValue)
+            Value = NewValue
+            ToggleButton.BackgroundColor3 = Value and THEME.ACCENT or THEME.INACTIVE
+            ToggleCircle.Position = Value and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 2, 0.5, -8)
+            if Callback then
+                Callback(Value)
+            end
         end,
         GetValue = function()
-            return State
+            return Value
         end
     }
 end
 
--- Create an Anbu-style slider
-function Bracket.CreateAnbuSlider(Parent, Text, Min, Max, Default, Suffix, Callback)
-    local Container = Instance.new("Frame")
-    Container.Name = "AnbuSlider_" .. Text
-    Container.Size = UDim2.new(1, 0, 0, 45)
-    Container.BackgroundTransparency = 1
-    Container.Parent = Parent
+-- Function to create an Anbu-style slider (similar to the screenshot)
+function Bracket.CreateAnbuSlider(Parent, Label, Min, Max, DefaultValue, Suffix, Callback)
+    local SliderContainer = Instance.new("Frame")
+    SliderContainer.Name = "Slider_" .. Label
+    SliderContainer.Size = UDim2.new(1, 0, 0, 55)
+    SliderContainer.BackgroundTransparency = 1
+    SliderContainer.Parent = Parent
     
-    local Label = Instance.new("TextLabel")
-    Label.Name = "Label"
-    Label.Size = UDim2.new(1, -60, 0, 20)
-    Label.Position = UDim2.new(0, 5, 0, 0)
-    Label.BackgroundTransparency = 1
-    Label.TextColor3 = THEME.TEXT_PRIMARY
-    Label.TextSize = 14
-    Label.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
-    Label.Text = Text
-    Label.TextXAlignment = Enum.TextXAlignment.Left
-    Label.Parent = Container
+    local SliderLabel = Instance.new("TextLabel")
+    SliderLabel.Name = "Label"
+    SliderLabel.Size = UDim2.new(1, 0, 0, 20)
+    SliderLabel.Position = UDim2.new(0, 10, 0, 0)
+    SliderLabel.BackgroundTransparency = 1
+    SliderLabel.TextColor3 = THEME.TEXT_PRIMARY
+    SliderLabel.TextSize = 14
+    SliderLabel.Text = Label
+    SliderLabel.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
+    SliderLabel.TextXAlignment = Enum.TextXAlignment.Left
+    SliderLabel.Parent = SliderContainer
     
-    local Value = Instance.new("TextLabel")
-    Value.Name = "Value"
-    Value.Size = UDim2.new(0, 50, 0, 20)
-    Value.Position = UDim2.new(1, -55, 0, 0)
-    Value.BackgroundTransparency = 1
-    Value.TextColor3 = THEME.ACCENT
-    Value.TextSize = 14
-    Value.FontFace = Font.fromEnum(Enum.Font.GothamBold)
-    Value.TextXAlignment = Enum.TextXAlignment.Right
-    Value.Parent = Container
+    local ValueLabel = Instance.new("TextLabel")
+    ValueLabel.Name = "Value"
+    ValueLabel.Size = UDim2.new(0, 50, 0, 20)
+    ValueLabel.Position = UDim2.new(1, -60, 0, 0)
+    ValueLabel.BackgroundTransparency = 1
+    ValueLabel.TextColor3 = THEME.ACCENT
+    ValueLabel.TextSize = 14
+    ValueLabel.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+    ValueLabel.TextXAlignment = Enum.TextXAlignment.Right
+    ValueLabel.Parent = SliderContainer
     
-    local SliderBackground = Instance.new("Frame")
-    SliderBackground.Name = "SliderBackground"
-    SliderBackground.Size = UDim2.new(1, -10, 0, 8)
-    SliderBackground.Position = UDim2.new(0, 5, 0, 30)
-    SliderBackground.BackgroundColor3 = THEME.SLIDER_BG
-    SliderBackground.BorderSizePixel = 0
-    SliderBackground.Parent = Container
+    local SliderBg = Instance.new("Frame")
+    SliderBg.Name = "Background"
+    SliderBg.Size = UDim2.new(1, -20, 0, 6)
+    SliderBg.Position = UDim2.new(0, 10, 0, 30)
+    SliderBg.BackgroundColor3 = THEME.INACTIVE
+    SliderBg.Parent = SliderContainer
     
-    local BackgroundCorner = Instance.new("UICorner")
-    BackgroundCorner.CornerRadius = UDim.new(1, 0)
-    BackgroundCorner.Parent = SliderBackground
+    local SliderBgCorner = Instance.new("UICorner")
+    SliderBgCorner.CornerRadius = UDim.new(1, 0)
+    SliderBgCorner.Parent = SliderBg
     
     local SliderFill = Instance.new("Frame")
-    SliderFill.Name = "SliderFill"
+    SliderFill.Name = "Fill"
     SliderFill.Size = UDim2.new(0, 0, 1, 0)
-    SliderFill.BackgroundColor3 = THEME.SLIDER_FILL
-    SliderFill.BorderSizePixel = 0
-    SliderFill.Parent = SliderBackground
+    SliderFill.BackgroundColor3 = THEME.ACCENT
+    SliderFill.Parent = SliderBg
     
-    local FillCorner = Instance.new("UICorner")
-    FillCorner.CornerRadius = UDim.new(1, 0)
-    FillCorner.Parent = SliderFill
+    local SliderFillCorner = Instance.new("UICorner")
+    SliderFillCorner.CornerRadius = UDim.new(1, 0)
+    SliderFillCorner.Parent = SliderFill
     
-    local Knob = Instance.new("Frame")
-    Knob.Name = "Knob"
-    Knob.Size = UDim2.new(0, 14, 0, 14)
-    Knob.Position = UDim2.new(0, -7, 0.5, -7)
-    Knob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Knob.BorderSizePixel = 0
-    Knob.AnchorPoint = Vector2.new(0, 0.5)
-    Knob.Parent = SliderFill
+    local SliderKnob = Instance.new("Frame")
+    SliderKnob.Name = "Knob"
+    SliderKnob.Size = UDim2.new(0, 16, 0, 16)
+    SliderKnob.Position = UDim2.new(0, -8, 0, -5)
+    SliderKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    SliderKnob.AnchorPoint = Vector2.new(0, 0.5)
+    SliderKnob.Parent = SliderFill
     
     local KnobCorner = Instance.new("UICorner")
     KnobCorner.CornerRadius = UDim.new(1, 0)
-    KnobCorner.Parent = Knob
+    KnobCorner.Parent = SliderKnob
     
-    local Button = Instance.new("TextButton")
-    Button.Name = "Button"
-    Button.Size = UDim2.new(1, 0, 1, 0)
-    Button.BackgroundTransparency = 1
-    Button.Text = ""
-    Button.Parent = Container
+    local ClickDetector = Instance.new("TextButton")
+    ClickDetector.Text = ""
+    ClickDetector.BackgroundTransparency = 1
+    ClickDetector.Size = UDim2.new(1, 0, 1, 0)
+    ClickDetector.Parent = SliderContainer
     
-    local CurrentValue = Default or Min
     local Dragging = false
+    local Value = DefaultValue or Min
     
-    local function UpdateSlider(Value)
-        local ClampedValue = math.clamp(Value, Min, Max)
-        local Ratio = (ClampedValue - Min) / (Max - Min)
-        
-        SliderFill.Size = UDim2.new(Ratio, 0, 1, 0)
-        Container.Value.Text = tostring(math.floor(ClampedValue * 100) / 100) .. (Suffix or "")
-        
-        CurrentValue = ClampedValue
-        if Callback then Callback(CurrentValue) end
+    -- Function to update the slider visually
+    local function UpdateSlider(NewValue)
+        Value = math.clamp(NewValue, Min, Max)
+        local Percent = (Value - Min) / (Max - Min)
+        SliderFill.Size = UDim2.new(Percent, 0, 1, 0)
+        ValueLabel.Text = tostring(math.floor(Value * 100) / 100) .. (Suffix or "")
+        if Callback then
+            Callback(Value)
+        end
     end
     
-    UpdateSlider(CurrentValue)
+    -- Initialize slider
+    UpdateSlider(DefaultValue or Min)
     
-    Button.MouseButton1Down:Connect(function()
+    -- Handle slider interaction
+    ClickDetector.MouseButton1Down:Connect(function()
         Dragging = true
     end)
     
@@ -4946,23 +4811,21 @@ function Bracket.CreateAnbuSlider(Parent, Text, Min, Max, Default, Suffix, Callb
     game:GetService("UserInputService").InputChanged:Connect(function(Input)
         if Dragging and Input.UserInputType == Enum.UserInputType.MouseMovement then
             local MousePos = game:GetService("UserInputService"):GetMouseLocation()
-            local SliderPosition = SliderBackground.AbsolutePosition
-            local SliderSize = SliderBackground.AbsoluteSize
-            
-            local Ratio = math.clamp((MousePos.X - SliderPosition.X) / SliderSize.X, 0, 1)
-            local NewValue = Min + (Max - Min) * Ratio
-            
+            local SliderPos = SliderBg.AbsolutePosition
+            local SliderSize = SliderBg.AbsoluteSize
+            local Percent = math.clamp((MousePos.X - SliderPos.X) / SliderSize.X, 0, 1)
+            local NewValue = Min + (Max - Min) * Percent
             UpdateSlider(NewValue)
         end
     end)
     
     return {
-        Instance = Container,
-        SetValue = function(Value)
-            UpdateSlider(Value)
+        Container = SliderContainer,
+        SetValue = function(NewValue)
+            UpdateSlider(NewValue)
         end,
         GetValue = function()
-            return CurrentValue
+            return Value
         end
     }
 end
