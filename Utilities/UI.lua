@@ -424,23 +424,109 @@ Bracket.Assets = {
         Title.TextXAlignment = Enum.TextXAlignment.Left
         Title.Parent = Window
 
-        local Label = Instance.new("TextLabel")
-        Label.Name = "Version"
-        Label.AnchorPoint = Vector2.new(0.5, 0)
-        Label.Size = UDim2.new(1, -10, 0, 24) -- Made taller
-        Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Label.BackgroundTransparency = 1
-        Label.Position = UDim2.new(0.5, 0, 0, 0)
-        Label.BorderSizePixel = 0
-        Label.BackgroundColor3 = THEME.LIGHT_CONTRAST
-        Label.TextStrokeTransparency = 0.75
-        Label.TextSize = 14
-        Label.RichText = true
-        Label.TextColor3 = THEME.TEXT_SECONDARY
-        Label.Text = "Bracket V3.4"
-        Label.FontFace = Font.fromEnum(Enum.Font.Gotham)
-        Label.TextXAlignment = Enum.TextXAlignment.Right
-        Label.Parent = Window
+ -- Then add the macOS-style buttons:
+local ControlButtonContainer = Instance.new("Frame")
+ControlButtonContainer.Name = "ControlButtons"
+ControlButtonContainer.AnchorPoint = Vector2.new(1, 0.5)
+ControlButtonContainer.Size = UDim2.new(0, 62, 0, 12)
+ControlButtonContainer.Position = UDim2.new(1, -8, 0.5, 0)
+ControlButtonContainer.BackgroundTransparency = 1
+ControlButtonContainer.BorderSizePixel = 0
+ControlButtonContainer.Parent = Drag -- Parent to the Drag bar
+
+-- Create the close button (red)
+local CloseButton = Instance.new("TextButton")
+CloseButton.Name = "CloseButton"
+CloseButton.Size = UDim2.new(0, 12, 0, 12)
+CloseButton.Position = UDim2.new(0, 0, 0, 0)
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 95, 86)
+CloseButton.BorderSizePixel = 0
+CloseButton.Text = ""
+CloseButton.Parent = ControlButtonContainer
+
+local CloseCorner = Instance.new("UICorner")
+CloseCorner.CornerRadius = UDim.new(1, 0) -- Makes it a circle
+CloseCorner.Parent = CloseButton
+
+-- Create the minimize button (yellow)
+local MinimizeButton = Instance.new("TextButton")
+MinimizeButton.Name = "MinimizeButton"
+MinimizeButton.Size = UDim2.new(0, 12, 0, 12)
+MinimizeButton.Position = UDim2.new(0, 25, 0, 0)
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 189, 46)
+MinimizeButton.BorderSizePixel = 0
+MinimizeButton.Text = ""
+MinimizeButton.Parent = ControlButtonContainer
+
+local MinimizeCorner = Instance.new("UICorner")
+MinimizeCorner.CornerRadius = UDim.new(1, 0)
+MinimizeCorner.Parent = MinimizeButton
+
+-- Create the maximize button (green)
+local MaximizeButton = Instance.new("TextButton")
+MaximizeButton.Name = "MaximizeButton"
+MaximizeButton.Size = UDim2.new(0, 12, 0, 12)
+MaximizeButton.Position = UDim2.new(0, 50, 0, 0)
+MaximizeButton.BackgroundColor3 = Color3.fromRGB(39, 201, 63)
+MaximizeButton.BorderSizePixel = 0
+MaximizeButton.Text = ""
+MaximizeButton.Parent = ControlButtonContainer
+
+local MaximizeCorner = Instance.new("UICorner")
+MaximizeCorner.CornerRadius = UDim.new(1, 0)
+MaximizeCorner.Parent = MaximizeButton
+
+-- Add hover effects and functionality
+CloseButton.MouseEnter:Connect(function()
+    CloseButton.BackgroundColor3 = Color3.fromRGB(255, 75, 66) -- Slightly darker when hovered
+end)
+
+CloseButton.MouseLeave:Connect(function()
+    CloseButton.BackgroundColor3 = Color3.fromRGB(255, 95, 86)
+end)
+
+MinimizeButton.MouseEnter:Connect(function()
+    MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 169, 26)
+end)
+
+MinimizeButton.MouseLeave:Connect(function()
+    MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 189, 46)
+end)
+
+MaximizeButton.MouseEnter:Connect(function()
+    MaximizeButton.BackgroundColor3 = Color3.fromRGB(19, 181, 43)
+end)
+
+MaximizeButton.MouseLeave:Connect(function()
+    MaximizeButton.BackgroundColor3 = Color3.fromRGB(39, 201, 63)
+end)
+
+-- Add functionality
+CloseButton.MouseButton1Click:Connect(function()
+    Window.Enabled = false -- Close the window
+end)
+
+-- Since actual minimize functionality isn't available in Roblox,
+-- you might want to implement a custom behavior or leave it as visual only
+MinimizeButton.MouseButton1Click:Connect(function()
+    -- Custom minimize behavior if needed
+end)
+
+-- For maximize, you can implement a toggle between normal and maximized size
+local originalSize = Window.Size
+local isMaximized = false
+
+MaximizeButton.MouseButton1Click:Connect(function()
+    if isMaximized then
+        Window.Size = originalSize
+        isMaximized = false
+    else
+        originalSize = Window.Size
+        local screenSize = workspace.CurrentCamera.ViewportSize
+        Window.Size = UDim2.new(0, screenSize.X * 0.8, 0, screenSize.Y * 0.8)
+        isMaximized = true
+    end
+end)
 
         local Background = Instance.new("ImageLabel")
         Background.Name = "Background"
