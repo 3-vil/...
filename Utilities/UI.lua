@@ -236,15 +236,15 @@ Bracket.Assets = {
 		ToolTip.Visible = false
 		ToolTip.AnchorPoint = Vector2.new(0, 1)
 		ToolTip.Size = UDim2.new(0, 45, 0, 20)
-		ToolTip.BorderColor3 = Color3.fromRGB(63, 63, 63)
+		ToolTip.BorderColor3 = Color3.fromRGB(40, 40, 45)
 		ToolTip.Position = UDim2.new(0, 50, 0, 50)
-		ToolTip.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		ToolTip.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		ToolTip.TextStrokeTransparency = 0.75
 		ToolTip.TextSize = 14
 		ToolTip.RichText = true
 		ToolTip.TextColor3 = Color3.fromRGB(255, 255, 255)
 		ToolTip.Text = "ToolTip"
-		ToolTip.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		ToolTip.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		ToolTip.Parent = Screen
 
 		local Watermark = Instance.new("TextLabel")
@@ -252,22 +252,23 @@ Bracket.Assets = {
 		Watermark.Visible = false
 		Watermark.AnchorPoint = Vector2.new(1, 0)
 		Watermark.Size = UDim2.new(0, 61, 0, 20)
-		Watermark.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Watermark.BorderColor3 = Color3.fromRGB(40, 40, 45)
 		Watermark.Position = UDim2.new(1, -20, 0, 20)
-		Watermark.BorderSizePixel = 2
-		Watermark.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Watermark.BorderSizePixel = 0
+		Watermark.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Watermark.TextStrokeTransparency = 0.75
 		Watermark.TextSize = 14
 		Watermark.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Watermark.Text = "Watermark"
-		Watermark.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Watermark.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Watermark.Parent = Screen
 
 		local Stroke = Instance.new("UIStroke")
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = Color3.fromRGB(63, 63, 63)
+		Stroke.LineJoinMode = Enum.LineJoinMode.Round
+		Stroke.Thickness = 1
+		Stroke.Color = Color3.fromRGB(40, 40, 45)
 		Stroke.Parent = Watermark
 
 		-- Push Notification
@@ -333,36 +334,49 @@ Bracket.Assets = {
 		Window.Size = UDim2.new(0, 496, 0, 496)
 		Window.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Window.Position = UDim2.new(0.5, -248, 0.5, -248)
-		Window.BorderSizePixel = 2
-		Window.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Window.BorderSizePixel = 0
+		Window.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+		Window.ClipsDescendants = true
+
+		-- Create rounded corners for the Window
+		local UICorner = Instance.new("UICorner")
+		UICorner.CornerRadius = UDim.new(0, 8)
+		UICorner.Parent = Window
 
 		local Stroke = Instance.new("UIStroke")
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = Color3.fromRGB(63, 63, 63)
+		Stroke.LineJoinMode = Enum.LineJoinMode.Round
+		Stroke.Color = Color3.fromRGB(40, 40, 45)
+		Stroke.Thickness = 1
 		Stroke.Parent = Window
 
 		local Drag = Instance.new("Frame")
 		Drag.Name = "Drag"
 		Drag.AnchorPoint = Vector2.new(0.5, 0)
-		Drag.Size = UDim2.new(1, 0, 0, 16)
-		Drag.BorderColor3 = Color3.fromRGB(63, 63, 63)
+		Drag.Size = UDim2.new(1, 0, 0, 18)
+		Drag.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Drag.Position = UDim2.new(0.5, 0, 0, 0)
-		Drag.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Drag.BorderSizePixel = 0
+		Drag.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
 		Drag.Parent = Window
+
+		-- Add rounded corners to the top of the drag bar
+		local DragCorner = Instance.new("UICorner")
+		DragCorner.CornerRadius = UDim.new(0, 8)
+		DragCorner.Parent = Drag
 
 		local Resize = Instance.new("ImageButton")
 		Resize.Name = "Resize"
 		Resize.ZIndex = 3
 		Resize.AnchorPoint = Vector2.new(1, 1)
 		Resize.Size = UDim2.new(0, 10, 0, 10)
-		Resize.BorderColor3 = Color3.fromRGB(63, 63, 63)
+		Resize.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Resize.BackgroundTransparency = 1
-		Resize.Position = UDim2.new(1, 0, 1, 0)
+		Resize.Position = UDim2.new(1, -5, 1, -5)
 		Resize.BorderSizePixel = 0
-		Resize.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-		Resize.ImageColor3 = Color3.fromRGB(63, 63, 63)
+		Resize.BackgroundColor3 = Color3.fromRGB(124, 89, 255)
+		Resize.ImageColor3 = Color3.fromRGB(124, 89, 255)
 		Resize.ScaleType = Enum.ScaleType.Fit
 		Resize.ResampleMode = Enum.ResamplerMode.Pixelated
 		Resize.Image = "rbxassetid://7368471234"
@@ -383,49 +397,51 @@ Bracket.Assets = {
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
 		Title.AnchorPoint = Vector2.new(0.5, 0)
-		Title.Size = UDim2.new(1, -10, 0, 16)
+		Title.Size = UDim2.new(1, -10, 0, 18)
 		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Window"
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Window
 
 		local Label = Instance.new("TextLabel")
 		Label.Name = "Version"
 		Label.AnchorPoint = Vector2.new(0.5, 0)
-		Label.Size = UDim2.new(1, -10, 0, 16)
+		Label.Size = UDim2.new(1, -10, 0, 18)
 		Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Label.BackgroundTransparency = 1
 		Label.Position = UDim2.new(0.5, 0, 0, 0)
 		Label.BorderSizePixel = 0
-		Label.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Label.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Label.TextStrokeTransparency = 0.75
 		Label.TextSize = 14
 		Label.RichText = true
-		Label.TextColor3 = Color3.fromRGB(191, 191, 191)
+		Label.TextColor3 = Color3.fromRGB(180, 180, 180)
 		Label.Text = "Bracket V3.4"
-		Label.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Label.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Label.TextXAlignment = Enum.TextXAlignment.Right
 		Label.Parent = Window
 
 		local Background = Instance.new("ImageLabel")
 		Background.Name = "Background"
 		Background.AnchorPoint = Vector2.new(0.5, 0)
-		Background.Size = UDim2.new(1, 0, 1, -34)
+		Background.Size = UDim2.new(1, 0, 1, -35)
 		Background.ClipsDescendants = true
-		Background.BorderColor3 = Color3.fromRGB(63, 63, 63)
-		Background.Position = UDim2.new(0.5, 0, 0, 34)
-		Background.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Background.Position = UDim2.new(0.5, 0, 0, 35)
+		Background.BorderSizePixel = 0
+		Background.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
 		Background.ScaleType = Enum.ScaleType.Tile
-		Background.ImageColor3 = Color3.fromRGB(0, 0, 0)
+		Background.ImageColor3 = Color3.fromRGB(10, 10, 15)
+		Background.ImageTransparency = 0.9
 		Background.TileSize = UDim2.new(0, 74, 0, 74)
 		Background.Image = "rbxassetid://5553946656"
 		Background.Parent = Window
@@ -433,33 +449,44 @@ Bracket.Assets = {
 		local TabContainer = Instance.new("Frame")
 		TabContainer.Name = "TabContainer"
 		TabContainer.AnchorPoint = Vector2.new(0.5, 0)
-		TabContainer.Size = UDim2.new(1, 0, 1, -34)
+		TabContainer.Size = UDim2.new(1, 0, 1, -35)
 		TabContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TabContainer.BackgroundTransparency = 1
-		TabContainer.Position = UDim2.new(0.5, 0, 0, 34)
+		TabContainer.Position = UDim2.new(0.5, 0, 0, 35)
 		TabContainer.BorderSizePixel = 0
-		TabContainer.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		TabContainer.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		TabContainer.Parent = Window
 
 		local TabButtonContainer = Instance.new("ScrollingFrame")
 		TabButtonContainer.Name = "TabButtonContainer"
 		TabButtonContainer.AnchorPoint = Vector2.new(0.5, 0)
-		TabButtonContainer.Size = UDim2.new(1, 0, 0, 17)
+		TabButtonContainer.Size = UDim2.new(1, 0, 0, 20)
 		TabButtonContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		TabButtonContainer.BackgroundTransparency = 1
+		TabButtonContainer.BackgroundTransparency = 0
 		TabButtonContainer.Position = UDim2.new(0.5, 0, 0, 17)
 		TabButtonContainer.Active = true
 		TabButtonContainer.BorderSizePixel = 0
-		TabButtonContainer.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		TabButtonContainer.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
 		TabButtonContainer.ScrollingDirection = Enum.ScrollingDirection.X
 		TabButtonContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
-		TabButtonContainer.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+		TabButtonContainer.ScrollBarImageColor3 = Color3.fromRGB(124, 89, 255)
 		TabButtonContainer.MidImage = "rbxassetid://6432766838"
-		TabButtonContainer.ScrollBarThickness = 0
+		TabButtonContainer.ScrollBarThickness = 2
 		TabButtonContainer.TopImage = "rbxassetid://6432766838"
 		TabButtonContainer.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
 		TabButtonContainer.BottomImage = "rbxassetid://6432766838"
 		TabButtonContainer.Parent = Window
+
+		local TabButtonStroke = Instance.new("UIStroke")
+		TabButtonStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		TabButtonStroke.LineJoinMode = Enum.LineJoinMode.Round
+		TabButtonStroke.Color = Color3.fromRGB(40, 40, 45)
+		TabButtonStroke.Thickness = 1
+		TabButtonStroke.Parent = TabButtonContainer
+
+		local TabButtonUICorner = Instance.new("UICorner")
+		TabButtonUICorner.CornerRadius = UDim.new(0, 0)  -- Only rounded at the bottom
+		TabButtonUICorner.Parent = TabButtonContainer
 
 		local ListLayout = Instance.new("UIListLayout")
 		ListLayout.Name = "ListLayout"
@@ -474,14 +501,20 @@ Bracket.Assets = {
 		Notification.Name = "Notification"
 		Notification.Size = UDim2.new(0, 200, 0, 48)
 		Notification.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Notification.BorderSizePixel = 2
-		Notification.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Notification.BorderSizePixel = 0
+		Notification.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 
+		-- Create rounded corners
+		local UICorner = Instance.new("UICorner")
+		UICorner.CornerRadius = UDim.new(0, 6)
+		UICorner.Parent = Notification
+		
 		local Stroke = Instance.new("UIStroke")
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = Color3.fromRGB(63, 63, 63)
+		Stroke.LineJoinMode = Enum.LineJoinMode.Round
+		Stroke.Color = Color3.fromRGB(40, 40, 45)
+		Stroke.Thickness = 1
 		Stroke.Parent = Notification
 
 		local Padding = Instance.new("UIPadding")
@@ -504,14 +537,15 @@ Bracket.Assets = {
 		Title.Size = UDim2.new(1, 0, 0, 14)
 		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+		Title.BackgroundTransparency = 1
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Title"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Notification
 
@@ -521,23 +555,25 @@ Bracket.Assets = {
 		Description.Size = UDim2.new(1, 0, 0, 14)
 		Description.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Description.BorderSizePixel = 0
-		Description.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Description.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+		Description.BackgroundTransparency = 1
 		Description.TextStrokeTransparency = 0.75
 		Description.TextSize = 14
 		Description.RichText = true
-		Description.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Description.TextColor3 = Color3.fromRGB(180, 180, 180)
 		Description.Text = "Description"
 		Description.TextWrapped = true
-		Description.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Description.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Description.TextXAlignment = Enum.TextXAlignment.Left
 		Description.Parent = Notification
 
 		local Divider = Instance.new("Frame")
 		Divider.Name = "Divider"
 		Divider.LayoutOrder = 1
-		Divider.Size = UDim2.new(1, -2, 0, 2)
+		Divider.Size = UDim2.new(1, -2, 0, 1)
 		Divider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Divider.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Divider.BorderSizePixel = 0
+		Divider.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 		Divider.Parent = Notification
 
 		local Close = Instance.new("TextButton")
@@ -547,13 +583,14 @@ Bracket.Assets = {
 		Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Close.Position = UDim2.new(1, 0, 0.5, 0)
 		Close.BorderSizePixel = 0
-		Close.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Close.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+		Close.BackgroundTransparency = 1
 		Close.AutoButtonColor = false
 		Close.TextStrokeTransparency = 0.75
 		Close.TextSize = 14
-		Close.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Close.Text = "X"
-		Close.FontFace = Font.fromEnum(Enum.Font.Nunito)
+		Close.TextColor3 = Color3.fromRGB(180, 180, 180)
+		Close.Text = "✕"
+		Close.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Close.Parent = Title
 
 		return Notification
@@ -565,33 +602,39 @@ Bracket.Assets = {
 		Notification.ClipsDescendants = true
 		Notification.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Notification.BackgroundTransparency = 1
-		Notification.BorderSizePixel = 2
-		Notification.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Notification.BorderSizePixel = 0
+		Notification.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 
 		local Main = Instance.new("Frame")
 		Main.Name = "Main"
 		Main.Size = UDim2.new(0, 255, 0, 20)
 		Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Main.Position = UDim2.new(0, 2, 0, 2)
-		Main.BorderSizePixel = 2
-		Main.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Main.BorderSizePixel = 0
+		Main.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Main.Parent = Notification
+
+		-- Add rounded corners to toast notification
+		local UICorner = Instance.new("UICorner")
+		UICorner.CornerRadius = UDim.new(0, 6)
+		UICorner.Parent = Main
 
 		local Stroke = Instance.new("UIStroke")
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = Color3.fromRGB(63, 63, 63)
+		Stroke.LineJoinMode = Enum.LineJoinMode.Round
+		Stroke.Color = Color3.fromRGB(40, 40, 45)
+		Stroke.Thickness = 1
 		Stroke.Parent = Main
 
 		local GradientLine = Instance.new("Frame")
 		GradientLine.Name = "GradientLine"
 		GradientLine.AnchorPoint = Vector2.new(1, 0.5)
-		GradientLine.Size = UDim2.new(0, 2, 1, 4)
+		GradientLine.Size = UDim2.new(0, 2, 1, 0)
 		GradientLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		GradientLine.Position = UDim2.new(0, 0, 0.5, 0)
 		GradientLine.BorderSizePixel = 0
-		GradientLine.BackgroundColor3 = Color3.fromRGB(255, 140, 0)
+		GradientLine.BackgroundColor3 = Color3.fromRGB(124, 89, 255)
 		GradientLine.Parent = Main
 
 		local Gradient = Instance.new("UIGradient")
@@ -613,13 +656,13 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Hit OnlyTwentyCharacters in the Head with AK47"
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Main
 
@@ -633,37 +676,49 @@ Bracket.Assets = {
 		KeybindList.Size = UDim2.new(0, 121, 0, 246)
 		KeybindList.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		KeybindList.Position = UDim2.new(0, 10, 0.5, -123)
-		KeybindList.BorderSizePixel = 2
-		KeybindList.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		KeybindList.BorderSizePixel = 0
+		KeybindList.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+
+		-- Add rounded corners to keybind list
+		local UICorner = Instance.new("UICorner")
+		UICorner.CornerRadius = UDim.new(0, 8)
+		UICorner.Parent = KeybindList
 
 		local Stroke = Instance.new("UIStroke")
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = Color3.fromRGB(63, 63, 63)
+		Stroke.LineJoinMode = Enum.LineJoinMode.Round
+		Stroke.Color = Color3.fromRGB(40, 40, 45)
+		Stroke.Thickness = 1
 		Stroke.Parent = KeybindList
 
 		local Drag = Instance.new("Frame")
 		Drag.Name = "Drag"
 		Drag.ZIndex = 4
 		Drag.AnchorPoint = Vector2.new(0.5, 0)
-		Drag.Size = UDim2.new(1, 0, 0, 16)
-		Drag.BorderColor3 = Color3.fromRGB(63, 63, 63)
+		Drag.Size = UDim2.new(1, 0, 0, 18)
+		Drag.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Drag.Position = UDim2.new(0.5, 0, 0, 0)
-		Drag.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Drag.BorderSizePixel = 0
+		Drag.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
 		Drag.Parent = KeybindList
+
+		-- Add rounded corners to the top of the drag bar
+		local DragCorner = Instance.new("UICorner")
+		DragCorner.CornerRadius = UDim.new(0, 8)
+		DragCorner.Parent = Drag
 
 		local Resize = Instance.new("ImageButton")
 		Resize.Name = "Resize"
 		Resize.ZIndex = 5
 		Resize.AnchorPoint = Vector2.new(1, 1)
 		Resize.Size = UDim2.new(0, 10, 0, 10)
-		Resize.BorderColor3 = Color3.fromRGB(63, 63, 63)
+		Resize.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Resize.BackgroundTransparency = 1
-		Resize.Position = UDim2.new(1, 0, 1, 0)
+		Resize.Position = UDim2.new(1, -5, 1, -5)
 		Resize.BorderSizePixel = 0
-		Resize.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-		Resize.ImageColor3 = Color3.fromRGB(63, 63, 63)
+		Resize.BackgroundColor3 = Color3.fromRGB(124, 89, 255)
+		Resize.ImageColor3 = Color3.fromRGB(124, 89, 255)
 		Resize.ScaleType = Enum.ScaleType.Fit
 		Resize.ResampleMode = Enum.ResamplerMode.Pixelated
 		Resize.Image = "rbxassetid://7368471234"
@@ -673,18 +728,18 @@ Bracket.Assets = {
 		Title.Name = "Title"
 		Title.ZIndex = 4
 		Title.AnchorPoint = Vector2.new(0.5, 0)
-		Title.Size = UDim2.new(1, -10, 0, 16)
+		Title.Size = UDim2.new(1, -10, 0, 18)
 		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Keybinds"
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSansSemibold)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = KeybindList
 
@@ -692,33 +747,39 @@ Bracket.Assets = {
 		Background.Name = "Background"
 		Background.ZIndex = 4
 		Background.AnchorPoint = Vector2.new(0.5, 0)
-		Background.Size = UDim2.new(1, 0, 1, -17)
+		Background.Size = UDim2.new(1, 0, 1, -18)
 		Background.ClipsDescendants = true
-		Background.BorderColor3 = Color3.fromRGB(63, 63, 63)
-		Background.Position = UDim2.new(0.5, 0, 0, 17)
-		Background.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Background.Position = UDim2.new(0.5, 0, 0, 18)
+		Background.BorderSizePixel = 0
+		Background.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
 		Background.ScaleType = Enum.ScaleType.Tile
-		Background.ImageColor3 = Color3.fromRGB(0, 0, 0)
+		Background.ImageColor3 = Color3.fromRGB(10, 10, 15)
+		Background.ImageTransparency = 0.9
 		Background.TileSize = UDim2.new(0, 74, 0, 74)
 		Background.Image = "rbxassetid://5553946656"
 		Background.Parent = KeybindList
+
+		local BackgroundCorner = Instance.new("UICorner")
+		BackgroundCorner.CornerRadius = UDim.new(0, 8)
+		BackgroundCorner.Parent = Background
 
 		local List = Instance.new("ScrollingFrame")
 		List.Name = "List"
 		List.ZIndex = 4
 		List.AnchorPoint = Vector2.new(0.5, 0)
-		List.Size = UDim2.new(1, 0, 1, -17)
+		List.Size = UDim2.new(1, 0, 1, -18)
 		List.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		List.BackgroundTransparency = 1
-		List.Position = UDim2.new(0.5, 0, 0, 17)
+		List.Position = UDim2.new(0.5, 0, 0, 18)
 		List.Active = true
 		List.BorderSizePixel = 0
-		List.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		List.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		List.ScrollingDirection = Enum.ScrollingDirection.Y
 		List.CanvasSize = UDim2.new(0, 0, 0, 0)
-		List.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+		List.ScrollBarImageColor3 = Color3.fromRGB(124, 89, 255)
 		List.MidImage = "rbxassetid://6432766838"
-		List.ScrollBarThickness = 0
+		List.ScrollBarThickness = 3
 		List.TopImage = "rbxassetid://6432766838"
 		List.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
 		List.BottomImage = "rbxassetid://6432766838"
@@ -748,7 +809,7 @@ Bracket.Assets = {
 		KeybindMimic.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		KeybindMimic.BackgroundTransparency = 1
 		KeybindMimic.BorderSizePixel = 0
-		KeybindMimic.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		KeybindMimic.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -759,14 +820,14 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0, 14, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Toggle"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = KeybindMimic
 
@@ -777,13 +838,19 @@ Bracket.Assets = {
 		Tick.Size = UDim2.new(0, 10, 0, 10)
 		Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Tick.Position = UDim2.new(0, 0, 0.5, 0)
-		Tick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Tick.BorderSizePixel = 0
+		Tick.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 		Tick.Parent = KeybindMimic
+
+		-- Add rounded corners to the tick
+		local TickCorner = Instance.new("UICorner")
+		TickCorner.CornerRadius = UDim.new(0, 3)
+		TickCorner.Parent = Tick
 
 		local Gradient = Instance.new("UIGradient")
 		Gradient.Name = "Gradient"
 		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
 		Gradient.Parent = Tick
 
 		local Layout = Instance.new("Frame")
@@ -796,7 +863,7 @@ Bracket.Assets = {
 		Layout.BackgroundTransparency = 1
 		Layout.Position = UDim2.new(1, 1, 0.5, 0)
 		Layout.BorderSizePixel = 0
-		Layout.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Layout.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Layout.Parent = KeybindMimic
 
 		local Padding = Instance.new("UIPadding")
@@ -820,14 +887,13 @@ Bracket.Assets = {
 		Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Keybind.BackgroundTransparency = 1
 		Keybind.BorderSizePixel = 0
-		Keybind.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		--Keybind.AutoButtonColor = false
+		Keybind.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Keybind.TextStrokeTransparency = 0.75
 		Keybind.TextSize = 14
 		Keybind.RichText = true
-		Keybind.TextColor3 = Color3.fromRGB(189, 189, 189)
+		Keybind.TextColor3 = Color3.fromRGB(180, 180, 180)
 		Keybind.Text = "[ NONE ]"
-		Keybind.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Keybind.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Keybind.TextXAlignment = Enum.TextXAlignment.Right
 		Keybind.Parent = Layout
 
@@ -843,12 +909,12 @@ Bracket.Assets = {
 		Tab.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Tab.Active = true
 		Tab.BorderSizePixel = 0
-		Tab.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Tab.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Tab.ScrollingDirection = Enum.ScrollingDirection.Y
 		Tab.CanvasSize = UDim2.new(0, 0, 0, 0)
-		Tab.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+		Tab.ScrollBarImageColor3 = Color3.fromRGB(124, 89, 255)
 		Tab.MidImage = "rbxassetid://6432766838"
-		Tab.ScrollBarThickness = 0
+		Tab.ScrollBarThickness = 3
 		Tab.TopImage = "rbxassetid://6432766838"
 		Tab.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
 		Tab.BottomImage = "rbxassetid://6432766838"
@@ -859,7 +925,7 @@ Bracket.Assets = {
 		LeftSide.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		LeftSide.BackgroundTransparency = 1
 		LeftSide.BorderSizePixel = 0
-		LeftSide.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		LeftSide.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		LeftSide.Parent = Tab
 
 		local LeftPadding = Instance.new("UIPadding")
@@ -884,7 +950,7 @@ Bracket.Assets = {
 		RightSide.BackgroundTransparency = 1
 		RightSide.Position = UDim2.new(1, 0, 0, 0)
 		RightSide.BorderSizePixel = 0
-		RightSide.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		RightSide.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		RightSide.Parent = Tab
 
 		local RightPadding = Instance.new("UIPadding")
@@ -906,28 +972,28 @@ Bracket.Assets = {
 	TabButton = function()
 		local TabButton = Instance.new("TextButton")
 		TabButton.Name = "TabButton"
-		TabButton.Size = UDim2.new(0, 67, 1, -1)
+		TabButton.Size = UDim2.new(0, 67, 1, 0)
 		TabButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TabButton.BackgroundTransparency = 1
 		TabButton.BorderSizePixel = 0
-		TabButton.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		TabButton.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		TabButton.AutoButtonColor = false
 		TabButton.TextStrokeTransparency = 0.75
 		TabButton.TextSize = 14
 		TabButton.RichText = true
-		TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TabButton.TextColor3 = Color3.fromRGB(180, 180, 180)
 		TabButton.Text = "TabButton"
-		TabButton.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		TabButton.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
 		local Highlight = Instance.new("Frame")
 		Highlight.Name = "Highlight"
 		Highlight.Visible = false
 		Highlight.AnchorPoint = Vector2.new(0.5, 1)
-		Highlight.Size = UDim2.new(1, 0, 0, 1)
+		Highlight.Size = UDim2.new(1, -4, 0, 2)
 		Highlight.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Highlight.Position = UDim2.new(0.5, 0, 1, 1)
+		Highlight.Position = UDim2.new(0.5, 0, 1, 0)
 		Highlight.BorderSizePixel = 0
-		Highlight.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Highlight.BackgroundColor3 = Color3.fromRGB(124, 89, 255)
 		Highlight.Parent = TabButton
 
 		local Gradient = Instance.new("UIGradient")
@@ -948,14 +1014,20 @@ Bracket.Assets = {
 		Section.ZIndex = 2
 		Section.Size = UDim2.new(1, 0, 0, 10)
 		Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Section.BorderSizePixel = 2
-		Section.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Section.BorderSizePixel = 0
+		Section.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+
+		-- Add rounded corners to section
+		local UICorner = Instance.new("UICorner")
+		UICorner.CornerRadius = UDim.new(0, 6)
+		UICorner.Parent = Section
 
 		local Stroke = Instance.new("UIStroke")
 		Stroke.Name = "Stroke"
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Color = Color3.fromRGB(63, 63, 63)
+		Stroke.LineJoinMode = Enum.LineJoinMode.Round
+		Stroke.Color = Color3.fromRGB(40, 40, 45)
+		Stroke.Thickness = 1
 		Stroke.Parent = Section
 
 		local Border = Instance.new("Frame")
@@ -965,24 +1037,36 @@ Bracket.Assets = {
 		Border.Size = UDim2.new(1, 2, 1, 2)
 		Border.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Border.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Border.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Border.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+		Border.ZIndex = 1
 		Border.Parent = Section
+
+		-- Add rounded corners to border
+		local BorderCorner = Instance.new("UICorner")
+		BorderCorner.CornerRadius = UDim.new(0, 7)
+		BorderCorner.Parent = Border
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
 		Title.ZIndex = 2
 		Title.Size = UDim2.new(0, 44, 0, 2)
 		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Title.Position = UDim2.new(0, 5, 0, -2)
+		Title.Position = UDim2.new(0, 9, 0, -7)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+		Title.BackgroundTransparency = 0
 		Title.TextStrokeTransparency = 0.75
-		Title.TextSize = 14
+		Title.TextSize = 13
 		Title.RichText = true
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Section"
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.Parent = Section
+
+		local TitlePadding = Instance.new("UIPadding")
+		TitlePadding.PaddingLeft = UDim.new(0, 4)
+		TitlePadding.PaddingRight = UDim.new(0, 4)
+		TitlePadding.Parent = Title
 
 		local Container = Instance.new("Frame")
 		Container.Name = "Container"
@@ -993,7 +1077,7 @@ Bracket.Assets = {
 		Container.BackgroundTransparency = 1
 		Container.BorderSizePixel = 0
 		Container.Position = UDim2.new(0.5, 0, 0, 10)
-		Container.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Container.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Container.Parent = Section
 
 		local Padding = Instance.new("UIPadding")
@@ -1020,26 +1104,28 @@ Bracket.Assets = {
 		Divider.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Divider.BackgroundTransparency = 1
 		Divider.BorderSizePixel = 0
-		Divider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Divider.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 
 		local Left = Instance.new("Frame")
 		Left.Name = "Left"
 		Left.ZIndex = 2
 		Left.AnchorPoint = Vector2.new(0, 0.5)
-		Left.Size = UDim2.new(0.5, -24, 0, 2)
+		Left.Size = UDim2.new(0.5, -24, 0, 1)
 		Left.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Left.Position = UDim2.new(0, 0, 0.5, 0)
-		Left.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Left.BorderSizePixel = 0
+		Left.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 		Left.Parent = Divider
 
 		local Right = Instance.new("Frame")
 		Right.Name = "Right"
 		Right.ZIndex = 2
 		Right.AnchorPoint = Vector2.new(1, 0.5)
-		Right.Size = UDim2.new(0.5, -24, 0, 2)
+		Right.Size = UDim2.new(0.5, -24, 0, 1)
 		Right.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Right.Position = UDim2.new(1, 0, 0.5, 0)
-		Right.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Right.BorderSizePixel = 0
+		Right.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 		Right.Parent = Divider
 
 		local Title = Instance.new("TextLabel")
@@ -1051,14 +1137,14 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Title.TextStrokeTransparency = 0.75
-		Title.TextSize = 14
+		Title.TextSize = 13
 		Title.RichText = true
-		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.TextColor3 = Color3.fromRGB(180, 180, 180)
 		Title.Text = "Divider"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.Parent = Divider
 
 		return Divider
@@ -1071,14 +1157,14 @@ Bracket.Assets = {
 		Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Label.BackgroundTransparency = 1
 		Label.BorderSizePixel = 0
-		Label.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Label.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Label.TextStrokeTransparency = 0.75
 		Label.TextSize = 14
 		Label.RichText = true
-		Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Label.TextColor3 = Color3.fromRGB(180, 180, 180)
 		Label.Text = "Text Label"
 		Label.TextWrapped = true
-		Label.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Label.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
 		return Label
 	end,
@@ -1088,7 +1174,8 @@ Bracket.Assets = {
 		Button.ZIndex = 2
 		Button.Size = UDim2.new(1, 0, 0, 16)
 		Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Button.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Button.BorderSizePixel = 0
+		Button.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 		Button.AutoButtonColor = false
 		Button.TextStrokeTransparency = 0.75
 		Button.TextSize = 14
@@ -1096,7 +1183,12 @@ Bracket.Assets = {
 		Button.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Button.Text = ""
 		Button.TextWrapped = true
-		Button.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Button.FontFace = Font.fromEnum(Enum.Font.Gotham)
+
+		-- Add rounded corners to button
+		local UICorner = Instance.new("UICorner")
+		UICorner.CornerRadius = UDim.new(0, 4)
+		UICorner.Parent = Button
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -1107,20 +1199,20 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Button"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.Parent = Button
 
 		local Gradient = Instance.new("UIGradient")
 		Gradient.Name = "Gradient"
 		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
 		Gradient.Parent = Button
 
 		return Button
@@ -1133,7 +1225,7 @@ Bracket.Assets = {
 		Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Toggle.BackgroundTransparency = 1
 		Toggle.BorderSizePixel = 0
-		Toggle.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Toggle.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Toggle.AutoButtonColor = false
 		Toggle.TextStrokeTransparency = 0.75
 		Toggle.TextSize = 14
@@ -1141,7 +1233,7 @@ Bracket.Assets = {
 		Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Toggle.Text = ""
 		Toggle.TextWrapped = true
-		Toggle.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Toggle.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -1152,14 +1244,14 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0, 14, 0.5, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Toggle"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Toggle
 
@@ -1170,13 +1262,19 @@ Bracket.Assets = {
 		Tick.Size = UDim2.new(0, 10, 0, 10)
 		Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Tick.Position = UDim2.new(0, 0, 0.5, 0)
-		Tick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Tick.BorderSizePixel = 0
+		Tick.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 		Tick.Parent = Toggle
+
+		-- Add rounded corners to tick box
+		local TickCorner = Instance.new("UICorner")
+		TickCorner.CornerRadius = UDim.new(0, 3)
+		TickCorner.Parent = Tick
 
 		local Gradient = Instance.new("UIGradient")
 		Gradient.Name = "Gradient"
 		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
 		Gradient.Parent = Tick
 
 		local Layout = Instance.new("Frame")
@@ -1189,7 +1287,7 @@ Bracket.Assets = {
 		Layout.BackgroundTransparency = 1
 		Layout.Position = UDim2.new(1, 1, 0.5, 0)
 		Layout.BorderSizePixel = 0
-		Layout.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Layout.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Layout.Parent = Toggle
 
 		local Padding = Instance.new("UIPadding")
@@ -1216,7 +1314,7 @@ Bracket.Assets = {
 		Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Slider.BackgroundTransparency = 1
 		Slider.BorderSizePixel = 0
-		Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Slider.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Slider.AutoButtonColor = false
 		Slider.TextStrokeTransparency = 0.75
 		Slider.TextSize = 14
@@ -1224,7 +1322,7 @@ Bracket.Assets = {
 		Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Slider.Text = ""
 		Slider.TextWrapped = true
-		Slider.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
 		local Background = Instance.new("Frame")
 		Background.Name = "Background"
@@ -1233,13 +1331,19 @@ Bracket.Assets = {
 		Background.Size = UDim2.new(1, 0, 1, 0)
 		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Background.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Background.BorderSizePixel = 0
+		Background.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 		Background.Parent = Slider
+
+		-- Add rounded corners to slider background
+		local BackgroundCorner = Instance.new("UICorner")
+		BackgroundCorner.CornerRadius = UDim.new(0, 4)
+		BackgroundCorner.Parent = Background
 
 		local BackGradient = Instance.new("UIGradient")
 		BackGradient.Name = "Gradient"
 		BackGradient.Rotation = 90
-		BackGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		BackGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
 		BackGradient.Parent = Background
 
 		local Bar = Instance.new("Frame")
@@ -1250,13 +1354,18 @@ Bracket.Assets = {
 		Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Bar.Position = UDim2.new(0, 0, 0.5, 0)
 		Bar.BorderSizePixel = 0
-		Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Bar.BackgroundColor3 = Color3.fromRGB(124, 89, 255)
 		Bar.Parent = Background
+
+		-- Add rounded corners to bar for left side only
+		local BarCorner = Instance.new("UICorner")
+		BarCorner.CornerRadius = UDim.new(0, 4)
+		BarCorner.Parent = Bar
 
 		local BarGradient = Instance.new("UIGradient")
 		BarGradient.Name = "Gradient"
 		BarGradient.Rotation = 90
-		BarGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		BarGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
 		BarGradient.Parent = Bar
 
 		local Value = Instance.new("TextBox")
@@ -1268,14 +1377,14 @@ Bracket.Assets = {
 		Value.BackgroundTransparency = 1
 		Value.Position = UDim2.new(1, -6, 0, 0)
 		Value.BorderSizePixel = 0
-		Value.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Value.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Value.TextStrokeTransparency = 0.75
-		Value.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
+		Value.PlaceholderColor3 = Color3.fromRGB(180, 180, 180)
 		Value.TextSize = 14
 		Value.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Value.PlaceholderText = "50"
 		Value.Text = ""
-		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Value.TextXAlignment = Enum.TextXAlignment.Right
 		Value.Parent = Slider
 
@@ -1287,14 +1396,14 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0, 6, 0, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Slider"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Slider
 
@@ -1308,7 +1417,7 @@ Bracket.Assets = {
 		Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Slider.BackgroundTransparency = 1
 		Slider.BorderSizePixel = 0
-		Slider.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Slider.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Slider.AutoButtonColor = false
 		Slider.TextStrokeTransparency = 0.75
 		Slider.TextSize = 14
@@ -1316,7 +1425,7 @@ Bracket.Assets = {
 		Slider.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Slider.Text = ""
 		Slider.TextWrapped = true
-		Slider.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -1325,14 +1434,14 @@ Bracket.Assets = {
 		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Title.BackgroundTransparency = 1
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Slider"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Slider
 
@@ -1343,13 +1452,19 @@ Bracket.Assets = {
 		Background.Size = UDim2.new(1, 0, 0, 6)
 		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Background.Position = UDim2.new(0.5, 0, 1, 0)
-		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Background.BorderSizePixel = 0
+		Background.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 		Background.Parent = Slider
+
+		-- Add rounded corners to slider background
+		local BackgroundCorner = Instance.new("UICorner")
+		BackgroundCorner.CornerRadius = UDim.new(0, 3)
+		BackgroundCorner.Parent = Background
 
 		local BackGradient = Instance.new("UIGradient")
 		BackGradient.Name = "Gradient"
 		BackGradient.Rotation = 90
-		BackGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		BackGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
 		BackGradient.Parent = Background
 
 		local Bar = Instance.new("Frame")
@@ -1360,13 +1475,18 @@ Bracket.Assets = {
 		Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Bar.Position = UDim2.new(0, 0, 0.5, 0)
 		Bar.BorderSizePixel = 0
-		Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Bar.BackgroundColor3 = Color3.fromRGB(124, 89, 255)
 		Bar.Parent = Background
+
+		-- Add rounded corners to left side of bar
+		local BarCorner = Instance.new("UICorner")
+		BarCorner.CornerRadius = UDim.new(0, 3)
+		BarCorner.Parent = Bar
 
 		local BarGradient = Instance.new("UIGradient")
 		BarGradient.Name = "Gradient"
 		BarGradient.Rotation = 90
-		BarGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		BarGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
 		BarGradient.Parent = Bar
 
 		local Value = Instance.new("TextBox")
@@ -1378,14 +1498,14 @@ Bracket.Assets = {
 		Value.BackgroundTransparency = 1
 		Value.Position = UDim2.new(1, 0, 0, 0)
 		Value.BorderSizePixel = 0
-		Value.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Value.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Value.TextStrokeTransparency = 0.75
-		Value.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
+		Value.PlaceholderColor3 = Color3.fromRGB(180, 180, 180)
 		Value.TextSize = 14
 		Value.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Value.PlaceholderText = "50"
 		Value.Text = ""
-		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Value.TextXAlignment = Enum.TextXAlignment.Right
 		Value.Parent = Slider
 
@@ -1399,7 +1519,7 @@ Bracket.Assets = {
 		Textbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Textbox.BackgroundTransparency = 1
 		Textbox.BorderSizePixel = 0
-		Textbox.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Textbox.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Textbox.AutoButtonColor = false
 		Textbox.TextStrokeTransparency = 0.75
 		Textbox.TextSize = 14
@@ -1407,7 +1527,7 @@ Bracket.Assets = {
 		Textbox.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Textbox.Text = ""
 		Textbox.TextWrapped = true
-		Textbox.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Textbox.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
 		local Title = Instance.new("TextLabel")
 		Title.Name = "Title"
@@ -1418,14 +1538,14 @@ Bracket.Assets = {
 		Title.BackgroundTransparency = 1
 		Title.Position = UDim2.new(0.5, 0, 0, 0)
 		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+		Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 		Title.TextStrokeTransparency = 0.75
 		Title.TextSize = 14
 		Title.RichText = true
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.Text = "Textbox"
 		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Textbox
 
@@ -1436,13 +1556,19 @@ Bracket.Assets = {
 		Background.Size = UDim2.new(1, 0, 0, 16)
 		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Background.Position = UDim2.new(0.5, 0, 0, 16)
-		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Background.BorderSizePixel = 0
+		Background.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 		Background.Parent = Textbox
+
+		-- Add rounded corners to textbox
+		local BackgroundCorner = Instance.new("UICorner")
+		BackgroundCorner.CornerRadius = UDim.new(0, 4)
+		BackgroundCorner.Parent = Background
 
 		local Gradient = Instance.new("UIGradient")
 		Gradient.Name = "Gradient"
 		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
+		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
 		Gradient.Parent = Background
 
 		local Input = Instance.new("TextBox")
@@ -1453,15 +1579,15 @@ Bracket.Assets = {
 		Input.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Input.BackgroundTransparency = 1
 		Input.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Input.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+		Input.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 		Input.TextStrokeTransparency = 0.75
 		Input.TextWrapped = true
-		Input.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
+		Input.PlaceholderColor3 = Color3.fromRGB(180, 180, 180)
 		Input.TextSize = 14
 		Input.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Input.PlaceholderText = "Input here"
 		Input.Text = ""
-		Input.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+		Input.FontFace = Font.fromEnum(Enum.Font.Gotham)
 		Input.ClearTextOnFocus = false
 		Input.Parent = Background
 
@@ -1469,725 +1595,841 @@ Bracket.Assets = {
 	end,
 	Keybind = function()
 		local Keybind = Instance.new("TextButton")
-		Keybind.Name = "Keybind"
-		Keybind.ZIndex = 2
-		Keybind.Size = UDim2.new(1, 0, 0, 14)
-		Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Keybind.BackgroundTransparency = 1
-		Keybind.BorderSizePixel = 0
-		Keybind.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Keybind.AutoButtonColor = false
-		Keybind.TextStrokeTransparency = 0.75
-		Keybind.TextSize = 14
-		Keybind.RichText = true
-		Keybind.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Keybind.Text = ""
-		Keybind.TextWrapped = true
-		Keybind.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+Keybind.Name = "Keybind"
+Keybind.ZIndex = 2
+Keybind.Size = UDim2.new(1, 0, 0, 14)
+Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Keybind.BackgroundTransparency = 1
+Keybind.BorderSizePixel = 0
+Keybind.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Keybind.AutoButtonColor = false
+Keybind.TextStrokeTransparency = 0.75
+Keybind.TextSize = 14
+Keybind.RichText = true
+Keybind.TextColor3 = Color3.fromRGB(255, 255, 255)
+Keybind.Text = ""
+Keybind.TextWrapped = true
+Keybind.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-		local Title = Instance.new("TextLabel")
-		Title.Name = "Title"
-		Title.ZIndex = 2
-		Title.AnchorPoint = Vector2.new(0, 0.5)
-		Title.Size = UDim2.new(1, -42, 1, 0)
-		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Title.BackgroundTransparency = 1
-		Title.Position = UDim2.new(0, 0, 0.5, 0)
-		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Title.TextStrokeTransparency = 0.75
-		Title.TextSize = 14
-		Title.RichText = true
-		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Title.Text = "Keybind"
-		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Title.TextXAlignment = Enum.TextXAlignment.Left
-		Title.Parent = Keybind
+local Title = Instance.new("TextLabel")
+Title.Name = "Title"
+Title.ZIndex = 2
+Title.AnchorPoint = Vector2.new(0, 0.5)
+Title.Size = UDim2.new(1, -42, 1, 0)
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Position = UDim2.new(0, 0, 0.5, 0)
+Title.BorderSizePixel = 0
+Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Title.TextStrokeTransparency = 0.75
+Title.TextSize = 14
+Title.RichText = true
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.Text = "Keybind"
+Title.TextWrapped = true
+Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.Parent = Keybind
 
-		local Value = Instance.new("TextLabel")
-		Value.Name = "Value"
-		Value.ZIndex = 2
-		Value.AnchorPoint = Vector2.new(1, 0.5)
-		Value.Size = UDim2.new(0, 42, 1, 0)
-		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Value.BackgroundTransparency = 1
-		Value.Position = UDim2.new(1, 0, 0.5, 0)
-		Value.BorderSizePixel = 0
-		Value.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Value.TextStrokeTransparency = 0.75
-		Value.TextSize = 14
-		Value.RichText = true
-		Value.TextColor3 = Color3.fromRGB(189, 189, 189)
-		Value.Text = "[ NONE ]"
-		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Value.TextXAlignment = Enum.TextXAlignment.Right
-		Value.Parent = Keybind
+local Value = Instance.new("TextLabel")
+Value.Name = "Value"
+Value.ZIndex = 2
+Value.AnchorPoint = Vector2.new(1, 0.5)
+Value.Size = UDim2.new(0, 42, 1, 0)
+Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Value.BackgroundTransparency = 1
+Value.Position = UDim2.new(1, 0, 0.5, 0)
+Value.BorderSizePixel = 0
+Value.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Value.TextStrokeTransparency = 0.75
+Value.TextSize = 14
+Value.RichText = true
+Value.TextColor3 = Color3.fromRGB(180, 180, 180)
+Value.Text = "[ NONE ]"
+Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Value.TextXAlignment = Enum.TextXAlignment.Right
+Value.Parent = Keybind
 
-		return Keybind
-	end,
-	ToggleKeybind = function()
-		local Keybind = Instance.new("TextButton")
-		Keybind.Name = "Keybind"
-		Keybind.ZIndex = 2
-		Keybind.Size = UDim2.new(0, 42, 1, 0)
-		Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Keybind.BackgroundTransparency = 1
-		Keybind.BorderSizePixel = 0
-		Keybind.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Keybind.AutoButtonColor = false
-		Keybind.TextStrokeTransparency = 0.75
-		Keybind.TextSize = 14
-		Keybind.RichText = true
-		Keybind.TextColor3 = Color3.fromRGB(189, 189, 189)
-		Keybind.Text = "[ NONE ]"
-		Keybind.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Keybind.TextXAlignment = Enum.TextXAlignment.Right
+return Keybind
+end,
+ToggleKeybind = function()
+local Keybind = Instance.new("TextButton")
+Keybind.Name = "Keybind"
+Keybind.ZIndex = 2
+Keybind.Size = UDim2.new(0, 42, 1, 0)
+Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Keybind.BackgroundTransparency = 1
+Keybind.BorderSizePixel = 0
+Keybind.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Keybind.AutoButtonColor = false
+Keybind.TextStrokeTransparency = 0.75
+Keybind.TextSize = 14
+Keybind.RichText = true
+Keybind.TextColor3 = Color3.fromRGB(180, 180, 180)
+Keybind.Text = "[ NONE ]"
+Keybind.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Keybind.TextXAlignment = Enum.TextXAlignment.Right
 
-		return Keybind
-	end,
-	Dropdown = function()
-		local Dropdown = Instance.new("TextButton")
-		Dropdown.Name = "Dropdown"
-		Dropdown.ZIndex = 2
-		Dropdown.Size = UDim2.new(1, 0, 0, 32)
-		Dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Dropdown.BackgroundTransparency = 1
-		Dropdown.BorderSizePixel = 0
-		Dropdown.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Dropdown.AutoButtonColor = false
-		Dropdown.TextStrokeTransparency = 0.75
-		Dropdown.TextSize = 14
-		Dropdown.RichText = true
-		Dropdown.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Dropdown.Text = ""
-		Dropdown.TextWrapped = true
-		Dropdown.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+return Keybind
+end,
+Dropdown = function()
+local Dropdown = Instance.new("TextButton")
+Dropdown.Name = "Dropdown"
+Dropdown.ZIndex = 2
+Dropdown.Size = UDim2.new(1, 0, 0, 32)
+Dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Dropdown.BackgroundTransparency = 1
+Dropdown.BorderSizePixel = 0
+Dropdown.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Dropdown.AutoButtonColor = false
+Dropdown.TextStrokeTransparency = 0.75
+Dropdown.TextSize = 14
+Dropdown.RichText = true
+Dropdown.TextColor3 = Color3.fromRGB(255, 255, 255)
+Dropdown.Text = ""
+Dropdown.TextWrapped = true
+Dropdown.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-		local Title = Instance.new("TextLabel")
-		Title.Name = "Title"
-		Title.ZIndex = 2
-		Title.AnchorPoint = Vector2.new(0.5, 0)
-		Title.Size = UDim2.new(1, 0, 0, 16)
-		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Title.BackgroundTransparency = 1
-		Title.Position = UDim2.new(0.5, 0, 0, 0)
-		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Title.TextStrokeTransparency = 0.75
-		Title.TextSize = 14
-		Title.RichText = true
-		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Title.Text = "Dropdown"
-		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Title.TextXAlignment = Enum.TextXAlignment.Left
-		Title.Parent = Dropdown
+local Title = Instance.new("TextLabel")
+Title.Name = "Title"
+Title.ZIndex = 2
+Title.AnchorPoint = Vector2.new(0.5, 0)
+Title.Size = UDim2.new(1, 0, 0, 16)
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Position = UDim2.new(0.5, 0, 0, 0)
+Title.BorderSizePixel = 0
+Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Title.TextStrokeTransparency = 0.75
+Title.TextSize = 14
+Title.RichText = true
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.Text = "Dropdown"
+Title.TextWrapped = true
+Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.Parent = Dropdown
 
-		local Background = Instance.new("Frame")
-		Background.Name = "Background"
-		Background.ZIndex = 2
-		Background.AnchorPoint = Vector2.new(0.5, 0)
-		Background.Size = UDim2.new(1, 0, 0, 16)
-		Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Background.Position = UDim2.new(0.5, 0, 0, 16)
-		Background.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-		Background.Parent = Dropdown
+local Background = Instance.new("Frame")
+Background.Name = "Background"
+Background.ZIndex = 2
+Background.AnchorPoint = Vector2.new(0.5, 0)
+Background.Size = UDim2.new(1, 0, 0, 16)
+Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Background.Position = UDim2.new(0.5, 0, 0, 16)
+Background.BorderSizePixel = 0
+Background.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+Background.Parent = Dropdown
 
-		local Value = Instance.new("TextLabel")
-		Value.Name = "Value"
-		Value.ZIndex = 2
-		Value.AnchorPoint = Vector2.new(0.5, 0.5)
-		Value.Size = UDim2.new(1, -10, 1, 0)
-		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Value.BackgroundTransparency = 1
-		Value.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Value.BorderSizePixel = 0
-		Value.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-		Value.TextStrokeTransparency = 0.75
-		Value.TextTruncate = Enum.TextTruncate.AtEnd
-		Value.TextSize = 14
-		Value.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Value.Text = "..."
-		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Value.TextXAlignment = Enum.TextXAlignment.Left
-		Value.Parent = Background
+-- Add rounded corners to dropdown background
+local BackgroundCorner = Instance.new("UICorner")
+BackgroundCorner.CornerRadius = UDim.new(0, 4)
+BackgroundCorner.Parent = Background
 
-		local Gradient = Instance.new("UIGradient")
-		Gradient.Name = "Gradient"
-		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		Gradient.Parent = Background
+local Value = Instance.new("TextLabel")
+Value.Name = "Value"
+Value.ZIndex = 2
+Value.AnchorPoint = Vector2.new(0.5, 0.5)
+Value.Size = UDim2.new(1, -10, 1, 0)
+Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Value.BackgroundTransparency = 1
+Value.Position = UDim2.new(0.5, 0, 0.5, 0)
+Value.BorderSizePixel = 0
+Value.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+Value.TextStrokeTransparency = 0.75
+Value.TextTruncate = Enum.TextTruncate.AtEnd
+Value.TextSize = 14
+Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+Value.Text = "..."
+Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Value.TextXAlignment = Enum.TextXAlignment.Left
+Value.Parent = Background
 
-		return Dropdown
-	end,
-	DropdownContainer = function()
-		local OptionContainer = Instance.new("ScrollingFrame")
-		OptionContainer.Name = "OptionContainer"
-		OptionContainer.ZIndex = 3
-		OptionContainer.Visible = false
-		OptionContainer.Size = UDim2.new(0, 100, 0, 100)
-		OptionContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		OptionContainer.Active = true
-		OptionContainer.BorderSizePixel = 0
-		OptionContainer.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-		OptionContainer.ScrollingDirection = Enum.ScrollingDirection.Y
-		OptionContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
-		OptionContainer.ScrollBarImageColor3 = Color3.fromRGB(31, 31, 31)
-		OptionContainer.MidImage = "rbxassetid://6432766838"
-		OptionContainer.ScrollBarThickness = 2
-		OptionContainer.TopImage = "rbxassetid://6432766838"
-		OptionContainer.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
-		OptionContainer.BottomImage = "rbxassetid://6432766838"
+-- Add dropdown arrow icon
+local ArrowIcon = Instance.new("ImageLabel")
+ArrowIcon.Name = "ArrowIcon"
+ArrowIcon.ZIndex = 3
+ArrowIcon.AnchorPoint = Vector2.new(1, 0.5)
+ArrowIcon.Size = UDim2.new(0, 12, 0, 12)
+ArrowIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ArrowIcon.BackgroundTransparency = 1
+ArrowIcon.Position = UDim2.new(1, -4, 0.5, 0)
+ArrowIcon.BorderSizePixel = 0
+ArrowIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ArrowIcon.Image = "rbxassetid://6031091004"
+ArrowIcon.ImageColor3 = Color3.fromRGB(180, 180, 180)
+ArrowIcon.Parent = Background
 
-		local Stroke = Instance.new("UIStroke")
-		Stroke.Name = "Stroke"
-		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Parent = OptionContainer
+local Gradient = Instance.new("UIGradient")
+Gradient.Name = "Gradient"
+Gradient.Rotation = 90
+Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
+Gradient.Parent = Background
 
-		local Padding = Instance.new("UIPadding")
-		Padding.Name = "Padding"
-		Padding.PaddingTop = UDim.new(0, 2)
-		Padding.PaddingBottom = UDim.new(0, 2)
-		Padding.PaddingLeft = UDim.new(0, 2)
-		Padding.PaddingRight = UDim.new(0, 2)
-		Padding.Parent = OptionContainer
+return Dropdown
+end,
+DropdownContainer = function()
+local OptionContainer = Instance.new("ScrollingFrame")
+OptionContainer.Name = "OptionContainer"
+OptionContainer.ZIndex = 3
+OptionContainer.Visible = false
+OptionContainer.Size = UDim2.new(0, 100, 0, 100)
+OptionContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OptionContainer.Active = true
+OptionContainer.BorderSizePixel = 0
+OptionContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+OptionContainer.ScrollingDirection = Enum.ScrollingDirection.Y
+OptionContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+OptionContainer.ScrollBarImageColor3 = Color3.fromRGB(124, 89, 255)
+OptionContainer.MidImage = "rbxassetid://6432766838"
+OptionContainer.ScrollBarThickness = 3
+OptionContainer.TopImage = "rbxassetid://6432766838"
+OptionContainer.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
+OptionContainer.BottomImage = "rbxassetid://6432766838"
 
-		local ListLayout = Instance.new("UIListLayout")
-		ListLayout.Name = "ListLayout"
-		ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		ListLayout.Padding = UDim.new(0, 2)
-		ListLayout.Parent = OptionContainer
+-- Add rounded corners to dropdown container
+local ContainerCorner = Instance.new("UICorner")
+ContainerCorner.CornerRadius = UDim.new(0, 4)
+ContainerCorner.Parent = OptionContainer
 
-		return OptionContainer
-	end,
-	DropdownOption = function()
-		local Option = Instance.new("TextButton")
-		Option.Name = "Option"
-		Option.ZIndex = 3
-		Option.Size = UDim2.new(1, 0, 0, 16)
-		Option.BorderColor3 = Color3.fromRGB(63, 63, 63)
-		Option.BorderSizePixel = 0
-		Option.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Option.AutoButtonColor = false
-		Option.TextStrokeTransparency = 0.75
-		Option.TextSize = 14
-		Option.RichText = true
-		Option.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Option.Text = ""
-		Option.TextWrapped = true
-		Option.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+local Stroke = Instance.new("UIStroke")
+Stroke.Name = "Stroke"
+Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Stroke.LineJoinMode = Enum.LineJoinMode.Round
+Stroke.Color = Color3.fromRGB(40, 40, 45)
+Stroke.Thickness = 1
+Stroke.Parent = OptionContainer
 
-		local Gradient = Instance.new("UIGradient")
-		Gradient.Name = "Gradient"
-		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		Gradient.Parent = Option
+local Padding = Instance.new("UIPadding")
+Padding.Name = "Padding"
+Padding.PaddingTop = UDim.new(0, 2)
+Padding.PaddingBottom = UDim.new(0, 2)
+Padding.PaddingLeft = UDim.new(0, 2)
+Padding.PaddingRight = UDim.new(0, 2)
+Padding.Parent = OptionContainer
 
-		local Title = Instance.new("TextLabel")
-		Title.Name = "Title"
-		Title.ZIndex = 3
-		Title.AnchorPoint = Vector2.new(0, 0.5)
-		Title.Size = UDim2.new(1, -18, 1, 0)
-		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Title.BackgroundTransparency = 1
-		Title.Position = UDim2.new(0, 18, 0.5, 0)
-		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Title.TextStrokeTransparency = 0.75
-		Title.TextTruncate = Enum.TextTruncate.AtEnd
-		Title.TextSize = 14
-		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Title.Text = "Toggle"
-		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Title.TextXAlignment = Enum.TextXAlignment.Left
-		Title.Parent = Option
+local ListLayout = Instance.new("UIListLayout")
+ListLayout.Name = "ListLayout"
+ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+ListLayout.Padding = UDim.new(0, 2)
+ListLayout.Parent = OptionContainer
 
-		local Tick = Instance.new("Frame")
-		Tick.Name = "Tick"
-		Tick.ZIndex = 3
-		Tick.AnchorPoint = Vector2.new(0, 0.5)
-		Tick.Size = UDim2.new(0, 12, 0, 12)
-		Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Tick.Position = UDim2.new(0, 2, 0.5, 0)
-		Tick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-		Tick.Parent = Option
+return OptionContainer
+end,
+DropdownOption = function()
+local Option = Instance.new("TextButton")
+Option.Name = "Option"
+Option.ZIndex = 3
+Option.Size = UDim2.new(1, 0, 0, 16)
+Option.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Option.BorderSizePixel = 0
+Option.BackgroundColor3 = Color3.fromRGB(35, 35, 40)
+Option.AutoButtonColor = false
+Option.TextStrokeTransparency = 0.75
+Option.TextSize = 14
+Option.RichText = true
+Option.TextColor3 = Color3.fromRGB(255, 255, 255)
+Option.Text = ""
+Option.TextWrapped = true
+Option.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-		local TickGradient = Instance.new("UIGradient")
-		TickGradient.Name = "Gradient"
-		TickGradient.Rotation = 90
-		TickGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		TickGradient.Parent = Tick
+-- Add rounded corners to dropdown option
+local OptionCorner = Instance.new("UICorner")
+OptionCorner.CornerRadius = UDim.new(0, 3)
+OptionCorner.Parent = Option
 
-		local Layout = Instance.new("Frame")
-		Layout.Name = "Layout"
-		Layout.ZIndex = 3
-		Layout.AnchorPoint = Vector2.new(1, 0.5)
-		Layout.Size = UDim2.new(1, -54, 1, 0)
-		Layout.ClipsDescendants = true
-		Layout.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Layout.BackgroundTransparency = 1
-		Layout.Position = UDim2.new(1, -1, 0.5, 0)
-		Layout.BorderSizePixel = 0
-		Layout.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Layout.Parent = Option
+local Gradient = Instance.new("UIGradient")
+Gradient.Name = "Gradient"
+Gradient.Rotation = 90
+Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
+Gradient.Parent = Option
 
-		local Padding = Instance.new("UIPadding")
-		Padding.Name = "Padding"
-		Padding.PaddingRight = UDim.new(0, 1)
-		Padding.Parent = Layout
+local Title = Instance.new("TextLabel")
+Title.Name = "Title"
+Title.ZIndex = 3
+Title.AnchorPoint = Vector2.new(0, 0.5)
+Title.Size = UDim2.new(1, -18, 1, 0)
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Position = UDim2.new(0, 18, 0.5, 0)
+Title.BorderSizePixel = 0
+Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Title.TextStrokeTransparency = 0.75
+Title.TextTruncate = Enum.TextTruncate.AtEnd
+Title.TextSize = 14
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.Text = "Toggle"
+Title.TextWrapped = true
+Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.Parent = Option
 
-		local ListLayout = Instance.new("UIListLayout")
-		ListLayout.Name = "ListLayout"
-		ListLayout.FillDirection = Enum.FillDirection.Horizontal
-		ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
-		ListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
-		ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		ListLayout.Padding = UDim.new(0, 4)
-		ListLayout.Parent = Layout
+local Tick = Instance.new("Frame")
+Tick.Name = "Tick"
+Tick.ZIndex = 3
+Tick.AnchorPoint = Vector2.new(0, 0.5)
+Tick.Size = UDim2.new(0, 12, 0, 12)
+Tick.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Tick.Position = UDim2.new(0, 2, 0.5, 0)
+Tick.BorderSizePixel = 0
+Tick.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+Tick.Parent = Option
 
-		return Option
-	end,
-	Colorpicker = function()
-		local Colorpicker = Instance.new("TextButton")
-		Colorpicker.Name = "Colorpicker"
-		Colorpicker.ZIndex = 2
-		Colorpicker.Size = UDim2.new(1, 0, 0, 14)
-		Colorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Colorpicker.BackgroundTransparency = 1
-		Colorpicker.BorderSizePixel = 0
-		Colorpicker.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Colorpicker.AutoButtonColor = false
-		Colorpicker.TextStrokeTransparency = 0.75
-		Colorpicker.TextSize = 14
-		Colorpicker.RichText = true
-		Colorpicker.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Colorpicker.Text = ""
-		Colorpicker.TextWrapped = true
-		Colorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+-- Add rounded corners to tick
+local TickCorner = Instance.new("UICorner")
+TickCorner.CornerRadius = UDim.new(0, 3)
+TickCorner.Parent = Tick
 
-		local Title = Instance.new("TextLabel")
-		Title.Name = "Title"
-		Title.ZIndex = 2
-		Title.AnchorPoint = Vector2.new(0.5, 0.5)
-		Title.Size = UDim2.new(1, 0, 1, 0)
-		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Title.BackgroundTransparency = 1
-		Title.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Title.TextStrokeTransparency = 0.75
-		Title.TextSize = 14
-		Title.RichText = true
-		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Title.Text = "Colorpicker"
-		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Title.TextXAlignment = Enum.TextXAlignment.Left
-		Title.Parent = Colorpicker
+local TickGradient = Instance.new("UIGradient")
+TickGradient.Name = "Gradient"
+TickGradient.Rotation = 90
+TickGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
+TickGradient.Parent = Tick
 
-		local Color = Instance.new("Frame")
-		Color.Name = "Color"
-		Color.ZIndex = 2
-		Color.AnchorPoint = Vector2.new(1, 0.5)
-		Color.Size = UDim2.new(0, 20, 0, 10)
-		Color.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Color.Position = UDim2.new(1, 0, 0.5, 0)
-		Color.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-		Color.Parent = Colorpicker
+local Layout = Instance.new("Frame")
+Layout.Name = "Layout"
+Layout.ZIndex = 3
+Layout.AnchorPoint = Vector2.new(1, 0.5)
+Layout.Size = UDim2.new(1, -54, 1, 0)
+Layout.ClipsDescendants = true
+Layout.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Layout.BackgroundTransparency = 1
+Layout.Position = UDim2.new(1, -1, 0.5, 0)
+Layout.BorderSizePixel = 0
+Layout.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Layout.Parent = Option
 
-		local Gradient = Instance.new("UIGradient")
-		Gradient.Name = "Gradient"
-		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		Gradient.Parent = Color
+local Padding = Instance.new("UIPadding")
+Padding.Name = "Padding"
+Padding.PaddingRight = UDim.new(0, 1)
+Padding.Parent = Layout
 
-		return Colorpicker
-	end,
-	ToggleColorpicker = function()
-		local TColorpicker = Instance.new("TextButton")
-		TColorpicker.Name = "TColorpicker"
-		TColorpicker.ZIndex = 2
-		TColorpicker.AnchorPoint = Vector2.new(1, 0.5)
-		TColorpicker.Size = UDim2.new(0, 24, 0, 12)
-		TColorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		TColorpicker.Position = UDim2.new(1, 0, 0.5, 0)
-		TColorpicker.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-		TColorpicker.AutoButtonColor = false
-		TColorpicker.TextStrokeTransparency = 0.75
-		TColorpicker.TextSize = 14
-		TColorpicker.RichText = true
-		TColorpicker.TextColor3 = Color3.fromRGB(255, 255, 255)
-		TColorpicker.Text = ""
-		TColorpicker.TextWrapped = true
-		TColorpicker.FontFace = Font.fromEnum(Enum.Font.SourceSans)
+local ListLayout = Instance.new("UIListLayout")
+ListLayout.Name = "ListLayout"
+ListLayout.FillDirection = Enum.FillDirection.Horizontal
+ListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+ListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+ListLayout.Padding = UDim.new(0, 4)
+ListLayout.Parent = Layout
 
-		local Gradient = Instance.new("UIGradient")
-		Gradient.Name = "Gradient"
-		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		Gradient.Parent = TColorpicker
+return Option
+end,
+Colorpicker = function()
+local Colorpicker = Instance.new("TextButton")
+Colorpicker.Name = "Colorpicker"
+Colorpicker.ZIndex = 2
+Colorpicker.Size = UDim2.new(1, 0, 0, 14)
+Colorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Colorpicker.BackgroundTransparency = 1
+Colorpicker.BorderSizePixel = 0
+Colorpicker.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Colorpicker.AutoButtonColor = false
+Colorpicker.TextStrokeTransparency = 0.75
+Colorpicker.TextSize = 14
+Colorpicker.RichText = true
+Colorpicker.TextColor3 = Color3.fromRGB(255, 255, 255)
+Colorpicker.Text = ""
+Colorpicker.TextWrapped = true
+Colorpicker.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-		return TColorpicker
-	end,
-	ColorpickerPalette = function()
-		local Palette = Instance.new("Frame")
-		Palette.Name = "Palette"
-		Palette.ZIndex = 3
-		Palette.Visible = false
-		Palette.Size = UDim2.new(0, 150, 0, 290)
-		Palette.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Palette.Position = UDim2.new(0, 20, 0, 20)
-		Palette.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+local Title = Instance.new("TextLabel")
+Title.Name = "Title"
+Title.ZIndex = 2
+Title.AnchorPoint = Vector2.new(0.5, 0.5)
+Title.Size = UDim2.new(1, 0, 1, 0)
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Position = UDim2.new(0.5, 0, 0.5, 0)
+Title.BorderSizePixel = 0
+Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Title.TextStrokeTransparency = 0.75
+Title.TextSize = 14
+Title.RichText = true
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.Text = "Colorpicker"
+Title.TextWrapped = true
+Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.Parent = Colorpicker
 
-		local Gradient = Instance.new("UIGradient")
-		Gradient.Name = "Gradient"
-		Gradient.Rotation = 90
-		Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		Gradient.Parent = Palette
+local Color = Instance.new("Frame")
+Color.Name = "Color"
+Color.ZIndex = 2
+Color.AnchorPoint = Vector2.new(1, 0.5)
+Color.Size = UDim2.new(0, 20, 0, 10)
+Color.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Color.Position = UDim2.new(1, 0, 0.5, 0)
+Color.BorderSizePixel = 0
+Color.BackgroundColor3 = Color3.fromRGB(124, 89, 255)
+Color.Parent = Colorpicker
 
-		local SVPicker = Instance.new("TextButton")
-		SVPicker.Name = "SVPicker"
-		SVPicker.ZIndex = 3
-		SVPicker.AnchorPoint = Vector2.new(0.5, 0)
-		SVPicker.Size = UDim2.new(1, -10, 0, 180)
-		SVPicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		SVPicker.Position = UDim2.new(0.5, 0, 0, 5)
-		SVPicker.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-		SVPicker.AutoButtonColor = false
-		SVPicker.TextStrokeTransparency = 0.75
-		SVPicker.TextSize = 14
-		SVPicker.RichText = true
-		SVPicker.TextColor3 = Color3.fromRGB(255, 255, 255)
-		SVPicker.Text = ""
-		SVPicker.TextWrapped = true
-		SVPicker.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		SVPicker.Parent = Palette
+-- Add rounded corners to color display
+local ColorCorner = Instance.new("UICorner")
+ColorCorner.CornerRadius = UDim.new(0, 3)
+ColorCorner.Parent = Color
 
-		local Saturation = Instance.new("Frame")
-		Saturation.Name = "Saturation"
-		Saturation.ZIndex = 3
-		Saturation.AnchorPoint = Vector2.new(0.5, 0.5)
-		Saturation.Size = UDim2.new(1, 0, 1, 0)
-		Saturation.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Saturation.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Saturation.BorderSizePixel = 0
-		Saturation.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-		Saturation.Parent = SVPicker
+local Gradient = Instance.new("UIGradient")
+Gradient.Name = "Gradient"
+Gradient.Rotation = 90
+Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
+Gradient.Parent = Color
 
-		local SaturationGradient = Instance.new("UIGradient")
-		SaturationGradient.Name = "Gradient"
-		SaturationGradient.Transparency = NumberSequence.new(1, 0)
-		SaturationGradient.Rotation = 90
-		SaturationGradient.Color = ColorSequence.new(Color3.fromRGB(0, 0, 0))
-		SaturationGradient.Parent = Saturation
+return Colorpicker
+end,
+ToggleColorpicker = function()
+local TColorpicker = Instance.new("TextButton")
+TColorpicker.Name = "TColorpicker"
+TColorpicker.ZIndex = 2
+TColorpicker.AnchorPoint = Vector2.new(1, 0.5)
+TColorpicker.Size = UDim2.new(0, 24, 0, 12)
+TColorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TColorpicker.Position = UDim2.new(1, 0, 0.5, 0)
+TColorpicker.BorderSizePixel = 0
+TColorpicker.BackgroundColor3 = Color3.fromRGB(124, 89, 255)
+TColorpicker.AutoButtonColor = false
+TColorpicker.TextStrokeTransparency = 0.75
+TColorpicker.TextSize = 14
+TColorpicker.RichText = true
+TColorpicker.TextColor3 = Color3.fromRGB(255, 255, 255)
+TColorpicker.Text = ""
+TColorpicker.TextWrapped = true
+TColorpicker.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-		local Brightness = Instance.new("Frame")
-		Brightness.Name = "Brightness"
-		Brightness.ZIndex = 3
-		Brightness.AnchorPoint = Vector2.new(0.5, 0.5)
-		Brightness.Size = UDim2.new(1, 0, 1, 0)
-		Brightness.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Brightness.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Brightness.BorderSizePixel = 0
-		Brightness.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Brightness.Parent = SVPicker
+-- Add rounded corners to toggle colorpicker
+local ColorCorner = Instance.new("UICorner")
+ColorCorner.CornerRadius = UDim.new(0, 3)
+ColorCorner.Parent = TColorpicker
 
-		local BrightnessGradient = Instance.new("UIGradient")
-		BrightnessGradient.Name = "Gradient"
-		BrightnessGradient.Transparency = NumberSequence.new(0, 1)
-		BrightnessGradient.Parent = Brightness
+local Gradient = Instance.new("UIGradient")
+Gradient.Name = "Gradient"
+Gradient.Rotation = 90
+Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
+Gradient.Parent = TColorpicker
 
-		local SVPin = Instance.new("Frame")
-		SVPin.Name = "Pin"
-		SVPin.ZIndex = 3
-		SVPin.AnchorPoint = Vector2.new(0.5, 0.5)
-		SVPin.Size = UDim2.new(0, 3, 0, 3)
-		SVPin.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		SVPin.Rotation = 45
-		SVPin.BackgroundTransparency = 1
-		SVPin.Position = UDim2.new(0.5, 0, 0.5, 0)
-		SVPin.BorderSizePixel = 0
-		SVPin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		SVPin.Parent = SVPicker
+return TColorpicker
+end,
+ColorpickerPalette = function()
+local Palette = Instance.new("Frame")
+Palette.Name = "Palette"
+Palette.ZIndex = 3
+Palette.Visible = false
+Palette.Size = UDim2.new(0, 150, 0, 290)
+Palette.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Palette.Position = UDim2.new(0, 20, 0, 20)
+Palette.BorderSizePixel = 0
+Palette.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
 
-		local SVPinStroke = Instance.new("UIStroke")
-		SVPinStroke.Name = "Stroke"
-		SVPinStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		SVPinStroke.LineJoinMode = Enum.LineJoinMode.Miter
-		SVPinStroke.Thickness = 1.5
-		SVPinStroke.Parent = SVPin
+-- Add rounded corners to palette
+local PaletteCorner = Instance.new("UICorner")
+PaletteCorner.CornerRadius = UDim.new(0, 6)
+PaletteCorner.Parent = Palette
 
-		local Hue = Instance.new("TextButton")
-		Hue.Name = "Hue"
-		Hue.ZIndex = 3
-		Hue.AnchorPoint = Vector2.new(0.5, 0)
-		Hue.Size = UDim2.new(1, -10, 0, 10)
-		Hue.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Hue.Position = UDim2.new(0.5, 0, 0, 191)
-		Hue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Hue.AutoButtonColor = false
-		Hue.TextStrokeTransparency = 0.75
-		Hue.TextSize = 14
-		Hue.RichText = true
-		Hue.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Hue.Text = ""
-		Hue.TextWrapped = true
-		Hue.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Hue.Parent = Palette
+local Stroke = Instance.new("UIStroke")
+Stroke.Name = "Stroke"
+Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Stroke.LineJoinMode = Enum.LineJoinMode.Round
+Stroke.Color = Color3.fromRGB(40, 40, 45)
+Stroke.Thickness = 1
+Stroke.Parent = Palette
 
-		local HuePin = Instance.new("Frame")
-		HuePin.Name = "Pin"
-		HuePin.ZIndex = 3
-		HuePin.AnchorPoint = Vector2.new(0.5, 0.5)
-		HuePin.Size = UDim2.new(0, 1, 1, 0)
-		HuePin.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		HuePin.Position = UDim2.new(0, 0, 0.5, 0)
-		HuePin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		HuePin.Parent = Hue
+local Gradient = Instance.new("UIGradient")
+Gradient.Name = "Gradient"
+Gradient.Rotation = 90
+Gradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
+Gradient.Parent = Palette
 
-		local HueGradient = Instance.new("UIGradient")
-		HueGradient.Name = "Gradient"
-		HueGradient.Color = ColorSequence.new({
-			ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
-			ColorSequenceKeypoint.new(1 / 6, Color3.fromRGB(255, 0, 255)),
-			ColorSequenceKeypoint.new(1 / 3, Color3.fromRGB(0, 0, 255)),
-			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 255)),
-			ColorSequenceKeypoint.new(1 / 1.5, Color3.fromRGB(0, 255, 0)),
-			ColorSequenceKeypoint.new(1 / 1.2, Color3.fromRGB(255, 255, 0)),
-			ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))
-		})
-		HueGradient.Parent = Hue
+local SVPicker = Instance.new("TextButton")
+SVPicker.Name = "SVPicker"
+SVPicker.ZIndex = 3
+SVPicker.AnchorPoint = Vector2.new(0.5, 0)
+SVPicker.Size = UDim2.new(1, -10, 0, 180)
+SVPicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SVPicker.Position = UDim2.new(0.5, 0, 0, 5)
+SVPicker.BorderSizePixel = 0
+SVPicker.BackgroundColor3 = Color3.fromRGB(124, 89, 255)
+SVPicker.AutoButtonColor = false
+SVPicker.TextStrokeTransparency = 0.75
+SVPicker.TextSize = 14
+SVPicker.RichText = true
+SVPicker.TextColor3 = Color3.fromRGB(255, 255, 255)
+SVPicker.Text = ""
+SVPicker.TextWrapped = true
+SVPicker.FontFace = Font.fromEnum(Enum.Font.Gotham)
+SVPicker.Parent = Palette
 
-		local Alpha = Instance.new("TextButton")
-		Alpha.Name = "Alpha"
-		Alpha.ZIndex = 3
-		Alpha.AnchorPoint = Vector2.new(0.5, 0)
-		Alpha.Size = UDim2.new(1, -10, 0, 10)
-		Alpha.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Alpha.Position = UDim2.new(0.5, 0, 0, 207)
-		Alpha.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-		Alpha.AutoButtonColor = false
-		Alpha.TextStrokeTransparency = 0.75
-		Alpha.TextSize = 14
-		Alpha.RichText = true
-		Alpha.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Alpha.Text = ""
-		Alpha.TextWrapped = true
-		Alpha.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Alpha.Parent = Palette
+-- Add rounded corners to SV picker
+local SVCorner = Instance.new("UICorner")
+SVCorner.CornerRadius = UDim.new(0, 4)
+SVCorner.Parent = SVPicker
 
-		local Stroke = Instance.new("UIStroke")
-		Stroke.Name = "Stroke"
-		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-		Stroke.Parent = Alpha
+local Saturation = Instance.new("Frame")
+Saturation.Name = "Saturation"
+Saturation.ZIndex = 3
+Saturation.AnchorPoint = Vector2.new(0.5, 0.5)
+Saturation.Size = UDim2.new(1, 0, 1, 0)
+Saturation.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Saturation.Position = UDim2.new(0.5, 0, 0.5, 0)
+Saturation.BorderSizePixel = 0
+Saturation.BackgroundColor3 = Color3.fromRGB(124, 89, 255)
+Saturation.Parent = SVPicker
 
-		local AlphaGradient = Instance.new("UIGradient")
-		AlphaGradient.Name = "Gradient"
-		AlphaGradient.Transparency = NumberSequence.new(0, 1)
-		AlphaGradient.Parent = Alpha
+-- Add rounded corners to saturation overlay
+local SaturationCorner = Instance.new("UICorner")
+SaturationCorner.CornerRadius = UDim.new(0, 4)
+SaturationCorner.Parent = Saturation
 
-		local AlphaPin = Instance.new("Frame")
-		AlphaPin.Name = "Pin"
-		AlphaPin.ZIndex = 3
-		AlphaPin.AnchorPoint = Vector2.new(0.5, 0.5)
-		AlphaPin.Size = UDim2.new(0, 1, 1, 0)
-		AlphaPin.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		AlphaPin.Position = UDim2.new(0, 0, 0.5, 0)
-		AlphaPin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		AlphaPin.Parent = Alpha
+local SaturationGradient = Instance.new("UIGradient")
+SaturationGradient.Name = "Gradient"
+SaturationGradient.Transparency = NumberSequence.new(1, 0)
+SaturationGradient.Rotation = 90
+SaturationGradient.Color = ColorSequence.new(Color3.fromRGB(0, 0, 0))
+SaturationGradient.Parent = Saturation
 
-		local Value = Instance.new("TextLabel")
-		Value.Name = "Value"
-		Value.ZIndex = 3
-		Value.AnchorPoint = Vector2.new(0.5, 0.5)
-		Value.Size = UDim2.new(1, -8, 1, 0)
-		Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Value.BackgroundTransparency = 1
-		Value.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Value.BorderSizePixel = 0
-		Value.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-		Value.TextStrokeTransparency = 0.75
-		Value.TextSize = 12
-		Value.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Value.TextYAlignment = Enum.TextYAlignment.Bottom
-		Value.Text = "1"
-		Value.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Value.TextXAlignment = Enum.TextXAlignment.Right
-		Value.Parent = Alpha
+local Brightness = Instance.new("Frame")
+Brightness.Name = "Brightness"
+Brightness.ZIndex = 3
+Brightness.AnchorPoint = Vector2.new(0.5, 0.5)
+Brightness.Size = UDim2.new(1, 0, 1, 0)
+Brightness.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Brightness.Position = UDim2.new(0.5, 0, 0.5, 0)
+Brightness.BorderSizePixel = 0
+Brightness.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Brightness.Parent = SVPicker
 
-		local RGB = Instance.new("Frame")
-		RGB.Name = "RGB"
-		RGB.ZIndex = 3
-		RGB.AnchorPoint = Vector2.new(0.5, 0)
-		RGB.Size = UDim2.new(1, -10, 0, 20)
-		RGB.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		RGB.Position = UDim2.new(0.5, 0, 0, 223)
-		RGB.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-		RGB.Parent = Palette
+-- Add rounded corners to brightness overlay
+local BrightnessCorner = Instance.new("UICorner")
+BrightnessCorner.CornerRadius = UDim.new(0, 4)
+BrightnessCorner.Parent = Brightness
 
-		local RGBBox = Instance.new("TextBox")
-		RGBBox.Name = "RGBBox"
-		RGBBox.ZIndex = 3
-		RGBBox.AnchorPoint = Vector2.new(0, 0.5)
-		RGBBox.Size = UDim2.new(1, -36, 1, 0)
-		RGBBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		RGBBox.BackgroundTransparency = 1
-		RGBBox.Position = UDim2.new(0, 31, 0.5, 0)
-		RGBBox.BorderSizePixel = 0
-		RGBBox.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		RGBBox.TextStrokeTransparency = 0.75
-		RGBBox.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
-		RGBBox.TextSize = 14
-		RGBBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-		RGBBox.PlaceholderText = "255, 0, 0"
-		RGBBox.Text = ""
-		RGBBox.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		RGBBox.TextXAlignment = Enum.TextXAlignment.Left
-		RGBBox.Parent = RGB
+local BrightnessGradient = Instance.new("UIGradient")
+BrightnessGradient.Name = "Gradient"
+BrightnessGradient.Transparency = NumberSequence.new(0, 1)
+BrightnessGradient.Parent = Brightness
 
-		local RGBText = Instance.new("TextLabel")
-		RGBText.Name = "RGBText"
-		RGBText.ZIndex = 3
-		RGBText.Size = UDim2.new(0, 26, 0, 20)
-		RGBText.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		RGBText.BackgroundTransparency = 1
-		RGBText.Position = UDim2.new(0, 5, 0, 0)
-		RGBText.BorderSizePixel = 0
-		RGBText.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		RGBText.TextStrokeTransparency = 0.75
-		RGBText.TextSize = 14
-		RGBText.RichText = true
-		RGBText.TextColor3 = Color3.fromRGB(255, 255, 255)
-		RGBText.Text = "RGB: "
-		RGBText.TextWrapped = true
-		RGBText.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		RGBText.TextXAlignment = Enum.TextXAlignment.Left
-		RGBText.Parent = RGB
+local SVPin = Instance.new("Frame")
+SVPin.Name = "Pin"
+SVPin.ZIndex = 3
+SVPin.AnchorPoint = Vector2.new(0.5, 0.5)
+SVPin.Size = UDim2.new(0, 4, 0, 4)
+SVPin.BorderColor3 = Color3.fromRGB(255, 255, 255)
+SVPin.Rotation = 45
+SVPin.BackgroundTransparency = 1
+SVPin.Position = UDim2.new(0.5, 0, 0.5, 0)
+SVPin.BorderSizePixel = 0
+SVPin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SVPin.Parent = SVPicker
 
-		local RGBGradient = Instance.new("UIGradient")
-		RGBGradient.Name = "Gradient"
-		RGBGradient.Rotation = 90
-		RGBGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		RGBGradient.Parent = RGB
+local SVPinStroke = Instance.new("UIStroke")
+SVPinStroke.Name = "Stroke"
+SVPinStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+SVPinStroke.LineJoinMode = Enum.LineJoinMode.Round
+SVPinStroke.Thickness = 1.5
+SVPinStroke.Color = Color3.fromRGB(255, 255, 255)
+SVPinStroke.Parent = SVPin
 
-		local HEX = Instance.new("Frame")
-		HEX.Name = "HEX"
-		HEX.ZIndex = 3
-		HEX.AnchorPoint = Vector2.new(0.5, 0)
-		HEX.Size = UDim2.new(1, -10, 0, 20)
-		HEX.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		HEX.Position = UDim2.new(0.5, 0, 0, 249)
-		HEX.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-		HEX.Parent = Palette
+local Hue = Instance.new("TextButton")
+Hue.Name = "Hue"
+Hue.ZIndex = 3
+Hue.AnchorPoint = Vector2.new(0.5, 0)
+Hue.Size = UDim2.new(1, -10, 0, 10)
+Hue.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Hue.Position = UDim2.new(0.5, 0, 0, 191)
+Hue.BorderSizePixel = 0
+Hue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Hue.AutoButtonColor = false
+Hue.TextStrokeTransparency = 0.75
+Hue.TextSize = 14
+Hue.RichText = true
+Hue.TextColor3 = Color3.fromRGB(255, 255, 255)
+Hue.Text = ""
+Hue.TextWrapped = true
+Hue.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Hue.Parent = Palette
 
-		local HEXBox = Instance.new("TextBox")
-		HEXBox.Name = "HEXBox"
-		HEXBox.ZIndex = 3
-		HEXBox.AnchorPoint = Vector2.new(0, 0.5)
-		HEXBox.Size = UDim2.new(1, -36, 1, 0)
-		HEXBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		HEXBox.BackgroundTransparency = 1
-		HEXBox.Position = UDim2.new(0, 36, 0.5, 0)
-		HEXBox.BorderSizePixel = 0
-		HEXBox.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		HEXBox.TextStrokeTransparency = 0.75
-		HEXBox.PlaceholderColor3 = Color3.fromRGB(189, 189, 189)
-		HEXBox.TextSize = 14
-		HEXBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-		HEXBox.PlaceholderText = "ff0000"
-		HEXBox.Text = ""
-		HEXBox.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		HEXBox.TextXAlignment = Enum.TextXAlignment.Left
-		HEXBox.Parent = HEX
+-- Add rounded corners to hue slider
+local HueCorner = Instance.new("UICorner")
+HueCorner.CornerRadius = UDim.new(0, 3)
+HueCorner.Parent = Hue
 
-		local HEXText = Instance.new("TextLabel")
-		HEXText.Name = "HEXText"
-		HEXText.ZIndex = 3
-		HEXText.Size = UDim2.new(0, 31, 0, 20)
-		HEXText.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		HEXText.BackgroundTransparency = 1
-		HEXText.Position = UDim2.new(0, 5, 0, 0)
-		HEXText.BorderSizePixel = 0
-		HEXText.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		HEXText.TextStrokeTransparency = 0.75
-		HEXText.TextSize = 14
-		HEXText.RichText = true
-		HEXText.TextColor3 = Color3.fromRGB(255, 255, 255)
-		HEXText.Text = "HEX: #"
-		HEXText.TextWrapped = true
-		HEXText.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		HEXText.TextXAlignment = Enum.TextXAlignment.Left
-		HEXText.Parent = HEX
+local HuePin = Instance.new("Frame")
+HuePin.Name = "Pin"
+HuePin.ZIndex = 3
+HuePin.AnchorPoint = Vector2.new(0.5, 0.5)
+HuePin.Size = UDim2.new(0, 2, 1, 0)
+HuePin.BorderColor3 = Color3.fromRGB(0, 0, 0)
+HuePin.Position = UDim2.new(0, 0, 0.5, 0)
+HuePin.BorderSizePixel = 0
+HuePin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+HuePin.Parent = Hue
 
-		local HEXGradient = Instance.new("UIGradient")
-		HEXGradient.Name = "Gradient"
-		HEXGradient.Rotation = 90
-		HEXGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		HEXGradient.Parent = HEX
+local HueGradient = Instance.new("UIGradient")
+HueGradient.Name = "Gradient"
+HueGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1/6, Color3.fromRGB(255, 0, 255)),
+    ColorSequenceKeypoint.new(1/3, Color3.fromRGB(0, 0, 255)),
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 255)),
+    ColorSequenceKeypoint.new(1/1.5, Color3.fromRGB(0, 255, 0)),
+    ColorSequenceKeypoint.new(1/1.2, Color3.fromRGB(255, 255, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))
+})
+HueGradient.Parent = Hue
 
-		local Rainbow = Instance.new("TextButton")
-		Rainbow.Name = "Rainbow"
-		Rainbow.ZIndex = 3
-		Rainbow.AnchorPoint = Vector2.new(0.5, 0)
-		Rainbow.Size = UDim2.new(1, -10, 0, 20)
-		Rainbow.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Rainbow.BackgroundTransparency = 1
-		Rainbow.Position = UDim2.new(0.5, 0, 0, 270)
-		Rainbow.BorderSizePixel = 0
-		Rainbow.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Rainbow.AutoButtonColor = false
-		Rainbow.TextStrokeTransparency = 0.75
-		Rainbow.TextSize = 14
-		Rainbow.RichText = true
-		Rainbow.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Rainbow.Text = ""
-		Rainbow.TextWrapped = true
-		Rainbow.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Rainbow.Parent = Palette
+local Alpha = Instance.new("TextButton")
+Alpha.Name = "Alpha"
+Alpha.ZIndex = 3
+Alpha.AnchorPoint = Vector2.new(0.5, 0)
+Alpha.Size = UDim2.new(1, -10, 0, 10)
+Alpha.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Alpha.Position = UDim2.new(0.5, 0, 0, 207)
+Alpha.BorderSizePixel = 0
+Alpha.BackgroundColor3 = Color3.fromRGB(124, 89, 255)
+Alpha.AutoButtonColor = false
+Alpha.TextStrokeTransparency = 0.75
+Alpha.TextSize = 14
+Alpha.RichText = true
+Alpha.TextColor3 = Color3.fromRGB(255, 255, 255)
+Alpha.Text = ""
+Alpha.TextWrapped = true
+Alpha.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Alpha.Parent = Palette
 
-		local Title = Instance.new("TextLabel")
-		Title.Name = "Title"
-		Title.ZIndex = 3
-		Title.AnchorPoint = Vector2.new(0, 0.5)
-		Title.Size = UDim2.new(1, -15, 1, 0)
-		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Title.BackgroundTransparency = 1
-		Title.Position = UDim2.new(0, 15, 0.5, 0)
-		Title.BorderSizePixel = 0
-		Title.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-		Title.TextStrokeTransparency = 0.75
-		Title.TextSize = 14
-		Title.RichText = true
-		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Title.Text = "Rainbow"
-		Title.TextWrapped = true
-		Title.FontFace = Font.fromEnum(Enum.Font.SourceSans)
-		Title.TextXAlignment = Enum.TextXAlignment.Left
-		Title.Parent = Rainbow
+-- Add rounded corners to alpha slider
+local AlphaCorner = Instance.new("UICorner")
+AlphaCorner.CornerRadius = UDim.new(0, 3)
+AlphaCorner.Parent = Alpha
 
-		local RainbowTick = Instance.new("Frame")
-		RainbowTick.Name = "Tick"
-		RainbowTick.ZIndex = 3
-		RainbowTick.AnchorPoint = Vector2.new(0, 0.5)
-		RainbowTick.Size = UDim2.new(0, 10, 0, 10)
-		RainbowTick.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		RainbowTick.Position = UDim2.new(0, 0, 0.5, 0)
-		RainbowTick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-		RainbowTick.Parent = Rainbow
+local Stroke = Instance.new("UIStroke")
+Stroke.Name = "Stroke"
+Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Stroke.LineJoinMode = Enum.LineJoinMode.Round
+Stroke.Color = Color3.fromRGB(40, 40, 45)
+Stroke.Thickness = 1
+Stroke.Parent = Alpha
 
-		local RainbowTickGradient = Instance.new("UIGradient")
-		RainbowTickGradient.Name = "Gradient"
-		RainbowTickGradient.Rotation = 90
-		RainbowTickGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(191, 191, 191))
-		RainbowTickGradient.Parent = RainbowTick
+local AlphaGradient = Instance.new("UIGradient")
+AlphaGradient.Name = "Gradient"
+AlphaGradient.Transparency = NumberSequence.new(0, 1)
+AlphaGradient.Parent = Alpha
 
-		return Palette
-	end
+local AlphaPin = Instance.new("Frame")
+AlphaPin.Name = "Pin"
+AlphaPin.ZIndex = 3
+AlphaPin.AnchorPoint = Vector2.new(0.5, 0.5)
+AlphaPin.Size = UDim2.new(0, 2, 1, 0)
+AlphaPin.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AlphaPin.Position = UDim2.new(0, 0, 0.5, 0)
+AlphaPin.BorderSizePixel = 0
+AlphaPin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AlphaPin.Parent = Alpha
+
+local Value = Instance.new("TextLabel")
+Value.Name = "Value"
+Value.ZIndex = 3
+Value.AnchorPoint = Vector2.new(0.5, 0.5)
+Value.Size = UDim2.new(1, -8, 1, 0)
+Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Value.BackgroundTransparency = 1
+Value.Position = UDim2.new(0.5, 0, 0.5, 0)
+Value.BorderSizePixel = 0
+Value.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Value.TextStrokeTransparency = 0.75
+Value.TextSize = 12
+Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+Value.TextYAlignment = Enum.TextYAlignment.Bottom
+Value.Text = "1"
+Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Value.TextXAlignment = Enum.TextXAlignment.Right
+Value.Parent = Alpha
+
+local RGB = Instance.new("Frame")
+RGB.Name = "RGB"
+RGB.ZIndex = 3
+RGB.AnchorPoint = Vector2.new(0.5, 0)
+RGB.Size = UDim2.new(1, -10, 0, 20)
+RGB.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RGB.Position = UDim2.new(0.5, 0, 0, 223)
+RGB.BorderSizePixel = 0
+RGB.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+RGB.Parent = Palette
+
+-- Add rounded corners to RGB input
+local RGBCorner = Instance.new("UICorner")
+RGBCorner.CornerRadius = UDim.new(0, 3)
+RGBCorner.Parent = RGB
+
+local RGBBox = Instance.new("TextBox")
+RGBBox.Name = "RGBBox"
+RGBBox.ZIndex = 3
+RGBBox.AnchorPoint = Vector2.new(0, 0.5)
+RGBBox.Size = UDim2.new(1, -36, 1, 0)
+RGBBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RGBBox.BackgroundTransparency = 1
+RGBBox.Position = UDim2.new(0, 31, 0.5, 0)
+RGBBox.BorderSizePixel = 0
+RGBBox.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+RGBBox.TextStrokeTransparency = 0.75
+RGBBox.PlaceholderColor3 = Color3.fromRGB(180, 180, 180)
+RGBBox.TextSize = 14
+RGBBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+RGBBox.PlaceholderText = "255, 0, 0"
+RGBBox.Text = ""
+RGBBox.FontFace = Font.fromEnum(Enum.Font.Gotham)
+RGBBox.TextXAlignment = Enum.TextXAlignment.Left
+RGBBox.Parent = RGB
+
+local RGBText = Instance.new("TextLabel")
+RGBText.Name = "RGBText"
+RGBText.ZIndex = 3
+RGBText.Size = UDim2.new(0, 26, 0, 20)
+RGBText.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RGBText.BackgroundTransparency = 1
+RGBText.Position = UDim2.new(0, 5, 0, 0)
+RGBText.BorderSizePixel = 0
+RGBText.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+RGBText.TextStrokeTransparency = 0.75
+RGBText.TextSize = 14
+RGBText.RichText = true
+RGBText.TextColor3 = Color3.fromRGB(255, 255, 255)
+RGBText.Text = "RGB: "
+RGBText.TextWrapped = true
+RGBText.FontFace = Font.fromEnum(Enum.Font.Gotham)
+RGBText.TextXAlignment = Enum.TextXAlignment.Left
+RGBText.Parent = RGB
+
+local RGBGradient = Instance.new("UIGradient")
+RGBGradient.Name = "Gradient"
+RGBGradient.Rotation = 90
+RGBGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
+RGBGradient.Parent = RGB
+
+local HEX = Instance.new("Frame")
+HEX.Name = "HEX"
+HEX.ZIndex = 3
+HEX.AnchorPoint = Vector2.new(0.5, 0)
+HEX.Size = UDim2.new(1, -10, 0, 20)
+HEX.BorderColor3 = Color3.fromRGB(0, 0, 0)
+HEX.Position = UDim2.new(0.5, 0, 0, 249)
+HEX.BorderSizePixel = 0
+HEX.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+HEX.Parent = Palette
+
+-- Add rounded corners to HEX input
+local HEXCorner = Instance.new("UICorner")
+HEXCorner.CornerRadius = UDim.new(0, 3)
+HEXCorner.Parent = HEX
+
+local HEXBox = Instance.new("TextBox")
+HEXBox.Name = "HEXBox"
+HEXBox.ZIndex = 3
+HEXBox.AnchorPoint = Vector2.new(0, 0.5)
+HEXBox.Size = UDim2.new(1, -36, 1, 0)
+HEXBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+HEXBox.BackgroundTransparency = 1
+HEXBox.Position = UDim2.new(0, 36, 0.5, 0)
+HEXBox.BorderSizePixel = 0
+HEXBox.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+HEXBox.TextStrokeTransparency = 0.75
+HEXBox.PlaceholderColor3 = Color3.fromRGB(180, 180, 180)
+HEXBox.TextSize = 14
+HEXBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+HEXBox.PlaceholderText = "ff0000"
+HEXBox.Text = ""
+HEXBox.FontFace = Font.fromEnum(Enum.Font.Gotham)
+HEXBox.TextXAlignment = Enum.TextXAlignment.Left
+HEXBox.Parent = HEX
+
+local HEXText = Instance.new("TextLabel")
+HEXText.Name = "HEXText"
+HEXText.ZIndex = 3
+HEXText.Size = UDim2.new(0, 31, 0, 20)
+HEXText.BorderColor3 = Color3.fromRGB(0, 0, 0)
+HEXText.BackgroundTransparency = 1
+HEXText.Position = UDim2.new(0, 5, 0, 0)
+HEXText.BorderSizePixel = 0
+HEXText.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+HEXText.TextStrokeTransparency = 0.75
+HEXText.TextSize = 14
+HEXText.RichText = true
+HEXText.TextColor3 = Color3.fromRGB(255, 255, 255)
+HEXText.Text = "HEX: #"
+HEXText.TextWrapped = true
+HEXText.FontFace = Font.fromEnum(Enum.Font.Gotham)
+HEXText.TextXAlignment = Enum.TextXAlignment.Left
+HEXText.Parent = HEX
+
+local HEXGradient = Instance.new("UIGradient")
+HEXGradient.Name = "Gradient"
+HEXGradient.Rotation = 90
+HEXGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
+HEXGradient.Parent = HEX
+
+local Rainbow = Instance.new("TextButton")
+Rainbow.Name = "Rainbow"
+Rainbow.ZIndex = 3
+Rainbow.AnchorPoint = Vector2.new(0.5, 0)
+Rainbow.Size = UDim2.new(1, -10, 0, 20)
+Rainbow.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Rainbow.BackgroundTransparency = 1
+Rainbow.Position = UDim2.new(0.5, 0, 0, 270)
+Rainbow.BorderSizePixel = 0
+Rainbow.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Rainbow.AutoButtonColor = false
+Rainbow.TextStrokeTransparency = 0.75
+Rainbow.TextSize = 14
+Rainbow.RichText = true
+Rainbow.TextColor3 = Color3.fromRGB(255, 255, 255)
+Rainbow.Text = ""
+Rainbow.TextWrapped = true
+Rainbow.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Rainbow.Parent = Palette
+
+local Title = Instance.new("TextLabel")
+Title.Name = "Title"
+Title.ZIndex = 3
+Title.AnchorPoint = Vector2.new(0, 0.5)
+Title.Size = UDim2.new(1, -15, 1, 0)
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Position = UDim2.new(0, 15, 0.5, 0)
+Title.BorderSizePixel = 0
+Title.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+Title.TextStrokeTransparency = 0.75
+Title.TextSize = 14
+Title.RichText = true
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.Text = "Rainbow"
+Title.TextWrapped = true
+Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
+Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.Parent = Rainbow
+
+local RainbowTick = Instance.new("Frame")
+RainbowTick.Name = "Tick"
+RainbowTick.ZIndex = 3
+RainbowTick.AnchorPoint = Vector2.new(0, 0.5)
+RainbowTick.Size = UDim2.new(0, 10, 0, 10)
+RainbowTick.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RainbowTick.Position = UDim2.new(0, 0, 0.5, 0)
+RainbowTick.BorderSizePixel = 0
+RainbowTick.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+RainbowTick.Parent = Rainbow
+
+-- Add rounded corners to rainbow tick
+local RainbowTickCorner = Instance.new("UICorner")
+RainbowTickCorner.CornerRadius = UDim.new(0, 3)
+RainbowTickCorner.Parent = RainbowTick
+
+local RainbowTickGradient = Instance.new("UIGradient")
+RainbowTickGradient.Name = "Gradient"
+RainbowTickGradient.Rotation = 90
+RainbowTickGradient.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(180, 180, 180))
+RainbowTickGradient.Parent = RainbowTick
+
+return Palette
+end
 }
 Bracket.Elements = {
 	Screen = function()
@@ -2508,7 +2750,7 @@ Bracket.Elements = {
 		TabAsset.Visible = false
 		TabButtonAsset.Text = Tab.Name
 		TabButtonAsset.Highlight.BackgroundColor3 = Window.Color
-		TabButtonAsset.Size = UDim2.new(0, TabButtonAsset.TextBounds.X + 12, 1, -1)
+		TabButtonAsset.Size = UDim2.new(0, TabButtonAsset.TextBounds.X + 12, 1, 0)
 		TabButtonAsset.Parent = WindowAsset.TabButtonContainer
 
 		TabAsset.LeftSide.ListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
@@ -2531,7 +2773,7 @@ Bracket.Elements = {
 			TabButtonAsset.Text = Name
 			TabButtonAsset.Size = UDim2.new(
 				0, TabButtonAsset.TextBounds.X + 12,
-				1, -1
+				1, 0
 			)
 		end)
 
@@ -2543,7 +2785,7 @@ Bracket.Elements = {
 		SectionAsset.Parent = Parent
 		SectionAsset.Title.Text = Section.Name
 		SectionAsset.Title.Size = UDim2.fromOffset(
-			SectionAsset.Title.TextBounds.X + 6, 2
+			SectionAsset.Title.TextBounds.X + 10, 14
 		)
 
 		SectionAsset.Container.ListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
@@ -2553,7 +2795,7 @@ Bracket.Elements = {
 		Section:GetPropertyChangedSignal("Name"):Connect(function(Name)
 			SectionAsset.Title.Text = Name
 			SectionAsset.Title.Size = UDim2.fromOffset(
-				Section.Title.TextBounds.X + 6, 2
+				SectionAsset.Title.TextBounds.X + 10, 14
 			)
 		end)
 
@@ -2614,12 +2856,12 @@ Bracket.Elements = {
                         Vector2.new(DividerAsset.Title.AbsoluteSize.X, DividerAsset.Title.TextSize)
                     ).Y
                 )
-				DividerAsset.Left.Size = UDim2.new(0.5, -(DividerAsset.Title.TextBounds.X / 2) - 6, 0 , 2)
-				DividerAsset.Right.Size = UDim2.new(0.5, -(DividerAsset.Title.TextBounds.X / 2) - 6, 0, 2)
+				DividerAsset.Left.Size = UDim2.new(0.5, -(DividerAsset.Title.TextBounds.X / 2) - 6, 0 , 1)
+				DividerAsset.Right.Size = UDim2.new(0.5, -(DividerAsset.Title.TextBounds.X / 2) - 6, 0, 1)
 			else
 				DividerAsset.Size = UDim2.new(1, 0, 0, 14)
-				DividerAsset.Left.Size = UDim2.new(1, 0, 0, 2)
-				DividerAsset.Right.Size = UDim2.new(1, 0, 0, 2)
+				DividerAsset.Left.Size = UDim2.new(1, 0, 0, 1)
+				DividerAsset.Right.Size = UDim2.new(1, 0, 0, 1)
 			end
 		end)
 
@@ -2701,7 +2943,7 @@ Bracket.Elements = {
 		ToggleAsset.Parent = Parent
 		ToggleAsset.Title.Text = Toggle.Name
 		ToggleAsset.Tick.BackgroundColor3 = Toggle.Value
-			and Window.Color or Color3.fromRGB(63, 63, 63)
+			and Window.Color or Color3.fromRGB(40, 40, 45)
 
 		ToggleAsset.MouseButton1Click:Connect(function()
 			Toggle.Value = not Toggle.Value
@@ -2723,7 +2965,7 @@ Bracket.Elements = {
 		Toggle:GetPropertyChangedSignal("Value"):Connect(function(Value)
 			Toggle.ColorConfig[1] = Value
 			ToggleAsset.Tick.BackgroundColor3 = Value
-				and Window.Color or Color3.fromRGB(63, 63, 63)
+				and Window.Color or Color3.fromRGB(40, 40, 45)
 			Window.Flags[Toggle.Flag] = Value
 			Toggle.Callback(Value)
 		end)
@@ -2996,7 +3238,7 @@ Bracket.Elements = {
 				if Key == Keybind.Value then
 					if Keybind.ListMimic then
 						Keybind.ListMimic.ColorConfig[1] = false
-						Keybind.ListMimic.Asset.Tick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+						Keybind.ListMimic.Asset.Tick.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 					end
 					Keybind.Callback(Keybind.Value, false, Keybind.Toggle)
 				end
@@ -3008,7 +3250,7 @@ Bracket.Elements = {
 					if Key == Keybind.Value then
 						if Keybind.ListMimic then
 							Keybind.ListMimic.ColorConfig[1] = false
-							Keybind.ListMimic.Asset.Tick.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+							Keybind.ListMimic.Asset.Tick.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
 						end
 						Keybind.Callback(Keybind.Value, false, Keybind.Toggle)
 					end
@@ -3115,7 +3357,7 @@ Bracket.Elements = {
 			if Keybind.ListMimic then
 				Keybind.ListMimic.ColorConfig[1] = Value
 				Keybind.ListMimic.Asset.Tick.BackgroundColor3 = Value
-					and Window.Color or Color3.fromRGB(63, 63, 63)
+					and Window.Color or Color3.fromRGB(40, 40, 45)
 			end
 		end)
 
@@ -3221,7 +3463,7 @@ Bracket.Elements = {
 			Option.Value = Value
 			Option.ColorConfig[1] = Value
 			Option.Object.Tick.BackgroundColor3 = Value
-				and Window.Color or Color3.fromRGB(63, 63, 63)
+				and Window.Color or Color3.fromRGB(40, 40, 45)
 			--Option.Callback(Dropdown.Selected, Option)
 		end
 
@@ -3239,7 +3481,7 @@ Bracket.Elements = {
 			OptionAsset.Parent = OptionContainerAsset
 			OptionAsset.Title.Text = Option.Name
 			OptionAsset.Tick.BackgroundColor3 = Option.Value
-				and Window.Color or Color3.fromRGB(63, 63, 63)
+				and Window.Color or Color3.fromRGB(40, 40, 45)
 
 			Option.ColorConfig = {Option.Value, "BackgroundColor3"}
 			Window.Colorable[OptionAsset.Tick] = Option.ColorConfig
@@ -3269,7 +3511,7 @@ Bracket.Elements = {
 				RefreshSelected()
 				Option.ColorConfig[1] = Value
 				Option.Object.Tick.BackgroundColor3 = Value
-					and Window.Color or Color3.fromRGB(63, 63, 63)
+					and Window.Color or Color3.fromRGB(40, 40, 45)
 				Option.Callback(Dropdown.Value, Option)
 			end)
 
@@ -3371,7 +3613,7 @@ Bracket.Elements = {
 
 		ColorpickerAsset.Title.Text = Colorpicker.Name
 		PaletteAsset.Rainbow.Tick.BackgroundColor3 = Colorpicker.Value[5]
-			and Window.Color or Color3.fromRGB(63, 63, 63)
+			and Window.Color or Color3.fromRGB(40, 40, 45)
 
 
 		ColorpickerAsset.Title:GetPropertyChangedSignal("TextBounds"):Connect(function()
@@ -3418,7 +3660,7 @@ Bracket.Elements = {
 			Colorpicker.Value[5] = not Colorpicker.Value[5]
 			Colorpicker.ColorConfig[1] = Colorpicker.Value[5]
 			PaletteAsset.Rainbow.Tick.BackgroundColor3 = Colorpicker.Value[5]
-				and Window.Color or Color3.fromRGB(63, 63, 63)
+				and Window.Color or Color3.fromRGB(40, 40, 45)
 		end)
 		PaletteAsset.SVPicker.InputBegan:Connect(function(Input)
 			if Input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -3519,7 +3761,7 @@ Bracket.Elements = {
 			ColorpickerAsset.Color.BackgroundColor3 = Value[6]
 
 			PaletteAsset.Rainbow.Tick.BackgroundColor3 = Colorpicker.Value[5]
-				and Window.Color or Color3.fromRGB(63, 63, 63)
+				and Window.Color or Color3.fromRGB(40, 40, 45)
 
 			PaletteAsset.SVPicker.BackgroundColor3 = Color3.fromHSV(Value[1], 1, 1)
 			PaletteAsset.SVPicker.Pin.Position = UDim2.fromScale(Value[2], 1 - Value[3])
@@ -3551,7 +3793,7 @@ Bracket.Elements = {
 		PaletteAsset.Parent = Bracket.Screen
 
 		PaletteAsset.Rainbow.Tick.BackgroundColor3 = Colorpicker.Value[5]
-			and Window.Color or Color3.fromRGB(63, 63, 63)
+			and Window.Color or Color3.fromRGB(40, 40, 45)
 
 		ColorpickerAsset.MouseButton1Click:Connect(function()
 			if not PaletteAsset.Visible then
@@ -3587,7 +3829,7 @@ Bracket.Elements = {
 			Colorpicker.Value[5] = not Colorpicker.Value[5]
 			Colorpicker.ColorConfig[1] = Colorpicker.Value[5]
 			PaletteAsset.Rainbow.Tick.BackgroundColor3 = Colorpicker.Value[5]
-				and Window.Color or Color3.fromRGB(63, 63, 63)
+				and Window.Color or Color3.fromRGB(40, 40, 45)
 		end)
 		PaletteAsset.SVPicker.InputBegan:Connect(function(Input)
 			if Input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -3684,7 +3926,7 @@ Bracket.Elements = {
 			ColorpickerAsset.BackgroundColor3 = Value[6]
 
 			PaletteAsset.Rainbow.Tick.BackgroundColor3 = Colorpicker.Value[5]
-				and Window.Color or Color3.fromRGB(63, 63, 63)
+				and Window.Color or Color3.fromRGB(40, 40, 45)
 
 			PaletteAsset.SVPicker.BackgroundColor3 = Color3.fromHSV(Value[1], 1, 1)
 			PaletteAsset.SVPicker.Pin.Position = UDim2.fromScale(Value[2], 1 - Value[3])
@@ -3708,7 +3950,7 @@ function Bracket:Window(Window)
 	Window.Blur = Bracket.Utilities:GetType(Window.Blur, false, "boolean")
 	Window.Name = Bracket.Utilities:GetType(Window.Name, "Window", "string")
 	Window.Enabled = Bracket.Utilities:GetType(Window.Enabled, true, "boolean")
-	Window.Color = Bracket.Utilities:GetType(Window.Color, Color3.new(1, 0.5, 0.25), "Color3")
+	Window.Color = Bracket.Utilities:GetType(Window.Color, Color3.new(124/255, 89/255, 255/255), "Color3")
 	Window.Position = Bracket.Utilities:GetType(Window.Position, UDim2.new(0.5, -248, 0.5, -248), "UDim2")
 	Window.Size = Bracket.Utilities:GetType(Window.Size, UDim2.new(0, 496, 0, 496), "UDim2")
 	local WindowAsset = Bracket.Elements.Window(Window)
@@ -3856,304 +4098,304 @@ function Bracket:Window(Window)
 			return Toggle
 		end
 		function Tab:Slider(Slider)
-			Slider = Bracket.Utilities:GetType(Slider, {}, "table", true)
-			Slider.Name = Bracket.Utilities:GetType(Slider.Name, "Slider", "string")
-			Slider.Flag = Bracket.Utilities:GetType(Slider.Flag, Slider.Name, "string")
+    Slider = Bracket.Utilities:GetType(Slider, {}, "table", true)
+    Slider.Name = Bracket.Utilities:GetType(Slider.Name, "Slider", "string")
+    Slider.Flag = Bracket.Utilities:GetType(Slider.Flag, Slider.Name, "string")
 
-			Slider.Min = Bracket.Utilities:GetType(Slider.Min, 0, "number")
-			Slider.Max = Bracket.Utilities:GetType(Slider.Max, 100, "number")
-			Slider.Precise = Bracket.Utilities:GetType(Slider.Precise, 0, "number")
-			Slider.Unit = Bracket.Utilities:GetType(Slider.Unit, "", "string")
-			Slider.Value = Bracket.Utilities:GetType(Slider.Value, Slider.Max / 2, "number")
-			Slider.Callback = Bracket.Utilities:GetType(Slider.Callback, function() end, "function")
-			Window.Elements[#Window.Elements + 1] = Slider
-			Window.Flags[Slider.Flag] = Slider.Value
+    Slider.Min = Bracket.Utilities:GetType(Slider.Min, 0, "number")
+    Slider.Max = Bracket.Utilities:GetType(Slider.Max, 100, "number")
+    Slider.Precise = Bracket.Utilities:GetType(Slider.Precise, 0, "number")
+    Slider.Unit = Bracket.Utilities:GetType(Slider.Unit, "", "string")
+    Slider.Value = Bracket.Utilities:GetType(Slider.Value, Slider.Max / 2, "number")
+    Slider.Callback = Bracket.Utilities:GetType(Slider.Callback, function() end, "function")
+    Window.Elements[#Window.Elements + 1] = Slider
+    Window.Flags[Slider.Flag] = Slider.Value
 
-			Bracket.Elements.Slider(Bracket.Utilities:ChooseTabSide(TabAsset, Slider.Side), Window, Slider)
-			return Slider
-		end
-		function Tab:Textbox(Textbox)
-			Textbox = Bracket.Utilities:GetType(Textbox, {}, "table", true)
-			Textbox.Name = Bracket.Utilities:GetType(Textbox.Name, "Textbox", "string")
-			Textbox.Flag = Bracket.Utilities:GetType(Textbox.Flag, Textbox.Name, "string")
+    Bracket.Elements.Slider(Bracket.Utilities:ChooseTabSide(TabAsset, Slider.Side), Window, Slider)
+    return Slider
+end
+function Tab:Textbox(Textbox)
+    Textbox = Bracket.Utilities:GetType(Textbox, {}, "table", true)
+    Textbox.Name = Bracket.Utilities:GetType(Textbox.Name, "Textbox", "string")
+    Textbox.Flag = Bracket.Utilities:GetType(Textbox.Flag, Textbox.Name, "string")
 
-			Textbox.Value = Bracket.Utilities:GetType(Textbox.Value, "", "string")
-			Textbox.NumbersOnly = Bracket.Utilities:GetType(Textbox.NumbersOnly, false, "boolean")
-			Textbox.Placeholder = Bracket.Utilities:GetType(Textbox.Placeholder, "Input here", "string")
-			Textbox.Callback = Bracket.Utilities:GetType(Textbox.Callback, function() end, "function")
-			Window.Elements[#Window.Elements + 1] = Textbox
-			Window.Flags[Textbox.Flag] = Textbox.Value
+    Textbox.Value = Bracket.Utilities:GetType(Textbox.Value, "", "string")
+    Textbox.NumbersOnly = Bracket.Utilities:GetType(Textbox.NumbersOnly, false, "boolean")
+    Textbox.Placeholder = Bracket.Utilities:GetType(Textbox.Placeholder, "Input here", "string")
+    Textbox.Callback = Bracket.Utilities:GetType(Textbox.Callback, function() end, "function")
+    Window.Elements[#Window.Elements + 1] = Textbox
+    Window.Flags[Textbox.Flag] = Textbox.Value
 
-			Bracket.Elements.Textbox(Bracket.Utilities:ChooseTabSide(TabAsset, Textbox.Side), Window, Textbox)
-			return Textbox
-		end
-		function Tab:Keybind(Keybind)
-			Keybind = Bracket.Utilities:GetType(Keybind, {}, "table", true)
-			Keybind.Name = Bracket.Utilities:GetType(Keybind.Name, "Keybind", "string")
-			Keybind.Flag = Bracket.Utilities:GetType(Keybind.Flag, Keybind.Name, "string")
+    Bracket.Elements.Textbox(Bracket.Utilities:ChooseTabSide(TabAsset, Textbox.Side), Window, Textbox)
+    return Textbox
+end
+function Tab:Keybind(Keybind)
+    Keybind = Bracket.Utilities:GetType(Keybind, {}, "table", true)
+    Keybind.Name = Bracket.Utilities:GetType(Keybind.Name, "Keybind", "string")
+    Keybind.Flag = Bracket.Utilities:GetType(Keybind.Flag, Keybind.Name, "string")
 
-			Keybind.Value = Bracket.Utilities:GetType(Keybind.Value, "NONE", "string")
-			Keybind.Mouse = Bracket.Utilities:GetType(Keybind.Mouse, false, "boolean")
-			Keybind.Callback = Bracket.Utilities:GetType(Keybind.Callback, function() end, "function")
-			Keybind.Blacklist = Bracket.Utilities:GetType(Keybind.Blacklist, {"W", "A", "S", "D", "Slash", "Tab", "Backspace", "Escape", "Space", "Delete", "Unknown", "Backquote"}, "table")
-			Window.Elements[#Window.Elements + 1] = Keybind
-			Window.Flags[Keybind.Flag] = Keybind.Value
+    Keybind.Value = Bracket.Utilities:GetType(Keybind.Value, "NONE", "string")
+    Keybind.Mouse = Bracket.Utilities:GetType(Keybind.Mouse, false, "boolean")
+    Keybind.Callback = Bracket.Utilities:GetType(Keybind.Callback, function() end, "function")
+    Keybind.Blacklist = Bracket.Utilities:GetType(Keybind.Blacklist, {"W", "A", "S", "D", "Slash", "Tab", "Backspace", "Escape", "Space", "Delete", "Unknown", "Backquote"}, "table")
+    Window.Elements[#Window.Elements + 1] = Keybind
+    Window.Flags[Keybind.Flag] = Keybind.Value
 
-			Bracket.Elements.Keybind(Bracket.Utilities:ChooseTabSide(TabAsset, Keybind.Side), Window, Keybind)
-			return Keybind
-		end
-		function Tab:Dropdown(Dropdown)
-			Dropdown = Bracket.Utilities:GetType(Dropdown, {}, "table", true)
-			Dropdown.Name = Bracket.Utilities:GetType(Dropdown.Name, "Dropdown", "string")
-			Dropdown.Flag = Bracket.Utilities:GetType(Dropdown.Flag, Dropdown.Name, "string")
-			Dropdown.List = Bracket.Utilities:GetType(Dropdown.List, {}, "table")
-			Window.Elements[#Window.Elements + 1] = Dropdown
-			Window.Flags[Dropdown.Flag] = Dropdown.Value
+    Bracket.Elements.Keybind(Bracket.Utilities:ChooseTabSide(TabAsset, Keybind.Side), Window, Keybind)
+    return Keybind
+end
+function Tab:Dropdown(Dropdown)
+    Dropdown = Bracket.Utilities:GetType(Dropdown, {}, "table", true)
+    Dropdown.Name = Bracket.Utilities:GetType(Dropdown.Name, "Dropdown", "string")
+    Dropdown.Flag = Bracket.Utilities:GetType(Dropdown.Flag, Dropdown.Name, "string")
+    Dropdown.List = Bracket.Utilities:GetType(Dropdown.List, {}, "table")
+    Window.Elements[#Window.Elements + 1] = Dropdown
+    Window.Flags[Dropdown.Flag] = Dropdown.Value
 
-			Bracket.Elements.Dropdown(Bracket.Utilities:ChooseTabSide(TabAsset, Dropdown.Side), Window, Dropdown)
-			return Dropdown
-		end
-		function Tab:Colorpicker(Colorpicker)
-			Colorpicker = Bracket.Utilities:GetType(Colorpicker, {}, "table", true)
-			Colorpicker.Name = Bracket.Utilities:GetType(Colorpicker.Name, "Colorpicker", "string")
-			Colorpicker.Flag = Bracket.Utilities:GetType(Colorpicker.Flag, Colorpicker.Name, "string")
+    Bracket.Elements.Dropdown(Bracket.Utilities:ChooseTabSide(TabAsset, Dropdown.Side), Window, Dropdown)
+    return Dropdown
+end
+function Tab:Colorpicker(Colorpicker)
+    Colorpicker = Bracket.Utilities:GetType(Colorpicker, {}, "table", true)
+    Colorpicker.Name = Bracket.Utilities:GetType(Colorpicker.Name, "Colorpicker", "string")
+    Colorpicker.Flag = Bracket.Utilities:GetType(Colorpicker.Flag, Colorpicker.Name, "string")
 
-			Colorpicker.Value = Bracket.Utilities:GetType(Colorpicker.Value, {1, 1, 1, 0, false}, "table")
-			Colorpicker.Callback = Bracket.Utilities:GetType(Colorpicker.Callback, function() end, "function")
-			Window.Elements[#Window.Elements + 1] = Colorpicker
-			Window.Flags[Colorpicker.Flag] = Colorpicker.Value
+    Colorpicker.Value = Bracket.Utilities:GetType(Colorpicker.Value, {1, 1, 1, 0, false}, "table")
+    Colorpicker.Callback = Bracket.Utilities:GetType(Colorpicker.Callback, function() end, "function")
+    Window.Elements[#Window.Elements + 1] = Colorpicker
+    Window.Flags[Colorpicker.Flag] = Colorpicker.Value
 
-			Bracket.Elements.Colorpicker(Bracket.Utilities:ChooseTabSide(TabAsset, Colorpicker.Side), Window, Colorpicker)
-			return Colorpicker
-		end
-		function Tab:Section(Section)
-			Section = Bracket.Utilities:GetType(Section, {}, "table", true)
-			Section.Name = Bracket.Utilities:GetType(Section.Name, "Section", "string")
-			local SectionContainer = Bracket.Elements.Section(Bracket.Utilities:ChooseTabSide(TabAsset, Section.Side), Section)
+    Bracket.Elements.Colorpicker(Bracket.Utilities:ChooseTabSide(TabAsset, Colorpicker.Side), Window, Colorpicker)
+    return Colorpicker
+end
+function Tab:Section(Section)
+    Section = Bracket.Utilities:GetType(Section, {}, "table", true)
+    Section.Name = Bracket.Utilities:GetType(Section.Name, "Section", "string")
+    local SectionContainer = Bracket.Elements.Section(Bracket.Utilities:ChooseTabSide(TabAsset, Section.Side), Section)
 
-			function Section:Divider(Divider)
-				Divider = Bracket.Utilities:GetType(Divider, {}, "table", true)
-				Divider.Text = Bracket.Utilities:GetType(Divider.Text, "", "string")
-				Bracket.Elements.Divider(SectionContainer, Divider)
-				return Divider
-			end
-			function Section:Label(Label)
-				Label = Bracket.Utilities:GetType(Label, {}, "table", true)
-				Label.Text = Bracket.Utilities:GetType(Label.Text, "Label", "string")
-				Bracket.Elements.Label(SectionContainer, Label)
-				return Label
-			end
-			function Section:Button(Button)
-				Button = Bracket.Utilities:GetType(Button, {}, "table", true)
-				Button.Name = Bracket.Utilities:GetType(Button.Name, "Button", "string")
-				Button.Callback = Bracket.Utilities:GetType(Button.Callback, function() end, "function")
-				Bracket.Elements.Button(SectionContainer, Window, Button)
-				return Button
-			end
-			function Section:Toggle(Toggle)
-				Toggle = Bracket.Utilities:GetType(Toggle, {}, "table", true)
-				Toggle.Name = Bracket.Utilities:GetType(Toggle.Name, "Toggle", "string")
-				Toggle.Flag = Bracket.Utilities:GetType(Toggle.Flag, Toggle.Name, "string")
+    function Section:Divider(Divider)
+        Divider = Bracket.Utilities:GetType(Divider, {}, "table", true)
+        Divider.Text = Bracket.Utilities:GetType(Divider.Text, "", "string")
+        Bracket.Elements.Divider(SectionContainer, Divider)
+        return Divider
+    end
+    function Section:Label(Label)
+        Label = Bracket.Utilities:GetType(Label, {}, "table", true)
+        Label.Text = Bracket.Utilities:GetType(Label.Text, "Label", "string")
+        Bracket.Elements.Label(SectionContainer, Label)
+        return Label
+    end
+    function Section:Button(Button)
+        Button = Bracket.Utilities:GetType(Button, {}, "table", true)
+        Button.Name = Bracket.Utilities:GetType(Button.Name, "Button", "string")
+        Button.Callback = Bracket.Utilities:GetType(Button.Callback, function() end, "function")
+        Bracket.Elements.Button(SectionContainer, Window, Button)
+        return Button
+    end
+    function Section:Toggle(Toggle)
+        Toggle = Bracket.Utilities:GetType(Toggle, {}, "table", true)
+        Toggle.Name = Bracket.Utilities:GetType(Toggle.Name, "Toggle", "string")
+        Toggle.Flag = Bracket.Utilities:GetType(Toggle.Flag, Toggle.Name, "string")
 
-				Toggle.Value = Bracket.Utilities:GetType(Toggle.Value, false, "boolean")
-				Toggle.Callback = Bracket.Utilities:GetType(Toggle.Callback, function() end, "function")
-				Window.Elements[#Window.Elements + 1] = Toggle
-				Window.Flags[Toggle.Flag] = Toggle.Value
+        Toggle.Value = Bracket.Utilities:GetType(Toggle.Value, false, "boolean")
+        Toggle.Callback = Bracket.Utilities:GetType(Toggle.Callback, function() end, "function")
+        Window.Elements[#Window.Elements + 1] = Toggle
+        Window.Flags[Toggle.Flag] = Toggle.Value
 
-				local ToggleAsset = Bracket.Elements.Toggle(SectionContainer, Window, Toggle)
-				function Toggle:Keybind(Keybind)
-					Keybind = Bracket.Utilities:GetType(Keybind, {}, "table", true)
-					Keybind.Flag = Bracket.Utilities:GetType(Keybind.Flag, Toggle.Flag .. "/Keybind", "string")
+        local ToggleAsset = Bracket.Elements.Toggle(SectionContainer, Window, Toggle)
+        function Toggle:Keybind(Keybind)
+            Keybind = Bracket.Utilities:GetType(Keybind, {}, "table", true)
+            Keybind.Flag = Bracket.Utilities:GetType(Keybind.Flag, Toggle.Flag .. "/Keybind", "string")
 
-					Keybind.Value = Bracket.Utilities:GetType(Keybind.Value, "NONE", "string")
-					Keybind.Mouse = Bracket.Utilities:GetType(Keybind.Mouse, false, "boolean")
-					Keybind.Callback = Bracket.Utilities:GetType(Keybind.Callback, function() end, "function")
-					Keybind.Blacklist = Bracket.Utilities:GetType(Keybind.Blacklist, {"W", "A", "S", "D", "Slash", "Tab", "Backspace", "Escape", "Space", "Delete", "Unknown", "Backquote"}, "table")
-					Window.Elements[#Window.Elements + 1] = Keybind
-					Window.Flags[Keybind.Flag] = Keybind.Value
+            Keybind.Value = Bracket.Utilities:GetType(Keybind.Value, "NONE", "string")
+            Keybind.Mouse = Bracket.Utilities:GetType(Keybind.Mouse, false, "boolean")
+            Keybind.Callback = Bracket.Utilities:GetType(Keybind.Callback, function() end, "function")
+            Keybind.Blacklist = Bracket.Utilities:GetType(Keybind.Blacklist, {"W", "A", "S", "D", "Slash", "Tab", "Backspace", "Escape", "Space", "Delete", "Unknown", "Backquote"}, "table")
+            Window.Elements[#Window.Elements + 1] = Keybind
+            Window.Flags[Keybind.Flag] = Keybind.Value
 
-					Bracket.Elements.ToggleKeybind(ToggleAsset.Layout, Window, Keybind, Toggle)
-					return Keybind
-				end
-				function Toggle:Colorpicker(Colorpicker)
-					Colorpicker = Bracket.Utilities:GetType(Colorpicker, {}, "table", true)
-					Colorpicker.Flag = Bracket.Utilities:GetType(Colorpicker.Flag, Toggle.Flag .. "/Colorpicker", "string")
+            Bracket.Elements.ToggleKeybind(ToggleAsset.Layout, Window, Keybind, Toggle)
+            return Keybind
+        end
+        function Toggle:Colorpicker(Colorpicker)
+            Colorpicker = Bracket.Utilities:GetType(Colorpicker, {}, "table", true)
+            Colorpicker.Flag = Bracket.Utilities:GetType(Colorpicker.Flag, Toggle.Flag .. "/Colorpicker", "string")
 
-					Colorpicker.Value = Bracket.Utilities:GetType(Colorpicker.Value, {1, 1, 1, 0, false}, "table")
-					Colorpicker.Callback = Bracket.Utilities:GetType(Colorpicker.Callback, function() end, "function")
-					Window.Elements[#Window.Elements + 1] = Colorpicker
-					Window.Flags[Colorpicker.Flag] = Colorpicker.Value
+            Colorpicker.Value = Bracket.Utilities:GetType(Colorpicker.Value, {1, 1, 1, 0, false}, "table")
+            Colorpicker.Callback = Bracket.Utilities:GetType(Colorpicker.Callback, function() end, "function")
+            Window.Elements[#Window.Elements + 1] = Colorpicker
+            Window.Flags[Colorpicker.Flag] = Colorpicker.Value
 
-					Bracket.Elements.ToggleColorpicker(ToggleAsset.Layout, Window, Colorpicker)
-					return Colorpicker
-				end
-				return Toggle
-			end
-			function Section:Slider(Slider)
-				Slider = Bracket.Utilities:GetType(Slider, {}, "table", true)
-				Slider.Name = Bracket.Utilities:GetType(Slider.Name, "Slider", "string")
-				Slider.Flag = Bracket.Utilities:GetType(Slider.Flag, Slider.Name, "string")
+            Bracket.Elements.ToggleColorpicker(ToggleAsset.Layout, Window, Colorpicker)
+            return Colorpicker
+        end
+        return Toggle
+    end
+    function Section:Slider(Slider)
+        Slider = Bracket.Utilities:GetType(Slider, {}, "table", true)
+        Slider.Name = Bracket.Utilities:GetType(Slider.Name, "Slider", "string")
+        Slider.Flag = Bracket.Utilities:GetType(Slider.Flag, Slider.Name, "string")
 
-				Slider.Min = Bracket.Utilities:GetType(Slider.Min, 0, "number")
-				Slider.Max = Bracket.Utilities:GetType(Slider.Max, 100, "number")
-				Slider.Precise = Bracket.Utilities:GetType(Slider.Precise, 0, "number")
-				Slider.Unit = Bracket.Utilities:GetType(Slider.Unit, "", "string")
-				Slider.Value = Bracket.Utilities:GetType(Slider.Value, Slider.Max / 2, "number")
-				Slider.Callback = Bracket.Utilities:GetType(Slider.Callback, function() end, "function")
-				Window.Elements[#Window.Elements + 1] = Slider
-				Window.Flags[Slider.Flag] = Slider.Value
+        Slider.Min = Bracket.Utilities:GetType(Slider.Min, 0, "number")
+        Slider.Max = Bracket.Utilities:GetType(Slider.Max, 100, "number")
+        Slider.Precise = Bracket.Utilities:GetType(Slider.Precise, 0, "number")
+        Slider.Unit = Bracket.Utilities:GetType(Slider.Unit, "", "string")
+        Slider.Value = Bracket.Utilities:GetType(Slider.Value, Slider.Max / 2, "number")
+        Slider.Callback = Bracket.Utilities:GetType(Slider.Callback, function() end, "function")
+        Window.Elements[#Window.Elements + 1] = Slider
+        Window.Flags[Slider.Flag] = Slider.Value
 
-				Bracket.Elements.Slider(SectionContainer, Window, Slider)
-				return Slider
-			end
-			function Section:Textbox(Textbox)
-				Textbox = Bracket.Utilities:GetType(Textbox, {}, "table", true)
-				Textbox.Name = Bracket.Utilities:GetType(Textbox.Name, "Textbox", "string")
-				Textbox.Flag = Bracket.Utilities:GetType(Textbox.Flag, Textbox.Name, "string")
+        Bracket.Elements.Slider(SectionContainer, Window, Slider)
+        return Slider
+    end
+    function Section:Textbox(Textbox)
+        Textbox = Bracket.Utilities:GetType(Textbox, {}, "table", true)
+        Textbox.Name = Bracket.Utilities:GetType(Textbox.Name, "Textbox", "string")
+        Textbox.Flag = Bracket.Utilities:GetType(Textbox.Flag, Textbox.Name, "string")
 
-				Textbox.Value = Bracket.Utilities:GetType(Textbox.Value, "", "string")
-				Textbox.NumbersOnly = Bracket.Utilities:GetType(Textbox.NumbersOnly, false, "boolean")
-				Textbox.Placeholder = Bracket.Utilities:GetType(Textbox.Placeholder, "Input here", "string")
-				Textbox.Callback = Bracket.Utilities:GetType(Textbox.Callback, function() end, "function")
-				Window.Elements[#Window.Elements + 1] = Textbox
-				Window.Flags[Textbox.Flag] = Textbox.Value
+        Textbox.Value = Bracket.Utilities:GetType(Textbox.Value, "", "string")
+        Textbox.NumbersOnly = Bracket.Utilities:GetType(Textbox.NumbersOnly, false, "boolean")
+        Textbox.Placeholder = Bracket.Utilities:GetType(Textbox.Placeholder, "Input here", "string")
+        Textbox.Callback = Bracket.Utilities:GetType(Textbox.Callback, function() end, "function")
+        Window.Elements[#Window.Elements + 1] = Textbox
+        Window.Flags[Textbox.Flag] = Textbox.Value
 
-				Bracket.Elements.Textbox(SectionContainer, Window, Textbox)
-				return Textbox
-			end
-			function Section:Keybind(Keybind)
-				Keybind = Bracket.Utilities:GetType(Keybind, {}, "table", true)
-				Keybind.Name = Bracket.Utilities:GetType(Keybind.Name, "Keybind", "string")
-				Keybind.Flag = Bracket.Utilities:GetType(Keybind.Flag, Keybind.Name, "string")
+        Bracket.Elements.Textbox(SectionContainer, Window, Textbox)
+        return Textbox
+    end
+    function Section:Keybind(Keybind)
+        Keybind = Bracket.Utilities:GetType(Keybind, {}, "table", true)
+        Keybind.Name = Bracket.Utilities:GetType(Keybind.Name, "Keybind", "string")
+        Keybind.Flag = Bracket.Utilities:GetType(Keybind.Flag, Keybind.Name, "string")
 
-				Keybind.Value = Bracket.Utilities:GetType(Keybind.Value, "NONE", "string")
-				Keybind.Mouse = Bracket.Utilities:GetType(Keybind.Mouse, false, "boolean")
-				Keybind.Callback = Bracket.Utilities:GetType(Keybind.Callback, function() end, "function")
-				Keybind.Blacklist = Bracket.Utilities:GetType(Keybind.Blacklist, {"W", "A", "S", "D", "Slash", "Tab", "Backspace", "Escape", "Space", "Delete", "Unknown", "Backquote"}, "table")
-				Window.Elements[#Window.Elements + 1] = Keybind
-				Window.Flags[Keybind.Flag] = Keybind.Value
+        Keybind.Value = Bracket.Utilities:GetType(Keybind.Value, "NONE", "string")
+        Keybind.Mouse = Bracket.Utilities:GetType(Keybind.Mouse, false, "boolean")
+        Keybind.Callback = Bracket.Utilities:GetType(Keybind.Callback, function() end, "function")
+        Keybind.Blacklist = Bracket.Utilities:GetType(Keybind.Blacklist, {"W", "A", "S", "D", "Slash", "Tab", "Backspace", "Escape", "Space", "Delete", "Unknown", "Backquote"}, "table")
+        Window.Elements[#Window.Elements + 1] = Keybind
+        Window.Flags[Keybind.Flag] = Keybind.Value
 
-				Bracket.Elements.Keybind(SectionContainer, Window, Keybind)
-				return Keybind
-			end
-			function Section:Dropdown(Dropdown)
-				Dropdown = Bracket.Utilities:GetType(Dropdown, {}, "table", true)
-				Dropdown.Name = Bracket.Utilities:GetType(Dropdown.Name, "Dropdown", "string")
-				Dropdown.Flag = Bracket.Utilities:GetType(Dropdown.Flag, Dropdown.Name, "string")
-				Dropdown.List = Bracket.Utilities:GetType(Dropdown.List, {}, "table")
-				Window.Elements[#Window.Elements + 1] = Dropdown
-				Window.Flags[Dropdown.Flag] = Dropdown.Value
+        Bracket.Elements.Keybind(SectionContainer, Window, Keybind)
+        return Keybind
+    end
+    function Section:Dropdown(Dropdown)
+        Dropdown = Bracket.Utilities:GetType(Dropdown, {}, "table", true)
+        Dropdown.Name = Bracket.Utilities:GetType(Dropdown.Name, "Dropdown", "string")
+        Dropdown.Flag = Bracket.Utilities:GetType(Dropdown.Flag, Dropdown.Name, "string")
+        Dropdown.List = Bracket.Utilities:GetType(Dropdown.List, {}, "table")
+        Window.Elements[#Window.Elements + 1] = Dropdown
+        Window.Flags[Dropdown.Flag] = Dropdown.Value
 
-				Bracket.Elements.Dropdown(SectionContainer, Window, Dropdown)
-				return Dropdown
-			end
-			function Section:Colorpicker(Colorpicker)
-				Colorpicker = Bracket.Utilities:GetType(Colorpicker, {}, "table", true)
-				Colorpicker.Name = Bracket.Utilities:GetType(Colorpicker.Name, "Colorpicker", "string")
-				Colorpicker.Flag = Bracket.Utilities:GetType(Colorpicker.Flag, Colorpicker.Name, "string")
+        Bracket.Elements.Dropdown(SectionContainer, Window, Dropdown)
+        return Dropdown
+    end
+    function Section:Colorpicker(Colorpicker)
+        Colorpicker = Bracket.Utilities:GetType(Colorpicker, {}, "table", true)
+        Colorpicker.Name = Bracket.Utilities:GetType(Colorpicker.Name, "Colorpicker", "string")
+        Colorpicker.Flag = Bracket.Utilities:GetType(Colorpicker.Flag, Colorpicker.Name, "string")
 
-				Colorpicker.Value = Bracket.Utilities:GetType(Colorpicker.Value, {1, 1, 1, 0, false}, "table")
-				Colorpicker.Callback = Bracket.Utilities:GetType(Colorpicker.Callback, function() end, "function")
-				Window.Elements[#Window.Elements + 1] = Colorpicker
-				Window.Flags[Colorpicker.Flag] = Colorpicker.Value
+        Colorpicker.Value = Bracket.Utilities:GetType(Colorpicker.Value, {1, 1, 1, 0, false}, "table")
+        Colorpicker.Callback = Bracket.Utilities:GetType(Colorpicker.Callback, function() end, "function")
+        Window.Elements[#Window.Elements + 1] = Colorpicker
+        Window.Flags[Colorpicker.Flag] = Colorpicker.Value
 
-				Bracket.Elements.Colorpicker(SectionContainer, Window, Colorpicker)
-				return Colorpicker
-			end
-			return Section
-		end
-		return Tab
-	end
-	return Window
+        Bracket.Elements.Colorpicker(SectionContainer, Window, Colorpicker)
+        return Colorpicker
+    end
+    return Section
+end
+return Tab
+end
+return Window
 end
 
 function Bracket:Push(Notification)
-	Notification = Bracket.Utilities:GetType(Notification, {}, "table")
-	Notification.Title = Bracket.Utilities:GetType(Notification.Title, "Title", "string")
-	Notification.Description = Bracket.Utilities:GetType(Notification.Description, "Description", "string")
+Notification = Bracket.Utilities:GetType(Notification, {}, "table")
+Notification.Title = Bracket.Utilities:GetType(Notification.Title, "Title", "string")
+Notification.Description = Bracket.Utilities:GetType(Notification.Description, "Description", "string")
 
-	local NotificationAsset = Bracket.Assets.PushNotification()
-	NotificationAsset.Parent = Bracket.Screen.PNContainer
-	NotificationAsset.Title.Text = Notification.Title
-	NotificationAsset.Description.Text = Notification.Description
-	NotificationAsset.Title.Size = UDim2.new(1, 0, 0,
-        Bracket.Utilities.GetTextBounds(
-            NotificationAsset.Title.Text,
-            NotificationAsset.Title.Font.Name,
-            Vector2.new(NotificationAsset.Title.AbsoluteSize.X, NotificationAsset.Title.TextSize)
-        ).Y
-    )
-	NotificationAsset.Description.Size = UDim2.new(1, 0, 0,
-        Bracket.Utilities.GetTextBounds(
-            NotificationAsset.Title.Text,
-            NotificationAsset.Title.Font.Name,
-            Vector2.new(NotificationAsset.Title.AbsoluteSize.X, NotificationAsset.Title.TextSize)
-        ).Y
-    )
+local NotificationAsset = Bracket.Assets.PushNotification()
+NotificationAsset.Parent = Bracket.Screen.PNContainer
+NotificationAsset.Title.Text = Notification.Title
+NotificationAsset.Description.Text = Notification.Description
+NotificationAsset.Title.Size = UDim2.new(1, 0, 0,
+    Bracket.Utilities.GetTextBounds(
+        NotificationAsset.Title.Text,
+        NotificationAsset.Title.Font.Name,
+        Vector2.new(NotificationAsset.Title.AbsoluteSize.X, NotificationAsset.Title.TextSize)
+    ).Y
+)
+NotificationAsset.Description.Size = UDim2.new(1, 0, 0,
+    Bracket.Utilities.GetTextBounds(
+        NotificationAsset.Title.Text,
+        NotificationAsset.Title.Font.Name,
+        Vector2.new(NotificationAsset.Title.AbsoluteSize.X, NotificationAsset.Title.TextSize)
+    ).Y
+)
 
-	NotificationAsset.Size = UDim2.fromOffset(
-		(NotificationAsset.Title.TextBounds.X > NotificationAsset.Description.TextBounds.X
-			and NotificationAsset.Title.TextBounds.X or NotificationAsset.Description.TextBounds.X) + 24,
-		NotificationAsset.ListLayout.AbsoluteContentSize.Y + 8
-	)
+NotificationAsset.Size = UDim2.fromOffset(
+    (NotificationAsset.Title.TextBounds.X > NotificationAsset.Description.TextBounds.X
+        and NotificationAsset.Title.TextBounds.X or NotificationAsset.Description.TextBounds.X) + 24,
+    NotificationAsset.ListLayout.AbsoluteContentSize.Y + 8
+)
 
-	if Notification.Duration then
-		task.spawn(function()
-			for Time = Notification.Duration, 1, -1 do
-				NotificationAsset.Title.Close.Text = Time
-				task.wait(1)
-			end
-			NotificationAsset.Title.Close.Text = 0
+if Notification.Duration then
+    task.spawn(function()
+        for Time = Notification.Duration, 1, -1 do
+            NotificationAsset.Title.Close.Text = Time
+            task.wait(1)
+        end
+        NotificationAsset.Title.Close.Text = 0
 
-			NotificationAsset:Destroy()
-			if Notification.Callback then
-				Notification.Callback()
-			end
-		end)
-	else
-		NotificationAsset.Title.Close.MouseButton1Click:Connect(function()
-			NotificationAsset:Destroy()
-		end)
-	end
+        NotificationAsset:Destroy()
+        if Notification.Callback then
+            Notification.Callback()
+        end
+    end)
+else
+    NotificationAsset.Title.Close.MouseButton1Click:Connect(function()
+        NotificationAsset:Destroy()
+    end)
+end
 end
 
 function Bracket:Toast(Notification)
-	Notification = Bracket.Utilities:GetType(Notification, {}, "table")
-	Notification.Title = Bracket.Utilities:GetType(Notification.Title, "Title", "string")
-	Notification.Duration = Bracket.Utilities:GetType(Notification.Duration, 5, "number")
-	Notification.Color = Bracket.Utilities:GetType(Notification.Color, Color3.new(1, 0.5, 0.25), "Color3")
+Notification = Bracket.Utilities:GetType(Notification, {}, "table")
+Notification.Title = Bracket.Utilities:GetType(Notification.Title, "Title", "string")
+Notification.Duration = Bracket.Utilities:GetType(Notification.Duration, 5, "number")
+Notification.Color = Bracket.Utilities:GetType(Notification.Color, Color3.new(124/255, 89/255, 255/255), "Color3")
 
-	local NotificationAsset = Bracket.Assets.ToastNotification()
-	NotificationAsset.Parent = Bracket.Screen.TNContainer
-	NotificationAsset.Main.Title.Text = Notification.Title
-	NotificationAsset.Main.GradientLine.BackgroundColor3 = Notification.Color
+local NotificationAsset = Bracket.Assets.ToastNotification()
+NotificationAsset.Parent = Bracket.Screen.TNContainer
+NotificationAsset.Main.Title.Text = Notification.Title
+NotificationAsset.Main.GradientLine.BackgroundColor3 = Notification.Color
 
-	NotificationAsset.Main.Size = UDim2.fromOffset(
-		NotificationAsset.Main.Title.TextBounds.X + 10,
-        Bracket.Utilities.GetTextBounds(
-            NotificationAsset.Main.Title.Text,
-            NotificationAsset.Main.Title.Font.Name,
-            Vector2.new(NotificationAsset.Main.Title.AbsoluteSize.X, NotificationAsset.Main.Title.TextSize)
-        ).Y + 6
-	)
-	NotificationAsset.Size = UDim2.fromOffset(0,
-		NotificationAsset.Main.Size.Y.Offset + 4
-	)
+NotificationAsset.Main.Size = UDim2.fromOffset(
+    NotificationAsset.Main.Title.TextBounds.X + 10,
+    Bracket.Utilities.GetTextBounds(
+        NotificationAsset.Main.Title.Text,
+        NotificationAsset.Main.Title.Font.Name,
+        Vector2.new(NotificationAsset.Main.Title.AbsoluteSize.X, NotificationAsset.Main.Title.TextSize)
+    ).Y + 6
+)
+NotificationAsset.Size = UDim2.fromOffset(0,
+    NotificationAsset.Main.Size.Y.Offset + 4
+)
 
-	local function TweenSize(X, Y, Callback)
-		NotificationAsset:TweenSize(
-			UDim2.fromOffset(X, Y),
-			Enum.EasingDirection.InOut,
-			Enum.EasingStyle.Linear,
-			0.25, false, Callback
-		)
-	end
+local function TweenSize(X, Y, Callback)
+    NotificationAsset:TweenSize(
+        UDim2.fromOffset(X, Y),
+        Enum.EasingDirection.InOut,
+        Enum.EasingStyle.Linear,
+        0.25, false, Callback
+    )
+end
 
-	TweenSize(NotificationAsset.Main.Size.X.Offset + 4, NotificationAsset.Main.Size.Y.Offset + 4, function()
-		task.wait(Notification.Duration) TweenSize(0, NotificationAsset.Main.Size.Y.Offset + 4, function()
-			NotificationAsset:Destroy() if Notification.Callback then Notification.Callback() end
-		end)
-	end)
+TweenSize(NotificationAsset.Main.Size.X.Offset + 4, NotificationAsset.Main.Size.Y.Offset + 4, function()
+    task.wait(Notification.Duration) TweenSize(0, NotificationAsset.Main.Size.Y.Offset + 4, function()
+        NotificationAsset:Destroy() if Notification.Callback then Notification.Callback() end
+    end)
+end)
 end
 
 return Bracket
