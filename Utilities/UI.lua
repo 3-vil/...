@@ -163,23 +163,25 @@ Bracket.Utilities = {
             end
         end
     end,
-    ChooseTab = function(TabButtonAsset, TabAsset)
-        for Index, Object in pairs(Bracket.Screen:GetChildren()) do
-            if Object.Name == "OptionContainer" or Object.Name == "Palette" then
-                Object.Visible = false
-            end
+   ChooseTab = function(TabButtonAsset, TabAsset)
+    for Index, Object in pairs(Bracket.Screen:GetChildren()) do
+        if Object.Name == "OptionContainer" or Object.Name == "Palette" then
+            Object.Visible = false
         end
-        for Index, Object in pairs(Bracket.Screen.Window.TabContainer:GetChildren()) do
-            if Object:IsA("ScrollingFrame") then
-                Object.Visible = Object == TabAsset
-            end
+    end
+    for Index, Object in pairs(Bracket.Screen.Window.TabContainer:GetChildren()) do
+        if Object:IsA("ScrollingFrame") then
+            Object.Visible = Object == TabAsset
         end
-        for Index, Object in pairs(Bracket.Screen.Window.TabButtonContainer:GetChildren()) do
-            if Object:IsA("TextButton") then
-                Object.Highlight.Visible = Object == TabButtonAsset
-            end
+    end
+    for Index, Object in pairs(Bracket.Screen.Window.TabButtonContainer:GetChildren()) do
+        if Object:IsA("TextButton") then
+            Object.Highlight.Visible = Object == TabButtonAsset
+            -- Set text color based on selection
+            Object.TextColor3 = Object == TabButtonAsset and THEME.TEXT_PRIMARY or THEME.TEXT_SECONDARY
         end
-    end,
+    end
+end,
     GetLongestSide = function(TabAsset)
         local LeftSideSize = TabAsset.LeftSide.ListLayout.AbsoluteContentSize
         local RightSideSize = TabAsset.RightSide.ListLayout.AbsoluteContentSize
@@ -1028,35 +1030,43 @@ end)
 
         return Tab
     end,
-    TabButton = function()
-        local TabButton = Instance.new("TextButton")
-        TabButton.Name = "TabButton"
-        TabButton.Size = UDim2.new(0, 67, 1, 0)
-        TabButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        TabButton.BackgroundTransparency = 1
-        TabButton.BorderSizePixel = 0
-        TabButton.BackgroundColor3 = THEME.LIGHT_CONTRAST
-        TabButton.AutoButtonColor = false
-        TabButton.TextStrokeTransparency = 0.75
-        TabButton.TextSize = 14
-        TabButton.RichText = true
-        TabButton.TextColor3 = THEME.TEXT_SECONDARY
-        TabButton.Text = "TabButton"
-        TabButton.FontFace = Font.fromEnum(Enum.Font.Gotham)
+  TabButton = function()
+    local TabButton = Instance.new("TextButton")
+    TabButton.Name = "TabButton"
+    TabButton.Size = UDim2.new(0, 67, 1, 0)
+    TabButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    TabButton.BackgroundTransparency = 1
+    TabButton.BorderSizePixel = 0
+    TabButton.BackgroundColor3 = THEME.LIGHT_CONTRAST
+    TabButton.AutoButtonColor = false
+    TabButton.TextStrokeTransparency = 0.75
+    TabButton.TextSize = 14
+    TabButton.RichText = true
+    TabButton.TextColor3 = THEME.TEXT_SECONDARY
+    TabButton.Text = "TabButton"
+    TabButton.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-        local Highlight = Instance.new("Frame")
-        Highlight.Name = "Highlight"
-        Highlight.Visible = false
-        Highlight.AnchorPoint = Vector2.new(0.5, 1)
-        Highlight.Size = UDim2.new(1, -4, 0, 2)
-        Highlight.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Highlight.Position = UDim2.new(0.5, 0, 1, 0)
-        Highlight.BorderSizePixel = 0
-        Highlight.BackgroundColor3 = THEME.ACCENT
-        Highlight.Parent = TabButton
+    -- Replace the underline with a background highlight
+    local Highlight = Instance.new("Frame")
+    Highlight.Name = "Highlight"
+    Highlight.Visible = false
+    Highlight.AnchorPoint = Vector2.new(0.5, 0.5)
+    Highlight.Size = UDim2.new(1, 0, 1, 0)
+    Highlight.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Highlight.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Highlight.BorderSizePixel = 0
+    Highlight.BackgroundColor3 = THEME.ACCENT
+    Highlight.BackgroundTransparency = 0.85 -- Semi-transparent background
+    Highlight.ZIndex = 1 -- Set below the text
+    Highlight.Parent = TabButton
+    
+    -- Add rounded corners to highlight
+    local HighlightCorner = Instance.new("UICorner")
+    HighlightCorner.CornerRadius = UDim.new(0, 4)
+    HighlightCorner.Parent = Highlight
 
-        return TabButton
-    end,
+    return TabButton
+end,
     Section = function()
         local Section = Instance.new("Frame")
         Section.Name = "Section"
@@ -1339,183 +1349,228 @@ end)
 
         return Toggle
     end,
-    Slider = function()
-        local Slider = Instance.new("TextButton")
-        Slider.Name = "Slider"
-        Slider.ZIndex = 2
-        Slider.Size = UDim2.new(1, 0, 0, 20) -- Made taller
-        Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Slider.BackgroundTransparency = 1
-        Slider.BorderSizePixel = 0
-        Slider.BackgroundColor3 = THEME.LIGHT_CONTRAST
-        Slider.AutoButtonColor = false
-        Slider.TextStrokeTransparency = 0.75
-        Slider.TextSize = 14
-        Slider.RichText = true
-        Slider.TextColor3 = THEME.TEXT_PRIMARY
-        Slider.Text = ""
-        Slider.TextWrapped = true
-        Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
+   -- Update the Slider function in Bracket.Assets
+Slider = function()
+    local Slider = Instance.new("TextButton")
+    Slider.Name = "Slider"
+    Slider.ZIndex = 2
+    Slider.Size = UDim2.new(1, 0, 0, 20)
+    Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Slider.BackgroundTransparency = 1
+    Slider.BorderSizePixel = 0
+    Slider.BackgroundColor3 = THEME.LIGHT_CONTRAST
+    Slider.AutoButtonColor = false
+    Slider.TextStrokeTransparency = 0.75
+    Slider.TextSize = 14
+    Slider.RichText = true
+    Slider.TextColor3 = THEME.TEXT_PRIMARY
+    Slider.Text = ""
+    Slider.TextWrapped = true
+    Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-        local Background = Instance.new("Frame")
-        Background.Name = "Background"
-        Background.ZIndex = 2
-        Background.AnchorPoint = Vector2.new(0.5, 0.5)
-        Background.Size = UDim2.new(1, 0, 1, 0)
-        Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Background.Position = UDim2.new(0.5, 0, 0.5, 0)
-        Background.BorderSizePixel = 0
-        Background.BackgroundColor3 = THEME.INACTIVE
-        Background.Parent = Slider
+    local Background = Instance.new("Frame")
+    Background.Name = "Background"
+    Background.ZIndex = 2
+    Background.AnchorPoint = Vector2.new(0.5, 0.5)
+    Background.Size = UDim2.new(1, 0, 0, 6) -- Thinner track
+    Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Background.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Background.BorderSizePixel = 0
+    Background.BackgroundColor3 = THEME.INACTIVE
+    Background.Parent = Slider
 
-        -- Flat design with stroke
-        local BackgroundStroke = Instance.new("UIStroke")
-        BackgroundStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-        BackgroundStroke.LineJoinMode = Enum.LineJoinMode.Miter
-        BackgroundStroke.Color = THEME.BORDER
-        BackgroundStroke.Thickness = 1
-        BackgroundStroke.Parent = Background
+    -- Rounded corners for track
+    local BackgroundCorner = Instance.new("UICorner")
+    BackgroundCorner.CornerRadius = UDim.new(1, 0) -- Fully rounded
+    BackgroundCorner.Parent = Background
 
-        local Bar = Instance.new("Frame")
-        Bar.Name = "Bar"
-        Bar.ZIndex = 2
-        Bar.AnchorPoint = Vector2.new(0, 0.5)
-        Bar.Size = UDim2.new(0.5, 0, 1, 0)
-        Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Bar.Position = UDim2.new(0, 0, 0.5, 0)
-        Bar.BorderSizePixel = 0
-        Bar.BackgroundColor3 = THEME.ACCENT
-        Bar.Parent = Background
+    local Bar = Instance.new("Frame")
+    Bar.Name = "Bar"
+    Bar.ZIndex = 2
+    Bar.AnchorPoint = Vector2.new(0, 0.5)
+    Bar.Size = UDim2.new(0.5, 0, 1, 0)
+    Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Bar.Position = UDim2.new(0, 0, 0.5, 0)
+    Bar.BorderSizePixel = 0
+    Bar.BackgroundColor3 = THEME.ACCENT
+    Bar.Parent = Background
 
-        local Value = Instance.new("TextBox")
-        Value.Name = "Value"
-        Value.ZIndex = 2
-        Value.AnchorPoint = Vector2.new(1, 0)
-        Value.Size = UDim2.new(0, 12, 1, 0)
-        Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Value.BackgroundTransparency = 1
-        Value.Position = UDim2.new(1, -6, 0, 0)
-        Value.BorderSizePixel = 0
-        Value.BackgroundColor3 = THEME.LIGHT_CONTRAST
-        Value.TextStrokeTransparency = 0.75
-        Value.PlaceholderColor3 = THEME.TEXT_SECONDARY
-        Value.TextSize = 14
-        Value.TextColor3 = THEME.TEXT_PRIMARY
-        Value.PlaceholderText = "50"
-        Value.Text = ""
-        Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
-        Value.TextXAlignment = Enum.TextXAlignment.Right
-        Value.Parent = Slider
+    -- Rounded corners for progress bar
+    local BarCorner = Instance.new("UICorner")
+    BarCorner.CornerRadius = UDim.new(1, 0) -- Fully rounded
+    BarCorner.Parent = Bar
+    
+    -- Add a dot handle to the slider
+    local Handle = Instance.new("Frame")
+    Handle.Name = "Handle"
+    Handle.ZIndex = 3
+    Handle.AnchorPoint = Vector2.new(0.5, 0.5)
+    Handle.Size = UDim2.new(0, 12, 0, 12) -- Circle handle
+    Handle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Handle.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Handle.BorderSizePixel = 0
+    Handle.BackgroundColor3 = THEME.TEXT_PRIMARY
+    Handle.Parent = Bar
+    
+    local HandleCorner = Instance.new("UICorner")
+    HandleCorner.CornerRadius = UDim.new(1, 0) -- Circular handle
+    HandleCorner.Parent = Handle
 
-        local Title = Instance.new("TextLabel")
-        Title.Name = "Title"
-        Title.ZIndex = 2
-        Title.Size = UDim2.new(1, -24, 1, 0)
-        Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Title.BackgroundTransparency = 1
-        Title.Position = UDim2.new(0, 6, 0, 0)
-        Title.BorderSizePixel = 0
-        Title.BackgroundColor3 = THEME.LIGHT_CONTRAST
-        Title.TextStrokeTransparency = 0.75
-        Title.TextSize = 14
-        Title.RichText = true
-        Title.TextColor3 = THEME.TEXT_PRIMARY
-        Title.Text = "Slider"
-        Title.TextWrapped = true
-        Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-        Title.TextXAlignment = Enum.TextXAlignment.Left
-        Title.Parent = Slider
+    local Value = Instance.new("TextBox")
+    Value.Name = "Value"
+    Value.ZIndex = 2
+    Value.AnchorPoint = Vector2.new(1, 0)
+    Value.Size = UDim2.new(0, 12, 1, 0)
+    Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Value.BackgroundTransparency = 1
+    Value.Position = UDim2.new(1, -6, 0, 0)
+    Value.BorderSizePixel = 0
+    Value.BackgroundColor3 = THEME.LIGHT_CONTRAST
+    Value.TextStrokeTransparency = 0.75
+    Value.PlaceholderColor3 = THEME.TEXT_SECONDARY
+    Value.TextSize = 14
+    Value.TextColor3 = THEME.TEXT_PRIMARY
+    Value.PlaceholderText = "50"
+    Value.Text = ""
+    Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    Value.TextXAlignment = Enum.TextXAlignment.Right
+    Value.Parent = Slider
 
-        return Slider
-    end,
-    SlimSlider = function()
-        local Slider = Instance.new("TextButton")
-        Slider.Name = "Slider"
-        Slider.ZIndex = 2
-        Slider.Size = UDim2.new(1, 0, 0, 28) -- Made taller
-        Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Slider.BackgroundTransparency = 1
-        Slider.BorderSizePixel = 0
-        Slider.BackgroundColor3 = THEME.LIGHT_CONTRAST
-        Slider.AutoButtonColor = false
-        Slider.TextStrokeTransparency = 0.75
-        Slider.TextSize = 14
-        Slider.RichText = true
-        Slider.TextColor3 = THEME.TEXT_PRIMARY
-        Slider.Text = ""
-        Slider.TextWrapped = true
-        Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    local Title = Instance.new("TextLabel")
+    Title.Name = "Title"
+    Title.ZIndex = 2
+    Title.Size = UDim2.new(1, -24, 1, 0)
+    Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Title.BackgroundTransparency = 1
+    Title.Position = UDim2.new(0, 6, 0, 0)
+    Title.BorderSizePixel = 0
+    Title.BackgroundColor3 = THEME.LIGHT_CONTRAST
+    Title.TextStrokeTransparency = 0.75
+    Title.TextSize = 14
+    Title.RichText = true
+    Title.TextColor3 = THEME.TEXT_PRIMARY
+    Title.Text = "Slider"
+    Title.TextWrapped = true
+    Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    Title.TextXAlignment = Enum.TextXAlignment.Left
+    Title.Parent = Slider
 
-        local Title = Instance.new("TextLabel")
-        Title.Name = "Title"
-        Title.ZIndex = 2
-        Title.Size = UDim2.new(1, -12, 0, 16)
-        Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Title.BackgroundTransparency = 1
-        Title.BorderSizePixel = 0
-        Title.BackgroundColor3 = THEME.LIGHT_CONTRAST
-        Title.TextStrokeTransparency = 0.75
-        Title.TextSize = 14
-        Title.RichText = true
-        Title.TextColor3 = THEME.TEXT_PRIMARY
-        Title.Text = "Slider"
-        Title.TextWrapped = true
-        Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-        Title.TextXAlignment = Enum.TextXAlignment.Left
-        Title.Parent = Slider
+    return Slider
+end,
+   SlimSlider = function()
+    local Slider = Instance.new("TextButton")
+    Slider.Name = "Slider"
+    Slider.ZIndex = 2
+    Slider.Size = UDim2.new(1, 0, 0, 28)
+    Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Slider.BackgroundTransparency = 1
+    Slider.BorderSizePixel = 0
+    Slider.BackgroundColor3 = THEME.LIGHT_CONTRAST
+    Slider.AutoButtonColor = false
+    Slider.TextStrokeTransparency = 0.75
+    Slider.TextSize = 14
+    Slider.RichText = true
+    Slider.TextColor3 = THEME.TEXT_PRIMARY
+    Slider.Text = ""
+    Slider.TextWrapped = true
+    Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-        local Background = Instance.new("Frame")
-        Background.Name = "Background"
-        Background.ZIndex = 2
-        Background.AnchorPoint = Vector2.new(0.5, 1)
-        Background.Size = UDim2.new(1, 0, 0, 8) -- Made taller
-        Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Background.Position = UDim2.new(0.5, 0, 1, 0)
-        Background.BorderSizePixel = 0
-        Background.BackgroundColor3 = THEME.INACTIVE
-        Background.Parent = Slider
+    local Title = Instance.new("TextLabel")
+    Title.Name = "Title"
+    Title.ZIndex = 2
+    Title.Size = UDim2.new(1, -12, 0, 16)
+    Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Title.BackgroundTransparency = 1
+    Title.BorderSizePixel = 0
+    Title.BackgroundColor3 = THEME.LIGHT_CONTRAST
+    Title.TextStrokeTransparency = 0.75
+    Title.TextSize = 14
+    Title.RichText = true
+    Title.TextColor3 = THEME.TEXT_PRIMARY
+    Title.Text = "Slider"
+    Title.TextWrapped = true
+    Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    Title.TextXAlignment = Enum.TextXAlignment.Left
+    Title.Parent = Slider
 
-        -- Flat design with stroke
-        local BackgroundStroke = Instance.new("UIStroke")
-        BackgroundStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-        BackgroundStroke.LineJoinMode = Enum.LineJoinMode.Miter
-        BackgroundStroke.Color = THEME.BORDER
-        BackgroundStroke.Thickness = 1
-        BackgroundStroke.Parent = Background
+    local Background = Instance.new("Frame")
+    Background.Name = "Background"
+    Background.ZIndex = 2
+    Background.AnchorPoint = Vector2.new(0.5, 1)
+    Background.Size = UDim2.new(1, 0, 0, 6) -- Thinner track for a cleaner look
+    Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Background.Position = UDim2.new(0.5, 0, 1, 0)
+    Background.BorderSizePixel = 0
+    Background.BackgroundColor3 = THEME.INACTIVE
+    Background.Parent = Slider
 
-        local Bar = Instance.new("Frame")
-        Bar.Name = "Bar"
-        Bar.ZIndex = 2
-        Bar.AnchorPoint = Vector2.new(0, 0.5)
-        Bar.Size = UDim2.new(0.5, 0, 1, 0)
-        Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Bar.Position = UDim2.new(0, 0, 0.5, 0)
-        Bar.BorderSizePixel = 0
-        Bar.BackgroundColor3 = THEME.ACCENT
-        Bar.Parent = Background
+    -- Rounded corners for track
+    local BackgroundCorner = Instance.new("UICorner")
+    BackgroundCorner.CornerRadius = UDim.new(1, 0) -- Fully rounded
+    BackgroundCorner.Parent = Background
 
-        local Value = Instance.new("TextBox")
-        Value.Name = "Value"
-        Value.ZIndex = 2
-        Value.AnchorPoint = Vector2.new(1, 0)
-        Value.Size = UDim2.new(0, 12, 0, 16)
-        Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Value.BackgroundTransparency = 1
-        Value.Position = UDim2.new(1, 0, 0, 0)
-        Value.BorderSizePixel = 0
-        Value.BackgroundColor3 = THEME.LIGHT_CONTRAST
-        Value.TextStrokeTransparency = 0.75
-        Value.PlaceholderColor3 = THEME.TEXT_SECONDARY
-        Value.TextSize = 14
-        Value.TextColor3 = THEME.TEXT_PRIMARY
-        Value.PlaceholderText = "50"
-        Value.Text = ""
-        Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
-        Value.TextXAlignment = Enum.TextXAlignment.Right
-        Value.Parent = Slider
+    local Bar = Instance.new("Frame")
+    Bar.Name = "Bar"
+    Bar.ZIndex = 2
+    Bar.AnchorPoint = Vector2.new(0, 0.5)
+    Bar.Size = UDim2.new(0.5, 0, 1, 0)
+    Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Bar.Position = UDim2.new(0, 0, 0.5, 0)
+    Bar.BorderSizePixel = 0
+    Bar.BackgroundColor3 = THEME.ACCENT
+    Bar.Parent = Background
 
-        return Slider
-    end,
+    -- Rounded corners for progress bar
+    local BarCorner = Instance.new("UICorner")
+    BarCorner.CornerRadius = UDim.new(1, 0) -- Fully rounded
+    BarCorner.Parent = Bar
+    
+    -- Add a dot handle to the slider
+    local Handle = Instance.new("Frame")
+    Handle.Name = "Handle"
+    Handle.ZIndex = 3
+    Handle.AnchorPoint = Vector2.new(0.5, 0.5)
+    Handle.Size = UDim2.new(0, 12, 0, 12) -- Circle handle
+    Handle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Handle.Position = UDim2.new(1, 0, 0.5, 0)
+    Handle.BorderSizePixel = 0
+    Handle.BackgroundColor3 = THEME.TEXT_PRIMARY
+    Handle.Parent = Bar
+    
+    local HandleCorner = Instance.new("UICorner")
+    HandleCorner.CornerRadius = UDim.new(1, 0) -- Circular handle
+    HandleCorner.Parent = Handle
+    
+    -- Add a subtle shadow/glow effect to the handle
+    local HandleStroke = Instance.new("UIStroke")
+    HandleStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    HandleStroke.LineJoinMode = Enum.LineJoinMode.Round
+    HandleStroke.Color = THEME.BORDER
+    HandleStroke.Thickness = 1
+    HandleStroke.Parent = Handle
+
+    local Value = Instance.new("TextBox")
+    Value.Name = "Value"
+    Value.ZIndex = 2
+    Value.AnchorPoint = Vector2.new(1, 0)
+    Value.Size = UDim2.new(0, 12, 0, 16)
+    Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Value.BackgroundTransparency = 1
+    Value.Position = UDim2.new(1, 0, 0, 0)
+    Value.BorderSizePixel = 0
+    Value.BackgroundColor3 = THEME.LIGHT_CONTRAST
+    Value.TextStrokeTransparency = 0.75
+    Value.PlaceholderColor3 = THEME.TEXT_SECONDARY
+    Value.TextSize = 14
+    Value.TextColor3 = THEME.TEXT_PRIMARY
+    Value.PlaceholderText = "50"
+    Value.Text = ""
+    Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    Value.TextXAlignment = Enum.TextXAlignment.Right
+    Value.Parent = Slider
+
+    return Slider
+end,
     Textbox = function()
         local Textbox = Instance.new("TextButton")
         Textbox.Name = "Textbox"
@@ -1902,92 +1957,104 @@ end)
 
         return Option
     end,
-    Colorpicker = function()
-        local Colorpicker = Instance.new("TextButton")
-        Colorpicker.Name = "Colorpicker"
-        Colorpicker.ZIndex = 2
-        Colorpicker.Size = UDim2.new(1, 0, 0, 14)
-        Colorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Colorpicker.BackgroundTransparency = 1
-        Colorpicker.BorderSizePixel = 0
-        Colorpicker.BackgroundColor3 = THEME.LIGHT_CONTRAST
-        Colorpicker.AutoButtonColor = false
-        Colorpicker.TextStrokeTransparency = 0.75
-        Colorpicker.TextSize = 14
-        Colorpicker.RichText = true
-        Colorpicker.TextColor3 = THEME.TEXT_PRIMARY
-        Colorpicker.Text = ""
-        Colorpicker.TextWrapped = true
-        Colorpicker.FontFace = Font.fromEnum(Enum.Font.Gotham)
+   Colorpicker = function()
+    local Colorpicker = Instance.new("TextButton")
+    Colorpicker.Name = "Colorpicker"
+    Colorpicker.ZIndex = 2
+    Colorpicker.Size = UDim2.new(1, 0, 0, 14)
+    Colorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Colorpicker.BackgroundTransparency = 1
+    Colorpicker.BorderSizePixel = 0
+    Colorpicker.BackgroundColor3 = THEME.LIGHT_CONTRAST
+    Colorpicker.AutoButtonColor = false
+    Colorpicker.TextStrokeTransparency = 0.75
+    Colorpicker.TextSize = 14
+    Colorpicker.RichText = true
+    Colorpicker.TextColor3 = THEME.TEXT_PRIMARY
+    Colorpicker.Text = ""
+    Colorpicker.TextWrapped = true
+    Colorpicker.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-        local Title = Instance.new("TextLabel")
-        Title.Name = "Title"
-        Title.ZIndex = 2
-        Title.AnchorPoint = Vector2.new(0.5, 0.5)
-        Title.Size = UDim2.new(1, 0, 1, 0)
-        Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Title.BackgroundTransparency = 1
-        Title.Position = UDim2.new(0.5, 0, 0.5, 0)
-        Title.BorderSizePixel = 0
-        Title.BackgroundColor3 = THEME.LIGHT_CONTRAST
-        Title.TextStrokeTransparency = 0.75
-        Title.TextSize = 14
-        Title.RichText = true
-        Title.TextColor3 = THEME.TEXT_PRIMARY
-        Title.Text = "Colorpicker"
-        Title.TextWrapped = true
-        Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
-        Title.TextXAlignment = Enum.TextXAlignment.Left
-        Title.Parent = Colorpicker
+    local Title = Instance.new("TextLabel")
+    Title.Name = "Title"
+    Title.ZIndex = 2
+    Title.AnchorPoint = Vector2.new(0.5, 0.5)
+    Title.Size = UDim2.new(1, 0, 1, 0)
+    Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Title.BackgroundTransparency = 1
+    Title.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Title.BorderSizePixel = 0
+    Title.BackgroundColor3 = THEME.LIGHT_CONTRAST
+    Title.TextStrokeTransparency = 0.75
+    Title.TextSize = 14
+    Title.RichText = true
+    Title.TextColor3 = THEME.TEXT_PRIMARY
+    Title.Text = "Colorpicker"
+    Title.TextWrapped = true
+    Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    Title.TextXAlignment = Enum.TextXAlignment.Left
+    Title.Parent = Colorpicker
 
-        local Color = Instance.new("Frame")
-        Color.Name = "Color"
-        Color.ZIndex = 2
-        Color.AnchorPoint = Vector2.new(1, 0.5)
-        Color.Size = UDim2.new(0, 20, 0, 10)
-        Color.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        Color.Position = UDim2.new(1, 0, 0.5, 0)
-        Color.BorderSizePixel = 0
-        Color.BackgroundColor3 = THEME.ACCENT
-        Color.Parent = Colorpicker
+    local Color = Instance.new("Frame")
+    Color.Name = "Color"
+    Color.ZIndex = 2
+    Color.AnchorPoint = Vector2.new(1, 0.5)
+    Color.Size = UDim2.new(0, 14, 0, 14) -- Square dimensions for circle
+    Color.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Color.Position = UDim2.new(1, 0, 0.5, 0)
+    Color.BorderSizePixel = 0
+    Color.BackgroundColor3 = THEME.ACCENT
+    Color.Parent = Colorpicker
 
-        local ColorStroke = Instance.new("UIStroke")
-        ColorStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-        ColorStroke.LineJoinMode = Enum.LineJoinMode.Miter
-        ColorStroke.Color = THEME.BORDER
-        ColorStroke.Thickness = 1
-        ColorStroke.Parent = Color
+    -- Make color display circular
+    local ColorCorner = Instance.new("UICorner")
+    ColorCorner.CornerRadius = UDim.new(1, 0) -- Fully rounded to make a circle
+    ColorCorner.Parent = Color
+    
+    -- Add a stroke to make it more visible
+    local ColorStroke = Instance.new("UIStroke")
+    ColorStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    ColorStroke.LineJoinMode = Enum.LineJoinMode.Round
+    ColorStroke.Color = THEME.BORDER
+    ColorStroke.Thickness = 1
+    ColorStroke.Parent = Color
 
-        return Colorpicker
-    end,
-    ToggleColorpicker = function()
-        local TColorpicker = Instance.new("TextButton")
-        TColorpicker.Name = "TColorpicker"
-        TColorpicker.ZIndex = 2
-        TColorpicker.AnchorPoint = Vector2.new(1, 0.5)
-        TColorpicker.Size = UDim2.new(0, 24, 0, 12)
-        TColorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        TColorpicker.Position = UDim2.new(1, 0, 0.5, 0)
-        TColorpicker.BorderSizePixel = 0
-        TColorpicker.BackgroundColor3 = THEME.ACCENT
-        TColorpicker.AutoButtonColor = false
-        TColorpicker.TextStrokeTransparency = 0.75
-        TColorpicker.TextSize = 14
-        TColorpicker.RichText = true
-        TColorpicker.TextColor3 = THEME.TEXT_PRIMARY
-        TColorpicker.Text = ""
-        TColorpicker.TextWrapped = true
-        TColorpicker.FontFace = Font.fromEnum(Enum.Font.Gotham)
+    return Colorpicker
+end,
+   ToggleColorpicker = function()
+    local TColorpicker = Instance.new("TextButton")
+    TColorpicker.Name = "TColorpicker"
+    TColorpicker.ZIndex = 2
+    TColorpicker.AnchorPoint = Vector2.new(1, 0.5)
+    TColorpicker.Size = UDim2.new(0, 14, 0, 14) -- Square dimensions for circle
+    TColorpicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    TColorpicker.Position = UDim2.new(1, 0, 0.5, 0)
+    TColorpicker.BorderSizePixel = 0
+    TColorpicker.BackgroundColor3 = THEME.ACCENT
+    TColorpicker.AutoButtonColor = false
+    TColorpicker.TextStrokeTransparency = 0.75
+    TColorpicker.TextSize = 14
+    TColorpicker.RichText = true
+    TColorpicker.TextColor3 = THEME.TEXT_PRIMARY
+    TColorpicker.Text = ""
+    TColorpicker.TextWrapped = true
+    TColorpicker.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-        local ColorStroke = Instance.new("UIStroke")
-        ColorStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-        ColorStroke.LineJoinMode = Enum.LineJoinMode.Miter
-        ColorStroke.Color = THEME.BORDER
-        ColorStroke.Thickness = 1
-        ColorStroke.Parent = TColorpicker
+    -- Make color display circular
+    local ColorCorner = Instance.new("UICorner")
+    ColorCorner.CornerRadius = UDim.new(1, 0) -- Fully rounded to make a circle
+    ColorCorner.Parent = TColorpicker
+    
+    -- Add a stroke to make it more visible
+    local ColorStroke = Instance.new("UIStroke")
+    ColorStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    ColorStroke.LineJoinMode = Enum.LineJoinMode.Round
+    ColorStroke.Color = THEME.BORDER
+    ColorStroke.Thickness = 1
+    ColorStroke.Parent = TColorpicker
 
-        return TColorpicker
-    end,
+    return TColorpicker
+end,
     ColorpickerPalette = function()
         local Palette = Instance.new("Frame")
         Palette.Name = "Palette"
