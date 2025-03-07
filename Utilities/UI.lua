@@ -24,7 +24,7 @@ local THEME = {
     
     -- Accent color (purple)
     ACCENT = Color3.fromRGB(130, 70, 255),         -- Purple accent
-    ACCENT_LIGHT = Color3.fromRGB(150, 90, 255),   -- Lighter purple for hover
+    
     
     -- Functional colors
     ELEMENT_BG = Color3.fromRGB(22, 22, 27),       -- Element backgrounds
