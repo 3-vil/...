@@ -1110,7 +1110,7 @@ end,
     Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Title.Position = UDim2.new(0, 9, 0, -7)
     Title.BorderSizePixel = 0
-    Title.BackgroundColor3 = THEME.ELEMENT_BG
+   
     Title.BackgroundTransparency = 0
     Title.TextStrokeTransparency = 0.5 -- Text stroke for better readability
     Title.TextSize = 13
@@ -4433,7 +4433,7 @@ function Bracket.ApplyAnbuStyle(Window)
     BrandText.TextColor3 = THEME.TEXT_PRIMARY
     BrandText.TextSize = 15
     BrandText.FontFace = Font.fromEnum(Enum.Font.GothamBold)
-    BrandText.Text = "Anbu.win Universal"
+    BrandText.Text = "Anbu.win"
     BrandText.TextXAlignment = Enum.TextXAlignment.Left
     BrandText.ZIndex = 5
     BrandText.Parent = BrandContainer
@@ -4452,19 +4452,7 @@ function Bracket.ApplyAnbuStyle(Window)
     PlusButton.ZIndex = 5
     PlusButton.Parent = BrandContainer
     
-    -- Add "UNDETECTED v2.0" label directly under the brand text
-    local Version = Instance.new("TextLabel")
-    Version.Name = "Version"
-    Version.Size = UDim2.new(0, 120, 0, 15)
-    Version.Position = UDim2.new(0, 0, 1, 0)
-    Version.BackgroundTransparency = 1
-    Version.TextColor3 = Color3.fromRGB(120, 90, 255)
-    Version.TextSize = 11
-    Version.FontFace = Font.fromEnum(Enum.Font.GothamBold)
-    Version.Text = "UNDETECTED v2.0"
-    Version.TextXAlignment = Enum.TextXAlignment.Left
-    Version.ZIndex = 5
-    Version.Parent = BrandContainer
+  
     
     -- Update the title
     local Title = Window.Asset.Title
