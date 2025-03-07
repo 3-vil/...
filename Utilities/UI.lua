@@ -14,19 +14,20 @@ local Bracket = {IsLocal = not identifyexecutor}
 local THEME = {
     -- Main colors
     BACKGROUND = Color3.fromRGB(15, 15, 20),       -- Main background
-    DARK_CONTRAST = Color3.fromRGB(10, 10, 15),    -- Darker elements
+    DARK_CONTRAST = Color3.fromRGB(18, 18, 23),    -- Darker elements (title bar)
     LIGHT_CONTRAST = Color3.fromRGB(25, 25, 30),   -- Lighter elements
     BORDER = Color3.fromRGB(30, 30, 35),           -- Border color
     
     -- Text colors
     TEXT_PRIMARY = Color3.fromRGB(255, 255, 255),  -- Primary text
-    TEXT_SECONDARY = Color3.fromRGB(180, 180, 180), -- Secondary text
+    TEXT_SECONDARY = Color3.fromRGB(175, 175, 175), -- Secondary text
     
     -- Accent color (purple)
     ACCENT = Color3.fromRGB(130, 70, 255),         -- Purple accent
+    ACCENT_LIGHT = Color3.fromRGB(150, 90, 255),   -- Lighter purple for hover
     
     -- Functional colors
-    ELEMENT_BG = Color3.fromRGB(20, 20, 25),       -- Element backgrounds
+    ELEMENT_BG = Color3.fromRGB(22, 22, 27),       -- Element backgrounds
     HOVER_BG = Color3.fromRGB(35, 35, 40),         -- Hover state
     INACTIVE = Color3.fromRGB(40, 40, 45),         -- Inactive elements
 }
