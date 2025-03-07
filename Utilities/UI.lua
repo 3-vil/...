@@ -4398,73 +4398,112 @@ function Bracket.ApplyAnbuStyle(Window)
     -- Window styling
     Window.Asset.BackgroundColor3 = THEME.BACKGROUND
     
-    -- Round the window corners
-    local WindowCorner = Instance.new("UICorner")
-    WindowCorner.CornerRadius = UDim.new(0, 6)
-    WindowCorner.Parent = Window.Asset
+    -- No rounded corners on the main window
     
     -- Title bar modifications
     local Drag = Window.Asset.Drag
     Drag.Size = UDim2.new(1, 0, 0, 26)
     Drag.BackgroundColor3 = THEME.DARK_CONTRAST
     
-    -- Add UICorner to title bar
-    local DragCorner = Instance.new("UICorner")
-    DragCorner.CornerRadius = UDim.new(0, 6)
-    DragCorner.Parent = Drag
+    -- No rounded corners on the title bar either
     
     -- Remove default title
-    Window.Asset.Title.Visible = false
+    if Window.Asset:FindFirstChild("Title") then
+        Window.Asset.Title.Visible = false
+    end
     
-    -- Add Anbu.win branding in the title bar
-    local BrandContainer = Instance.new("Frame")
-    BrandContainer.Name = "BrandContainer"
-    BrandContainer.Size = UDim2.new(0, 200, 1, 0)
-    BrandContainer.Position = UDim2.new(0, 10, 0, 0)
-    BrandContainer.BackgroundTransparency = 1
-    BrandContainer.Parent = Drag
+    -- Create title container
+    local TitleContainer = Instance.new("Frame")
+    TitleContainer.Name = "TitleContainer"
+    TitleContainer.Size = UDim2.new(0, 200, 0, 40)
+    TitleContainer.Position = UDim2.new(0, 10, 0, 0)
+    TitleContainer.BackgroundTransparency = 1
+    TitleContainer.ZIndex = 10
+    TitleContainer.Parent = Drag
     
-    -- Main brand text
+    -- Add "Anbu.win Universal" text
     local BrandText = Instance.new("TextLabel")
     BrandText.Name = "BrandText"
-    BrandText.Size = UDim2.new(0, 120, 0, 25)
-    BrandText.Position = UDim2.new(0, 0, 0, 0)
+    BrandText.Size = UDim2.new(0, 140, 0, 20)
+    BrandText.Position = UDim2.new(0, 0, 0, 3)
     BrandText.BackgroundTransparency = 1
     BrandText.TextColor3 = THEME.TEXT_PRIMARY
     BrandText.TextSize = 15
     BrandText.FontFace = Font.fromEnum(Enum.Font.GothamBold)
     BrandText.Text = "Anbu.win Universal"
     BrandText.TextXAlignment = Enum.TextXAlignment.Left
-    BrandText.ZIndex = 5
-    BrandText.Parent = BrandContainer
+    BrandText.ZIndex = 11
+    BrandText.Parent = TitleContainer
     
-    -- Add the "+" button right next to "Universal"
+    -- Add "UNDETECTED v2.0" directly under the title with green dot
+    local UndetectedContainer = Instance.new("Frame")
+    UndetectedContainer.Name = "UndetectedContainer"
+    UndetectedContainer.Size = UDim2.new(0, 140, 0, 15)
+    UndetectedContainer.Position = UDim2.new(0, 0, 0, 22)
+    UndetectedContainer.BackgroundTransparency = 1
+    UndetectedContainer.ZIndex = 11
+    UndetectedContainer.Parent = TitleContainer
+    
+    local UndetectedText = Instance.new("TextLabel")
+    UndetectedText.Name = "UndetectedText"
+    UndetectedText.Size = UDim2.new(0, 120, 0, 15)
+    UndetectedText.Position = UDim2.new(0, 0, 0, 0)
+    UndetectedText.BackgroundTransparency = 1
+    UndetectedText.TextColor3 = Color3.fromRGB(120, 90, 255)
+    UndetectedText.TextSize = 11
+    UndetectedText.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+    UndetectedText.Text = "UNDETECTED v2.0"
+    UndetectedText.TextXAlignment = Enum.TextXAlignment.Left
+    UndetectedText.ZIndex = 12
+    UndetectedText.Parent = UndetectedContainer
+    
+    -- Add pulsing green dot
+    local GreenDot = Instance.new("Frame")
+    GreenDot.Name = "GreenDot"
+    GreenDot.Size = UDim2.new(0, 8, 0, 8)
+    GreenDot.Position = UDim2.new(0, 122, 0, 4)
+    GreenDot.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    GreenDot.ZIndex = 12
+    GreenDot.Parent = UndetectedContainer
+    
+    -- Make the dot round
+    local DotCorner = Instance.new("UICorner")
+    DotCorner.CornerRadius = UDim.new(1, 0)
+    DotCorner.Parent = GreenDot
+    
+    -- Add the "+" button at the top right corner
     local PlusButton = Instance.new("TextButton")
     PlusButton.Name = "PlusButton"
-    PlusButton.Size = UDim2.new(0, 20, 0, 25)
-    PlusButton.Position = UDim2.new(0, 140, 0, 0)
+    PlusButton.Size = UDim2.new(0, 20, 0, 20)
+    PlusButton.Position = UDim2.new(1, -75, 0, 3)
     PlusButton.BackgroundTransparency = 1
     PlusButton.TextColor3 = THEME.TEXT_PRIMARY
     PlusButton.TextSize = 18
     PlusButton.FontFace = Font.fromEnum(Enum.Font.GothamBold)
     PlusButton.Text = "+"
     PlusButton.TextXAlignment = Enum.TextXAlignment.Center
-    PlusButton.ZIndex = 5
-    PlusButton.Parent = BrandContainer
+    PlusButton.ZIndex = 11
+    PlusButton.Parent = Drag
     
-    -- Add "UNDETECTED v2.0" label directly under the brand text
-    local Version = Instance.new("TextLabel")
-    Version.Name = "Version"
-    Version.Size = UDim2.new(0, 120, 0, 15)
-    Version.Position = UDim2.new(0, 0, 1, 0)
-    Version.BackgroundTransparency = 1
-    Version.TextColor3 = Color3.fromRGB(120, 90, 255)
-    Version.TextSize = 11
-    Version.FontFace = Font.fromEnum(Enum.Font.GothamBold)
-    Version.Text = "UNDETECTED v2.0"
-    Version.TextXAlignment = Enum.TextXAlignment.Left
-    Version.ZIndex = 5
-    Version.Parent = BrandContainer
+    -- Create the pulsing animation for the green dot
+    local TweenService = game:GetService("TweenService")
+    
+    local function createPulsingAnimation()
+        local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true)
+        
+        local fadeOut = TweenService:Create(GreenDot, tweenInfo, {BackgroundTransparency = 0.5})
+        fadeOut:Play()
+    end
+    
+    createPulsingAnimation()
+    
+    -- Update control buttons colors
+    local ControlButtons = Window.Asset.Drag.ControlButtons
+    if ControlButtons then
+        ControlButtons.CloseButton.BackgroundColor3 = Color3.fromRGB(255, 69, 58)
+        ControlButtons.MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 189, 46)
+        ControlButtons.MaximizeButton.BackgroundColor3 = Color3.fromRGB(39, 201, 63)
+    end
     
     -- Update the title
     local Title = Window.Asset.Title
