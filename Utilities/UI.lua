@@ -4298,6 +4298,7 @@ function Bracket:Window(Window)
         end
         return Tab
     end
+Bracket.ApplyAnbuStyle(Window)
     return Window
 end
 
@@ -4390,4 +4391,57 @@ function Bracket:Toast(Notification)
     end)
 end
 
+-- Add these functions before the "return Bracket" line
+function Bracket.ApplyAnbuStyle(Window)
+    -- Title bar modifications
+    local Drag = Window.Asset.Drag
+    Drag.Size = UDim2.new(1, 0, 0, 26) -- Make it match the screenshot height
+    Drag.BackgroundColor3 = Color3.fromRGB(18, 18, 23) -- Darker for title bar
+    
+    -- Update the title
+    local Title = Window.Asset.Title
+    Title.Size = UDim2.new(1, -80, 1, 0) -- Leave space for controls
+    Title.Position = UDim2.new(0, 8, 0, 0)
+    Title.TextSize = 15
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.FontFace = Font.fromEnum(Enum.Font.GothamBold) -- More similar to the screenshot font
+    
+    -- Create a version label like in the screenshot
+    local Version = Instance.new("TextLabel")
+    Version.Name = "Version"
+    Version.AnchorPoint = Vector2.new(0, 0)
+    Version.Size = UDim2.new(0, 80, 0, 15)
+    Version.Position = UDim2.new(0, 8, 1, 2) -- Position it right under the title
+    Version.BackgroundTransparency = 1
+    Version.TextColor3 = Color3.fromRGB(100, 100, 255) -- Purple/blue tint
+    Version.TextSize = 11
+    Version.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+    Version.Text = "UNDETECTED v2.0"
+    Version.TextXAlignment = Enum.TextXAlignment.Left
+    Version.Parent = Window.Asset.Drag
+    
+    -- Update tab buttons style
+    for _, button in pairs(Window.Asset.TabButtonContainer:GetChildren()) do
+        if button:IsA("TextButton") then
+            button.TextColor3 = Color3.fromRGB(175, 175, 175) -- Inactive color
+            if button.Highlight then
+                button.Highlight.BackgroundColor3 = THEME.ACCENT
+                button.Highlight.BackgroundTransparency = 0.8
+            end
+        end
+    end
+    
+    -- Make corners slightly rounded (optional)
+    local WindowCorner = Instance.new("UICorner")
+    WindowCorner.CornerRadius = UDim.new(0, 4)
+    WindowCorner.Parent = Window.Asset
+    
+    -- Update control buttons colors to match the screenshot
+    local ControlButtons = Window.Asset.Drag.ControlButtons
+    ControlButtons.CloseButton.BackgroundColor3 = Color3.fromRGB(255, 69, 58)
+    ControlButtons.MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 189, 46)
+    ControlButtons.MaximizeButton.BackgroundColor3 = Color3.fromRGB(39, 201, 63)
+end
+
+-- After adding the functions, return Bracket as normal
 return Bracket
