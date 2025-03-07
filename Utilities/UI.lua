@@ -4394,55 +4394,364 @@ end
 
 -- Add these functions before the "return Bracket" line
 function Bracket.ApplyAnbuStyle(Window)
+    -- Apply the Anbu.win styling to match the screenshot
+    
+    -- Window styling
+    Window.Asset.BackgroundColor3 = THEME.BACKGROUND
+    
+    -- Round the window corners
+    local WindowCorner = Instance.new("UICorner")
+    WindowCorner.CornerRadius = UDim.new(0, 6)
+    WindowCorner.Parent = Window.Asset
+    
     -- Title bar modifications
     local Drag = Window.Asset.Drag
-    Drag.Size = UDim2.new(1, 0, 0, 26) -- Make it match the screenshot height
-    Drag.BackgroundColor3 = Color3.fromRGB(18, 18, 23) -- Darker for title bar
+    Drag.Size = UDim2.new(1, 0, 0, 26)
+    Drag.BackgroundColor3 = THEME.DARK_CONTRAST
     
-    -- Update the title
-    local Title = Window.Asset.Title
-    Title.Size = UDim2.new(1, -80, 1, 0) -- Leave space for controls
-    Title.Position = UDim2.new(0, 8, 0, 0)
-    Title.TextSize = 15
-    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Title.FontFace = Font.fromEnum(Enum.Font.GothamBold) -- More similar to the screenshot font
+    -- Add UICorner to title bar
+    local DragCorner = Instance.new("UICorner")
+    DragCorner.CornerRadius = UDim.new(0, 6)
+    DragCorner.Parent = Drag
     
-    -- Create a version label like in the screenshot
+    -- Add "UNDETECTED v2.0" label
     local Version = Instance.new("TextLabel")
     Version.Name = "Version"
     Version.AnchorPoint = Vector2.new(0, 0)
-    Version.Size = UDim2.new(0, 80, 0, 15)
-    Version.Position = UDim2.new(0, 8, 1, 2) -- Position it right under the title
+    Version.Size = UDim2.new(0, 120, 0, 15)
+    Version.Position = UDim2.new(0, 10, 1, -17)
     Version.BackgroundTransparency = 1
-    Version.TextColor3 = Color3.fromRGB(100, 100, 255) -- Purple/blue tint
+    Version.TextColor3 = Color3.fromRGB(120, 90, 255)
     Version.TextSize = 11
     Version.FontFace = Font.fromEnum(Enum.Font.GothamBold)
     Version.Text = "UNDETECTED v2.0"
     Version.TextXAlignment = Enum.TextXAlignment.Left
-    Version.Parent = Window.Asset.Drag
+    Version.ZIndex = 5
+    Version.Parent = Window.Asset
+    
+    -- Update the title
+    local Title = Window.Asset.Title
+    Title.Size = UDim2.new(1, -120, 1, 0)
+    Title.Position = UDim2.new(0, 10, 0, 0)
+    Title.TextSize = 15
+    Title.TextColor3 = THEME.TEXT_PRIMARY
+    Title.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+    
+    -- Adjust Tab Container
+    local TabContainer = Window.Asset.TabContainer
+    TabContainer.BackgroundColor3 = THEME.BACKGROUND
+    
+    -- Update tab button container style
+    local TabButtonContainer = Window.Asset.TabButtonContainer
+    TabButtonContainer.BackgroundColor3 = THEME.ELEMENT_BG
+    TabButtonContainer.Size = UDim2.new(1, 0, 0, 30)
+    
+    -- Add UICorner to tab button container
+    local TabButtonContainerCorner = Instance.new("UICorner")
+    TabButtonContainerCorner.CornerRadius = UDim.new(0, 0)
+    TabButtonContainerCorner.Parent = TabButtonContainer
     
     -- Update tab buttons style
-    for _, button in pairs(Window.Asset.TabButtonContainer:GetChildren()) do
+    for _, button in pairs(TabButtonContainer:GetChildren()) do
         if button:IsA("TextButton") then
-            button.TextColor3 = Color3.fromRGB(175, 175, 175) -- Inactive color
+            button.TextColor3 = THEME.TEXT_SECONDARY
+            button.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
+            button.TextSize = 13
+            
             if button.Highlight then
                 button.Highlight.BackgroundColor3 = THEME.ACCENT
                 button.Highlight.BackgroundTransparency = 0.8
+                
+                -- Create a UICorner for the highlight
+                local HighlightCorner = Instance.new("UICorner")
+                HighlightCorner.CornerRadius = UDim.new(0, 4)
+                HighlightCorner.Parent = button.Highlight
             end
         end
     end
     
-    -- Make corners slightly rounded (optional)
-    local WindowCorner = Instance.new("UICorner")
-    WindowCorner.CornerRadius = UDim.new(0, 4)
-    WindowCorner.Parent = Window.Asset
-    
-    -- Update control buttons colors to match the screenshot
+    -- Update control buttons colors
     local ControlButtons = Window.Asset.Drag.ControlButtons
-    ControlButtons.CloseButton.BackgroundColor3 = Color3.fromRGB(255, 69, 58)
-    ControlButtons.MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 189, 46)
-    ControlButtons.MaximizeButton.BackgroundColor3 = Color3.fromRGB(39, 201, 63)
+    if ControlButtons then
+        ControlButtons.CloseButton.BackgroundColor3 = Color3.fromRGB(255, 69, 58)
+        ControlButtons.MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 189, 46)
+        ControlButtons.MaximizeButton.BackgroundColor3 = Color3.fromRGB(39, 201, 63)
+    end
+    
+    -- Update Background image/pattern
+    local Background = Window.Asset.Background
+    Background.BackgroundColor3 = THEME.BACKGROUND
+    Background.ImageTransparency = 0.98  -- More subtle pattern
+    
+    -- Custom Anbu.win styling for toggle elements
+    for _, element in pairs(Window.Elements) do
+        if element.Type == "Toggle" then
+            local toggleAsset = element.Instance
+            if toggleAsset and toggleAsset:FindFirstChild("Tick") then
+                -- Make toggle "Tick" circular
+                local tickCorner = Instance.new("UICorner")
+                tickCorner.CornerRadius = UDim.new(0, 6)
+                tickCorner.Parent = toggleAsset.Tick
+                
+                -- Update tick appearance
+                toggleAsset.Tick.Size = UDim2.new(0, 18, 0, 18)
+                if element.Value then
+                    toggleAsset.Tick.BackgroundColor3 = THEME.ACCENT
+                else
+                    toggleAsset.Tick.BackgroundColor3 = THEME.INACTIVE
+                end
+            end
+        end
+    end
+    
+    -- Style the Slider elements to match Anbu
+    for _, element in pairs(Window.Elements) do
+        if element.Type == "Slider" then
+            local sliderAsset = element.Instance
+            if sliderAsset and sliderAsset:FindFirstChild("Background") then
+                -- Round the corners
+                local backgroundCorner = Instance.new("UICorner")
+                backgroundCorner.CornerRadius = UDim.new(0, 6)
+                backgroundCorner.Parent = sliderAsset.Background
+                
+                -- Round the bar
+                local barCorner = Instance.new("UICorner")
+                barCorner.CornerRadius = UDim.new(0, 6)
+                barCorner.Parent = sliderAsset.Background.Bar
+                
+                -- Update colors
+                sliderAsset.Background.BackgroundColor3 = THEME.INACTIVE
+                sliderAsset.Background.Bar.BackgroundColor3 = THEME.ACCENT
+            end
+        end
+    end
+    
+    -- Override sections styling
+    for _, tabAsset in pairs(Window.Asset.TabContainer:GetChildren()) do
+        if tabAsset:IsA("ScrollingFrame") then
+            for _, side in pairs({tabAsset.LeftSide, tabAsset.RightSide}) do
+                for _, element in pairs(side:GetChildren()) do
+                    if element:IsA("Frame") and element.Name == "Section" then
+                        -- Update section styling
+                        element.BackgroundColor3 = THEME.ELEMENT_BG
+                        
+                        -- Add rounded corners
+                        local sectionCorner = Instance.new("UICorner")
+                        sectionCorner.CornerRadius = UDim.new(0, 6)
+                        sectionCorner.Parent = element
+                        
+                        -- Update section stroke
+                        if element:FindFirstChild("Stroke") then
+                            element.Stroke.Color = THEME.ACCENT
+                            element.Stroke.Transparency = 0.8
+                        end
+                    end
+                end
+            end
+        end
+    end
 end
 
--- After adding the functions, return Bracket as normal
+-- Function to create an Anbu-style toggle button (similar to the screenshot)
+function Bracket.CreateAnbuToggle(Parent, Label, DefaultValue, Callback)
+    local ToggleContainer = Instance.new("Frame")
+    ToggleContainer.Name = "Toggle_" .. Label
+    ToggleContainer.Size = UDim2.new(1, 0, 0, 40)
+    ToggleContainer.BackgroundTransparency = 1
+    ToggleContainer.Parent = Parent
+    
+    local ToggleLabel = Instance.new("TextLabel")
+    ToggleLabel.Name = "Label"
+    ToggleLabel.Size = UDim2.new(1, -60, 1, 0)
+    ToggleLabel.Position = UDim2.new(0, 10, 0, 0)
+    ToggleLabel.BackgroundTransparency = 1
+    ToggleLabel.TextColor3 = THEME.TEXT_PRIMARY
+    ToggleLabel.TextSize = 14
+    ToggleLabel.Text = Label
+    ToggleLabel.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
+    ToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
+    ToggleLabel.Parent = ToggleContainer
+    
+    local ToggleButton = Instance.new("Frame")
+    ToggleButton.Name = "Toggle"
+    ToggleButton.AnchorPoint = Vector2.new(1, 0.5)
+    ToggleButton.Position = UDim2.new(1, -10, 0.5, 0)
+    ToggleButton.Size = UDim2.new(0, 40, 0, 20)
+    ToggleButton.BackgroundColor3 = DefaultValue and THEME.ACCENT or THEME.INACTIVE
+    ToggleButton.Parent = ToggleContainer
+    
+    local ToggleCorner = Instance.new("UICorner")
+    ToggleCorner.CornerRadius = UDim.new(1, 0)
+    ToggleCorner.Parent = ToggleButton
+    
+    local ToggleCircle = Instance.new("Frame")
+    ToggleCircle.Name = "Circle"
+    ToggleCircle.Size = UDim2.new(0, 16, 0, 16)
+    ToggleCircle.Position = DefaultValue and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 2, 0.5, -8)
+    ToggleCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ToggleCircle.Parent = ToggleButton
+    
+    local CircleCorner = Instance.new("UICorner")
+    CircleCorner.CornerRadius = UDim.new(1, 0)
+    CircleCorner.Parent = ToggleCircle
+    
+    local ClickDetector = Instance.new("TextButton")
+    ClickDetector.Text = ""
+    ClickDetector.BackgroundTransparency = 1
+    ClickDetector.Size = UDim2.new(1, 0, 1, 0)
+    ClickDetector.Parent = ToggleContainer
+    
+    local Value = DefaultValue
+    
+    ClickDetector.MouseButton1Click:Connect(function()
+        Value = not Value
+        ToggleButton.BackgroundColor3 = Value and THEME.ACCENT or THEME.INACTIVE
+        ToggleCircle:TweenPosition(
+            Value and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 2, 0.5, -8), 
+            Enum.EasingDirection.InOut,
+            Enum.EasingStyle.Quad,
+            0.2,
+            true
+        )
+        if Callback then
+            Callback(Value)
+        end
+    end)
+    
+    return {
+        Container = ToggleContainer,
+        SetValue = function(NewValue)
+            Value = NewValue
+            ToggleButton.BackgroundColor3 = Value and THEME.ACCENT or THEME.INACTIVE
+            ToggleCircle.Position = Value and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 2, 0.5, -8)
+            if Callback then
+                Callback(Value)
+            end
+        end,
+        GetValue = function()
+            return Value
+        end
+    }
+end
+
+-- Function to create an Anbu-style slider (similar to the screenshot)
+function Bracket.CreateAnbuSlider(Parent, Label, Min, Max, DefaultValue, Suffix, Callback)
+    local SliderContainer = Instance.new("Frame")
+    SliderContainer.Name = "Slider_" .. Label
+    SliderContainer.Size = UDim2.new(1, 0, 0, 55)
+    SliderContainer.BackgroundTransparency = 1
+    SliderContainer.Parent = Parent
+    
+    local SliderLabel = Instance.new("TextLabel")
+    SliderLabel.Name = "Label"
+    SliderLabel.Size = UDim2.new(1, 0, 0, 20)
+    SliderLabel.Position = UDim2.new(0, 10, 0, 0)
+    SliderLabel.BackgroundTransparency = 1
+    SliderLabel.TextColor3 = THEME.TEXT_PRIMARY
+    SliderLabel.TextSize = 14
+    SliderLabel.Text = Label
+    SliderLabel.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
+    SliderLabel.TextXAlignment = Enum.TextXAlignment.Left
+    SliderLabel.Parent = SliderContainer
+    
+    local ValueLabel = Instance.new("TextLabel")
+    ValueLabel.Name = "Value"
+    ValueLabel.Size = UDim2.new(0, 50, 0, 20)
+    ValueLabel.Position = UDim2.new(1, -60, 0, 0)
+    ValueLabel.BackgroundTransparency = 1
+    ValueLabel.TextColor3 = THEME.ACCENT
+    ValueLabel.TextSize = 14
+    ValueLabel.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+    ValueLabel.TextXAlignment = Enum.TextXAlignment.Right
+    ValueLabel.Parent = SliderContainer
+    
+    local SliderBg = Instance.new("Frame")
+    SliderBg.Name = "Background"
+    SliderBg.Size = UDim2.new(1, -20, 0, 6)
+    SliderBg.Position = UDim2.new(0, 10, 0, 30)
+    SliderBg.BackgroundColor3 = THEME.INACTIVE
+    SliderBg.Parent = SliderContainer
+    
+    local SliderBgCorner = Instance.new("UICorner")
+    SliderBgCorner.CornerRadius = UDim.new(1, 0)
+    SliderBgCorner.Parent = SliderBg
+    
+    local SliderFill = Instance.new("Frame")
+    SliderFill.Name = "Fill"
+    SliderFill.Size = UDim2.new(0, 0, 1, 0)
+    SliderFill.BackgroundColor3 = THEME.ACCENT
+    SliderFill.Parent = SliderBg
+    
+    local SliderFillCorner = Instance.new("UICorner")
+    SliderFillCorner.CornerRadius = UDim.new(1, 0)
+    SliderFillCorner.Parent = SliderFill
+    
+    local SliderKnob = Instance.new("Frame")
+    SliderKnob.Name = "Knob"
+    SliderKnob.Size = UDim2.new(0, 16, 0, 16)
+    SliderKnob.Position = UDim2.new(0, -8, 0, -5)
+    SliderKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    SliderKnob.AnchorPoint = Vector2.new(0, 0.5)
+    SliderKnob.Parent = SliderFill
+    
+    local KnobCorner = Instance.new("UICorner")
+    KnobCorner.CornerRadius = UDim.new(1, 0)
+    KnobCorner.Parent = SliderKnob
+    
+    local ClickDetector = Instance.new("TextButton")
+    ClickDetector.Text = ""
+    ClickDetector.BackgroundTransparency = 1
+    ClickDetector.Size = UDim2.new(1, 0, 1, 0)
+    ClickDetector.Parent = SliderContainer
+    
+    local Dragging = false
+    local Value = DefaultValue or Min
+    
+    -- Function to update the slider visually
+    local function UpdateSlider(NewValue)
+        Value = math.clamp(NewValue, Min, Max)
+        local Percent = (Value - Min) / (Max - Min)
+        SliderFill.Size = UDim2.new(Percent, 0, 1, 0)
+        ValueLabel.Text = tostring(math.floor(Value * 100) / 100) .. (Suffix or "")
+        if Callback then
+            Callback(Value)
+        end
+    end
+    
+    -- Initialize slider
+    UpdateSlider(DefaultValue or Min)
+    
+    -- Handle slider interaction
+    ClickDetector.MouseButton1Down:Connect(function()
+        Dragging = true
+    end)
+    
+    game:GetService("UserInputService").InputEnded:Connect(function(Input)
+        if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+            Dragging = false
+        end
+    end)
+    
+    game:GetService("UserInputService").InputChanged:Connect(function(Input)
+        if Dragging and Input.UserInputType == Enum.UserInputType.MouseMovement then
+            local MousePos = game:GetService("UserInputService"):GetMouseLocation()
+            local SliderPos = SliderBg.AbsolutePosition
+            local SliderSize = SliderBg.AbsoluteSize
+            local Percent = math.clamp((MousePos.X - SliderPos.X) / SliderSize.X, 0, 1)
+            local NewValue = Min + (Max - Min) * Percent
+            UpdateSlider(NewValue)
+        end
+    end)
+    
+    return {
+        Container = SliderContainer,
+        SetValue = function(NewValue)
+            UpdateSlider(NewValue)
+        end,
+        GetValue = function()
+            return Value
+        end
+    }
+end
+
 return Bracket
