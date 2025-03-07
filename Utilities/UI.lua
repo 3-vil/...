@@ -4392,7 +4392,6 @@ function Bracket:Toast(Notification)
     end)
 end
 
--- Add these functions before the "return Bracket" line
 function Bracket.ApplyAnbuStyle(Window)
     -- Apply the Anbu.win styling to match the screenshot
     
@@ -4413,6 +4412,48 @@ function Bracket.ApplyAnbuStyle(Window)
     local DragCorner = Instance.new("UICorner")
     DragCorner.CornerRadius = UDim.new(0, 6)
     DragCorner.Parent = Drag
+    
+    -- Add Anbu.win branding in the title bar
+    local BrandLogo = Instance.new("TextLabel")
+    BrandLogo.Name = "BrandLogo"
+    BrandLogo.Size = UDim2.new(0, 20, 0, 20)
+    BrandLogo.Position = UDim2.new(0, 8, 0, 3)
+    BrandLogo.BackgroundTransparency = 1
+    BrandLogo.TextColor3 = THEME.ACCENT
+    BrandLogo.TextSize = 18
+    BrandLogo.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+    BrandLogo.Text = ""
+    BrandLogo.TextXAlignment = Enum.TextXAlignment.Center
+    BrandLogo.ZIndex = 5
+    BrandLogo.Parent = Drag
+    
+    -- Main brand text
+    local BrandText = Instance.new("TextLabel")
+    BrandText.Name = "BrandText"
+    BrandText.Size = UDim2.new(0, 160, 0, 20)
+    BrandText.Position = UDim2.new(0, 28, 0, 3) 
+    BrandText.BackgroundTransparency = 1
+    BrandText.TextColor3 = THEME.TEXT_PRIMARY
+    BrandText.TextSize = 15
+    BrandText.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+    BrandText.Text = "Anbu.win Universal"
+    BrandText.TextXAlignment = Enum.TextXAlignment.Left
+    BrandText.ZIndex = 5
+    BrandText.Parent = Drag
+    
+    -- Add the "+" button on the right side
+    local PlusButton = Instance.new("TextButton")
+    PlusButton.Name = "PlusButton"
+    PlusButton.Size = UDim2.new(0, 20, 0, 20)
+    PlusButton.Position = UDim2.new(1, -85, 0, 3) -- Position it to the left of the window controls
+    PlusButton.BackgroundTransparency = 1
+    PlusButton.TextColor3 = THEME.TEXT_PRIMARY
+    PlusButton.TextSize = 18
+    PlusButton.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+    PlusButton.Text = "+"
+    PlusButton.TextXAlignment = Enum.TextXAlignment.Center
+    PlusButton.ZIndex = 5
+    PlusButton.Parent = Drag
     
     -- Add "UNDETECTED v2.0" label
     local Version = Instance.new("TextLabel")
