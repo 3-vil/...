@@ -161,11 +161,11 @@ local KnownBodyParts = {
 }
 
 local Window = Parvus.Utilities.UI:Window({
-    Name = ("Anbu.win"),
+    Name = ("Parvus Hub %s %s"):format(utf8.char(8212), Parvus.Game.Name),
     Position = UDim2.new(0.5, -248 * 3, 0.5, -248)
 }) do
 
-    local LegitTab = Window:Tab({Name = "Aimbot"}) do
+    local LegitTab = Window:Tab({Name = "Legit"}) do
         local AimbotSection = LegitTab:Section({Name = "Aimbot", Side = "Left"}) do
             AimbotSection:Toggle({Name = "Enabled", Flag = "Aimbot/Enabled", Value = false})
             :Keybind({Flag = "Aimbot/Keybind", Value = "MouseButton2", Mouse = true, DisableToggle = true,
@@ -192,7 +192,7 @@ local Window = Parvus.Utilities.UI:Window({
         local AFOVSection = LegitTab:Section({Name = "Aimbot FOV Circle", Side = "Left"}) do
             AFOVSection:Toggle({Name = "Enabled", Flag = "Aimbot/FOV/Enabled", Value = true})
             AFOVSection:Toggle({Name = "Filled", Flag = "Aimbot/FOV/Filled", Value = false})
-           AFOVSection:Colorpicker({Name = "Color", Flag = "Aimbot/FOV/Color", Value = {0.833, 0.5, 1, 0.25, false}}) -- Light Purple
+            AFOVSection:Colorpicker({Name = "Color", Flag = "Aimbot/FOV/Color", Value = {1, 0.66666662693024, 1, 0.25, false}})
             AFOVSection:Slider({Name = "NumSides", Flag = "Aimbot/FOV/NumSides", Min = 3, Max = 100, Value = 14})
             AFOVSection:Slider({Name = "Thickness", Flag = "Aimbot/FOV/Thickness", Min = 1, Max = 10, Value = 2})
         end
@@ -217,7 +217,8 @@ local Window = Parvus.Utilities.UI:Window({
         local SAFOVSection = LegitTab:Section({Name = "Silent Aim FOV Circle", Side = "Right"}) do
             SAFOVSection:Toggle({Name = "Enabled", Flag = "SilentAim/FOV/Enabled", Value = true})
             SAFOVSection:Toggle({Name = "Filled", Flag = "SilentAim/FOV/Filled", Value = false})
-          SAFOVSection:Colorpicker({Name = "Color", Flag = "SilentAim/FOV/Color", Value = {0.833, 0.75, 0.75, 0.25, false}}) -- Medium Purple
+            SAFOVSection:Colorpicker({Name = "Color", Flag = "SilentAim/FOV/Color",
+            Value = {0.6666666865348816, 0.6666666269302368, 1, 0.25, false}})
             SAFOVSection:Slider({Name = "NumSides", Flag = "SilentAim/FOV/NumSides", Min = 3, Max = 100, Value = 14})
             SAFOVSection:Slider({Name = "Thickness", Flag = "SilentAim/FOV/Thickness", Min = 1, Max = 10, Value = 2})
         end
@@ -249,12 +250,12 @@ local Window = Parvus.Utilities.UI:Window({
         local TFOVSection = LegitTab:Section({Name = "Trigger FOV Circle", Side = "Left"}) do
             TFOVSection:Toggle({Name = "Enabled", Flag = "Trigger/FOV/Enabled", Value = true})
             TFOVSection:Toggle({Name = "Filled", Flag = "Trigger/FOV/Filled", Value = false})
-            TFOVSection:Colorpicker({Name = "Color", Flag = "Trigger/FOV/Color", Value = {0.833, 1, 0.5, 0.25, false}}) -- Dark Purple
+            TFOVSection:Colorpicker({Name = "Color", Flag = "Trigger/FOV/Color", Value = {0.0833333358168602, 0.6666666269302368, 1, 0.25, false}})
             TFOVSection:Slider({Name = "NumSides", Flag = "Trigger/FOV/NumSides", Min = 3, Max = 100, Value = 14})
             TFOVSection:Slider({Name = "Thickness", Flag = "Trigger/FOV/Thickness", Min = 1, Max = 10, Value = 2})
         end
     end
-    local RageTab = Window:Tab({Name = "Ragebot"}) do
+    local RageTab = Window:Tab({Name = "Rage"}) do
         local AutoshootSection = RageTab:Section({Name = "Rage", Side = "Left"}) do
             AutoshootSection:Toggle({Name = "Autoshoot Enabled", Flag = "BB/Rage/Autoshoot/Enabled", Value = false}):Keybind({Mouse = true, Flag = "BB/Rage/Autoshoot/Keybind"})
             AutoshootSection:Toggle({Name = "Visibility Check", Flag = "BB/Rage/Autoshoot/VisibilityCheck", Value = false}):Keybind()
@@ -351,15 +352,15 @@ local Window = Parvus.Utilities.UI:Window({
             }})
         end
     end
-    local VisualsSection = Parvus.Utilities:ESPSection(Window, "ESP", "ESP/Player", true, true, true, true, true, false) do
+    local VisualsSection = Parvus.Utilities:ESPSection(Window, "Visuals", "ESP/Player", true, true, true, true, true, false) do
         VisualsSection:Colorpicker({Name = "Ally Color", Flag = "ESP/Player/Ally", Value = {0.3333333432674408, 0.6666666269302368, 1, 0, false}})
-        VisualsSection:Colorpicker({Name = "Enemy Color", Flag = "ESP/Player/Enemy", Value = {1, 0.6666666269302368, 1, 0, true}}) -- Changed to Rainbow
+        VisualsSection:Colorpicker({Name = "Enemy Color", Flag = "ESP/Player/Enemy", Value = {1, 0.6666666269302368, 1, 0, false}})
         VisualsSection:Toggle({Name = "Team Check", Flag = "ESP/Player/TeamCheck", Value = true})
         VisualsSection:Toggle({Name = "Use Player Color", Flag = "ESP/Player/TeamColor", Value = false})
         VisualsSection:Toggle({Name = "Distance Check", Flag = "ESP/Player/DistanceCheck", Value = false})
         VisualsSection:Slider({Name = "Distance", Flag = "ESP/Player/Distance", Min = 25, Max = 1000, Value = 250, Unit = "studs"})
     end
-    local MiscTab = Window:Tab({Name = "Misc"}) do
+    local MiscTab = Window:Tab({Name = "Miscellaneous"}) do
         local WCSection = MiscTab:Section({Name = "Weapon Customization", Side = "Left"}) do
             WCSection:Toggle({Name = "Enabled", Flag = "BB/WC/Enabled", Value = false})
             :Colorpicker({Flag = "BB/WC/Color", Value = {1, 0.75, 1, 0.5, true}})
@@ -405,9 +406,9 @@ local Window = Parvus.Utilities.UI:Window({
                     task.wait(0.1)
                     firesignal(LocalPlayer.PlayerGui.MenuGui.ClaimedFrame.CloseButton.MouseButton1Click)
                     firesignal(LocalPlayer.PlayerGui.MenuGui.PurchasedFrame.CloseButton.MouseButton1Click)
-                    Parvus.Utilities.UI:Push({Title = "Anbu.win", Description = "All available codes are claimed!", Duration = 5})
+                    Parvus.Utilities.UI:Push({Title = "Parvus Hub", Description = "All available codes are claimed!", Duration = 5})
                 else
-                    Parvus.Utilities.UI:Push({Title = "Anbu.win", Description = "Failed to get the codes:\n" .. Error, Duration = 5})
+                    Parvus.Utilities.UI:Push({Title = "Parvus Hub", Description = "Failed to get the codes:\n" .. Error, Duration = 5})
                 end
             end})
         end
@@ -512,7 +513,7 @@ local Window = Parvus.Utilities.UI:Window({
     end Parvus.Utilities:SettingsSection(Window, "RightShift", false)
 end Parvus.Utilities.InitAutoLoad(Window)
 
-
+Parvus.Utilities:SetupWatermark(Window)
 Parvus.Utilities.Drawing.SetupCursor(Window)
 Parvus.Utilities.Drawing.SetupCrosshair(Window.Flags)
 Parvus.Utilities.Drawing.SetupFOV("Aimbot", Window.Flags)
