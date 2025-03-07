@@ -1368,36 +1368,22 @@ Slider = function()
     Slider.TextWrapped = true
     Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-    -- Create a container for the slider elements
-    local SliderContainer = Instance.new("Frame")
-    SliderContainer.Name = "SliderContainer"
-    SliderContainer.ZIndex = 2
-    SliderContainer.AnchorPoint = Vector2.new(0.5, 0.5)
-    SliderContainer.Size = UDim2.new(1, -60, 0, 8) -- Adjust width to leave room for text
-    SliderContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    SliderContainer.Position = UDim2.new(0.5, -25, 0.5, 0) -- Offset to leave room for value
-    SliderContainer.BorderSizePixel = 0
-    SliderContainer.BackgroundTransparency = 1
-    SliderContainer.Parent = Slider
-
-    -- Create a track
     local Background = Instance.new("Frame")
     Background.Name = "Background"
     Background.ZIndex = 2
     Background.AnchorPoint = Vector2.new(0.5, 0.5)
-    Background.Size = UDim2.new(1, 0, 0, 4) -- Very thin track
+    Background.Size = UDim2.new(1, 0, 0, 6) -- Thinner track
     Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Background.Position = UDim2.new(0.5, 0, 0.5, 0)
     Background.BorderSizePixel = 0
     Background.BackgroundColor3 = THEME.INACTIVE
-    Background.Parent = SliderContainer
+    Background.Parent = Slider
 
-    -- Add subtle rounded corners
+    -- Rounded corners for track
     local BackgroundCorner = Instance.new("UICorner")
-    BackgroundCorner.CornerRadius = UDim.new(0, 2) -- Subtle rounding
+    BackgroundCorner.CornerRadius = UDim.new(1, 0) -- Fully rounded
     BackgroundCorner.Parent = Background
 
-    -- Create the filled portion of slider
     local Bar = Instance.new("Frame")
     Bar.Name = "Bar"
     Bar.ZIndex = 2
@@ -1409,66 +1395,35 @@ Slider = function()
     Bar.BackgroundColor3 = THEME.ACCENT
     Bar.Parent = Background
 
-    -- Match corners with track
+    -- Rounded corners for progress bar
     local BarCorner = Instance.new("UICorner")
-    BarCorner.CornerRadius = UDim.new(0, 2)
+    BarCorner.CornerRadius = UDim.new(1, 0) -- Fully rounded
     BarCorner.Parent = Bar
     
-    -- Create handle as a separate element positioned at end of bar
-    local HandleContainer = Instance.new("Frame")
-    HandleContainer.Name = "HandleContainer"
-    HandleContainer.ZIndex = 3
-    HandleContainer.AnchorPoint = Vector2.new(0, 0.5)
-    HandleContainer.Size = UDim2.new(1, 0, 1, 0)
-    HandleContainer.BackgroundTransparency = 1
-    HandleContainer.Position = UDim2.new(0, 0, 0.5, 0)
-    HandleContainer.BorderSizePixel = 0
-    HandleContainer.Parent = SliderContainer
-    
+    -- Add a dot handle to the slider
     local Handle = Instance.new("Frame")
     Handle.Name = "Handle"
     Handle.ZIndex = 3
     Handle.AnchorPoint = Vector2.new(0.5, 0.5)
-    Handle.Size = UDim2.new(0, 16, 0, 16) -- Larger handle for easier interaction
+    Handle.Size = UDim2.new(0, 12, 0, 12) -- Circle handle
     Handle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Handle.Position = UDim2.new(0.5, 0, 0.5, 0) -- This will be updated in the Slider:GetPropertyChangedSignal
+    Handle.Position = UDim2.new(0.5, 0, 0.5, 0)
     Handle.BorderSizePixel = 0
-    Handle.BackgroundColor3 = THEME.ACCENT
-    Handle.Parent = HandleContainer
+    Handle.BackgroundColor3 = THEME.TEXT_PRIMARY
+    Handle.Parent = Bar
     
-    -- Shadow effect for the handle
-    local HandleShadow = Instance.new("UIStroke")
-    HandleShadow.Name = "Shadow"
-    HandleShadow.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    HandleShadow.Color = THEME.BORDER
-    HandleShadow.Thickness = 1
-    HandleShadow.Transparency = 0.5
-    HandleShadow.Parent = Handle
-    
-    -- Make handle circular
     local HandleCorner = Instance.new("UICorner")
-    HandleCorner.CornerRadius = UDim.new(1, 0)
+    HandleCorner.CornerRadius = UDim.new(1, 0) -- Circular handle
     HandleCorner.Parent = Handle
 
-    -- Value display with background for better visibility
-    local ValueContainer = Instance.new("Frame")
-    ValueContainer.Name = "ValueContainer"
-    ValueContainer.ZIndex = 3
-    ValueContainer.AnchorPoint = Vector2.new(1, 0.5)
-    ValueContainer.Size = UDim2.new(0, 50, 0, 18)
-    ValueContainer.Position = UDim2.new(1, 0, 0.5, 0)
-    ValueContainer.BackgroundTransparency = 1
-    ValueContainer.BorderSizePixel = 0
-    ValueContainer.Parent = Slider
-    
     local Value = Instance.new("TextBox")
     Value.Name = "Value"
-    Value.ZIndex = 3
-    Value.AnchorPoint = Vector2.new(1, 0.5)
-    Value.Size = UDim2.new(1, 0, 1, 0)
+    Value.ZIndex = 2
+    Value.AnchorPoint = Vector2.new(1, 0)
+    Value.Size = UDim2.new(0, 12, 1, 0)
     Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Value.BackgroundTransparency = 1
-    Value.Position = UDim2.new(1, 0, 0.5, 0)
+    Value.Position = UDim2.new(1, -6, 0, 0)
     Value.BorderSizePixel = 0
     Value.BackgroundColor3 = THEME.LIGHT_CONTRAST
     Value.TextStrokeTransparency = 0.75
@@ -1479,17 +1434,15 @@ Slider = function()
     Value.Text = ""
     Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
     Value.TextXAlignment = Enum.TextXAlignment.Right
-    Value.Parent = ValueContainer
+    Value.Parent = Slider
 
-    -- Title (left aligned)
     local Title = Instance.new("TextLabel")
     Title.Name = "Title"
     Title.ZIndex = 2
-    Title.Size = UDim2.new(0, 0, 1, 0) -- Auto-size width
-    Title.AutomaticSize = Enum.AutomaticSize.X
+    Title.Size = UDim2.new(1, -24, 1, 0)
     Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Title.BackgroundTransparency = 1
-    Title.Position = UDim2.new(0, 0, 0, 0)
+    Title.Position = UDim2.new(0, 6, 0, 0)
     Title.BorderSizePixel = 0
     Title.BackgroundColor3 = THEME.LIGHT_CONTRAST
     Title.TextStrokeTransparency = 0.75
@@ -1504,12 +1457,11 @@ Slider = function()
 
     return Slider
 end,
-
-SlimSlider = function()
+   SlimSlider = function()
     local Slider = Instance.new("TextButton")
     Slider.Name = "Slider"
     Slider.ZIndex = 2
-    Slider.Size = UDim2.new(1, 0, 0, 32)
+    Slider.Size = UDim2.new(1, 0, 0, 28)
     Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Slider.BackgroundTransparency = 1
     Slider.BorderSizePixel = 0
@@ -1523,25 +1475,12 @@ SlimSlider = function()
     Slider.TextWrapped = true
     Slider.FontFace = Font.fromEnum(Enum.Font.Gotham)
 
-    -- Create top row with title and value
-    local TopRow = Instance.new("Frame")
-    TopRow.Name = "TopRow"
-    TopRow.ZIndex = 2
-    TopRow.Size = UDim2.new(1, 0, 0, 16)
-    TopRow.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    TopRow.Position = UDim2.new(0, 0, 0, 0)
-    TopRow.BackgroundTransparency = 1
-    TopRow.BorderSizePixel = 0
-    TopRow.Parent = Slider
-
-    -- Title (left aligned)
     local Title = Instance.new("TextLabel")
     Title.Name = "Title"
     Title.ZIndex = 2
-    Title.Size = UDim2.new(1, -50, 1, 0) -- Leave room for value
+    Title.Size = UDim2.new(1, -12, 0, 16)
     Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Title.BackgroundTransparency = 1
-    Title.Position = UDim2.new(0, 0, 0, 0)
     Title.BorderSizePixel = 0
     Title.BackgroundColor3 = THEME.LIGHT_CONTRAST
     Title.TextStrokeTransparency = 0.75
@@ -1552,14 +1491,69 @@ SlimSlider = function()
     Title.TextWrapped = true
     Title.FontFace = Font.fromEnum(Enum.Font.Gotham)
     Title.TextXAlignment = Enum.TextXAlignment.Left
-    Title.Parent = TopRow
+    Title.Parent = Slider
 
-    -- Value (right aligned)
+    local Background = Instance.new("Frame")
+    Background.Name = "Background"
+    Background.ZIndex = 2
+    Background.AnchorPoint = Vector2.new(0.5, 1)
+    Background.Size = UDim2.new(1, 0, 0, 6) -- Thinner track for a cleaner look
+    Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Background.Position = UDim2.new(0.5, 0, 1, 0)
+    Background.BorderSizePixel = 0
+    Background.BackgroundColor3 = THEME.INACTIVE
+    Background.Parent = Slider
+
+    -- Rounded corners for track
+    local BackgroundCorner = Instance.new("UICorner")
+    BackgroundCorner.CornerRadius = UDim.new(1, 0) -- Fully rounded
+    BackgroundCorner.Parent = Background
+
+    local Bar = Instance.new("Frame")
+    Bar.Name = "Bar"
+    Bar.ZIndex = 2
+    Bar.AnchorPoint = Vector2.new(0, 0.5)
+    Bar.Size = UDim2.new(0.5, 0, 1, 0)
+    Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Bar.Position = UDim2.new(0, 0, 0.5, 0)
+    Bar.BorderSizePixel = 0
+    Bar.BackgroundColor3 = THEME.ACCENT
+    Bar.Parent = Background
+
+    -- Rounded corners for progress bar
+    local BarCorner = Instance.new("UICorner")
+    BarCorner.CornerRadius = UDim.new(1, 0) -- Fully rounded
+    BarCorner.Parent = Bar
+    
+    -- Add a dot handle to the slider
+    local Handle = Instance.new("Frame")
+    Handle.Name = "Handle"
+    Handle.ZIndex = 3
+    Handle.AnchorPoint = Vector2.new(0.5, 0.5)
+    Handle.Size = UDim2.new(0, 12, 0, 12) -- Circle handle
+    Handle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Handle.Position = UDim2.new(1, 0, 0.5, 0)
+    Handle.BorderSizePixel = 0
+    Handle.BackgroundColor3 = THEME.TEXT_PRIMARY
+    Handle.Parent = Bar
+    
+    local HandleCorner = Instance.new("UICorner")
+    HandleCorner.CornerRadius = UDim.new(1, 0) -- Circular handle
+    HandleCorner.Parent = Handle
+    
+    -- Add a subtle shadow/glow effect to the handle
+    local HandleStroke = Instance.new("UIStroke")
+    HandleStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    HandleStroke.LineJoinMode = Enum.LineJoinMode.Round
+    HandleStroke.Color = THEME.BORDER
+    HandleStroke.Thickness = 1
+    HandleStroke.Parent = Handle
+
     local Value = Instance.new("TextBox")
     Value.Name = "Value"
     Value.ZIndex = 2
     Value.AnchorPoint = Vector2.new(1, 0)
-    Value.Size = UDim2.new(0, 50, 1, 0)
+    Value.Size = UDim2.new(0, 12, 0, 16)
     Value.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Value.BackgroundTransparency = 1
     Value.Position = UDim2.new(1, 0, 0, 0)
@@ -1573,96 +1567,7 @@ SlimSlider = function()
     Value.Text = ""
     Value.FontFace = Font.fromEnum(Enum.Font.Gotham)
     Value.TextXAlignment = Enum.TextXAlignment.Right
-    Value.Parent = TopRow
-
-    -- Create slider container
-    local SliderArea = Instance.new("Frame")
-    SliderArea.Name = "SliderArea"
-    SliderArea.ZIndex = 2
-    SliderArea.Size = UDim2.new(1, 0, 0, 16)
-    SliderArea.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    SliderArea.Position = UDim2.new(0, 0, 0, 16)
-    SliderArea.BackgroundTransparency = 1
-    SliderArea.BorderSizePixel = 0
-    SliderArea.Parent = Slider
-
-    -- Track
-    local Background = Instance.new("Frame")
-    Background.Name = "Background"
-    Background.ZIndex = 2
-    Background.AnchorPoint = Vector2.new(0.5, 0.5)
-    Background.Size = UDim2.new(1, 0, 0, 4)
-    Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Background.Position = UDim2.new(0.5, 0, 0.5, 0)
-    Background.BorderSizePixel = 0
-    Background.BackgroundColor3 = THEME.INACTIVE
-    Background.Parent = SliderArea
-
-    -- Add subtle rounded corners
-    local BackgroundCorner = Instance.new("UICorner")
-    BackgroundCorner.CornerRadius = UDim.new(0, 2)
-    BackgroundCorner.Parent = Background
-
-    -- Bar (filled portion)
-    local Bar = Instance.new("Frame")
-    Bar.Name = "Bar"
-    Bar.ZIndex = 2
-    Bar.AnchorPoint = Vector2.new(0, 0.5)
-    Bar.Size = UDim2.new(0.5, 0, 1, 0)
-    Bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Bar.Position = UDim2.new(0, 0, 0.5, 0)
-    Bar.BorderSizePixel = 0
-    Bar.BackgroundColor3 = THEME.ACCENT
-    Bar.Parent = Background
-
-    -- Match corners with track
-    local BarCorner = Instance.new("UICorner")
-    BarCorner.CornerRadius = UDim.new(0, 2)
-    BarCorner.Parent = Bar
-
-    -- Handle container for correct positioning
-    local HandleContainer = Instance.new("Frame")
-    HandleContainer.Name = "HandleContainer"
-    HandleContainer.ZIndex = 3
-    HandleContainer.AnchorPoint = Vector2.new(0, 0.5)
-    HandleContainer.Size = UDim2.new(1, 0, 1, 0)
-    HandleContainer.BackgroundTransparency = 1
-    HandleContainer.Position = UDim2.new(0, 0, 0.5, 0)
-    HandleContainer.BorderSizePixel = 0
-    HandleContainer.Parent = SliderArea
-    
-    -- Handle
-    local Handle = Instance.new("Frame")
-    Handle.Name = "Handle"
-    Handle.ZIndex = 3
-    Handle.AnchorPoint = Vector2.new(0.5, 0.5)
-    Handle.Size = UDim2.new(0, 14, 0, 14)
-    Handle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Handle.Position = UDim2.new(0.5, 0, 0.5, 0) -- Will be updated in property changed
-    Handle.BorderSizePixel = 0
-    Handle.BackgroundColor3 = THEME.ACCENT
-    Handle.Parent = HandleContainer
-    
-    -- Shine effect for better visibility
-    local HandleShadow = Instance.new("Frame")
-    HandleShadow.Name = "Shine"
-    HandleShadow.ZIndex = 4
-    HandleShadow.AnchorPoint = Vector2.new(0.5, 0.5)
-    HandleShadow.Size = UDim2.new(0.6, 0, 0.6, 0)
-    HandleShadow.BorderSizePixel = 0
-    HandleShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-    HandleShadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    HandleShadow.Transparency = 0.7
-    HandleShadow.Parent = Handle
-    
-    -- Make handle and shine circular
-    local HandleCorner = Instance.new("UICorner")
-    HandleCorner.CornerRadius = UDim.new(1, 0)
-    HandleCorner.Parent = Handle
-    
-    local ShadowCorner = Instance.new("UICorner")
-    ShadowCorner.CornerRadius = UDim.new(1, 0)
-    ShadowCorner.Parent = HandleShadow
+    Value.Parent = Slider
 
     return Slider
 end,
