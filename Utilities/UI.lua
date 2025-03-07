@@ -550,10 +550,10 @@ end)
         local TabContainer = Instance.new("Frame")
         TabContainer.Name = "TabContainer"
         TabContainer.AnchorPoint = Vector2.new(0.5, 0)
-        TabContainer.Size = UDim2.new(1, 0, 1, -41) -- Adjusted for taller header
+        TabContainer.Size = UDim2.new(1, 0, 1, -51) -- Adjusted to account for added spacing
         TabContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
         TabContainer.BackgroundTransparency = 1
-        TabContainer.Position = UDim2.new(0.5, 0, 0, 41) -- Adjusted for taller header
+        TabContainer.Position = UDim2.new(0.5, 0, 0, 51) -- Increased from 41 to 51 to add 10 pixels of spacing
         TabContainer.BorderSizePixel = 0
         TabContainer.BackgroundColor3 = THEME.LIGHT_CONTRAST
         TabContainer.Parent = Window
@@ -723,17 +723,6 @@ end)
         GradientLine.BorderSizePixel = 0
         GradientLine.BackgroundColor3 = THEME.ACCENT
         GradientLine.Parent = Main
-
-        local Gradient = Instance.new("UIGradient")
-        Gradient.Name = "Gradient"
-        Gradient.Transparency = NumberSequence.new({
-            NumberSequenceKeypoint.new(0, 1),
-            NumberSequenceKeypoint.new(0.25, 0),
-            NumberSequenceKeypoint.new(0.75, 0),
-            NumberSequenceKeypoint.new(1, 1)
-        })
-        Gradient.Rotation = 90
-        Gradient.Parent = GradientLine
 
         local Title = Instance.new("TextLabel")
         Title.Name = "Title"
@@ -992,7 +981,7 @@ end)
 
         local LeftPadding = Instance.new("UIPadding")
         LeftPadding.Name = "Padding"
-        LeftPadding.PaddingTop = UDim.new(0, 11)
+        LeftPadding.PaddingTop = UDim.new(0, 16) -- Increased from 11 to 16 for more space at the top
         LeftPadding.PaddingLeft = UDim.new(0, 5)
         LeftPadding.PaddingRight = UDim.new(0, 5)
         LeftPadding.Parent = LeftSide
@@ -1017,7 +1006,7 @@ end)
 
         local RightPadding = Instance.new("UIPadding")
         RightPadding.Name = "Padding"
-        RightPadding.PaddingTop = UDim.new(0, 11)
+        RightPadding.PaddingTop = UDim.new(0, 16) -- Increased from 11 to 16 for more space at the top
         RightPadding.PaddingLeft = UDim.new(0, 5)
         RightPadding.PaddingRight = UDim.new(0, 5)
         RightPadding.Parent = RightSide
@@ -4438,19 +4427,7 @@ function Bracket.ApplyAnbuStyle(Window)
     BrandText.ZIndex = 5
     BrandText.Parent = BrandContainer
     
-    -- Add the "+" button right next to "Universal"
-    local PlusButton = Instance.new("TextButton")
-    PlusButton.Name = "PlusButton"
-    PlusButton.Size = UDim2.new(0, 20, 0, 25)
-    PlusButton.Position = UDim2.new(0, 140, 0, 0)
-    PlusButton.BackgroundTransparency = 1
-    PlusButton.TextColor3 = THEME.TEXT_PRIMARY
-    PlusButton.TextSize = 18
-    PlusButton.FontFace = Font.fromEnum(Enum.Font.GothamBold)
-    PlusButton.Text = "+"
-    PlusButton.TextXAlignment = Enum.TextXAlignment.Center
-    PlusButton.ZIndex = 5
-    PlusButton.Parent = BrandContainer
+    
     
   
     
